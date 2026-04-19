@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Awakened Observer — Sunday, April 19, 2026 (Reader)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold-pale:#FDF5DC; --gold-mid:#E8A020; --gold-dark:#6B3E08;
+    --teal-pale:#E1F5EE; --teal-strong:#5DCAA5; --teal-deep:#1D9E75; --teal-dark:#085041;
+    --blue-pale:#E6F1FB; --blue-mid:#378ADD; --blue-dark:#0C447C;
+    --coral-pale:#FAECE7; --coral-dark:#712B13;
+    --purple-pale:#EEEDFE; --purple-dark:#3C3489;
+    --amber-pale:#FAEEDA; --amber-dark:#633806;
+    --rose-pale:#FEF0F4; --rose-mid:#E8688A; --rose-dark:#7A1A35;
+    --indigo-pale:#EDEDFA; --indigo-mid:#7B7BB5; --indigo-dark:#2E2E72;
+    --green-pale:#EAF3DE; --green-dark:#27500A;
+    --gray-bg:#F5F3EE; --gray-card:#FDFAF0; --gray-surface:#EDEADC;
+    --border:rgba(50,45,35,0.10);
+    --text-1:#1A1714; --text-2:#5A5030; --text-3:#9A9070;
+    --sidebar-w:260px;
+  }
+  @media(prefers-color-scheme:dark){
+    :root{
+      --gold-pale:#261A04; --gray-bg:#131109; --gray-card:#1A1608;
+      --gray-surface:#211C0A; --border:rgba(240,200,80,0.08);
+      --text-1:#F8F0D0; --text-2:#B0A870; --text-3:#706840;
+      --blue-pale:#0D1E30;
+    }
+  }
+  body { font-family:'DM Sans',sans-serif; background:var(--gray-bg);
+          color:var(--text-1); min-height:100vh; }
+
+  /* ── Top masthead bar ─────────────────────────────────────────── */
+  .reader-header {
+    background:var(--gray-card); border-bottom:0.5px solid var(--border);
+    padding:.9rem 1.5rem; display:flex; align-items:center; gap:1rem;
+    position:sticky; top:0; z-index:100;
+  }
+  .reader-header::before { content:''; position:absolute; top:0; left:0; right:0;
+    height:2px; background:linear-gradient(90deg, transparent, #B83030, #E8A020, #1A3A80, transparent); }
+  .reader-lotus { flex-shrink:0; }
+  .reader-title { font-family:'Cormorant Garamond',serif; font-size:22px;
+    font-weight:500; line-height:1.1; }
+  .reader-meta { font-size:11px; color:var(--text-3); letter-spacing:.05em; }
+  .reader-edition-badge { display:inline-block; background:var(--gold-pale);
+    color:var(--gold-dark); font-size:9px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; padding:3px 10px; border-radius:20px; margin-top:.3rem;
+    border:0.5px solid rgba(232,160,32,0.25); }
+
+  /* ── Two-panel layout ─────────────────────────────────────────── */
+  .reader-layout {
+    display:flex; min-height:calc(100vh - 58px);
+  }
+
+  /* ── Left sidebar ─────────────────────────────────────────────── */
+  .reader-sidebar {
+    width:var(--sidebar-w); flex-shrink:0;
+    background:var(--gray-surface); border-right:0.5px solid var(--border);
+    padding:1.25rem .75rem 3rem;
+    position:sticky; top:58px; height:calc(100vh - 58px);
+    overflow-y:auto;
+  }
+  .reader-sidebar-title { font-size:9px; font-weight:500; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--text-3); padding:0 .5rem .75rem;
+    border-bottom:0.5px solid var(--border); margin-bottom:.75rem; }
+  .reader-nav-item {
+    display:block; width:100%; text-align:left; background:none;
+    border:none; border-radius:10px; padding:.7rem .75rem;
+    cursor:pointer; transition:background .15s;
+    margin-bottom:.3rem;
+  }
+  .reader-nav-item:hover { background:rgba(50,45,35,0.06); }
+  .reader-nav-active { background:var(--gray-card) !important;
+    box-shadow:0 1px 4px rgba(0,0,0,0.08); }
+  .rn-tag { display:block; font-size:9px; font-weight:500; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--text-3); margin-bottom:.25rem; }
+  .rn-headline { display:block; font-family:'Cormorant Garamond',serif;
+    font-size:15px; font-weight:500; color:var(--text-1); line-height:1.3;
+    margin-bottom:.4rem; }
+  .rn-klesha { font-size:8px; }
+
+  /* ── Main content area ────────────────────────────────────────── */
+  .reader-main {
+    flex:1; min-width:0; padding:2rem 2.5rem 4rem;
+    overflow-y:auto; max-width:660px;
+  }
+
+  /* Story card within reader — strip card chrome, render flat */
+  .reader-story {
+    background:none; border:none; border-radius:0; padding:0; margin:0;
+    overflow:visible;
+  }
+  .reader-story .story-tag { margin-bottom:.75rem; }
+  .reader-story .story-headline { font-size:28px; line-height:1.2; margin-bottom:1rem; }
+  .reader-story .story-fact { font-size:15px; padding-bottom:1.25rem; }
+
+  /* Preserve block styling inside flat card */
+  .reader-story .dialogue-block,
+  .reader-story .practice-block,
+  .reader-story .lens-block {
+    margin:0 -2.5rem;
+    padding:1.1rem 2.5rem 1.35rem;
+  }
+
+  /* ── Opening and closing panels ──────────────────────────────── */
+  .reader-opening {
+    background:var(--gold-pale); border-left:2.5px solid var(--gold-mid);
+    border-radius:0 10px 10px 0; padding:1.25rem 1.6rem; margin-bottom:2rem;
+    font-family:'Cormorant Garamond',serif; font-size:18px; font-style:italic;
+    color:var(--text-2); line-height:1.8; display:none;
+  }
+  .reader-closing {
+    text-align:center; padding:2.5rem 1rem 1rem;
+    border-top:0.5px solid var(--border); margin-top:2rem; display:none;
+  }
+  .closing-text { font-family:'Cormorant Garamond',serif; font-size:19px;
+    font-style:italic; color:var(--text-2); line-height:2.1; margin-bottom:1.6rem; }
+  .mantra-tibetan { font-size:22px; color:var(--gold-mid); letter-spacing:.07em;
+    display:block; margin-bottom:.6rem; }
+  .mantra { font-size:11px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--teal-deep); display:block; margin-bottom:.5rem; }
+  .mantra-note { font-size:12px; color:var(--text-3); font-style:italic;
+    font-family:'Cormorant Garamond',serif; }
+
+  /* Shared card styling (copied from web view for blocks inside reader) */
+  .story-tag { display:inline-block; font-size:10px; font-weight:500;
+    letter-spacing:.08em; text-transform:uppercase; padding:3px 11px;
+    border-radius:20px; margin-bottom:.95rem; }
+  .tag-conflict {background:var(--coral-pale);color:var(--coral-dark);}
+  .tag-peace    {background:var(--teal-pale); color:var(--teal-dark);}
+  .tag-grief    {background:var(--amber-pale);color:var(--amber-dark);}
+  .tag-joy      {background:var(--blue-pale); color:var(--blue-dark);}
+  .tag-science  {background:var(--purple-pale);color:var(--purple-dark);}
+  .tag-nature   {background:var(--green-pale);color:var(--green-dark);}
+  .tag-politics {background:#FBEAF0;color:#72243E;}
+  .tag-economy  {background:var(--amber-pale);color:var(--amber-dark);}
+  .tag-culture  {background:var(--teal-pale); color:var(--teal-dark);}
+  .tag-human    {background:var(--gray-surface);color:#5F5E5A;}
+  .tag-death    {background:#FCEBEB;color:#791F1F;}
+  .tag-renewal  {background:var(--teal-pale); color:var(--teal-dark);}
+  .story-what { font-size:10px; font-weight:500; text-transform:uppercase;
+    letter-spacing:.10em; color:var(--text-3); margin-bottom:.35rem; }
+  .story-headline { font-family:'Cormorant Garamond',serif; font-size:23px;
+    font-weight:500; color:var(--text-1); line-height:1.32; margin-bottom:.9rem; }
+  .story-fact { font-size:14px; color:var(--text-2); line-height:1.8; padding-bottom:1.1rem; }
+  .story-source { font-size:11.5px; color:var(--text-3); padding:.4rem 0 .85rem;
+    border-top:0.5px dashed var(--border); margin-top:.2rem; }
+  .story-source a { color:var(--text-3); text-decoration:none;
+    border-bottom:0.5px solid var(--border); }
+  .story-source a:hover { color:var(--teal-deep); }
+  .teaching-divider { display:flex; align-items:center; gap:10px;
+    margin:0 0 1rem; padding-top:1.1rem; border-top:0.5px solid var(--border); }
+  .teaching-divider::after { content:''; flex:1; height:0.5px; background:var(--border); }
+  .teaching-divider span { font-size:13px; color:var(--teal-strong); flex-shrink:0; }
+  .story-teaching { font-family:'Cormorant Garamond',serif; font-size:17.5px;
+    font-style:italic; color:var(--text-1); line-height:1.85; padding-bottom:.6rem; }
+  .story-teaching p { margin-bottom:.7em; }
+  .story-teaching p:last-child { margin-bottom:0; }
+  .teaching-attr { font-size:11px; color:var(--text-3); padding-bottom:1.1rem; }
+  .dialogue-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.25rem; margin:0 -1.65rem; background:var(--blue-pale); }
+  .dialogue-header { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--blue-dark); margin-bottom:.75rem; }
+  .dialogue-tradition { font-weight:400; font-style:italic; letter-spacing:0;
+    text-transform:none; color:var(--text-3); }
+  .dialogue-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .dialogue-text p { margin-bottom:.7em; }
+  .dialogue-text p:last-child { margin-bottom:0; }
+  .dialogue-framing { font-size:11px; color:var(--blue-dark); opacity:.65;
+    font-style:italic; margin-bottom:.65rem; }
+  .dialogue-attr { font-size:11px; color:var(--text-3); padding-bottom:.2rem; }
+  .practice-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.4rem; margin:0 -1.65rem; background:var(--teal-pale); }
+  .practice-label { font-size:10px; font-weight:500; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--teal-dark); margin-bottom:.6rem;
+    display:flex; align-items:center; gap:8px; }
+  .klesha-tag { font-size:9px; font-weight:600; letter-spacing:.06em;
+    text-transform:uppercase; padding:2px 8px; border-radius:10px;
+    color:#fff; flex-shrink:0; }
+  .klesha-anger      {background:#C0392B;} .klesha-grief      {background:#7F8C8D;}
+  .klesha-anxiety    {background:#D4AC0D;} .klesha-helplessness{background:#8E44AD;}
+  .klesha-wonder     {background:#2E86C1;} .klesha-hope       {background:#1D8348;}
+  .klesha-confusion  {background:#D35400;} .klesha-compassion {background:#CB4335;}
+  .practice-text { font-size:13.5px; color:var(--teal-dark);
+    line-height:1.8; font-style:italic; }
+  .practice-text p { margin-bottom:.75em; }
+  .practice-text p:last-child { margin-bottom:0; }
+  .wisdom-line { font-size:10.5px; color:var(--teal-deep); font-style:italic;
+    margin-top:.55rem; padding-top:.45rem;
+    border-top:0.5px solid rgba(29,158,117,0.2); }
+  .wisdom-label { font-weight:600; font-style:normal; }
+  .method-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.07em; text-transform:uppercase; padding:2px 8px;
+    border-radius:10px; margin-left:auto; flex-shrink:0; }
+  .method-abandoning  { background:#E8E8E8; color:#4A4A4A; }
+  .method-transforming { background:#FEF3C7; color:#92400E; }
+  .method-transcending { background:var(--gold-pale); color:var(--gold-dark);
+    border:0.5px solid rgba(232,160,32,0.3); }
+  .lens-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.35rem; margin:0 -1.65rem; background:var(--amber-pale); }
+  .lens-header { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--amber-dark); margin-bottom:.75rem; }
+  .lens-tradition { font-weight:400; font-style:italic; letter-spacing:0;
+    text-transform:none; color:var(--text-3); }
+  .lens-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .lens-text p { margin-bottom:.75em; }
+  .lens-text p:last-child { margin-bottom:0; }
+  .lens-attr { font-size:11px; color:var(--text-3); padding-bottom:.2rem; }
+  .underreported-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.09em; text-transform:uppercase; padding:2px 9px; border-radius:20px;
+    background:var(--green-pale); color:var(--green-dark); margin-left:6px;
+    border:0.5px solid rgba(39,80,10,0.18); vertical-align:middle; }
+
+  /* Tradition quote block (reader inherits from web card styles) */
+  .quote-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.3rem; margin:0 -1.65rem;
+    background:var(--purple-pale); position:relative; }
+  .quote-mark { font-family:'Cormorant Garamond',serif; font-size:52px;
+    line-height:.7; color:var(--purple-dark); opacity:0.18;
+    margin-bottom:-.25rem; user-select:none; }
+  .quote-text { font-family:'Cormorant Garamond',serif; font-size:17.5px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.55rem; }
+  .quote-text p { margin-bottom:.7em; }
+  .quote-text p:last-child { margin-bottom:0; }
+  .quote-attr { font-size:11px; color:var(--text-3); margin-bottom:.55rem; }
+  .quote-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.08em; text-transform:uppercase; padding:2px 8px; border-radius:10px; }
+  .quote-badge-exact { background:var(--green-pale); color:var(--green-dark);
+    border:0.5px solid rgba(39,80,10,0.18); }
+  .quote-badge-paraphrase { background:var(--gray-surface); color:var(--text-2);
+    border:0.5px solid var(--border); }
+
+  /* Responsive: narrow screens */
+  @media(max-width:700px){
+    .reader-layout { flex-direction:column; }
+    .reader-sidebar { width:100%; height:auto; position:static;
+      border-right:none; border-bottom:0.5px solid var(--border);
+      padding:1rem .75rem; overflow-x:auto; white-space:nowrap;
+      display:flex; gap:.5rem; flex-wrap:nowrap; }
+    .reader-sidebar-title { display:none; }
+    .reader-nav-item { display:inline-flex; flex-direction:column;
+      width:160px; white-space:normal; flex-shrink:0; }
+    .reader-main { padding:1.5rem 1.25rem 3rem; }
+    .reader-story .dialogue-block,
+    .reader-story .practice-block,
+    .reader-story .lens-block { margin:0 -1.25rem; padding:1.1rem 1.25rem 1.35rem; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Sticky header bar -->
+  <header class="reader-header">
+    <svg class="reader-lotus" width="36" height="32" viewBox="0 0 60 52" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="30" cy="42" rx="10" ry="5" fill="#9FE1CB" opacity="0.38"/>
+      <path d="M30 38 Q21 24 16 9 Q24 22 30 26 Q36 22 44 9 Q39 24 30 38Z" fill="#5DCAA5" opacity="0.88"/>
+      <path d="M30 38 Q13 30 5 19 Q17 27 30 32Z" fill="#9FE1CB" opacity="0.9"/>
+      <path d="M30 38 Q47 30 55 19 Q43 27 30 32Z" fill="#9FE1CB" opacity="0.9"/>
+      <circle cx="30" cy="26" r="5" fill="#F7E28A" opacity="0.9"/>
+      <circle cx="30" cy="26" r="2.8" fill="#E8A020"/>
+    </svg>
+    <div>
+      <div class="reader-title">The Awakened Observer</div>
+      <div class="reader-meta">Issue No. 9  ·  Sunday, April 19, 2026</div>
+    <div class="reader-edition-badge">Vajrayana Edition</div>
+    </div>
+  </header>
+
+  <div class="reader-layout">
+
+    <!-- Left sidebar -->
+    <nav class="reader-sidebar">
+      <div class="reader-sidebar-title">Stories</div>
+      <button class="reader-nav-item reader-nav-active" data-story="1" onclick="showStory(1)">
+        <span class="rn-tag">The Human Inside the Headline</span>
+        <span class="rn-headline">I was bathed with acid meant for my brother – Anambra graduate</span>
+        <span class="klesha-tag klesha-compassion rn-klesha">Compassion &amp; Care</span>
+      </button>
+      <button class="reader-nav-item" data-story="2" onclick="showStory(2)">
+        <span class="rn-tag">Wonder &amp; Discovery</span>
+        <span class="rn-headline">Experimental drug doubles one-year survival in pancreatic cancer</span>
+        <span class="klesha-tag klesha-wonder rn-klesha">Wonder &amp; Awe</span>
+      </button>
+      <button class="reader-nav-item" data-story="3" onclick="showStory(3)">
+        <span class="rn-tag">Nature &amp; Renewal</span>
+        <span class="rn-headline">It's Official: Antarctica's Iconic Emperor Penguins Are Endangered Due to Climate Change.</span>
+        <span class="klesha-tag klesha-wonder rn-klesha">Wonder &amp; Awe</span>
+      </button>
+      <button class="reader-nav-item" data-story="4" onclick="showStory(4)">
+        <span class="rn-tag">Nature &amp; Renewal</span>
+        <span class="rn-headline">A prickle of hedgehogs and an armada of newts: wildlife settles in at London's new Queen Elizabeth garden.</span>
+        <span class="klesha-tag klesha-wonder rn-klesha">Wonder &amp; Awe</span>
+      </button>
+      <button class="reader-nav-item" data-story="5" onclick="showStory(5)">
+        <span class="rn-tag">Peace &amp; Possibility</span>
+        <span class="rn-headline">Israel-Lebanon ceasefire begins as Iran keeps Strait of Hormuz gridlocked</span>
+        <span class="klesha-tag klesha-hope rn-klesha">Hope &amp; Renewal</span>
+      </button>
+      <button class="reader-nav-item" style="margin-top:.75rem;border-top:0.5px solid var(--border);padding-top:1rem" onclick="showOpening()">
+        <span class="rn-tag">Opening</span>
+        <span class="rn-headline" style="font-size:13px;font-family:'DM Sans',sans-serif">Opening &amp; Closing</span>
+      </button>
+    </nav>
+
+    <!-- Right content panel -->
+    <main class="reader-main" id="reader-main">
+
+      <!-- Opening (hidden until selected) -->
+      <div class="reader-opening" id="reader-opening">
+        Whatever appears in awareness is the natural radiance of mind. Engage with the world from that recognition — without holding on, without pushing away.
+
+      </div>
+
+
+
+
+  <!-- Story 1 -->
+  <div class="story reader-story" id="rs-1">
+    <span class="story-tag tag-human">The Human Inside the Headline</span><span class="underreported-badge">Less Reported</span>
+    <div class="story-headline">I was bathed with acid meant for my brother – Anambra graduate</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">Obanye Francess, a Biochemistry graduate from Anambra, Nigeria, became an acid attack survivor at age nine when she was mistakenly targeted instead of her brother. The attack, stemming from a family conflict, left her with severe burns. Despite immense physical pain, emotional trauma, and societal discrimination, Francess completed her education. She now operates an online dropshipping business, diversifying her income to overcome employment challenges faced by burn survivors. She also recently experienced the loss of both her parents.</div>
+    <div class="story-source"><a href="https://punchng.com/i-was-bathed-with-acid-meant-for-my-brother-anambra-graduate/" target="_blank" rel="noopener">Punch Newspapers ↗</a></div>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">When we hear about the immense suffering endured by Obanye Francess, it naturally stirs our compassion. To face such pain, both physical and emotional, at a young age, and yet to persevere, to complete her education – this is truly remarkable. It shows us something profound about the human spirit, about our inherent capacity for resilience. From a contemplative perspective, while we never seek out suffering, when it arises, it can become a powerful teacher. It's like a deep, unexpected 'shenpa' that forces us to look inward, to find that stable ground within ourselves that cannot be burned or scarred. This is not to diminish the pain, but to acknowledge the potential for awakening that can emerge even from the most tragic circumstances. We witness her outer wounds, but perhaps her inner journey has revealed an indestructible wisdom.</div>
+      <div class='teaching-attr'>— In the spirit of Mingyur Rinpoche's teaching on Embracing Difficulties as Path</div>
+      <div class="quote-block"><div class="quote-mark">“</div><div class="quote-text">When we look at our experience with openness, we can discover that even difficult emotions and thoughts are not solid, but rather like clouds in the sky of our awareness. They appear, they stay for a while, and then they dissolve, leaving the sky clear and vast.</div><div class="quote-attr">Mingyur Rinpoche, Joyful Wisdom</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+      <div class="dialogue-block">
+        <div class="dialogue-header">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+        <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+        <div class="dialogue-text"><p>SOCRATES: Tell me, esteemed teacher, when one suffers such a profound and unjust injury, as this young woman Francess, where does the strength to persist, to continue, truly originate? Is it merely the will to survive, or something more fundamental?</p>
+      <p>MINGYUR RINPOCHE: Ah, Socrates, a most insightful question. Indeed, it is more than mere survival. While the will is a powerful force, the true strength emerges from the very nature of mind itself. Our awareness, our rigpa, is fundamentally unconditioned, unaffected by the fluctuations of circumstances. When faced with extreme difficulty, the ordinary conceptual mind, our shes pa, may be overwhelmed, but the deeper, innate wisdom, the yeshe, remains. It is this yeshe, this pure awareness, that allows one to find a ground that pain cannot touch, a wellspring of resilience.</p>
+      <p>SOCRATES: So, you suggest that within the deepest suffering, there lies an opportunity for a kind of revelation, a glimpse into this unconditioned nature? It seems counter-intuitive to our common understanding, which seeks to avoid suffering at all costs.</p>
+      <p>MINGYUR RINPOCHE: Precisely. We naturally seek comfort, and this is understandable. But when suffering becomes unavoidable, as it often does in life, it can, paradoxically, become a profound teacher. It shakes us out of our ordinary habits of mind, our ma rigpa, and compels us to look beyond the superficial. It reveals the impermanence of all phenomena and points to the enduring, luminous quality of awareness. Francess's journey, though born of immense pain, might have inadvertently opened her to a deeper understanding of her own inner capacity, a wisdom that transcends the physical form.</p>
+      <p>SOCRATES: Then, the external tragedy, while horrific, may have inadvertently become a crucible, refining the spirit and revealing its true, unblemished nature? Such a perspective offers a profound re-evaluation of what we perceive as misfortune.</p>
+      <p>MINGYUR RINPOCHE: Yes, a crucible indeed. The physical body and its</p></div>
+        
+      </div>
+      <div class="practice-block">
+        <div class="practice-label">
+          <span class="klesha-tag klesha-compassion">Compassion &amp; Care</span>
+          Practice
+          <span class="method-badge method-transforming">Transforming</span>
+        </div>
+        
+        <div class="practice-text">Find a comfortable seated posture. Close your eyes gently and bring your awareness to your breath, feeling the rise and fall of your abdomen. As you sit, allow any feelings of sadness, shock, or empathy related to Francess's story to arise. Don't push them away; simply acknowledge their presence in the vast space of your awareness. For five minutes, practice tonglen, breathing in the pain and suffering of Francess and all who endure similar hardship, and breathing out healing, peace, and resilience. Conclude by resting in open awareness, recognizing the boundless nature of compassion.</div>
+        <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> All-Accomplishing Wisdom</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">👁️ Mahamudra View &nbsp;·&nbsp; <span class='lens-tradition'>Mahamudra / Vajrayana</span></div>
+        <div class="lens-text">From the mahamudra perspective, the harrowing experience of Obanye Francess, the pain, the injustice, the subsequent resilience, are all vivid, ungraspable displays of tsal, the spontaneous energy of awareness. The burn, the scarring, the trauma — these are not separate from the luminous, empty ground of rigpa. They arise within it, manifest as its dynamic expression, and ultimately dissolve back into it. There is no inherent 'self' that is permanently damaged, nor an 'other' that is inherently evil; only the play of appearances, stark and intense, yet ultimately free from inherent existence. The very struggle and triumph reveal the mind's boundless capacity, its unconditioned nature shining through the most challenging circumstances.</div>
+        <div class='lens-attr'>Mahamudra View: All experiences as displays of intrinsic awareness</div>
+      </div>
+  </div>
+
+  <!-- Story 2 -->
+  <div class="story reader-story" id="rs-2" style="display:none">
+    <span class="story-tag tag-science">Wonder & Discovery</span>
+    <div class="story-headline">Experimental drug doubles one-year survival in pancreatic cancer</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">A new experimental drug has demonstrated the ability to double the one-year survival rate for individuals with advanced pancreatic cancer in a recent trial. This drug functions by enhancing the susceptibility of tumors to both chemotherapy and the body's immune system. This development is considered a notable advancement in the treatment of pancreatic cancer, which is known for its aggressive nature and poor prognosis.</div>
+    <div class="story-source"><a href="https://www.livescience.com/health/cancer/experimental-drug-doubles-one-year-survival-in-pancreatic-cancer" target="_blank" rel="noopener">Live Science ↗</a></div>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">This news of an experimental drug doubling one-year survival rates for pancreatic cancer patients is truly wonderful. It brings a great sense of joy and hope to think of the suffering that can be alleviated for so many individuals and their families. This kind of scientific advancement is a beautiful expression of human intelligence combined with compassion. When researchers dedicate their lives to understanding the body and finding ways to heal, they are, in essence, practicing a profound form of bodhichitta. They are working for the benefit of others, alleviating pain and extending precious life. This is not just about a chemical compound; it is about the collective aspiration to reduce suffering in the world. Such progress reminds us of the immense potential within humanity to create positive change and bring comfort where there was once only despair.</div>
+      <div class='teaching-attr'>— In the spirit of the Dalai Lama's teaching on Compassion in Scientific Progress</div>
+      <div class="quote-block"><div class="quote-mark">“</div><div class="quote-text">Our prime purpose in this life is to help others. And if you can't help them, at least don't hurt them.</div><div class="quote-attr">Dalai Lama XIV, The Art of Happiness</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+      <div class="dialogue-block">
+        <div class="dialogue-header">🙏 shantideva &nbsp;·&nbsp; <span class='dialogue-tradition'>Mahayana Buddhist — 8th century India</span></div>
+        <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+        <div class="dialogue-text"><p>SHANTIDEVA: Venerable One, this news of a new medicine that extends life for those afflicted with grave illness fills the heart with a particular joy. Is this not a clear manifestation of the bodhisattva's aspiration?</p>
+      <p>DALAI LAMA: Indeed, my dear Shantideva, it is. When brilliant minds dedicate themselves to relieving suffering, to finding antidotes for disease, it is a powerful expression of bodhichitta in action. The motivation to alleviate pain, to extend precious human life so that individuals may have more opportunity for spiritual practice and positive contribution, is deeply aligned with the bodhisattva path. This is compassion manifesting through the vehicle of scientific inquiry and innovation.</p>
+      <p>SHANTIDEVA: It seems that the suffering of illness is a universal torment. To offer even a small reprieve, a doubling of time, is a great gift. Does this not underscore the urgency of our collective efforts to benefit all beings, not just through spiritual means but through all available avenues?</p>
+      <p>DALAI LAMA: Absolutely. Compassion knows no single method. Whether through meditation, prayer, wise governance, or medical science, the aim remains the same: to reduce suffering and promote well-being. This drug represents a tangible victory over a difficult klesha of the body. It reminds us that our interconnectedness means the suffering of one is the concern of all, and the relief of one is a cause for joy for all.</p>
+      <p>SHANTIDEVA: Then, the discovery of such a medicine should inspire us not only to rejoice but also to redouble our own efforts, each in our own sphere, to cultivate and act upon the compassionate heart, seeing all forms of beneficial action as part of the greater path.</p>
+      <p>DALAI LAMA: Precisely. Let us celebrate this achievement with a warm heart, and let it fuel our own aspirations to be of benefit. May all beings be free from sickness, and may the wisdom and compassion of humanity continue to flourish, bringing ever more light into the darkness of suffering. Th</p></div>
+        
+      </div>
+      <div class="practice-block">
+        <div class="practice-label">
+          <span class="klesha-tag klesha-wonder">Wonder &amp; Awe</span>
+          Practice
+          <span class="method-badge method-transcending">Transcending</span>
+        </div>
+        
+        <div class="practice-text">Sit comfortably with an upright posture. Gently bring your attention to the feeling of warmth and openness in your heart center. For ten minutes, cultivate a boundless sense of gratitude and joy for the scientists, doctors, and patients involved in this breakthrough. Visualize light radiating from your heart, reaching out to all who suffer from illness, especially cancer. Imagine this light bringing them comfort, healing, and peace. Conclude by offering a silent prayer of aspiration: 'May all beings be free from sickness and suffering, and may such compassionate efforts continue to flourish.'</div>
+        <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Dharmadhātu Wisdom</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">💛 Bodhichitta View &nbsp;·&nbsp; <span class='lens-tradition'>Mahayana Buddhist</span></div>
+        <div class="lens-text">From the bodhichitta view, this medical breakthrough is a profound and tangible expression of the aspiration to alleviate suffering. Pancreatic cancer brings immense pain and despair, and to extend life by even a year offers invaluable time for patients and their families. This drug embodies the collective bodhichitta of countless researchers, doctors, and caregivers, whose efforts are directed towards the well-being of others. It reminds us that compassion is not merely a feeling but an active force, manifesting through scientific inquiry and practical application. Each life extended, each moment of suffering mitigated, is a precious fruit of this engaged compassion, inspiring us all to deepen our commitment to the welfare of all beings.</div>
+        <div class='lens-attr'>Bodhichitta View: Compassionate action for the relief of suffering</div>
+      </div>
+  </div>
+
+  <!-- Story 3 -->
+  <div class="story reader-story" id="rs-3" style="display:none">
+    <span class="story-tag tag-nature">Nature & Renewal</span>
+    <div class="story-headline">It's Official: Antarctica's Iconic Emperor Penguins Are Endangered Due to Climate Change.</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">Emperor penguins and Antarctic fur seals have recently been reclassified as 'Endangered' species. This official downgrade is a direct consequence of the escalating effects of climate change, which are significantly impacting their habitats and survival rates. The new status underscores the urgent need for conservation efforts to protect these iconic inhabitants of the polar regions from further decline.</div>
+    <div class="story-source"><a href="https://earth.org/emperor-penguin-and-antarctic-fur-seal-downgraded-to-endangered-due-to-climate-change/" target="_blank" rel="noopener">Earth.Org ↗</a></div>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">When we hear that the magnificent Emperor Penguins are now endangered, it can bring a pang to the heart. These creatures, so vibrant and resilient in their harsh environment, now face an uncertain future due to climate change. This situation is a powerful reminder of pratityasamutpada, our deep interconnectedness. The choices we make, even far from Antarctica, ripple through the entire web of life. It also points to the fundamental truth of impermanence. Everything is changing, always. Even the vast ice sheets and the species that depend on them are not solid or fixed. Rather than despair, this news can be a call to awaken, to truly see the preciousness of life and the fragility of our shared world. It’s an invitation to recognize our responsibility, not out of guilt, but from a clear seeing of how all phenomena arise in mutual dependence.</div>
+      <div class='teaching-attr'>— In the spirit of Mingyur Rinpoche's teaching on Interconnectedness and Impermanence</div>
+      <div class="quote-block"><div class="quote-mark">“</div><div class="quote-text">When we recognize the interconnectedness of all things, we realize that true happiness comes from working for the benefit of others, for the environment, and for the planet as a whole.</div><div class="quote-attr">Mingyur Rinpoche, In Love with the World</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+      <div class="dialogue-block">
+        <div class="dialogue-header">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+        <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+        <div class="dialogue-text"><p>SOCRATES: Esteemed Teacher, the news that these noble Emperor Penguins are now endangered due to human-induced changes in the climate strikes me as a profound sorrow. What does this tell us about our place in the natural order, and our responsibility?</p>
+      <p>MINGYUR RINPOCHE: Ah, Socrates, indeed it is a sorrow, and a powerful teaching. It reveals, very clearly, our deep interconnectedness with all life. The melting ice, the threatened penguins – these are not separate from us. They are a reflection of our collective actions, our ma rigpa, our ignorance of how deeply everything is woven together. This situation is like a giant mirror, showing us the consequences of forgetting our true nature, which is boundless and interdependent.</p>
+      <p>SOCRATES: So, rather than seeing it as a problem 'out there,' we should view it as an internal reflection, a symptom of a deeper imbalance within humanity itself? And if so, what then is the remedy?</p>
+      <p>MINGYUR RINPOCHE: Precisely. The remedy begins not with external action alone, but with inner transformation. When we awaken to our true nature, to rigpa, we naturally perceive the world with greater clarity and compassion. We see that harming others, or the environment, is ultimately harming ourselves. The penguins' plight is a call to cultivate bodhichitta, to expand our circle of care to include all sentient beings and the very ground that sustains us.</p>
+      <p>SOCRATES: This suggests that wisdom and compassion are not merely abstract virtues, but practical necessities for the survival and flourishing of life on Earth. A failure of wisdom, then, leads directly to such ecological imbalances?</p>
+      <p>MINGYUR RINPOCHE: Yes. True wisdom, yeshe, is not just intellectual understanding, but a profound seeing of how things truly are – empty of inherent existence, yet vibrantly interdependent. When we forget this, we create suffering, for ourselves and for others. The imperilment of the penguins is a stark illustration of the consequences of this forgetfulness. It is a</p></div>
+        
+      </div>
+      <div class="practice-block">
+        <div class="practice-label">
+          <span class="klesha-tag klesha-wonder">Wonder &amp; Awe</span>
+          Practice
+          <span class="method-badge method-transcending">Transcending</span>
+        </div>
+        
+        <div class="practice-text">Find a quiet space and sit comfortably. Bring to mind the image of an Emperor Penguin, standing strong against the Antarctic winds. For seven minutes, meditate on the interconnectedness of all life. Recognize how the air you breathe, the food you eat, and the climate that sustains us are all part of a vast, interdependent system. Feel the sense of commonality with the penguins, the ice, the oceans, and all beings. Allow any sense of separation to dissolve, resting in the profound understanding that your well-being is inseparable from theirs. Conclude with a wish for the flourishing of all life on Earth.</div>
+        <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Dharmadhātu Wisdom</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">✨ Pure Perception View &nbsp;·&nbsp; <span class='lens-tradition'>Vajrayana</span></div>
+        <div class="lens-text">From the view of pure perception, even in their endangered status, the Emperor Penguins retain their intrinsic perfection and dignity. The label 'endangered' is a human construct, reflecting our anxieties and the consequences of our actions, but it does not diminish the inherent buddha-nature of these magnificent beings. Their struggle, their resilience in the face of environmental shifts, is a poignant manifestation of the vibrant, ever-changing dance of phenomena. We can perceive beyond the suffering and the threat, to the luminous presence of their being, a pure expression of the sambhogakaya, reminding us of the sacredness that permeates all forms of life, however threatened they may appear.</div>
+        <div class='lens-attr'>Pure Perception View: Seeing intrinsic sacredness beyond conditioned labels</div>
+      </div>
+  </div>
+
+  <!-- Story 4 -->
+  <div class="story reader-story" id="rs-4" style="display:none">
+    <span class="story-tag tag-nature">Nature & Renewal</span>
+    <div class="story-headline">A prickle of hedgehogs and an armada of newts: wildlife settles in at London's new Queen Elizabeth garden.</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">London's recently established Queen Elizabeth garden has quickly attracted a variety of wildlife, including populations of hedgehogs and newts. This urban green space exemplifies successful rewilding initiatives within a major city. The presence and thriving of these species indicate a positive environmental impact and the potential for nature to flourish even in densely populated areas.</div>
+    <div class="story-source"><a href="https://www.theguardian.com/environment/2026/apr/18/a-prickle-of-hedgehogs-and-an-armada-of-newts-wildlife-settles-in-at-londons-new-queen-elizabeth-garden" target="_blank" rel="noopener">The Guardian ↗</a></div>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">This news from London, of hedgehogs and newts thriving in a new urban garden, brings such a simple and profound joy. It shows us that even in the heart of a bustling city, when we make space for nature, life finds a way to flourish. This is a beautiful example of how humans can live in greater harmony with the natural world, rather than seeing ourselves as separate from it. To create green spaces, to encourage biodiversity, is a practical expression of our interconnectedness with all sentient beings. It allows us to appreciate the wonder of life in its many forms and reminds us that small actions can have significant positive impacts. This kind of initiative fosters not only external harmony but also inner peace, as we reconnect with the rhythms of nature.</div>
+      <div class='teaching-attr'>— In the spirit of the Dalai Lama's teaching on Harmony with Nature</div>
+      <div class="quote-block"><div class="quote-mark">“</div><div class="quote-text">The planet is our only home. If we don't take care of it, we have nowhere else to go. We must protect our environment for future generations.</div><div class="quote-attr">Dalai Lama XIV, Environmental Teachings</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+      <div class="dialogue-block">
+        <div class="dialogue-header">🙏 shantideva &nbsp;·&nbsp; <span class='dialogue-tradition'>Mahayana Buddhist — 8th century India</span></div>
+        <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+        <div class="dialogue-text">SHANTIDEVA: Venerable One, to hear of hedgehogs and newts making their home in a garden amidst the clamor of a great city fills me with a gentle delight. Is this not a sign of hope, a small victory for the natural world?<br>DALAI LAMA: Indeed, Shantideva, it is a truly heartwarming report. Such initiatives demonstrate that humans, with conscious effort and a compassionate heart, can indeed co-exist harmoniously with other species. It is a practical application of the understanding that all life is precious and interconnected. When we create space for others, we enrich our own lives and contribute to the overall well-being of the planet.<br>SHANTIDEVA: This small garden, then, becomes a microcosm of what could be, a testament to the power of human intention when guided by wisdom and kindness. It shows that even in the most urbanized environments, the seeds of 'green bodhichitta' can take root and flourish.<br>DALAI LAMA: Precisely. Every act that nurtures life, every space created for nature to thrive, is an act of compassion. It recognizes the inherent value of each creature, from the smallest newt to the largest elephant. These small successes inspire us to expand our efforts, to view the entire planet as our shared home and to act as responsible stewards for all its inhabitants, human and animal alike.<br>SHANTIDEVA: So, we should not underestimate the significance of such seemingly minor events. They are powerful reminders that our aspiration for the welfare of all beings extends beyond humans, encompassing the entire living world.<br>DALAI LAMA: Exactly. This news should encourage us all to reflect on how we can contribute, in our daily lives, to fostering greater harmony with nature. Whether it is a garden in London or protecting vast wildernesses, the underlying motivation is the same: universal responsibility. Let us rejoice in this positive development and carry its message of hope and interconnectedness forward.</div>
+        <div class='dialogue-attr'>— In the spirit of Tibetan Buddhism and Ancient Indian</div>
+      </div>
+      <div class="practice-block">
+        <div class="practice-label">
+          <span class="klesha-tag klesha-wonder">Wonder &amp; Awe</span>
+          Practice
+          <span class="method-badge method-transcending">Transcending</span>
+        </div>
+        
+        <div class="practice-text">Step outside, if possible, or look out a window to a natural scene, however small. If neither is possible, simply bring to mind an image of nature. For five minutes, observe with open awareness. Notice the colors, the textures, the sounds, the subtle movements. Allow your mind to relax and merge with the present moment, feeling a sense of deep connection to the earth and all its inhabitants. Recognize that you are part of this living tapestry. Conclude by offering a silent wish that all beings, human and non-human, may find peaceful and thriving habitats.</div>
+        <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Dharmadhātu Wisdom</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">👁️ Mahamudra View &nbsp;·&nbsp; <span class='lens-tradition'>Mahamudra / Vajrayana</span></div>
+        <div class="lens-text">From the mahamudra perspective, the thriving of hedgehogs and newts in an urban garden is a spontaneous, effortless display of the natural world's inherent perfection. These creatures, their habitats, and even the human intention to create such spaces are all appearances, tsal, arising from the unconditioned ground of rigpa. They are luminous, yet empty of inherent existence, dynamically manifesting in the open space of awareness. There is no fundamental separation between the urban landscape and the wildness that emerges within it; all are interwoven expressions of the same ultimate reality. This scene simply reveals the playful, vibrant energy of phenomena, free and unconstrained, naturally settling into being.</div>
+        <div class='lens-attr'>Mahamudra View: All phenomena as the spontaneous display of intrinsic awareness</div>
+      </div>
+  </div>
+
+  <!-- Story 5 -->
+  <div class="story reader-story" id="rs-5" style="display:none">
+    <span class="story-tag tag-peace">Peace & Possibility</span>
+    <div class="story-headline">Israel-Lebanon ceasefire begins as Iran keeps Strait of Hormuz gridlocked</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">A 10-day ceasefire has been initiated between Israel and Hezbollah in Lebanon, providing a temporary cessation of hostilities. This truce aims to create a window for negotiations to resolve the broader conflict. Simultaneously, the Strait of Hormuz is experiencing significant disruption to shipping, as Iran reversed its decision to reopen the waterway and engaged vessels attempting passage, citing the continued US blockade of Iranian ports. These concurrent developments illustrate both fragile peace efforts and persistent geopolitical challenges in the region.</div>
+    <div class="story-source"><a href="https://www.cbsnews.com/news/israel-lebanon-ceasefire-strait-of-hormuz-iran-gridlocked/" target="_blank" rel="noopener">CBS News ↗</a></div>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">When we hear about ceasefires, even temporary ones, amidst ongoing conflicts and tensions, it's natural to feel a flicker of hope. In the Middle East, where suffering has been so profound and enduring, any pause in hostilities is a precious thing. It reminds us that peace is always possible, even when it feels distant. From a contemplative view, these moments are not just external events; they are reflections of a collective aspiration, a yearning for relief from suffering. They are opportunities for individuals to step back from the 'shenpa' of aggression and retaliation, to glimpse the possibility of a different way. While challenges remain, this temporary ceasefire is a reminder that the seeds of peace, of bodhichitta, are always present, waiting for the right conditions to sprout and flourish. It is a moment to cultivate hope, not as naive optimism, but as a grounded recognition of potential.</div>
+      <div class='teaching-attr'>— In the spirit of Mingyur Rinpoche's teaching on Cultivating Peace in Conflict</div>
+      <div class="quote-block"><div class="quote-mark">“</div><div class="quote-text">Even when things are difficult, when there is conflict and confusion, we can always find a space of peace within ourselves. This inner peace is the foundation for creating peace in the world.</div><div class="quote-attr">Mingyur Rinpoche, Joy of Living</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+      <div class="dialogue-block">
+        <div class="dialogue-header">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+        <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+        <div class="dialogue-text"><p>SOCRATES: Esteemed Teacher, this temporary ceasefire between Israel and Lebanon offers a brief respite from conflict, yet the underlying tensions, such as those in the Strait of Hormuz, remain. How does one cultivate genuine peace when the roots of discord run so deep?</p>
+      <p>MINGYUR RINPOCHE: Ah, Socrates, your observation is very astute. True peace is not merely the absence of war, but a transformation of the mind itself. These ceasefires, however fragile, are like small windows of opportunity. They allow a moment for individuals and leaders to step back from the grip of kleshas – anger, attachment, ignorance – that fuel conflict. It is a chance to recognize the 'shenpa' of retaliation and to begin to cultivate a different intention, a genuine bodhichitta.</p>
+      <p>SOCRATES: So, the external cessation of hostilities must be met with an internal cessation of animosity? But how can such deep-seated enmities, often passed down through generations, be truly overcome?</p>
+      <p>MINGYUR RINPOCHE: It is a long journey, certainly. But like the practice of shamatha, where we gently return to the breath again and again, even when the mind is turbulent, we must continually return to the aspiration for peace. It begins with seeing the shared humanity in all beings, recognizing that everyone, on all sides, desires happiness and freedom from suffering. This insight, this yeshe, can begin to cut through the conceptual fabric of 'us' and 'them' that perpetuates conflict.</p>
+      <p>SOCRATES: Then, a ceasefire, while seemingly a political maneuver, might also serve as a collective moment for reflection, a pause during which the seeds of compassion, often buried by fear and resentment, might begin to germinate?</p>
+      <p>MINGYUR RINPOCHE: Exactly. It's a chance for the shes pa, the conceptual mind, to quiet down, even a little, and for the deeper wisdom, the rigpa, to shine through. When leaders and people can truly listen, not just to words, but to the suffering beneath the anger, then genuine dialogue and understanding b</p></div>
+        
+      </div>
+      <div class="practice-block">
+        <div class="practice-label">
+          <span class="klesha-tag klesha-hope">Hope &amp; Renewal</span>
+          Practice
+          <span class="method-badge method-transforming">Transforming</span>
+        </div>
+        
+        <div class="practice-text">Sit quietly and bring to mind the complex situation in the Middle East. For eight minutes, practice tonglen, breathing in the suffering, fear, and aggression from all sides of the conflict. Imagine transforming these heavy energies within your heart into peace, understanding, and reconciliation. As you exhale, breathe out this transformed energy, sending it to all individuals and leaders involved, wishing them wisdom, courage, and genuine compassion. Conclude by resting in a state of open, unbiased loving-kindness, holding the intention for lasting peace.</div>
+        <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> All-Accomplishing Wisdom</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">💛 Bodhichitta View &nbsp;·&nbsp; <span class='lens-tradition'>Mahayana Buddhist</span></div>
+        <div class="lens-text">From the bodhichitta perspective, any ceasefire, however fragile or temporary, is a precious opportunity to alleviate suffering and cultivate the seeds of peace. The cessation of violence, even for a short period, directly reduces fear, pain, and loss of life. It creates a critical opening for the aspiration of bodhichitta to manifest—for individuals to choose dialogue over destruction, and for compassion to guide actions. While tensions and conflicts persist, these moments of pause are vital. They remind us of the urgent need to work tirelessly for the well-being of all beings caught in the grip of conflict, inspiring us to dedicate our efforts to fostering genuine understanding and lasting harmony.</div>
+        <div class='lens-attr'>Bodhichitta View: Active compassion creating space for peace</div>
+      </div>
+  </div>
+
+      <!-- Closing -->
+      <div class="reader-closing" id="reader-closing">
+        <div class="closing-text">The awareness that reads this has never been born and will never die.<br>
+        Practice is not for when conditions are good.<br>
+        Practice is the recognition, again and again, in conditions exactly like these.<br>
+        </div>
+        <span class="mantra-tibetan">ཨོཾ་མ་ཎི་པདྨེ་ཧཱུྃ</span>
+        <span class="mantra">May all beings be happy · May all beings be safe · May all beings be free</span>
+        <div class="mantra-note">Om Mani Padme Hum — compassion and wisdom, inseparable</div>
+      </div>
+
+    </main>
+  </div>
+
+<script>
+(function() {
+  var totalStories = 5;
+  var activeStory = 1;
+
+  function showStory(n) {
+    // Hide opening / closing
+    document.getElementById('reader-opening').style.display = 'none';
+    document.getElementById('reader-closing').style.display = 'none';
+    // Hide all stories
+    for (var i = 1; i <= totalStories; i++) {
+      var el = document.getElementById('rs-' + i);
+      if (el) el.style.display = 'none';
+    }
+    // Show target
+    var target = document.getElementById('rs-' + n);
+    if (target) target.style.display = '';
+    // Update nav active state
+    document.querySelectorAll('.reader-nav-item').forEach(function(btn) {
+      btn.classList.remove('reader-nav-active');
+      if (btn.dataset.story == n) btn.classList.add('reader-nav-active');
+    });
+    // Scroll main panel to top
+    document.getElementById('reader-main').scrollTop = 0;
+    activeStory = n;
+  }
+
+  function showOpening() {
+    // Hide all stories
+    for (var i = 1; i <= totalStories; i++) {
+      var el = document.getElementById('rs-' + i);
+      if (el) el.style.display = 'none';
+    }
+    document.getElementById('reader-opening').style.display = '';
+    document.getElementById('reader-closing').style.display = '';
+    document.querySelectorAll('.reader-nav-item').forEach(function(btn) {
+      btn.classList.remove('reader-nav-active');
+    });
+    document.getElementById('reader-main').scrollTop = 0;
+  }
+
+  // Expose globally
+  window.showStory = showStory;
+  window.showOpening = showOpening;
+})();
+</script>
+</body>
+</html>
