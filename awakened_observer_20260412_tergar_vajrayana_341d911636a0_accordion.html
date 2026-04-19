@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Awakened Observer — Sunday, April 12, 2026 (Accordion)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold-pale:#FDF5DC; --gold-mid:#E8A020; --gold-dark:#6B3E08;
+    --teal-pale:#E1F5EE; --teal-strong:#5DCAA5; --teal-deep:#1D9E75; --teal-dark:#085041;
+    --blue-pale:#E6F1FB; --blue-mid:#378ADD; --blue-dark:#0C447C;
+    --coral-pale:#FAECE7; --coral-dark:#712B13;
+    --purple-pale:#EEEDFE; --purple-dark:#3C3489;
+    --amber-pale:#FAEEDA; --amber-dark:#633806;
+    --green-pale:#EAF3DE; --green-dark:#27500A;
+    --gray-bg:#F5F3EE; --gray-card:#FDFAF0; --gray-surface:#EDEADC;
+    --border:rgba(50,45,35,0.10);
+    --text-1:#1A1714; --text-2:#5A5030; --text-3:#9A9070;
+  }
+  @media(prefers-color-scheme:dark){
+    :root{
+      --gold-pale:#261A04; --gray-bg:#131109; --gray-card:#1A1608;
+      --gray-surface:#211C0A; --border:rgba(240,200,80,0.08);
+      --text-1:#F8F0D0; --text-2:#B0A870; --text-3:#706840;
+      --blue-pale:#0D1E30; --teal-pale:#061E14; --amber-pale:#1E1204;
+    }
+  }
+  body { font-family:'DM Sans',sans-serif; background:var(--gray-bg);
+          color:var(--text-1); min-height:100vh; padding:2rem 1rem 6rem; }
+  .page { max-width:680px; margin:0 auto; }
+
+  /* Masthead */
+  .masthead { text-align:center; padding:2.75rem 1rem 2.25rem;
+    border-bottom:0.5px solid var(--border); margin-bottom:2.25rem; position:relative; }
+  .masthead::before { content:''; position:absolute; top:0; left:50%;
+    transform:translateX(-50%); width:100px; height:2px; background:linear-gradient(90deg, transparent, #B83030, #E8A020, #1A3A80, transparent); }
+  .lotus { display:block; margin:0 auto 1.2rem; }
+  .date-line { font-size:11px; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--text-3); margin-bottom:.5rem; }
+  .masthead-title { font-family:'Cormorant Garamond',serif; font-size:42px;
+    font-weight:500; color:var(--text-1); line-height:1.05; margin-bottom:.25rem; }
+  .issue-line { font-size:11px; letter-spacing:.09em; color:var(--text-3); margin-bottom:.6rem; }
+  .masthead-rule { width:42px; height:1px; margin:.65rem auto;
+    background:linear-gradient(90deg,var(--teal-strong),var(--gold-mid)); }
+  .masthead-sub { font-family:'Cormorant Garamond',serif; font-size:18px;
+    font-style:italic; color:var(--text-2); line-height:1.4; }
+  .tradition-badge { display:inline-block; background:var(--gold-pale);
+    color:var(--gold-dark); font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; padding:4px 14px; border-radius:20px; margin-top:.85rem;
+    border:0.5px solid rgba(232,160,32,0.25); }
+
+  /* Opening */
+  .opening { background:var(--gold-pale); border-left:2.5px solid var(--gold-mid);
+    border-radius:0 10px 10px 0; padding:1.25rem 1.6rem; margin-bottom:.5rem;
+    font-family:'Cormorant Garamond',serif; font-size:19px; font-style:italic;
+    color:var(--text-2); line-height:1.8; }
+  .opening-instruction { font-family:'DM Sans',sans-serif; font-size:12px;
+    color:var(--text-3); padding:.5rem 1.6rem .85rem; margin-bottom:2rem;
+    background:var(--gold-pale); border-left:2.5px solid var(--gold-mid);
+    border-top:none; border-radius:0 0 10px 10px; }
+
+  /* At a Glance */
+  .glance { background:var(--gray-surface); border-radius:14px;
+    padding:1.2rem 1.5rem; margin-bottom:2.5rem; }
+  .glance-title { font-size:10px; font-weight:500; letter-spacing:.13em;
+    text-transform:uppercase; color:var(--text-3); margin-bottom:.85rem; }
+  .glance-list { display:flex; flex-direction:column; gap:.6rem; }
+  .glance-row { display:flex; align-items:flex-start; gap:11px; }
+  .g-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; margin-top:7px; }
+  .d-conflict{background:#D85A30;} .d-peace    {background:var(--teal-deep);}
+  .d-grief    {background:#B87016;} .d-joy      {background:#185FA5;}
+  .d-science  {background:#534AB7;} .d-nature   {background:#3B6D11;}
+  .d-politics {background:#993556;} .d-economy  {background:#854F0B;}
+  .d-culture  {background:#0F6E56;} .d-human    {background:#5F5E5A;}
+  .d-death    {background:#791F1F;} .d-renewal  {background:#1D9E75;}
+  .d-human-interest {background:#5F5E5A;}
+  .glance-text { font-size:13.5px; color:var(--text-2); line-height:1.6; }
+
+  /* Section label */
+  .section-label { font-size:10px; font-weight:500; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--text-3); display:flex;
+    align-items:center; gap:10px; margin-bottom:1.35rem; }
+  .section-label::after { content:''; flex:1; height:0.5px; background:var(--border); }
+
+  /* Story cards */
+  .story { background:var(--gray-card); border:0.5px solid var(--border);
+    border-radius:16px; padding:1.5rem 1.65rem 0; margin-bottom:1.35rem; overflow:hidden; }
+  .story-tag { display:inline-block; font-size:10px; font-weight:500;
+    letter-spacing:.08em; text-transform:uppercase; padding:3px 11px;
+    border-radius:20px; margin-bottom:.95rem; }
+  .tag-conflict {background:var(--coral-pale);color:var(--coral-dark);}
+  .tag-peace    {background:var(--teal-pale); color:var(--teal-dark);}
+  .tag-grief    {background:var(--amber-pale);color:var(--amber-dark);}
+  .tag-joy      {background:var(--blue-pale); color:var(--blue-dark);}
+  .tag-science  {background:var(--purple-pale);color:var(--purple-dark);}
+  .tag-nature   {background:var(--green-pale);color:var(--green-dark);}
+  .tag-politics {background:#FBEAF0;color:#72243E;}
+  .tag-economy  {background:var(--amber-pale);color:var(--amber-dark);}
+  .tag-culture  {background:var(--teal-pale); color:var(--teal-dark);}
+  .tag-human    {background:var(--gray-surface);color:#5F5E5A;}
+  .tag-death    {background:#FCEBEB;color:#791F1F;}
+  .tag-renewal  {background:var(--teal-pale); color:var(--teal-dark);}
+  .story-headline { font-family:'Cormorant Garamond',serif; font-size:23px;
+    font-weight:500; color:var(--text-1); line-height:1.32; margin-bottom:.9rem; }
+  .story-what { font-size:10px; font-weight:500; text-transform:uppercase;
+    letter-spacing:.10em; color:var(--text-3); margin-bottom:.35rem; }
+  .story-fact { font-size:14px; color:var(--text-2); line-height:1.8;
+    padding-bottom:1.1rem; }
+
+  /* Accordion sections */
+  details.acc-section {
+    border-top:0.5px solid var(--border);
+    margin:0 -1.65rem;
+    padding:0 1.65rem;
+  }
+  details.acc-section[open] { padding-bottom:1.1rem; }
+  details.acc-dialogue { background:var(--blue-pale); }
+  details.acc-practice { background:var(--teal-pale); }
+  details.acc-lens     { background:var(--amber-pale); }
+  summary.acc-summary {
+    list-style:none; cursor:pointer; user-select:none;
+    font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--teal-deep);
+    padding:.9rem 0 .75rem;
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+  }
+  summary.acc-summary::marker,
+  summary.acc-summary::-webkit-details-marker { display:none; }
+  summary.acc-summary::after {
+    content:"▸"; font-size:9px; flex-shrink:0; color:var(--text-3);
+  }
+  details.acc-section[open] > summary.acc-summary::after { content:"▾"; }
+  .acc-sum-blue  { color:var(--blue-dark); }
+  .acc-sum-teal  { color:var(--teal-dark); }
+  .acc-sum-amber { color:var(--amber-dark); }
+
+  /* Teaching inside accordion */
+  .teaching-divider { display:flex; align-items:center; gap:10px;
+    margin-bottom:1rem; padding-top:1rem; }
+  .teaching-divider::after { content:''; flex:1; height:0.5px; background:var(--border); }
+  .teaching-divider span { font-size:13px; color:var(--teal-strong); flex-shrink:0; }
+  .story-teaching { font-family:'Cormorant Garamond',serif; font-size:17.5px;
+    font-style:italic; color:var(--text-1); line-height:1.85; padding-bottom:.6rem; }
+  .story-teaching p { margin-bottom:.7em; }
+  .story-teaching p:last-child { margin-bottom:0; }
+  .teaching-attr { font-size:11px; color:var(--text-3); padding-bottom:1.1rem; }
+
+  /* Dialogue content inside accordion */
+  .acc-subheader { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; margin-bottom:.75rem; }
+  .acc-subheader-blue { color:var(--blue-dark); }
+  .dialogue-tradition { font-weight:400; font-style:italic; letter-spacing:0;
+    text-transform:none; color:var(--text-3); }
+  .dialogue-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .dialogue-text p { margin-bottom:.7em; }
+  .dialogue-text p:last-child { margin-bottom:0; }
+  .dialogue-attr { font-size:11px; color:var(--text-3); }
+
+  /* Practice content inside accordion */
+  .practice-label { font-size:10px; font-weight:500; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--teal-dark); margin-bottom:.6rem;
+    display:flex; align-items:center; gap:8px; }
+  .klesha-tag { font-size:9px; font-weight:600; letter-spacing:.06em;
+    text-transform:uppercase; padding:2px 8px; border-radius:10px;
+    color:#fff; flex-shrink:0; }
+  .klesha-anger      {background:#C0392B;} .klesha-grief      {background:#7F8C8D;}
+  .klesha-anxiety    {background:#D4AC0D;} .klesha-helplessness{background:#8E44AD;}
+  .klesha-wonder     {background:#2E86C1;} .klesha-hope       {background:#1D8348;}
+  .klesha-confusion  {background:#D35400;} .klesha-compassion {background:#CB4335;}
+  .practice-text { font-size:13.5px; color:var(--teal-dark);
+    line-height:1.8; font-style:italic; }
+  .practice-text p { margin-bottom:.75em; }
+  .practice-text p:last-child { margin-bottom:0; }
+  .wisdom-line { font-size:10.5px; color:var(--teal-deep); font-style:italic;
+    margin-top:.55rem; padding-top:.45rem;
+    border-top:0.5px solid rgba(29,158,117,0.2); }
+  .wisdom-label { font-weight:600; font-style:normal; }
+  .method-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.07em; text-transform:uppercase; padding:2px 8px;
+    border-radius:10px; margin-left:auto; flex-shrink:0; }
+  .method-abandoning  { background:#E8E8E8; color:#4A4A4A; }
+  .method-transforming { background:#FEF3C7; color:#92400E; }
+  .method-transcending { background:var(--gold-pale); color:var(--gold-dark);
+    border:0.5px solid rgba(232,160,32,0.3); }
+
+  /* Lens content inside accordion */
+  .lens-tradition { font-weight:400; font-style:italic; letter-spacing:0;
+    text-transform:none; color:var(--text-3); }
+  .acc-lens-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .acc-lens-text p { margin-bottom:.75em; }
+  .acc-lens-text p:last-child { margin-bottom:0; }
+  .lens-attr { font-size:11px; color:var(--text-3); }
+
+  /* Source link */
+  .story-source { font-size:11.5px; color:var(--text-3); padding:.4rem 0 .85rem;
+    border-top:0.5px dashed var(--border); margin-top:.2rem; }
+  .story-source a { color:var(--text-3); text-decoration:none;
+    border-bottom:0.5px solid var(--border); }
+  .story-source a:hover { color:var(--teal-deep); }
+
+  /* Underreported badge */
+  .underreported-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.09em; text-transform:uppercase; padding:2px 9px; border-radius:20px;
+    background:var(--green-pale); color:var(--green-dark); margin-left:6px;
+    border:0.5px solid rgba(39,80,10,0.18); vertical-align:middle; }
+
+  /* Closing */
+  .closing { text-align:center; padding:2.25rem 1.25rem .5rem;
+    border-top:0.5px solid var(--border); margin-top:.5rem; }
+  .closing-text { font-family:'Cormorant Garamond',serif; font-size:19px;
+    font-style:italic; color:var(--text-2); line-height:2.1; margin-bottom:1.6rem; }
+  .mantra-tibetan { font-size:22px; color:var(--gold-mid); letter-spacing:.07em;
+    display:block; margin-bottom:.6rem; }
+  .mantra { font-size:11px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--teal-deep); display:block; margin-bottom:.5rem; }
+  .mantra-note { font-size:12px; color:var(--text-3); font-style:italic;
+    font-family:'Cormorant Garamond',serif; }
+
+  /* Tradition quote inside accordion */
+  details.acc-quote { background:var(--purple-pale); }
+  .acc-sum-purple { color:var(--purple-dark); }
+  .acc-quote-inner { padding:.25rem 0 .1rem; }
+  .quote-mark { font-family:'Cormorant Garamond',serif; font-size:52px;
+    line-height:.7; color:var(--purple-dark); opacity:0.18;
+    margin-bottom:-.25rem; user-select:none; }
+  .quote-text { font-family:'Cormorant Garamond',serif; font-size:17.5px;
+    font-style:italic; color:var(--text-1); line-height:1.85;
+    margin-bottom:.55rem; }
+  .quote-text p { margin-bottom:.7em; }
+  .quote-text p:last-child { margin-bottom:0; }
+  .quote-attr { font-size:11px; color:var(--text-3); margin-bottom:.55rem; }
+  .quote-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.08em; text-transform:uppercase; padding:2px 8px;
+    border-radius:10px; }
+  .quote-badge-exact { background:var(--green-pale); color:var(--green-dark);
+    border:0.5px solid rgba(39,80,10,0.18); }
+  .quote-badge-paraphrase { background:var(--gray-surface); color:var(--text-2);
+    border:0.5px solid var(--border); }
+
+  /* Accordion hint banner */
+  .acc-hint { font-size:12px; color:var(--text-3); text-align:center;
+    margin-bottom:2rem; font-style:italic; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="masthead">
+    <svg class="lotus" width="60" height="52" viewBox="0 0 60 52" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="30" cy="42" rx="10" ry="5" fill="#9FE1CB" opacity="0.38"/>
+      <path d="M30 38 Q21 24 16 9 Q24 22 30 26 Q36 22 44 9 Q39 24 30 38Z" fill="#5DCAA5" opacity="0.88"/>
+      <path d="M30 38 Q13 30 5 19 Q17 27 30 32Z" fill="#9FE1CB" opacity="0.9"/>
+      <path d="M30 38 Q47 30 55 19 Q43 27 30 32Z" fill="#9FE1CB" opacity="0.9"/>
+      <path d="M30 38 Q9 34 3 27 Q15 32 30 36Z" fill="#C0DD97" opacity="0.68"/>
+      <path d="M30 38 Q51 34 57 27 Q45 32 30 36Z" fill="#C0DD97" opacity="0.68"/>
+      <circle cx="30" cy="26" r="5" fill="#F7E28A" opacity="0.9"/>
+      <circle cx="30" cy="26" r="2.8" fill="#E8A020"/>
+      <circle cx="30" cy="26" r="1.1" fill="#6B3E08"/>
+    </svg>
+    <div class="date-line">Sunday, April 12, 2026</div>
+    <div class="masthead-title">The Awakened Observer</div>
+    <div class="issue-line">Issue No. 2  ·  News of the world, held with open hands</div>
+    <div class="masthead-rule"></div>
+    <div class="masthead-sub">Awareness &nbsp;·&nbsp; Love &nbsp;·&nbsp; Wisdom</div>
+    <div class="tradition-badge">Vajrayana Edition</div>
+  </div>
+
+  <div class="opening">Whatever arises in awareness is the self-display of rigpa. Read the world from that recognition — without grasping, without aversion.
+</div>
+  <div class="opening-instruction">Before reading: rest for one breath in open awareness. Let each story arise and dissolve in the space of rigpa.</div>
+
+  <div class="glance">
+    <div class="glance-title">Today at a glance</div>
+    <div class="glance-list">
+      <div class="glance-row">
+        <div class="g-dot d-grief"></div>
+        <div class="glance-text">A Nigerian Air Force jet strike aimed at Boko Haram militants hit the Jilli weekly market in Yobe State on Saturday, killing at least 100 civilians and injuring scores more, including children.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-grief"></div>
+        <div class="glance-text">A 32-hour ceasefire declared by President Putin for Orthodox Easter broke down within hours, with Ukraine's military reporting 2,299 violations — including 747 attack drone strikes and 1,045 FPV drone strikes — by Sunday morning.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-renewal"></div>
+        <div class="glance-text">Hungary's parliamentary election on April 12 produced a historic result: opposition leader Péter Magyar's Tisza party won 53.6% of the vote, securing 138 of 199 parliamentary seats — enough for a supermajority — while Viktor Orbán's Fidesz took just 55 seats with 37.8%.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-politics"></div>
+        <div class="glance-text">President Trump ordered the U.S.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Stories — seen clearly</div>
+  <p class="acc-hint">Teaching sections open when you tap the section title.</p>
+
+
+  <!-- Story 1 -->
+  <div class="story">
+    <span class="story-tag tag-grief">Grief & Witnessing</span>
+    <div class="story-headline">Nigerian Air Force Kills Over 100 Civilians at Weekly Market</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">A Nigerian Air Force jet strike aimed at Boko Haram militants hit the Jilli weekly market in Yobe State on Saturday, killing at least 100 civilians and injuring scores more, including children. The Yobe State Government confirmed the military was targeting a jihadist stronghold near the market when people who had come to trade were caught in the blast. Amnesty International, which verified the toll from survivors and medical sources, has called for an independent investigation. Some local accounts put the death toll as high as 200.</div>
+    <div class="story-source"><a href="https://abcnews.com/International/wireStory/100-dead-nigeria-after-air-force-misfire-market-131972032" target="_blank" rel="noopener">ABC News / Amnesty International ↗</a></div>
+    <details class="acc-section acc-teaching" open>
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching"><p>In Yobe State, people came to a market carrying vegetables, bolts of cloth, small coins. That is all — the ordinary weight of being alive. And then the sky fell, not from the heavens but from the machines of our own making. This is what shenpa does at the level of nations: it moves, and bodies fall.</p>
+      <p>Can you find awareness right now — the space that holds this news without flinching away and without drowning in it? Not distance. Awareness. Sky holds storm clouds without becoming them. This grief is real. Let it move through you as it actually is.</p>
+      <p>Now, tonglen: breathe in the weight of those hundred lives — the mothers who carried food that morning, the children at the edge of the stalls. Breathe out spaciousness, light, the recognition that all beings want to be safe. You cannot fix this from where you sit. But you can refuse to look away. That refusal, held in awareness, is bodhichitta in action.</p></div>
+      <div class='teaching-attr'>— In the spirit of Yongey Mingyur Rinpoche's teachings on tonglen and the unobstructed heart</div>
+    </details>
+    <details class="acc-section acc-quote">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">For as long as space endures, for as long as sentient beings remain, may I too remain to dispel the misery of the world.</div><div class="quote-attr">— Shantideva, Bodhicaryavatara, Chapter 10, verse 55</div><span class="quote-badge quote-badge-exact">Exact quote</span></div>
+    </details>
+    <details class="acc-section acc-dialogue">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+      <div class="dialogue-text">SOCRATES: Tell me — those who ordered the strike believed they were protecting their people from jihadist attack. Is that not so?<br>MINGYUR RINPOCHE: Yes. From within ma rigpa — fundamental confusion — we build our defenses. And our defenses become the very source of harm.<br>SOCRATES: So the soldier who bombs a market, believing himself to act with justice — is he the cause of the evil, or is something else the cause?<br>MINGYUR RINPOCHE: In our teaching we say the klesha is the cause. Ignorance, not malice, sends most bombs. But the civilians are no less dead.<br>SOCRATES: Then perhaps what is required is not punishment for those who acted from confusion, but the thorough examination of the confusion itself.<br>MINGYUR RINPOCHE: Yes. This is what practice is for. Not to make us feel better — to make us see clearly. And seeing clearly, to stop.</div>
+      <div class='dialogue-attr'>— In the spirit of Socrates' inquiry into the examined life, and Mingyur Rinpoche's teachings on rigpa and ethical action</div>
+    </details>
+    <details class="acc-section acc-practice">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-grief">Grief &amp; Loss</span>
+        Practice <span class="method-badge method-transforming">Transforming</span>
+      </div>
+      <div class="practice-text"><p>Sit quietly. Place both hands on your heart. Breathe in: receive the weight of those who died today — the market sellers, the children, the mothers who came to buy bread. Let the grief be exactly as heavy as it is. Do not fix it or explain it away. Breathe out: send spaciousness, warmth, the wish that all beings be at peace.</p>
+      <p>Do this for five breaths. Then rest in open awareness — the sky that holds all weather — for one full minute. This is tonglen. It does not require you to have answers. It requires only that you stay.</p></div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Discriminating Wisdom</div>
+    </details>
+    <details class="acc-section acc-lens">
+      <summary class="acc-summary acc-sum-amber">👁️ Mahamudra View &nbsp;·&nbsp; <span class='lens-tradition'>Mahamudra / Vajrayana</span></summary>
+      <div class="lens-text acc-lens-text"><p>From the Mahamudra view, we ask: what is the nature of the mind that reads this news? Not what it thinks about the news — what is the nature of the reading itself?</p>
+      <p>Awareness is present right now. It is not disturbed by what it cognizes. The grief that arises is not awareness — it is in awareness. Like a storm in the sky, the storm does not wet the sky. The sky's nature is unchanged.</p>
+      <p>This is not indifference. Indifference is a frozen contraction; it is another klesha. Mahamudra view meets grief fully, without armor, from the ground of rigpa. The difference is that grief passes through and leaves no residue. What remains is the wish — bodhichitta — to prevent such events, arising not from reactivity but from the unobstructed clarity of the nature of mind.</p>
+      <p>Bring the image of the market to mind. Notice what cognizes it. That noticing — lucid, open, undisturbed at root — is the nature of mind. Practice from there.</p></div>
+      <div class='lens-attr'>— Mahamudra view: awareness as the unchanged sky within which all phenomena arise and dissolve</div>
+    </details>
+  </div>
+
+  <!-- Story 2 -->
+  <div class="story">
+    <span class="story-tag tag-grief">Grief & Witnessing</span>
+    <div class="story-headline">Russia and Ukraine Accuse Each Other of 2,000+ Easter Ceasefire Violations</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">A 32-hour ceasefire declared by President Putin for Orthodox Easter broke down within hours, with Ukraine's military reporting 2,299 violations — including 747 attack drone strikes and 1,045 FPV drone strikes — by Sunday morning. Russia's Defense Ministry also claimed 1,971 violations by Ukrainian forces. Both countries continued shelling and drone campaigns throughout the Easter period, and civilians were reported killed on the Russian side of the border. A similar truce last Easter also collapsed into mutual accusations.</div>
+    <div class="story-source"><a href="https://www.aljazeera.com/news/2026/4/12/ukraine-and-russia-accuse-each-other-of-breaching-easter-ceasefire" target="_blank" rel="noopener">Al Jazeera / PBS NewsHour ↗</a></div>
+    <details class="acc-section acc-teaching" open>
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching"><p>A 32-hour ceasefire. Even that was impossible to hold. The Orthodox celebration of the Resurrection — and within the first hour, 747 drone strikes. What are we to make of this?</p>
+      <p>In Mahamudra teaching, we say that shenpa — the habitual pull of reactivity — does not rest on holy days. The mind caught in its own momentum does not pause because the calendar says Pascha. This is not cynicism. This is the nature of ma rigpa operating at the level of nations and armies.</p>
+      <p>And yet: the ceasefire was declared. Easter was named as sacred. Something in the human heart still reaches for it, even knowing it may fail. That reaching is bodhichitta — even when the ceasefire breaks. Do not let your grief at the failure cause you to dismiss the reaching.</p>
+      <p>What cannot pause from the outside must be paused from the inside. Your practice — right now, even reading this — is the ceasefire that holds.</p></div>
+      <div class='teaching-attr'>— In the spirit of Yongey Mingyur Rinpoche's teachings on shenpa and the unshakeable nature of rigpa</div>
+    </details>
+    <details class="acc-section acc-quote">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">Don't recall. Don't imagine. Don't think. Don't examine. Don't control. Rest.</div><div class="quote-attr">— Tilopa, Six Words of Advice to Naropa (Mahamudra Upadesha, 11th century)</div><span class="quote-badge quote-badge-exact">Exact quote</span></div>
+    </details>
+    <details class="acc-section acc-dialogue">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+      <div class="dialogue-text">SOCRATES: The generals on both sides declared their intention to honor the truce. Do you believe they were lying?<br>MINGYUR RINPOCHE: I believe many of them intended what they said in the moment. But intention and action are not yet the same thing, without rigpa — without clear awareness.<br>SOCRATES: Then they lack self-knowledge?<br>MINGYUR RINPOCHE: They lack awareness of the gap between intention and the momentum of habituated action. This is the gap that practice trains us to widen.<br>SOCRATES: And if the generals were also trained as meditators — would the ceasefire have held?<br>MINGYUR RINPOCHE: We cannot know. But untrained minds, under pressure, revert to what is practiced most deeply. What is practiced most deeply in an army is violence.<br>SOCRATES: Which is why the examination of the mind is not a luxury, but perhaps the most urgent political necessity.</div>
+      <div class='dialogue-attr'>— In the spirit of Socrates' inquiry into the examined life, and Mingyur Rinpoche's teachings on the gap between intention and habituated action</div>
+    </details>
+    <details class="acc-section acc-practice">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-helplessness">Helplessness &amp; Overwhelm</span>
+        Practice <span class="method-badge method-transcending">Transcending</span>
+      </div>
+      <div class="practice-text"><p>For this moment, declare your own inner ceasefire. Set aside whatever you are carrying — worry, plans, outrage, analysis. Breathe out slowly. Notice the space between one breath and the next. In that gap, there is no war. It is not that the world's war has ended; it is that the ground of awareness — kunzhi — is never touched by it.</p>
+      <p>Rest in that ground for thirty seconds. Just thirty seconds. This is the practice: not to escape the world but to discover what in you has never been injured by it. From that ground, you can act with more clarity than from the place of helplessness.</p></div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Dharmadhātu Wisdom</div>
+    </details>
+    <details class="acc-section acc-lens">
+      <summary class="acc-summary acc-sum-amber">💛 Bodhichitta View &nbsp;·&nbsp; <span class='lens-tradition'>Mahayana Buddhist</span></summary>
+      <div class="lens-text acc-lens-text"><p>From the Bodhichitta view, the collapse of the Easter ceasefire is a teaching on the difference between relative and ultimate peace.</p>
+      <p>Relative peace — treaties, ceasefires, agreements — depends on the discipline of parties who have not yet transformed their fundamental reactivity. It is fragile by nature. Two thousand ceasefire violations are not a failure of will; they are a demonstration of the depth of ma rigpa operating through military systems and traumatized national psyches.</p>
+      <p>Ultimate peace — bodhichitta — cannot be violated because it does not depend on the other's cooperation. It is the vow to hold all beings, including those firing the drones and those on the receiving end, within the same field of care. It does not require the war to stop before it is practiced.</p>
+      <p>Shantideva wrote: 'As long as space remains, as long as sentient beings remain, until then may I too remain.' The ceasefire in the Donbas has collapsed. The bodhisattva vow has not.</p></div>
+      <div class='lens-attr'>— Bodhichitta view: the vow that outlasts every treaty, every truce, every failure of institutional peace</div>
+    </details>
+  </div>
+
+  <!-- Story 3 -->
+  <div class="story">
+    <span class="story-tag tag-renewal">Renewal & Transformation</span>
+    <div class="story-headline">Hungary's Péter Magyar Defeats Viktor Orbán, Ending 16 Years of Authoritarian Rule</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">Hungary's parliamentary election on April 12 produced a historic result: opposition leader Péter Magyar's Tisza party won 53.6% of the vote, securing 138 of 199 parliamentary seats — enough for a supermajority — while Viktor Orbán's Fidesz took just 55 seats with 37.8%. Turnout reached 77%, the highest since Hungary's post-communist era. Orbán, in power for 16 consecutive years and long seen as a symbol of European democratic backsliding, conceded defeat on election night. Magyar is expected to reverse many of Orbán's constitutional changes and restore Hungary's ties to the European Union.</div>
+    <div class="story-source"><a href="https://www.aljazeera.com/news/2026/4/12/hungary-election-early-results-show-magyars-tisza-ahead-of-orbans-fidesz" target="_blank" rel="noopener">Al Jazeera / CNN ↗</a></div>
+    <details class="acc-section acc-teaching" open>
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching"><p>In Hungary, 77 percent of the people came out to vote. The highest turnout since the end of communist rule. And they chose differently. After 16 years, they chose differently. This is not small. This is what I always say: human beings have an innate capacity for goodness — and that capacity cannot be permanently suppressed, even by very clever systems.</p>
+      <p>When people vote in such numbers, something in them has remembered that their voice matters. The individual has reconnected to the collective. This is pratityasamutpada — interdependence — in the political realm: one person's act of courage makes the next person's courage possible.</p>
+      <p>We must not idealize this, of course. The work of transforming institutions is long and often disappointing. But today in Hungary we can look clearly and say: the human heart moved toward greater openness. That is the direction of bodhichitta. That is worth recognizing — and even celebrating — with a mind that remains clear.</p></div>
+      <div class='teaching-attr'>— In the spirit of His Holiness the Dalai Lama's teaching on the innate capacity of the human heart for goodness</div>
+    </details>
+    <details class="acc-section acc-quote">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">All the suffering in the world arises from seeking happiness for oneself. All the happiness in the world arises from seeking happiness for others.</div><div class="quote-attr">— Shantideva, Bodhicaryavatara, Chapter 8, verse 129 (cited frequently by His Holiness the Dalai Lama)</div><span class="quote-badge quote-badge-exact">Exact quote</span></div>
+    </details>
+    <details class="acc-section acc-dialogue">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🙏 shantideva &nbsp;·&nbsp; <span class='dialogue-tradition'>Mahayana Buddhist — 8th century India</span></div>
+      <div class="dialogue-text">SHANTIDEVA: It is said: all the suffering in the world arises from seeking happiness for oneself alone; all the happiness in the world arises from seeking the happiness of others. Can a democratic election express this?<br>DALAI LAMA: When people vote, they are not only voting for themselves. At its best, they are voting for the kind of world their children will live in. That is the germ of bodhichitta within an ordinary political act.<br>SHANTIDEVA: And the patience required — sixteen years of waiting, organizing, refusing to give up — does this not resemble the patience of a bodhisattva on the long path?<br>DALAI LAMA: Yes. Those who waited and did not give up were cultivating something very deep. The paramita of patience is not passive. It is the steady refusal to let the darkness have the final word.<br>SHANTIDEVA: Then perhaps every election is, in miniature, a practice of dedication — whatever merit has been gathered, may it be turned toward the benefit of all.</div>
+      <div class='dialogue-attr'>— In the spirit of Shantideva's teaching on the bodhisattva's patience, and the Dalai Lama's teaching on collective compassion</div>
+    </details>
+    <details class="acc-section acc-practice">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-hope">Hope &amp; Renewal</span>
+        Practice <span class="method-badge method-transforming">Transforming</span>
+      </div>
+      <div class="practice-text"><p>Let this moment of collective renewal actually reach you. We are so well-trained to receive news of what goes wrong — practice receiving what goes right, without immediately qualifying it or preparing for the next disappointment.</p>
+      <p>Breathe in: the image of 77 percent of Hungarians walking to their polling stations, carrying something as ordinary and as radical as a vote. Breathe out: the wish that this turning toward openness ripples outward — in Hungary and in you.</p>
+      <p>Notice any resistance you feel to receiving good news without reservation. That resistance is worth examining. It is its own form of shenpa — the habitual bracing against hope.</p></div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> All-Accomplishing Wisdom</div>
+    </details>
+    <details class="acc-section acc-lens">
+      <summary class="acc-summary acc-sum-amber">✨ Pure Perception View &nbsp;·&nbsp; <span class='lens-tradition'>Vajrayana</span></summary>
+      <div class="lens-text acc-lens-text"><p>From the Pure Perception view, we ask: what is the buddha nature showing itself through this event?</p>
+      <p>Pure perception does not mean seeing only what is pleasant. It means seeing what is actually there — the luminous quality of mind that is present even in the most obscured situations. When 77 percent of a population steps into a voting booth and refuses the story of helplessness, this is buddha nature becoming visible through the medium of democratic process.</p>
+      <p>Not perfectly. Not finally. Viktor Orbán is not a demon, and Péter Magyar is not a bodhisattva. Pure perception sees through both the demonization and the idealization to the simple fact: beings who have been practicing learned helplessness remembered that they were not helpless. Something in them recognized their own dignity.</p>
+      <p>That recognition — however partial, however quickly it may be complicated by what follows — is the nature of mind catching a glimpse of itself. This is what we celebrate: not the election result, but the rigpa that moved through 77 percent of Hungarians on April 12th.</p></div>
+      <div class='lens-attr'>— Pure Perception view: seeing buddha nature through the medium of collective human action</div>
+    </details>
+  </div>
+
+  <!-- Story 4 -->
+  <div class="story">
+    <span class="story-tag tag-politics">Power & Collective Karma</span>
+    <div class="story-headline">Trump Orders U.S. Naval Blockade of Strait of Hormuz After Iran Talks Collapse</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">President Trump ordered the U.S. Navy to begin blockading the Strait of Hormuz effective Monday after U.S.-Iran peace talks in Islamabad collapsed on Sunday. Roughly 20% of the world's oil and natural gas transits the strait, and markets responded with Brent crude prices jumping 10–13% in early trading. U.S. Central Command clarified the blockade targets ships paying tolls to Iran, not all vessels using the waterway. The United Kingdom declined to participate, stating the strait is 'urgently needed to support the global economy,' while Russia and China vetoed a UN Security Council resolution on the crisis.</div>
+    <div class="story-source"><a href="https://www.cnbc.com/2026/04/12/trump-iran-war-strait-of-hormuz.html" target="_blank" rel="noopener">NPR / CNBC ↗</a></div>
+    <details class="acc-section acc-teaching" open>
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching"><p>Oil prices jumped 10 to 13 percent within hours of the announcement. Before most people had read the news, the price of everything they would eat next week had already moved. This is what pratityasamutpada means when it is taught by events rather than teachers: a decision in one place, by one man, reaches your kitchen table before you have even heard the news.</p>
+      <p>Notice what this does in the body. Anxiety lives in the chest, in the tightening of the belly. This is a klesha — not bad, not to be suppressed, but to be recognized clearly. It is the energy of care, distorted by not knowing. The body perceives correctly that something has shifted in the shared world.</p>
+      <p>In Mahamudra we say: the tsal — the energy of awareness — is always present, even in anxiety. Anxiety is rigpa expressing itself through ma rigpa. When you bring awareness fully to the anxiety, without fighting it, something changes. Not the news. Not the oil prices. You. That shift is not small. It is what makes the difference between a mind that reacts and a mind that responds.</p></div>
+      <div class='teaching-attr'>— In the spirit of Yongey Mingyur Rinpoche's teachings on klesha as the gateway to rigpa</div>
+    </details>
+    <details class="acc-section acc-quote">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">The mind is like the sky — vast, open, and unchanged by whatever weather passes through it. Clouds arise and dissolve. The sky itself is never stained.</div><div class="quote-attr">— Paraphrase of Yongey Mingyur Rinpoche's core teaching on the nature of awareness, from The Joy of Living (2007)</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+    </details>
+    <details class="acc-section acc-dialogue">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+      <div class="dialogue-text">SOCRATES: You seem troubled. What is it that disturbs you most — the blockade itself, or your uncertainty about what follows from it?<br>STUDENT: The uncertainty. I cannot see where this leads.<br>SOCRATES: And is not uncertainty the ordinary condition of human life? We have simply been reminded of it today in a particularly dramatic form.<br>STUDENT: That does not make it comfortable.<br>SOCRATES: No. But consider: if you genuinely accepted that you cannot control the Strait of Hormuz — what would then become of your distress?<br>STUDENT: It might... shift. Into something more useful than helplessness.<br>SOCRATES: Precisely. The Stoics called this distinguishing what is within your power from what is not. Your Tibetan teacher might call it the difference between rigpa and shenpa — clear awareness and habitual reactivity. Different maps. The same territory.<br>MINGYUR RINPOCHE: Yes. And the map that serves you best is whichever one returns you to yourself. The rest is politics.</div>
+      <div class='dialogue-attr'>— In the spirit of Socrates' examination of what lies within our power, and Mingyur Rinpoche's teachings on working with uncertainty</div>
+    </details>
+    <details class="acc-section acc-practice">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-anxiety">Anxiety &amp; Uncertainty</span>
+        Practice <span class="method-badge method-transcending">Transcending</span>
+      </div>
+      <div class="practice-text"><p>If you feel tension in your body reading this, you are not overreacting — you are perceiving correctly that the world has become less stable. Bring attention to the physical sensation: Where exactly is it? What is its texture, its weight, its shape?</p>
+      <p>Don't try to make it go away. Simply know it, the way you know the warmth of tea in your hands. Now widen your awareness — as if your awareness were the sky, and the tension were a cloud within it. The cloud may still be there. But you are larger than it.</p>
+      <p>That larger awareness is kunzhi — the ground of being — which is never destabilized by what arises within it. You can act from that ground. From there, even in a time of blockades and price spikes, you can think and feel and choose clearly.</p></div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> All-Accomplishing Wisdom</div>
+    </details>
+    <details class="acc-section acc-lens">
+      <summary class="acc-summary acc-sum-amber">👁️ Mahamudra View &nbsp;·&nbsp; <span class='lens-tradition'>Mahamudra / Vajrayana</span></summary>
+      <div class="lens-text acc-lens-text"><p>From the Mahamudra view, the global economy is not a thing separate from mind — it is a collective display of mind, vast and intricate, arising in awareness like all other appearances.</p>
+      <p>Pratityasamutpada: dependent origination. The blockade of the Strait of Hormuz does not cause oil prices to rise in isolation — the entire web of human believing and fearing and speculating and anticipating causes oil prices to rise. The market moved before the blockade was enforced, because the minds of traders are already part of the display.</p>
+      <p>This is not merely poetic. It is the Mahamudra teaching applied to macro-economics: what we call 'the world' is not a fixed external object. It is a collective appearance arising in the field of awareness. This does not mean it is less real — a fever is not less real for arising in mind. But it means that transformation of the display is possible through transformation of the mind generating it.</p>
+      <p>What kind of world would arise in a field of collective rigpa? We do not know. Practice is the experiment.</p></div>
+      <div class='lens-attr'>— Mahamudra view: the geopolitical as collective display of mind — arising, dwelling, dissolving, leaving no trace</div>
+    </details>
+  </div>
+
+  <div class="closing">
+    <div class="closing-text">The awareness that reads this has never been born and will never die.<br>
+      Practice is not for when conditions are good.<br>
+      Practice is the recognition, again and again, in conditions exactly like these.<br>
+      </div>
+    <span class="mantra-tibetan">ཨོཾ་མ་ཎི་པདྨེ་ཧཱུྃ</span>
+    <span class="mantra">May all beings be happy · May all beings be safe · May all beings be free</span>
+    <div class="mantra-note">Om Mani Padme Hum — compassion and wisdom, inseparable</div>
+  </div>
+
+</div>
+</body>
+</html>

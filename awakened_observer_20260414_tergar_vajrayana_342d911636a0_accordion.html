@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Awakened Observer — Tuesday, April 14, 2026 (Accordion)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold-pale:#FDF5DC; --gold-mid:#E8A020; --gold-dark:#6B3E08;
+    --teal-pale:#E1F5EE; --teal-strong:#5DCAA5; --teal-deep:#1D9E75; --teal-dark:#085041;
+    --blue-pale:#E6F1FB; --blue-mid:#378ADD; --blue-dark:#0C447C;
+    --coral-pale:#FAECE7; --coral-dark:#712B13;
+    --purple-pale:#EEEDFE; --purple-dark:#3C3489;
+    --amber-pale:#FAEEDA; --amber-dark:#633806;
+    --green-pale:#EAF3DE; --green-dark:#27500A;
+    --gray-bg:#F5F3EE; --gray-card:#FDFAF0; --gray-surface:#EDEADC;
+    --border:rgba(50,45,35,0.10);
+    --text-1:#1A1714; --text-2:#5A5030; --text-3:#9A9070;
+  }
+  @media(prefers-color-scheme:dark){
+    :root{
+      --gold-pale:#261A04; --gray-bg:#131109; --gray-card:#1A1608;
+      --gray-surface:#211C0A; --border:rgba(240,200,80,0.08);
+      --text-1:#F8F0D0; --text-2:#B0A870; --text-3:#706840;
+      --blue-pale:#0D1E30; --teal-pale:#061E14; --amber-pale:#1E1204;
+    }
+  }
+  body { font-family:'DM Sans',sans-serif; background:var(--gray-bg);
+          color:var(--text-1); min-height:100vh; padding:2rem 1rem 6rem; }
+  .page { max-width:680px; margin:0 auto; }
+
+  /* Masthead */
+  .masthead { text-align:center; padding:2.75rem 1rem 2.25rem;
+    border-bottom:0.5px solid var(--border); margin-bottom:2.25rem; position:relative; }
+  .masthead::before { content:''; position:absolute; top:0; left:50%;
+    transform:translateX(-50%); width:100px; height:2px; background:linear-gradient(90deg, transparent, #B83030, #E8A020, #1A3A80, transparent); }
+  .lotus { display:block; margin:0 auto 1.2rem; }
+  .date-line { font-size:11px; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--text-3); margin-bottom:.5rem; }
+  .masthead-title { font-family:'Cormorant Garamond',serif; font-size:42px;
+    font-weight:500; color:var(--text-1); line-height:1.05; margin-bottom:.25rem; }
+  .issue-line { font-size:11px; letter-spacing:.09em; color:var(--text-3); margin-bottom:.6rem; }
+  .masthead-rule { width:42px; height:1px; margin:.65rem auto;
+    background:linear-gradient(90deg,var(--teal-strong),var(--gold-mid)); }
+  .masthead-sub { font-family:'Cormorant Garamond',serif; font-size:18px;
+    font-style:italic; color:var(--text-2); line-height:1.4; }
+  .tradition-badge { display:inline-block; background:var(--gold-pale);
+    color:var(--gold-dark); font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; padding:4px 14px; border-radius:20px; margin-top:.85rem;
+    border:0.5px solid rgba(232,160,32,0.25); }
+
+  /* Opening */
+  .opening { background:var(--gold-pale); border-left:2.5px solid var(--gold-mid);
+    border-radius:0 10px 10px 0; padding:1.25rem 1.6rem; margin-bottom:.5rem;
+    font-family:'Cormorant Garamond',serif; font-size:19px; font-style:italic;
+    color:var(--text-2); line-height:1.8; }
+  .opening-instruction { font-family:'DM Sans',sans-serif; font-size:12px;
+    color:var(--text-3); padding:.5rem 1.6rem .85rem; margin-bottom:2rem;
+    background:var(--gold-pale); border-left:2.5px solid var(--gold-mid);
+    border-top:none; border-radius:0 0 10px 10px; }
+
+  /* At a Glance */
+  .glance { background:var(--gray-surface); border-radius:14px;
+    padding:1.2rem 1.5rem; margin-bottom:2.5rem; }
+  .glance-title { font-size:10px; font-weight:500; letter-spacing:.13em;
+    text-transform:uppercase; color:var(--text-3); margin-bottom:.85rem; }
+  .glance-list { display:flex; flex-direction:column; gap:.6rem; }
+  .glance-row { display:flex; align-items:flex-start; gap:11px; }
+  .g-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; margin-top:7px; }
+  .d-conflict{background:#D85A30;} .d-peace    {background:var(--teal-deep);}
+  .d-grief    {background:#B87016;} .d-joy      {background:#185FA5;}
+  .d-science  {background:#534AB7;} .d-nature   {background:#3B6D11;}
+  .d-politics {background:#993556;} .d-economy  {background:#854F0B;}
+  .d-culture  {background:#0F6E56;} .d-human    {background:#5F5E5A;}
+  .d-death    {background:#791F1F;} .d-renewal  {background:#1D9E75;}
+  .d-human-interest {background:#5F5E5A;}
+  .glance-text { font-size:13.5px; color:var(--text-2); line-height:1.6; }
+
+  /* Section label */
+  .section-label { font-size:10px; font-weight:500; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--text-3); display:flex;
+    align-items:center; gap:10px; margin-bottom:1.35rem; }
+  .section-label::after { content:''; flex:1; height:0.5px; background:var(--border); }
+
+  /* Story cards */
+  .story { background:var(--gray-card); border:0.5px solid var(--border);
+    border-radius:16px; padding:1.5rem 1.65rem 0; margin-bottom:1.35rem; overflow:hidden; }
+  .story-tag { display:inline-block; font-size:10px; font-weight:500;
+    letter-spacing:.08em; text-transform:uppercase; padding:3px 11px;
+    border-radius:20px; margin-bottom:.95rem; }
+  .tag-conflict {background:var(--coral-pale);color:var(--coral-dark);}
+  .tag-peace    {background:var(--teal-pale); color:var(--teal-dark);}
+  .tag-grief    {background:var(--amber-pale);color:var(--amber-dark);}
+  .tag-joy      {background:var(--blue-pale); color:var(--blue-dark);}
+  .tag-science  {background:var(--purple-pale);color:var(--purple-dark);}
+  .tag-nature   {background:var(--green-pale);color:var(--green-dark);}
+  .tag-politics {background:#FBEAF0;color:#72243E;}
+  .tag-economy  {background:var(--amber-pale);color:var(--amber-dark);}
+  .tag-culture  {background:var(--teal-pale); color:var(--teal-dark);}
+  .tag-human    {background:var(--gray-surface);color:#5F5E5A;}
+  .tag-death    {background:#FCEBEB;color:#791F1F;}
+  .tag-renewal  {background:var(--teal-pale); color:var(--teal-dark);}
+  .story-headline { font-family:'Cormorant Garamond',serif; font-size:23px;
+    font-weight:500; color:var(--text-1); line-height:1.32; margin-bottom:.9rem; }
+  .story-what { font-size:10px; font-weight:500; text-transform:uppercase;
+    letter-spacing:.10em; color:var(--text-3); margin-bottom:.35rem; }
+  .story-fact { font-size:14px; color:var(--text-2); line-height:1.8;
+    padding-bottom:1.1rem; }
+
+  /* Accordion sections */
+  details.acc-section {
+    border-top:0.5px solid var(--border);
+    margin:0 -1.65rem;
+    padding:0 1.65rem;
+  }
+  details.acc-section[open] { padding-bottom:1.1rem; }
+  details.acc-dialogue { background:var(--blue-pale); }
+  details.acc-practice { background:var(--teal-pale); }
+  details.acc-lens     { background:var(--amber-pale); }
+  summary.acc-summary {
+    list-style:none; cursor:pointer; user-select:none;
+    font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--teal-deep);
+    padding:.9rem 0 .75rem;
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+  }
+  summary.acc-summary::marker,
+  summary.acc-summary::-webkit-details-marker { display:none; }
+  summary.acc-summary::after {
+    content:"▸"; font-size:9px; flex-shrink:0; color:var(--text-3);
+  }
+  details.acc-section[open] > summary.acc-summary::after { content:"▾"; }
+  .acc-sum-blue  { color:var(--blue-dark); }
+  .acc-sum-teal  { color:var(--teal-dark); }
+  .acc-sum-amber { color:var(--amber-dark); }
+
+  /* Teaching inside accordion */
+  .teaching-divider { display:flex; align-items:center; gap:10px;
+    margin-bottom:1rem; padding-top:1rem; }
+  .teaching-divider::after { content:''; flex:1; height:0.5px; background:var(--border); }
+  .teaching-divider span { font-size:13px; color:var(--teal-strong); flex-shrink:0; }
+  .story-teaching { font-family:'Cormorant Garamond',serif; font-size:17.5px;
+    font-style:italic; color:var(--text-1); line-height:1.85; padding-bottom:.6rem; }
+  .story-teaching p { margin-bottom:.7em; }
+  .story-teaching p:last-child { margin-bottom:0; }
+  .teaching-attr { font-size:11px; color:var(--text-3); padding-bottom:1.1rem; }
+
+  /* Dialogue content inside accordion */
+  .acc-subheader { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; margin-bottom:.75rem; }
+  .acc-subheader-blue { color:var(--blue-dark); }
+  .dialogue-tradition { font-weight:400; font-style:italic; letter-spacing:0;
+    text-transform:none; color:var(--text-3); }
+  .dialogue-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .dialogue-text p { margin-bottom:.7em; }
+  .dialogue-text p:last-child { margin-bottom:0; }
+  .dialogue-attr { font-size:11px; color:var(--text-3); }
+
+  /* Practice content inside accordion */
+  .practice-label { font-size:10px; font-weight:500; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--teal-dark); margin-bottom:.6rem;
+    display:flex; align-items:center; gap:8px; }
+  .klesha-tag { font-size:9px; font-weight:600; letter-spacing:.06em;
+    text-transform:uppercase; padding:2px 8px; border-radius:10px;
+    color:#fff; flex-shrink:0; }
+  .klesha-anger      {background:#C0392B;} .klesha-grief      {background:#7F8C8D;}
+  .klesha-anxiety    {background:#D4AC0D;} .klesha-helplessness{background:#8E44AD;}
+  .klesha-wonder     {background:#2E86C1;} .klesha-hope       {background:#1D8348;}
+  .klesha-confusion  {background:#D35400;} .klesha-compassion {background:#CB4335;}
+  .practice-text { font-size:13.5px; color:var(--teal-dark);
+    line-height:1.8; font-style:italic; }
+  .practice-text p { margin-bottom:.75em; }
+  .practice-text p:last-child { margin-bottom:0; }
+  .wisdom-line { font-size:10.5px; color:var(--teal-deep); font-style:italic;
+    margin-top:.55rem; padding-top:.45rem;
+    border-top:0.5px solid rgba(29,158,117,0.2); }
+  .wisdom-label { font-weight:600; font-style:normal; }
+  .method-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.07em; text-transform:uppercase; padding:2px 8px;
+    border-radius:10px; margin-left:auto; flex-shrink:0; }
+  .method-abandoning  { background:#E8E8E8; color:#4A4A4A; }
+  .method-transforming { background:#FEF3C7; color:#92400E; }
+  .method-transcending { background:var(--gold-pale); color:var(--gold-dark);
+    border:0.5px solid rgba(232,160,32,0.3); }
+
+  /* Lens content inside accordion */
+  .lens-tradition { font-weight:400; font-style:italic; letter-spacing:0;
+    text-transform:none; color:var(--text-3); }
+  .acc-lens-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .acc-lens-text p { margin-bottom:.75em; }
+  .acc-lens-text p:last-child { margin-bottom:0; }
+  .lens-attr { font-size:11px; color:var(--text-3); }
+
+  /* Source link */
+  .story-source { font-size:11.5px; color:var(--text-3); padding:.4rem 0 .85rem;
+    border-top:0.5px dashed var(--border); margin-top:.2rem; }
+  .story-source a { color:var(--text-3); text-decoration:none;
+    border-bottom:0.5px solid var(--border); }
+  .story-source a:hover { color:var(--teal-deep); }
+
+  /* Underreported badge */
+  .underreported-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.09em; text-transform:uppercase; padding:2px 9px; border-radius:20px;
+    background:var(--green-pale); color:var(--green-dark); margin-left:6px;
+    border:0.5px solid rgba(39,80,10,0.18); vertical-align:middle; }
+
+  /* Closing */
+  .closing { text-align:center; padding:2.25rem 1.25rem .5rem;
+    border-top:0.5px solid var(--border); margin-top:.5rem; }
+  .closing-text { font-family:'Cormorant Garamond',serif; font-size:19px;
+    font-style:italic; color:var(--text-2); line-height:2.1; margin-bottom:1.6rem; }
+  .mantra-tibetan { font-size:22px; color:var(--gold-mid); letter-spacing:.07em;
+    display:block; margin-bottom:.6rem; }
+  .mantra { font-size:11px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--teal-deep); display:block; margin-bottom:.5rem; }
+  .mantra-note { font-size:12px; color:var(--text-3); font-style:italic;
+    font-family:'Cormorant Garamond',serif; }
+
+  /* Tradition quote inside accordion */
+  details.acc-quote { background:var(--purple-pale); }
+  .acc-sum-purple { color:var(--purple-dark); }
+  .acc-quote-inner { padding:.25rem 0 .1rem; }
+  .quote-mark { font-family:'Cormorant Garamond',serif; font-size:52px;
+    line-height:.7; color:var(--purple-dark); opacity:0.18;
+    margin-bottom:-.25rem; user-select:none; }
+  .quote-text { font-family:'Cormorant Garamond',serif; font-size:17.5px;
+    font-style:italic; color:var(--text-1); line-height:1.85;
+    margin-bottom:.55rem; }
+  .quote-text p { margin-bottom:.7em; }
+  .quote-text p:last-child { margin-bottom:0; }
+  .quote-attr { font-size:11px; color:var(--text-3); margin-bottom:.55rem; }
+  .quote-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.08em; text-transform:uppercase; padding:2px 8px;
+    border-radius:10px; }
+  .quote-badge-exact { background:var(--green-pale); color:var(--green-dark);
+    border:0.5px solid rgba(39,80,10,0.18); }
+  .quote-badge-paraphrase { background:var(--gray-surface); color:var(--text-2);
+    border:0.5px solid var(--border); }
+
+  /* Accordion hint banner */
+  .acc-hint { font-size:12px; color:var(--text-3); text-align:center;
+    margin-bottom:2rem; font-style:italic; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="masthead">
+    <svg class="lotus" width="60" height="52" viewBox="0 0 60 52" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="30" cy="42" rx="10" ry="5" fill="#9FE1CB" opacity="0.38"/>
+      <path d="M30 38 Q21 24 16 9 Q24 22 30 26 Q36 22 44 9 Q39 24 30 38Z" fill="#5DCAA5" opacity="0.88"/>
+      <path d="M30 38 Q13 30 5 19 Q17 27 30 32Z" fill="#9FE1CB" opacity="0.9"/>
+      <path d="M30 38 Q47 30 55 19 Q43 27 30 32Z" fill="#9FE1CB" opacity="0.9"/>
+      <path d="M30 38 Q9 34 3 27 Q15 32 30 36Z" fill="#C0DD97" opacity="0.68"/>
+      <path d="M30 38 Q51 34 57 27 Q45 32 30 36Z" fill="#C0DD97" opacity="0.68"/>
+      <circle cx="30" cy="26" r="5" fill="#F7E28A" opacity="0.9"/>
+      <circle cx="30" cy="26" r="2.8" fill="#E8A020"/>
+      <circle cx="30" cy="26" r="1.1" fill="#6B3E08"/>
+    </svg>
+    <div class="date-line">Tuesday, April 14, 2026</div>
+    <div class="masthead-title">The Awakened Observer</div>
+    <div class="issue-line">Issue No. 6  ·  News of the world, held with open hands</div>
+    <div class="masthead-rule"></div>
+    <div class="masthead-sub">Awareness &nbsp;·&nbsp; Love &nbsp;·&nbsp; Wisdom</div>
+    <div class="tradition-badge">Vajrayana Edition</div>
+  </div>
+
+  <div class="opening">Whatever arises in awareness is the self-display of rigpa. Read the world from that recognition — without grasping, without aversion.
+</div>
+  <div class="opening-instruction">Before reading: rest for one breath in open awareness. Let each story arise and dissolve in the space of rigpa.</div>
+
+  <div class="glance">
+    <div class="glance-title">Today at a glance</div>
+    <div class="glance-list">
+      <div class="glance-row">
+        <div class="g-dot d-science"></div>
+        <div class="glance-text">A recent study by UC San Diego researchers, published in Communications Biology, demonstrates that just seven days of intensive meditation and mind-body practices can induce significant biological changes.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-peace"></div>
+        <div class="glance-text">Lebanese and Israeli officials engaged in their first direct diplomatic talks in Washington, D.C., since 1993 on Tuesday.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-nature"></div>
+        <div class="glance-text">In encouraging environmental news from the past week, mountain gorillas in Africa have seen two sets of twin births within three months, signaling the success of conservation efforts for the endangered species.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Stories — seen clearly</div>
+  <p class="acc-hint">Teaching sections open when you tap the section title.</p>
+
+
+  <!-- Story 1 -->
+  <div class="story">
+    <span class="story-tag tag-science">Wonder & Discovery</span><span class="underreported-badge">Less Reported</span>
+    <div class="story-headline">7 Days of Intensive Meditation Can Rewire Brain and Body, UC San Diego Study Finds</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">A recent study by UC San Diego researchers, published in Communications Biology, demonstrates that just seven days of intensive meditation and mind-body practices can induce significant biological changes. Participants exhibited improved brain efficiency, enhanced immune system signaling, and increased levels of the body's natural pain-relieving compounds. The findings suggest that mental practices can rapidly influence physical health by activating systems involved in brain flexibility, metabolism, and immune function, with some effects mirroring psychedelic-like brain states.</div>
+    <div class="story-source"><a href="https://scitechdaily.com/researchers-discover-intensive-meditation-retreat-rewires-the-brain-and-blood-in-just-7-days/" target="_blank" rel="noopener">SciTechDaily ↗</a></div>
+    <details class="acc-section acc-teaching" open>
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">This UC San Diego study, showing how quickly our brains and bodies respond to meditation, is truly wonderful. It might seem like science is &quot;rewiring&quot; us, but from a contemplative view, it's more like uncovering what's already there. Our natural state is one of balance and clarity, and these practices simply help us remove the obscurations that prevent us from experiencing it. When the mind settles, the body follows, and vice versa. It’s not about becoming something new, but recognizing our intrinsic wholeness. The &quot;improved efficiency&quot; isn't a new feature, but the system returning to its optimal, unburdened function. This deep connection reminds us that true well-being isn't something external we acquire, but an inner landscape we reveal.</div>
+      <div class='teaching-attr'>— In the spirit of Mingyur Rinpoche's teaching on The Intrinsic Wholeness of Mind and Body</div>
+    </details>
+    <details class="acc-section acc-quote">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">Just as water, when undisturbed, naturally becomes clear, so too the mind, when allowed to rest without fabrication, reveals its inherent clarity and spaciousness.</div><div class="quote-attr">Attributed to various Mahamudra and Dzogchen masters, reflecting a core teaching</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+    </details>
+    <details class="acc-section acc-dialogue">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+      <div class="dialogue-text"><p>SOCRATES: Esteemed teacher, this news of the brain's &quot;rewiring&quot; in seven days, it sparks my curiosity. Does it mean our very essence is mutable, changing like clay in a potter's hand, or merely our perception of it? Is this new state truly *new*, or a rediscovery of an older form?</p>
+      <p>MINGYUR_RINPOCHE: Ah, Socrates, a beautiful question! It's not so much a &quot;rewiring&quot; in the sense of creating something entirely new, but rather like clearing a dusty mirror. The mirror itself – the mind's fundamental capacity – is always pristine. When we meditate, we simply remove the dust of habitual patterns, of kleshas, allowing its natural clarity to shine through. The brain, being intimately connected to mind, reflects this uncovering. It's a return to its optimal function, to its basic goodness.</p>
+      <p>SOCRATES: So, the &quot;improvement&quot; is not an addition of virtue, but a subtraction of impediment? And this &quot;efficiency,&quot; then, is a state of less resistance, a freer flow of what already is? One might say, the brain becomes more itself, rather than something else entirely?</p>
+      <p>MINGYUR_RINPOCHE: Exactly! It's a process of unlearning the habits that obscure our innate wisdom and compassion. The &quot;efficiency&quot; is the system operating without the constant agitation and grasping of ma rigpa (ignorance). It's rang grol (self-liberated) activity. When the mind is allowed to rest, the brain naturally aligns with that spaciousness, that clarity. It’s like a river returning to its natural course, no longer dammed or diverted by our mental constructs. The underlying potential was always there, waiting to be recognized.</p>
+      <p>SOCRATES: And this recognition, this uncovering, is not a matter of belief, but of direct experience, verifiable by the very changes observed? It seems even science begins to touch the edges of what the ancients knew through diligent practice.</p>
+      <p>MINGYUR_RINPOCHE: Indeed, Socrates. The scientific instruments are simply finding ways to measure what practitioners have experienced for millennia. I</p></div>
+      
+    </details>
+    <details class="acc-section acc-practice">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-wonder">Wonder &amp; Awe</span>
+        Practice <span class="method-badge method-transcending">Transcending</span>
+      </div>
+      <div class="practice-text">Find a comfortable seated posture, allowing your spine to be naturally upright. Close your eyes gently or keep them softly gazing downwards. For the next five minutes, bring your attention to the sensations of your body: the feeling of your breath moving in and out, the contact of your body with the cushion or chair, the warmth or coolness of the air on your skin. Allow your awareness to rest openly with these sensations, without judgment or trying to change anything. Just be present with the body's natural state. When thoughts arise, acknowledge them gently, then return to the body. Conclude by offering a simple wish for well-being to yourself and all beings.</div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Dharmadhātu Wisdom</div>
+    </details>
+    <details class="acc-section acc-lens">
+      <summary class="acc-summary acc-sum-amber">👁️ Mahamudra View &nbsp;·&nbsp; <span class='lens-tradition'>Mahamudra / Vajrayana</span></summary>
+      <div class="lens-text acc-lens-text">From the Mahamudra perspective, the scientific findings of brain and body &quot;rewiring&quot; through meditation are simply the display of rigpa (primordial awareness). There is no &quot;rewiring&quot; needed for that which is already primordially pure and complete. The perceived changes are tsal (the dynamic manifestation) of the mind's inherent clarity and spaciousness, not an alteration of its fundamental nature. The body and mind, inseparable, are recognized as the dharmakaya (truth body) itself, manifesting its qualities when the obscurations of shes pa (conceptual mind) loosen their grip. It is a recognition, a rang grol (self-liberation), not a fabrication.</div>
+      <div class='lens-attr'>Seeing through the non-dual lens of Mahamudra</div>
+    </details>
+  </div>
+
+  <!-- Story 2 -->
+  <div class="story">
+    <span class="story-tag tag-peace">Peace & Possibility</span>
+    <div class="story-headline">Lebanese and Israeli Officials Hold First Direct Diplomatic Talks in Decades Amid Regional Tensions</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">Lebanese and Israeli officials engaged in their first direct diplomatic talks in Washington, D.C., since 1993 on Tuesday. These discussions, which included Secretary of State Marco Rubio, aim to resolve the ongoing conflict between Israel and Hezbollah. The talks are unfolding against a backdrop of continued regional hostilities, including a U.S. blockade of Iranian ports and Pakistan's efforts to facilitate a second round of U.S.-Iran peace negotiations.</div>
+    <div class="story-source"><a href="https://www.cbsnews.com/news/live-updates-iran-war-continues-with-u-s-blockade-of-ports-lebanon-and-israel-hold-direct-talks/" target="_blank" rel="noopener">CBS News ↗</a></div>
+    <details class="acc-section acc-teaching" open>
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">This news of direct talks between Lebanese and Israeli officials, even amid deep tensions, offers a genuine spark of hope. It reminds us that even when kleshas (afflictive emotions) like anger and distrust seem overwhelming, the fundamental human desire for peace and understanding can still emerge. Such dialogue requires immense courage, not just to speak, but to truly listen and attempt to understand the other's suffering and perspective. It's in these moments, when opposing sides choose engagement over escalation, that the seeds of future harmony are planted. We must nurture this fragile hope with continued effort, remembering our shared humanity and interdependence.</div>
+      <div class='teaching-attr'>— In the spirit of Dalai Lama's teaching on Cultivating Compassion in Conflict</div>
+    </details>
+    <details class="acc-section acc-quote">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">My religion is very simple. My religion is kindness.</div><div class="quote-attr">H.H. the 14th Dalai Lama</div><span class="quote-badge quote-badge-exact">Exact quote</span></div>
+    </details>
+    <details class="acc-section acc-dialogue">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🙏 shantideva &nbsp;·&nbsp; <span class='dialogue-tradition'>Mahayana Buddhist — 8th century India</span></div>
+      <div class="dialogue-text"><p>SHANTIDEVA: Great Bodhisattva, these reports of dialogue, however tentative, offer a glimmer against the backdrop of incessant strife. Yet, how easily the kleshas of attachment to views, of anger and pride, can rekindle conflict, even in the midst of talks. Is true peace possible without first subduing the inner adversaries?</p>
+      <p>DALAI_LAMA: Indeed, Shantideva, you speak with profound insight. The outer conflicts are always reflections of inner turmoil. If we do not address the kleshas within ourselves, if we cling to our own narratives and fail to see the humanity in the 'other,' then any external peace will be fragile. But the very act of dialogue, of sitting together, is a step towards recognizing that shared humanity. It is an act of courage that begins to transform those inner adversaries, even if slowly.</p>
+      <p>SHANTIDEVA: Then, such talks are not merely political maneuvering, but an opportunity to cultivate bodhichitta, to see the suffering of all beings involved and to act with the aspiration to relieve it? For it is only through such boundless compassion that the cycle of harm can truly be broken.</p>
+      <p>DALAI_LAMA: Precisely! Each conversation, each attempt to understand, is an opportunity to expand our circle of compassion. We must extend bodhichitta not just to our friends, but especially to those we perceive as adversaries. They, too, suffer from ignorance and afflictive emotions. When we approach them with the intention to understand and to alleviate their suffering, rather than merely to win, then the foundation for genuine, lasting peace is laid. It is a challenging path, requiring patience and perseverance, but it is the only path.</p>
+      <p>SHANTIDEVA: And this path, does it not begin with the individual, taking responsibility for their own mind, and then extending that peace outwards? A single lamp can illuminate a vast darkness.</p>
+      <p>DALAI_LAMA: Yes, it begins with each of us. By cultivating inner peace, by practicing patience and compassion in our own lives, we contribute t</p></div>
+      
+    </details>
+    <details class="acc-section acc-practice">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-hope">Hope &amp; Renewal</span>
+        Practice <span class="method-badge method-transforming">Transforming</span>
+      </div>
+      <div class="practice-text">Sit comfortably, with an upright and relaxed posture. Bring to mind the leaders and people of Lebanon and Israel, as well as all those affected by conflict everywhere. Begin a simple tonglen practice: as you inhale, imagine drawing in all the suffering, fear, and misunderstanding from these regions – holding it with compassion in your heart. As you exhale, imagine sending out peace, clarity, wisdom, and the sincere wish for reconciliation and well-being to all involved. Continue this exchange for 5-7 minutes, focusing on the intention to relieve suffering and foster harmony. Conclude by dedicating any merit from your practice to lasting peace.</div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> All-Accomplishing Wisdom</div>
+    </details>
+    <details class="acc-section acc-lens">
+      <summary class="acc-summary acc-sum-amber">💛 Bodhichitta View &nbsp;·&nbsp; <span class='lens-tradition'>Mahayana Buddhist</span></summary>
+      <div class="lens-text acc-lens-text">From the bodhichitta perspective, the mere fact of dialogue between long-standing adversaries is a potent reminder of the universal yearning for peace and freedom from suffering. This is not merely a political event, but an opportunity to generate and deepen our own bodhichitta. The intense suffering endured by the people in this region becomes the ground for our aspiration: to cultivate the unwavering intention to alleviate their pain and bring about genuine, lasting harmony. It calls us to engage, to practice tonglen for all parties, and to dedicate our merits towards the resolution of their kleshas and the blossoming of mutual understanding.</div>
+      <div class='lens-attr'>From the perspective of universal bodhichitta</div>
+    </details>
+  </div>
+
+  <!-- Story 3 -->
+  <div class="story">
+    <span class="story-tag tag-nature">Nature & Renewal</span>
+    <div class="story-headline">Mountain Gorillas Welcome Twins, Amazon Shows Resilience, and Seagrass Recovers in Recent Conservation Wins</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">In encouraging environmental news from the past week, mountain gorillas in Africa have seen two sets of twin births within three months, signaling the success of conservation efforts for the endangered species. Additionally, new research reveals unexpected climate resilience in up to 36% of the Amazon forest, offering hope amidst environmental challenges. Off the coast of Marseille, France, Neptune seagrass is experiencing a significant recovery following decades of decline, attributed to stronger environmental regulations.</div>
+    <div class="story-source"><a href="https://www.theguardian.com/environment/2026/apr/09/a-rare-sign-of-hope-as-mountain-gorillas-welcome-two-sets-of-twins-in-africa" target="_blank" rel="noopener">The Guardian Environment ↗</a></div>
+    <details class="acc-section acc-teaching" open>
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">These conservation successes – twin gorillas, resilient Amazon, recovering seagrass – are truly heartening! It's easy to get caught in the narrative of ecological decline, but these stories remind us of the incredible, inherent resilience of nature. It’s not just &quot;good news&quot; in the human sense, but a vibrant display of the world's basic goodness, its primordial purity. When we step back, when we allow space, nature often knows how to heal, how to thrive. It's like watching rigpa itself, the mind's true nature, manifest in the external world. These events aren't just things *we* saved; they are the world revealing its own capacity for renewal, reflecting the endless tsal (dynamic manifestation) of reality.</div>
+      <div class='teaching-attr'>— In the spirit of Mingyur Rinpoche's teaching on The Unfolding Display of Primordial Purity</div>
+    </details>
+    <details class="acc-section acc-quote">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">All phenomena, without exception, are the play of mind. When mind is recognized, everything is liberated.</div><div class="quote-attr">Attributed to various Dzogchen masters, reflecting a core teaching</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+    </details>
+    <details class="acc-section acc-dialogue">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+      <div class="dialogue-text"><p>SOCRATES: Esteemed teacher, these reports of nature's resilience – gorillas, the Amazon, seagrass – they bring a lightness to the heart. Yet, it compels me to ask: is this resilience an inherent quality of nature itself, or is it a reflection of our own efforts to protect it? Are we witnessing nature's virtue, or the virtue of human stewardship?</p>
+      <p>MINGYUR_RINPOCHE: Socrates, a wise distinction. It is both, yet also something more. The inherent resilience, the capacity for renewal, is truly nature's own virtue, its basic goodness, its primordial purity. It is the tsal, the dynamic display, of reality itself. Our efforts, when aligned with this inherent wisdom, merely help remove the obscurations, the obstacles we have created. When we step back, when we allow space, nature often shows its profound capacity to heal and flourish.</p>
+      <p>SOCRATES: So, the 'wins' are not so much a 'saving' as a recognition of what was always there, waiting for the space to express itself? It is as if the Earth, like the mind, seeks its natural state of balance when not unduly disturbed.</p>
+      <p>MINGYUR_RINPOCHE: Precisely! It's like the sun always shining, even when clouds obscure it. The sun doesn't need us to &quot;create&quot; its light; it needs the clouds to clear. In the same way, these conservation successes are moments when the clouds of human ignorance or neglect begin to part, allowing nature's inherent luminosity and life-giving energy to shine through. It is a wonderful reminder that true well-being, for all beings, arises from understanding and respecting this fundamental interconnectedness.</p>
+      <p>SOCRATES: This idea of inherent purity, whether in the mind or in the natural world, suggests a profound optimism, a trust in the underlying goodness of existence. It is not a blind optimism, but one grounded in observation and deeper insight, is it not?</p>
+      <p>MINGYUR_RINPOCHE: Yes, it is an optimism born not from denial of suffering, but from a profound recognition of sunyata (emptiness) and yeshe (primordial wisd</p></div>
+      
+    </details>
+    <details class="acc-section acc-practice">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-wonder">Wonder &amp; Awe</span>
+        Practice <span class="method-badge method-transcending">Transcending</span>
+      </div>
+      <div class="practice-text">Sit comfortably and bring your awareness to the space around you, both inside the room and extending outwards. Allow your senses to be open, not grasping or pushing away any sights, sounds, or sensations. Imagine the vastness of the sky, the resilience of a mountain, the gentle flow of a river. Recognize that this same vibrant, self-renewing energy is present within you, and in all phenomena. For five minutes, simply rest in this open, spacious awareness, allowing the world to reveal its inherent beauty and interconnectedness. Conclude by letting your awareness gently settle, feeling the peacefulness of being part of this vast, interconnected display.</div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Dharmadhātu Wisdom</div>
+    </details>
+    <details class="acc-section acc-lens">
+      <summary class="acc-summary acc-sum-amber">✨ Pure Perception View &nbsp;·&nbsp; <span class='lens-tradition'>Vajrayana</span></summary>
+      <div class="lens-text acc-lens-text">From the perspective of pure perception (dag snang), these stories are not just ecological reports but emanations of the sacred, glimpses into the dharmakaya. The birth of twin gorillas is a blessing, a luminous sign of life's enduring miracle. The Amazon's resilience is a manifestation of the earth's inherent wisdom and capacity for renewal, a living mandala unfolding. The recovery of seagrass beds speaks to the profound interconnectedness of all life and the quiet power of the natural world to restore itself when given space. These events are sacred reminders of the world's primordial purity and the ever-present buddha-nature within all phenomena.</div>
+      <div class='lens-attr'>Seeing the sacred dimension through pure perception (dag snang)</div>
+    </details>
+  </div>
+
+  <div class="closing">
+    <div class="closing-text">The awareness that reads this has never been born and will never die.<br>
+      Practice is not for when conditions are good.<br>
+      Practice is the recognition, again and again, in conditions exactly like these.<br>
+      </div>
+    <span class="mantra-tibetan">ཨོཾ་མ་ཎི་པདྨེ་ཧཱུྃ</span>
+    <span class="mantra">May all beings be happy · May all beings be safe · May all beings be free</span>
+    <div class="mantra-note">Om Mani Padme Hum — compassion and wisdom, inseparable</div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Review — The Awakened Observer — April 17, 2026</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+        background:#f8fafc;color:#1e293b;font-size:15px;line-height:1.6}
+  .page-header{background:#1e293b;color:#f1f5f9;padding:2rem 2.5rem}
+  .page-header h1{font-size:1.4rem;font-weight:700;margin-bottom:.25rem}
+  .page-header .meta{font-size:.85rem;color:#94a3b8}
+  .legend{display:flex;gap:1.5rem;padding:1rem 2.5rem;background:#fff;
+            border-bottom:1px solid #e2e8f0;font-size:.8rem;align-items:center}
+  .legend-item{display:flex;align-items:center;gap:.4rem}
+  .legend-dot{width:10px;height:10px;border-radius:50%}
+  .page-body{max-width:1100px;margin:0 auto;padding:2rem 1.5rem}
+  .story-card{background:#fff;border:1px solid #e2e8f0;border-radius:.75rem;
+               margin-bottom:2.5rem;overflow:hidden;
+               box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .story-header{padding:1.5rem;background:#f8fafc;border-bottom:1px solid #e2e8f0}
+  .story-meta{display:flex;gap:.5rem;margin-bottom:.5rem;flex-wrap:wrap}
+  .tag-chip,.klesha-chip,.voice-chip{font-size:.7rem;padding:.15rem .55rem;
+    border-radius:999px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+  .tag-chip{background:#dbeafe;color:#1d4ed8}
+  .klesha-chip{background:#ede9fe;color:#7c3aed}
+  .voice-chip{background:#dcfce7;color:#15803d}
+  .story-headline{font-size:1.05rem;font-weight:700;margin:.4rem 0 .8rem}
+  .overall-score-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem}
+  .overall-label{font-size:.75rem;font-weight:700;text-transform:uppercase;
+                  letter-spacing:.05em;color:#64748b}
+  .overall-num{font-size:1.1rem;font-weight:700;min-width:3rem}
+  .overall-bar{flex:1;height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden}
+  .overall-fill{height:100%;border-radius:4px;transition:width .3s}
+  .overall-comment{font-size:.85rem;color:#475569;font-style:italic;line-height:1.5}
+  .section-label{font-size:.7rem;font-weight:700;text-transform:uppercase;
+                  letter-spacing:.06em;color:#94a3b8;padding:.6rem 1.5rem;
+                  background:#f1f5f9;border-bottom:1px solid #e2e8f0;
+                  border-top:1px solid #e2e8f0}
+  .field-review{padding:1rem 1.5rem;border-bottom:1px solid #f1f5f9}
+  .field-header{display:flex;align-items:center;gap:.6rem;margin-bottom:.35rem}
+  .field-name{font-weight:600;font-size:.85rem;flex:1}
+  .badge{font-size:.65rem;padding:.1rem .45rem;border-radius:4px;
+           font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+  .badge-red   {background:#fee2e2;color:#dc2626}
+  .badge-amber {background:#fef3c7;color:#b45309}
+  .badge-blue  {background:#dbeafe;color:#1d4ed8}
+  .score-num{font-size:.85rem;font-weight:700;min-width:2.5rem;text-align:right}
+  .score-bar{display:inline-block;width:80px;height:6px;background:#e2e8f0;
+               border-radius:3px;overflow:hidden;vertical-align:middle;margin-left:.3rem}
+  .score-fill{height:100%;border-radius:3px}
+  .score-na{color:#94a3b8;font-size:.8rem}
+  .field-comment{font-size:.82rem;color:#64748b;margin-bottom:.6rem;
+                  font-style:italic;line-height:1.5}
+  .field-columns{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .field-columns:has(.col-enhanced){} /* two cols when suggestion present */
+  .col-label{font-size:.7rem;font-weight:700;text-transform:uppercase;
+               letter-spacing:.05em;color:#94a3b8;margin-bottom:.3rem}
+  .col-content{font-size:.82rem;line-height:1.65;white-space:pre-wrap;
+                 background:#f8fafc;border:1px solid #e2e8f0;border-radius:.4rem;
+                 padding:.65rem .75rem}
+  .col-original .col-content{}
+  .col-enhanced .col-content{background:#f0fdf4;border-color:#bbf7d0}
+  .diff-del{background:#fee2e2;color:#dc2626;text-decoration:line-through;
+              border-radius:2px;padding:0 1px}
+  .diff-ins{background:#dcfce7;color:#16a34a;border-radius:2px;padding:0 1px}
+  .empty{color:#94a3b8}
+  @media(max-width:700px){
+    .field-columns{grid-template-columns:1fr}
+    .page-header,.legend{padding:.75rem 1rem}
+    .page-body{padding:1rem .75rem}
+  }
+</style>
+</head>
+<body>
+<div class="page-header">
+  <h1>Editorial Review — The Awakened Observer — April 17, 2026</h1>
+  <div class="meta">Issue #8 · 2026-04-17 &nbsp;·&nbsp; Reviewed April 17, 2026 &nbsp;·&nbsp; Model: gemini</div>
+</div>
+<div class="legend">
+  <span style="font-weight:600;font-size:.8rem;color:#64748b">Review tiers:</span>
+  <span class="legend-item"><span class="legend-dot" style="background:#dc2626"></span>Recommended (&lt;60)</span>
+  <span class="legend-item"><span class="legend-dot" style="background:#d97706"></span>Optional (60–79)</span>
+  <span class="legend-item"><span class="legend-dot" style="background:#2563eb"></span>Note (≥80)</span>
+  <span style="margin-left:auto;font-size:.8rem;color:#94a3b8">7 stories reviewed</span>
+</div>
+<div class="page-body">
+
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <span class="tag-chip">conflict</span>
+        <span class="klesha-chip">anger</span>
+        <span class="voice-chip">voice: mingyur_rinpoche</span>
+      </div>
+      <h2 class="story-headline">House Rejects Resolution to Withdraw US Forces from Iran War</h2>
+      <div class="overall-score-row">
+        <span class="overall-label">Overall</span>
+        <span class="overall-num" style="color:#d97706">72/100</span>
+        <div class="overall-bar">
+          <div class="overall-fill" style="width:72%;background:#d97706"></div>
+        </div>
+      </div>
+      <p class="overall-comment">The commentary effectively captures the assigned voices and integrates dharma teachings with the news story. The primary commentary is well-structured, though the practice prescription slightly exceeds its word count. The dialogue, however, is significantly over length and, more critically, ends abruptly mid-sentence, which requires immediate correction. The lens commentary is insightful but lacks a defined concept and has a minor formatting omission in its attribution. Addressing the dialogue&#x27;s length and incompleteness, and filling in the lens concept, are the most pressing editorial concerns.</p>
+    </div>
+
+    <div class="section-label">Primary Commentary — mingyur_rinpoche</div>
+    
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Concept</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">100</span><span class="score-bar"><span class="score-fill" style="width:100%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The concept is concise and accurately names the dharma lens.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">Transforming Anger through Awareness</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Commentary</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">95</span><span class="score-bar"><span class="score-fill" style="width:95%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The commentary perfectly captures the assigned voice and adheres to all length and content specifications.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">The news of the House narrowly failing a resolution to withdraw from potential conflict with Iran can stir a potent klesha: anger. We feel it in our bodies, a tightening, a heat, a surge of &quot;this is wrong!&quot; or &quot;this is foolish!&quot; This isn&#x27;t just an abstract political disappointment; it touches our deepest wish for peace, for sanity. But hereâ€™s the interesting part: this very energy of anger, this raw power, is not inherently negative. In the transforming method, we don&#x27;t push it away or indulge it. Instead, we recognize its vibrant tsal (expressive energy) as an aspect of our own mind, a movement of consciousness. It arises, it stays, it dissolves. What if we could meet this anger, not with judgment, but with an open, curious awareness? It&#x27;s like watching a storm from a safe place. The storm is powerful, but it doesn&#x27;t define the sky. The sky remains vast, open, and clear. Can we see the anger, feel its intensity, and simultaneously rest in the spaciousness that holds it? This is the invitation.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Attribution</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">100</span><span class="score-bar"><span class="score-fill" style="width:100%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The attribution is perfectly crafted, meeting all length and stylistic requirements.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">â€” In the spirit of Mingyur Rinpoche&#x27;s teaching on Transforming Anger through Awareness</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #d97706">
+      <div class="field-header">
+        <span class="field-name">Practice Prescription</span>
+        <span class="badge badge-amber">Optional</span>
+        <span class="score-num" style="color:#d97706">65</span><span class="score-bar"><span class="score-fill" style="width:65%;background:#d97706"></span></span>
+      </div>
+      <div class="field-comment">The practice prescription exceeds the specified word count, making it slightly too detailed for the intended format.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">When you feel the heat of anger arise,<span class="diff-del"> perhaps from this news or any other provocation,</span> pause. Sit upright, relax your shoulders, and bring your attention to your breath. Don&#x27;t try to change the anger; simply feel its raw sensation in your <span class="diff-del">body â€“ perhaps a tightness in the chest, a flush in the face, a clenching of the jaw.</span><span class="diff-ins">body.</span> Breathe into these sensations. As you breathe out, imagine releasing any story or judgment about the anger, allowing it to simply be a vivid energy. For <span class="diff-del">three</span><span class="diff-ins">a</span> <span class="diff-del">to five</span><span class="diff-ins">few</span> minutes, just rest with the raw feeling, seeing it as a dynamic display of <span class="diff-del">mind, not something solid or permanent.</span><span class="diff-ins">mind.</span> Conclude by gently placing your hands over your heart and offering a silent wish for peace, for yourself and for all <span class="diff-del">beings caught in similar waves of intense emotion.</span><span class="diff-ins">beings.</span></div>
+        </div>
+        <div class="col-enhanced">
+          <div class="col-label">Suggested</div>
+          <div class="col-content">When you feel the heat of anger arise, pause. Sit upright, relax your shoulders, and bring your attention to your breath. Don&#x27;t try to change the anger; simply feel its raw sensation in your body. Breathe into these sensations. As you breathe out, imagine releasing any story or judgment about the anger, allowing it to simply be a vivid energy. For a few minutes, just rest with the raw feeling, seeing it as a dynamic display of mind. Conclude by gently placing your hands over your heart and offering a silent wish for peace, for yourself and for all beings.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #dc2626">
+      <div class="field-header">
+        <span class="field-name">Dialogue Text</span>
+        <span class="badge badge-red">Recommended</span>
+        <span class="score-num" style="color:#dc2626">30</span><span class="score-bar"><span class="score-fill" style="width:30%;background:#dc2626"></span></span>
+      </div>
+      <div class="field-comment">The dialogue significantly exceeds the word count and abruptly cuts off mid-sentence, leaving Socrates&#x27; final thought incomplete.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">MINGYUR RINPOCHE: Ah, Socrates, this news of political discord and the lingering threat of conflict, it stirs quite a strong klesha, does it not? Many feel a surge of anger, a frustration with what seems like a repeating pattern of human folly.
+
+SOCRATES: Indeed, Rinpoche. It seems humanity, despite its capacity for reason, often finds itself entangled in passions. But <span class="diff-del">tell me, </span>how does one contend with such a powerful emotion as anger, especially when it arises from what appears to be a clear injustice or a failure of wisdom in governance? Is it to be suppressed, or is there another way to confront this inner turmoil?
+
+MINGYUR RINPOCHE: Suppression, dear Socrates, is like pushing a ball under <span class="diff-del">waterâ€”it</span><span class="diff-ins">water—it</span> only resurfaces with greater force. And to indulge it is to become its slave. Our tradition speaks of *transforming* kleshas. Imagine anger not as an enemy, but as a wild horse. If you fight it, you&#x27;ll be thrown.<span class="diff-del"> If you ignore it, it runs rampant.</span> But if you learn to ride it, its power can become your own.
+
+SOCRATES: A wild horse, you say? An intriguing metaphor. But how does one &quot;ride&quot; anger? It feels so potent, so overwhelming. My experience tells me that such emotions cloud <span class="diff-del">judgment and lead to actions often regretted.</span><span class="diff-ins">judgment.</span> Is there not a danger in engaging with such a forceful energy, lest it consume us?
+
+MINGYUR RINPOCHE: The key is awareness, Socrates. When anger arises, instead of immediately reacting, pause. Feel its raw energy in your body <span class="diff-del">â€“</span><span class="diff-ins">–</span> the heat, the <span class="diff-del">tension, the pulsing.</span><span class="diff-ins">tension.</span> Don&#x27;t label it &quot;good&quot; or &quot;bad.&quot; Simply be present with the sensation. This raw energy, this *tsal*, is not fundamentally separate from rigpa, from pure awareness. It&#x27;s like a wave on the ocean. The wave is powerful, but it&#x27;s still water, still ocean.
+
+SOCRATES: So, the anger itself is not the problem, but rather our *identification* with it, our belief that we *are* the anger, rather than simply experiencing it as a phenomenon? This echoes my own inquiries into self-knowledge, that <span class="diff-del">under</span><span class="diff-ins">true understanding begins with observing the self without attachment.</span></div>
+        </div>
+        <div class="col-enhanced">
+          <div class="col-label">Suggested</div>
+          <div class="col-content">MINGYUR RINPOCHE: Ah, Socrates, this news of political discord and the lingering threat of conflict, it stirs quite a strong klesha, does it not? Many feel a surge of anger, a frustration with what seems like a repeating pattern of human folly.
+
+SOCRATES: Indeed, Rinpoche. It seems humanity, despite its capacity for reason, often finds itself entangled in passions. But how does one contend with such a powerful emotion as anger, especially when it arises from what appears to be a clear injustice or a failure of wisdom in governance? Is it to be suppressed, or is there another way to confront this inner turmoil?
+
+MINGYUR RINPOCHE: Suppression, dear Socrates, is like pushing a ball under water—it only resurfaces with greater force. And to indulge it is to become its slave. Our tradition speaks of *transforming* kleshas. Imagine anger not as an enemy, but as a wild horse. If you fight it, you&#x27;ll be thrown. But if you learn to ride it, its power can become your own.
+
+SOCRATES: A wild horse, you say? An intriguing metaphor. But how does one &quot;ride&quot; anger? It feels so potent, so overwhelming. My experience tells me that such emotions cloud judgment. Is there not a danger in engaging with such a forceful energy, lest it consume us?
+
+MINGYUR RINPOCHE: The key is awareness, Socrates. When anger arises, instead of immediately reacting, pause. Feel its raw energy in your body – the heat, the tension. Don&#x27;t label it &quot;good&quot; or &quot;bad.&quot; Simply be present with the sensation. This raw energy, this *tsal*, is not fundamentally separate from rigpa, from pure awareness. It&#x27;s like a wave on the ocean. The wave is powerful, but it&#x27;s still water, still ocean.
+
+SOCRATES: So, the anger itself is not the problem, but rather our *identification* with it, our belief that we *are* the anger, rather than simply experiencing it as a phenomenon? This echoes my own inquiries into self-knowledge, that true understanding begins with observing the self without attachment.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Quote</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">90</span><span class="score-bar"><span class="score-fill" style="width:90%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The quote accurately paraphrases the teaching and includes proper attribution.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">Recognizing the raw energy of kleshas as the very fabric of awakened mind is the path of liberation.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-label">Lens Commentary — mahamudra_view</div>
+    
+    <div class="field-review" style="border-left:3px solid #dc2626">
+      <div class="field-header">
+        <span class="field-name">Concept</span>
+        <span class="badge badge-red">Recommended</span>
+        <span class="score-num" style="color:#dc2626">0</span><span class="score-bar"><span class="score-fill" style="width:0%;background:#dc2626"></span></span>
+      </div>
+      <div class="field-comment">The concept field is entirely empty, failing to provide the required teaching concept.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content"><span class="diff-del"></span><span class="diff-ins">Vivid Displays of Mind (Tsal)</span></div>
+        </div>
+        <div class="col-enhanced">
+          <div class="col-label">Suggested</div>
+          <div class="col-content">Vivid Displays of Mind (Tsal)</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Commentary</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">90</span><span class="score-bar"><span class="score-fill" style="width:90%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The commentary effectively conveys the mahamudra perspective and integrates the story&#x27;s details, though it is slightly below the typical word count for a primary commentary.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">From the mahamudra perspective, the political drama unfolding, the narrow vote, the surge of anger felt by manyâ€”all are simply vivid displays of mind, the unceasing dance of tsal. There is no external &quot;anger&quot; separate from the awareness that perceives it. This entire unfolding, with its tensions and aspirations, is not a deviation from rigpa, but its very expression. It is like the waves on the ocean: they arise, manifest with great force, and dissolve back into the water, never separate from the ocean itself. To cling to the idea of a solid &quot;problem&quot; or a solid &quot;anger&quot; is ma rigpa, a momentary obscuration. The ground of being remains untouched, open, and luminous, regardless of the forms that appear within it.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #d97706">
+      <div class="field-header">
+        <span class="field-name">Attribution</span>
+        <span class="badge badge-amber">Optional</span>
+        <span class="score-num" style="color:#d97706">75</span><span class="score-bar"><span class="score-fill" style="width:75%;background:#d97706"></span></span>
+      </div>
+      <div class="field-comment">The attribution captures the spirit of the tradition but omits the required opening em-dash.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content"><span class="diff-ins">— </span>Seeing the world as the radiant display of rigpa</div>
+        </div>
+        <div class="col-enhanced">
+          <div class="col-label">Suggested</div>
+          <div class="col-content">— Seeing the world as the radiant display of rigpa</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <span class="tag-chip">human_interest</span>
+        <span class="klesha-chip">compassion</span>
+        <span class="voice-chip">voice: mingyur_rinpoche</span>
+      </div>
+      <h2 class="story-headline">DNA Study Reveals Relationships in South Korean Three Kingdomsâ€“Era Graves</h2>
+      <div class="overall-score-row">
+        <span class="overall-label">Overall</span>
+        <span class="overall-num" style="color:#d97706">68/100</span>
+        <div class="overall-bar">
+          <div class="overall-fill" style="width:68%;background:#d97706"></div>
+        </div>
+      </div>
+      <p class="overall-comment">The primary commentary demonstrates strong adherence to voice, content, and structural specifications across most fields, particularly the main commentary, concept, practice, and quote. The dialogue, however, significantly exceeds the word count and is incomplete, preventing the required philosophical deepening and resolution. The lens commentary is also notably underdeveloped, falling short of its word count and missing the &#x27;concept&#x27; field entirely, which diminishes its overall contribution. Addressing these length and completeness issues would significantly enhance the review&#x27;s quality.</p>
+    </div>
+
+    <div class="section-label">Primary Commentary — mingyur_rinpoche</div>
+    
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Concept</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">95</span><span class="score-bar"><span class="score-fill" style="width:95%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The concept is concise and precisely names the dharma lens as specified.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">The Interconnectedness of All Beings</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Commentary</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">95</span><span class="score-bar"><span class="score-fill" style="width:95%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The commentary effectively grounds the dharma teaching in the news story and maintains the assigned voice and tone.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">Isn&#x27;t this fascinating? We look at these ancient graves, and suddenly, through science, we see family connections spanning centuries. It’s like a hidden thread woven through time, revealing how people were linked, even long, long ago. For us, this isn&#x27;t just history; it&#x27;s a profound teaching. It reminds us that no one exists in isolation. Every single being, from those in the Three Kingdoms era to ourselves right now, is part of an unimaginably vast web of relationships. Our lives are intertwined with countless others, not just physically or genetically, but through the continuous stream of mind and karma. When we truly grasp this interconnectedness, it naturally opens the heart. We see that the suffering of others is not separate from our own, and the joy of others is a reflection of our own potential for happiness. This understanding fosters genuine compassion, not as a duty, but as a recognition of our shared existence.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Attribution</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">90</span><span class="score-bar"><span class="score-fill" style="width:90%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The attribution accurately captures the spirit of the teaching and adheres to the length and formatting requirements.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">— In the spirit of Mingyur Rinpoche&#x27;s teaching on The Interconnectedness of All Beings</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Practice Prescription</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">95</span><span class="score-bar"><span class="score-fill" style="width:95%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The practice prescription is well-structured, embodied, and directly supports the commentary&#x27;s theme of interconnectedness and compassion.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">For the next seven minutes, find a comfortable seated posture. Begin by gently resting your awareness on the sensation of your breath. As your mind settles, expand your awareness to include your immediate family, then your ancestors, visible or not. Feel the subtle threads connecting you. Then, extend this feeling of connection further, to all beings, past, present, and future, recognizing our shared human and sentient experience. As you finish, gently place your hands over your heart, acknowledging the compassion that naturally arises from this connection.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #dc2626">
+      <div class="field-header">
+        <span class="field-name">Dialogue Text</span>
+        <span class="badge badge-red">Recommended</span>
+        <span class="score-num" style="color:#dc2626">40</span><span class="score-bar"><span class="score-fill" style="width:40%;background:#dc2626"></span></span>
+      </div>
+      <div class="field-comment">The dialogue exceeds the word count and is incomplete, preventing a proper resolution through deepening as required by the specification.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">SOCRATES: <span class="diff-del">Tell me, Mingyur, this</span><span class="diff-ins">This</span> DNA study of ancient graves reveals connections, families, lineages. What does this tell us about the &#x27;self&#x27;? Is the self, then, merely a collection of these inherited threads, these ancestral echoes?<span class="diff-del">
+
+</span><span class="diff-ins">
+</span>MINGYUR RINPOCHE: <span class="diff-del">Ah, Socrates, a wonderful question! It shows us that the</span><span class="diff-ins">The</span> &#x27;self&#x27; we<span class="diff-del"> often</span> cling to as <span class="diff-del">a solid, separate thing</span><span class="diff-ins">solid</span> is <span class="diff-del">actually quite </span>fluid,<span class="diff-del"> quite</span> interconnected. These genetic links are like tiny streams feeding <span class="diff-del">into </span>a vast river. The <span class="diff-del">river flows, carrying water from many sources, yet it&#x27;s never truly separate from the ocean it eventually meets. The self, too,</span><span class="diff-ins">self</span> is a continuity, a stream of consciousness, influenced by countless <span class="diff-del">factors, including these ancient connections.</span><span class="diff-ins">factors.</span> But <span class="diff-del">is </span>it<span class="diff-del"> *merely* that? No, not quite.
+
+SOCRATES: So, if the self</span> is not <span class="diff-del">merely</span><span class="diff-ins">*merely*</span> <span class="diff-del">these</span><span class="diff-ins">that,</span> <span class="diff-del">threads,</span><span class="diff-ins">nor</span> <span class="diff-del">what</span><span class="diff-ins">does</span> <span class="diff-del">then is its essence? Does this stream of consciousness</span><span class="diff-ins">it</span> possess an unchanging <span class="diff-del">core,</span><span class="diff-ins">core.</span> <span class="diff-del">a &#x27;self&#x27; that endures beyond the ebb and flow of genetic inheritance and karmic connections? Or is it like</span><span class="diff-ins">Like</span> the river, <span class="diff-del">constantly changing, never the same water twice?
+
+MINGYUR RINPOCHE: Very perceptive, Socrates. The river</span><span class="diff-ins">it</span> is constantly <span class="diff-del">changing, yet we call it &#x27;the river.&#x27; In the same way, the stream of consciousness, what we call &#x27;self,&#x27; is indeed a continuity, not a fixed, unchanging entity. It&#x27;s like a movie playing—each frame is different, but the continuity creates the illusion of a solid character. We see connections, we experience continuity, but if we search for a truly independent, unchanging self within that stream, it&#x27;s elusive.</span><span class="diff-ins">changing.</span> What we find, instead, is <span class="diff-del">the </span>open, clear <span class="diff-del">awareness—rigpa—which is the</span><span class="diff-ins">awareness—rigpa—the</span> ground from which all these connections and experiences, including the sense of &#x27;self,&#x27; arise and play.<span class="diff-del">
+
+</span><span class="diff-ins">
+</span>SOCRATES: <span class="diff-del">Then,</span><span class="diff-ins">If</span> <span class="diff-del">if</span><span class="diff-ins">the</span> <span class="diff-del">this &#x27;self&#x27;</span><span class="diff-ins">self</span> is<span class="diff-del"> not a fixed entity but</span> a flowing stream, <span class="diff-del">and</span><span class="diff-ins">grounded</span> <span class="diff-del">if its ground is this</span><span class="diff-ins">in</span> open awareness, how then should we live? Should we disregard these ancient threads, these familial connections, if they are but transient displays? Or do they still <span class="diff-del">h</span><span class="diff-ins">hold profound meaning for our conduct and understanding of our place in the world?
+MINGYUR RINPOCHE: They hold immense meaning, Socrates. While ultimately transient, these connections are the very fabric of our relative existence. To disregard them ignores conditions shaping our present. Honoring their influence allows us to engage with compassion and wisdom, understanding our actions ripple through this vast, interconnected web. This deepens our appreciation for the display.</span></div>
+        </div>
+        <div class="col-enhanced">
+          <div class="col-label">Suggested</div>
+          <div class="col-content">SOCRATES: This DNA study of ancient graves reveals connections, families, lineages. What does this tell us about the &#x27;self&#x27;? Is the self, then, merely a collection of these inherited threads, these ancestral echoes?
+MINGYUR RINPOCHE: The &#x27;self&#x27; we cling to as solid is fluid, interconnected. These genetic links are like tiny streams feeding a vast river. The self is a continuity, a stream of consciousness, influenced by countless factors. But it is not *merely* that, nor does it possess an unchanging core. Like the river, it is constantly changing. What we find, instead, is open, clear awareness—rigpa—the ground from which all these connections and experiences, including the sense of &#x27;self,&#x27; arise and play.
+SOCRATES: If the self is a flowing stream, grounded in open awareness, how then should we live? Should we disregard these ancient threads, these familial connections, if they are but transient displays? Or do they still hold profound meaning for our conduct and understanding of our place in the world?
+MINGYUR RINPOCHE: They hold immense meaning, Socrates. While ultimately transient, these connections are the very fabric of our relative existence. To disregard them ignores conditions shaping our present. Honoring their influence allows us to engage with compassion and wisdom, understanding our actions ripple through this vast, interconnected web. This deepens our appreciation for the display.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Quote</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">95</span><span class="score-bar"><span class="score-fill" style="width:95%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The paraphrase accurately reflects the teaching and includes the required attribution.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">When we recognize the fundamental interconnectedness of all beings, compassion arises spontaneously, not as a choice, but as a natural expression of our shared existence.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-label">Lens Commentary — mahamudra_view</div>
+    
+    <div class="field-review" style="border-left:3px solid #dc2626">
+      <div class="field-header">
+        <span class="field-name">Commentary</span>
+        <span class="badge badge-red">Recommended</span>
+        <span class="score-num" style="color:#dc2626">50</span><span class="score-bar"><span class="score-fill" style="width:50%;background:#dc2626"></span></span>
+      </div>
+      <div class="field-comment">The commentary is significantly under the required word count, limiting its depth and development.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">From the mahamudra perspective, this study of ancient familial connections reveals the unceasing tsal, the dynamic display of rigpa. What appears as &#x27;relationships&#x27; and &#x27;individuals&#x27; across millennia are simply luminous manifestations, arising and dissolving within the vast, non-dual expanse of mind itself. There is no inherent &#x27;self&#x27; or &#x27;other&#x27; in these genetic patterns; they are but the vibrant play of appearance, inseparable from the ground of being. <span class="diff-ins">This isn&#x27;t to say these connections are meaningless, but rather that their ultimate nature is empty of inherent existence, yet radiantly clear in their manifestation. </span>Recognizing this inherent emptiness and radiant clarity in all phenomena frees us from conceptual grasping and deepens our appreciation for the spontaneous perfection of everything that arises.<span class="diff-ins"> It allows us to engage with the relative world—including our familial ties and social structures—without clinging, seeing them as the natural, unceasing dance of awareness itself, utterly perfect in their impermanence and interconnectedness.</span></div>
+        </div>
+        <div class="col-enhanced">
+          <div class="col-label">Suggested</div>
+          <div class="col-content">From the mahamudra perspective, this study of ancient familial connections reveals the unceasing tsal, the dynamic display of rigpa. What appears as &#x27;relationships&#x27; and &#x27;individuals&#x27; across millennia are simply luminous manifestations, arising and dissolving within the vast, non-dual expanse of mind itself. There is no inherent &#x27;self&#x27; or &#x27;other&#x27; in these genetic patterns; they are but the vibrant play of appearance, inseparable from the ground of being. This isn&#x27;t to say these connections are meaningless, but rather that their ultimate nature is empty of inherent existence, yet radiantly clear in their manifestation. Recognizing this inherent emptiness and radiant clarity in all phenomena frees us from conceptual grasping and deepens our appreciation for the spontaneous perfection of everything that arises. It allows us to engage with the relative world—including our familial ties and social structures—without clinging, seeing them as the natural, unceasing dance of awareness itself, utterly perfect in their impermanence and interconnectedness.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #d97706">
+      <div class="field-header">
+        <span class="field-name">Attribution</span>
+        <span class="badge badge-amber">Optional</span>
+        <span class="score-num" style="color:#d97706">70</span><span class="score-bar"><span class="score-fill" style="width:70%;background:#d97706"></span></span>
+      </div>
+      <div class="field-comment">The attribution is missing the required em-dash at the beginning.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content"><span class="diff-ins">— </span>Viewing phenomena as the unceasing display of rigpa</div>
+        </div>
+        <div class="col-enhanced">
+          <div class="col-label">Suggested</div>
+          <div class="col-content">— Viewing phenomena as the unceasing display of rigpa</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <span class="tag-chip">politics</span>
+        <span class="klesha-chip">helplessness</span>
+        <span class="voice-chip">voice: dalai_lama</span>
+      </div>
+      <h2 class="story-headline">Federal Judge Blocks White House Ballroom Construction After Trump Railed Against Decision</h2>
+      <div class="overall-score-row">
+        <span class="overall-label">Overall</span>
+        <span class="overall-num" style="color:#d97706">76/100</span>
+        <div class="overall-bar">
+          <div class="overall-fill" style="width:76%;background:#d97706"></div>
+        </div>
+      </div>
+      <p class="overall-comment">It&#x27;s wonderful to see the primary commentary so clearly embodying the Dalai Lama&#x27;s compassionate wisdom; the voice is truly resonant, and the practice is beautifully precise. Just a little trim on the dialogue will make it perfect. For the lens commentary, we have a good start with the bodhichitta perspective, but let&#x27;s expand it a bit more to meet the word count, and remember to include the concept and that little dash for the attribution. No big deal, just a few tweaks to really let the light shine through!</p>
+    </div>
+
+    <div class="section-label">Primary Commentary — dalai_lama</div>
+    
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Concept</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">95</span><span class="score-bar"><span class="score-fill" style="width:95%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The concept is concise and precisely names the dharma lens as required.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">Cultivating Inner Agency Amidst Helplessness</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Commentary</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">95</span><span class="score-bar"><span class="score-fill" style="width:95%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The commentary effectively captures the Dalai Lama&#x27;s voice, grounding the dharma in the news while offering a clear path to inner agency.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">The news of a federal judge blocking the White House ballroom construction, coming after presidential frustration, might evoke a feeling of helplessness in many. We see great power wielded, sometimes seemingly whimsically, and our own capacity to influence such events feels small, distant. This sense of powerlessness can be a heavy burden. However, from a compassionate perspective, this very feeling offers an opportunity. It reminds us of the vast web of pratityasamutpada (interdependent origination), where every action, every decision, every emotion, is linked. Even when we cannot directly alter large political outcomes, our inner state, our cultivation of peace and kindness, has an impact. We transcend helplessness not by denying the difficulty, but by recognizing our profound interconnectedness and our agency in cultivating a positive inner world, which inevitably radiates outward. Our true power lies in our intention, in our bodhichitta.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Attribution</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">95</span><span class="score-bar"><span class="score-fill" style="width:95%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The attribution is perfectly within the specified word count and accurately reflects the spirit of the teaching.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">â€” In the spirit of Dalai Lama&#x27;s teaching on Cultivating Inner Agency Amidst Helplessness</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Practice Prescription</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">95</span><span class="score-bar"><span class="score-fill" style="width:95%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The practice prescription is well-structured, specific, and directly addresses the klesha with clear instructions for tonglen.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">When feelings of helplessness arise, perhaps from this news or other global challenges, pause and gently bring your awareness to your heart. Close your eyes if comfortable. Visualize the situation that triggers your feeling of helplessness, perhaps the image of the White House or the broader political landscape. Now, breathe in all the heavy feelings of helplessness, frustration, and powerlessness from yourself and all others who feel them, allowing them to transform into clear, pure light in your heart. As you breathe out, send out feelings of calm, courage, and clear intention to yourself and to all beings, especially those in positions of power and those most affected by their decisions. Do this tonglen practice for five to seven minutes. End by resting in a sense of spacious compassion, knowing your intention contributes to the collective well-being.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #d97706">
+      <div class="field-header">
+        <span class="field-name">Dialogue Text</span>
+        <span class="badge badge-amber">Optional</span>
+        <span class="score-num" style="color:#d97706">70</span><span class="score-bar"><span class="score-fill" style="width:70%;background:#d97706"></span></span>
+      </div>
+      <div class="field-comment">The dialogue text exceeds the maximum word count, though it successfully maintains a genuine philosophical exchange.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">DALAI LAMA: Ah, Shantideva, this news of a judge&#x27;s decision regarding a grand construction project, and the strong reactions it elicits, reminds me of the many instances where individuals feel a profound sense of helplessness in the face of powerful forces. How often do people lament, &quot;What can *I* do?&quot;
+
+SHANTIDEVA: Indeed, Your Holiness. The world often presents itself as a colossal stage where the actions of a few seem to dictate the fate of many, leaving the common person feeling like a mere spectator, buffeted by winds beyond their control. This feeling of helplessness can be a great obstacle to the arising of virtue and the cultivation of bodhichitta. Why exert oneself if one&#x27;s efforts are but a drop in the ocean?
+
+DALAI LAMA: A drop in the ocean, yes, but the ocean is made of drops! This feeling of helplessness, while natural, can be transcended. It is true we cannot always control external events, especially those on a grand political scale. But our deepest power lies not in controlling the external, but in transforming our internal landscape. Even in the face of perceived powerlessness, our mind remains our own, our capacity for compassion, unwavering.
+
+SHANTIDEVA: This is the very essence of the Bodhisattva&#x27;s path, is it not? To recognize that even if one cannot immediately alleviate all <span class="diff-del">suffering in the world,</span><span class="diff-ins">suffering,</span> one can always cultivate the intention to do so. The *Bodhicharyavatara*<span class="diff-del"> (Guide to the Bodhisattva&#x27;s Way of Life)</span> speaks of transforming adverse circumstances into the path, turning even pain and frustration into fuel for compassion. But how does one convince a mind overwhelmed by such feelings to embrace this profound internal work?
+
+DALAI LAMA: We remind ourselves of the vastness of pratityasamutpada, the interconnectedness of all phenomena. Every thought, word, and action, no matter how small, sends ripples through this interdependent web. If we cultivate peace, kindness, and bodhichitta within ourselves, that energy inevitably extends outward, in</div>
+        </div>
+        <div class="col-enhanced">
+          <div class="col-label">Suggested</div>
+          <div class="col-content">DALAI LAMA: Ah, Shantideva, this news of a judge&#x27;s decision regarding a grand construction project, and the strong reactions it elicits, reminds me of the many instances where individuals feel a profound sense of helplessness in the face of powerful forces. How often do people lament, &quot;What can *I* do?&quot;
+
+SHANTIDEVA: Indeed, Your Holiness. The world often presents itself as a colossal stage where the actions of a few seem to dictate the fate of many, leaving the common person feeling like a mere spectator, buffeted by winds beyond their control. This feeling of helplessness can be a great obstacle to the arising of virtue and the cultivation of bodhichitta. Why exert oneself if one&#x27;s efforts are but a drop in the ocean?
+
+DALAI LAMA: A drop in the ocean, yes, but the ocean is made of drops! This feeling of helplessness, while natural, can be transcended. It is true we cannot always control external events, especially those on a grand political scale. But our deepest power lies not in controlling the external, but in transforming our internal landscape. Even in the face of perceived powerlessness, our mind remains our own, our capacity for compassion, unwavering.
+
+SHANTIDEVA: This is the very essence of the Bodhisattva&#x27;s path, is it not? To recognize that even if one cannot immediately alleviate all suffering, one can always cultivate the intention to do so. The *Bodhicharyavatara* speaks of transforming adverse circumstances into the path, turning even pain and frustration into fuel for compassion. But how does one convince a mind overwhelmed by such feelings to embrace this profound internal work?
+
+DALAI LAMA: We remind ourselves of the vastness of pratityasamutpada, the interconnectedness of all phenomena. Every thought, word, and action, no matter how small, sends ripples through this interdependent web. If we cultivate peace, kindness, and bodhichitta within ourselves, that energy inevitably extends outward, in</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Quote</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">95</span><span class="score-bar"><span class="score-fill" style="width:95%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The quote is exact and correctly attributed, fulfilling all requirements.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">My true religion is kindness.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-label">Lens Commentary — bodhichitta_view</div>
+    
+    <div class="field-review" style="border-left:3px solid #d97706">
+      <div class="field-header">
+        <span class="field-name">Commentary</span>
+        <span class="badge badge-amber">Optional</span>
+        <span class="score-num" style="color:#d97706">65</span><span class="score-bar"><span class="score-fill" style="width:65%;background:#d97706"></span></span>
+      </div>
+      <div class="field-comment">The lens commentary is too short, falling below the minimum word count requirement.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">From the bodhichitta view, the feeling of helplessness stirred by this news, or any other, is not a personal failing but a profound call to action. It is a moment to recognize the suffering of <span class="diff-del">othersâ€”those</span><span class="diff-ins">others—those</span> who wield power, those affected by decisions, those who feel <span class="diff-del">voiceless.</span><span class="diff-ins">voiceless, and even those who feel frustrated by the perceived obstruction of their plans.</span> This shared vulnerability becomes the very ground for <span class="diff-del">compassion.</span><span class="diff-ins">compassion, a deep aspiration to alleviate suffering.</span> We do not turn away from the disappointment or frustration; instead, we embrace it as fuel for our aspiration to liberate all beings from suffering. The judge&#x27;s decision, the political leader&#x27;s <span class="diff-del">reactionâ€”these</span><span class="diff-ins">reaction—these</span> are<span class="diff-ins"> not merely external events but</span> opportunities to extend our bodhichitta, to commit to generating peace, wisdom, and skillful means, even in the face of what seems insurmountable. Our work is to continually expand our heart&#x27;s capacity, <span class="diff-ins">recognizing that true agency lies in our boundless intention </span>for the benefit of all.</div>
+        </div>
+        <div class="col-enhanced">
+          <div class="col-label">Suggested</div>
+          <div class="col-content">From the bodhichitta view, the feeling of helplessness stirred by this news, or any other, is not a personal failing but a profound call to action. It is a moment to recognize the suffering of others—those who wield power, those affected by decisions, those who feel voiceless, and even those who feel frustrated by the perceived obstruction of their plans. This shared vulnerability becomes the very ground for compassion, a deep aspiration to alleviate suffering. We do not turn away from the disappointment or frustration; instead, we embrace it as fuel for our aspiration to liberate all beings from suffering. The judge&#x27;s decision, the political leader&#x27;s reaction—these are not merely external events but opportunities to extend our bodhichitta, to commit to generating peace, wisdom, and skillful means, even in the face of what seems insurmountable. Our work is to continually expand our heart&#x27;s capacity, recognizing that true agency lies in our boundless intention for the benefit of all.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #d97706">
+      <div class="field-header">
+        <span class="field-name">Attribution</span>
+        <span class="badge badge-amber">Optional</span>
+        <span class="score-num" style="color:#d97706">75</span><span class="score-bar"><span class="score-fill" style="width:75%;background:#d97706"></span></span>
+      </div>
+      <div class="field-comment">The attribution is missing the required em-dash at the beginning.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content"><span class="diff-ins">— </span>Embracing the suffering of the world as the path of the bodhisattva</div>
+        </div>
+        <div class="col-enhanced">
+          <div class="col-label">Suggested</div>
+          <div class="col-content">— Embracing the suffering of the world as the path of the bodhisattva</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <span class="tag-chip">nature</span>
+        <span class="klesha-chip">wonder</span>
+        <span class="voice-chip">voice: dalai_lama</span>
+      </div>
+      <h2 class="story-headline">Retired Cranberry Bog Transformed into Thriving Wetland Ecosystem in Massachusetts</h2>
+      <div class="overall-score-row">
+        <span class="overall-label">Overall</span>
+        <span class="overall-num" style="color:#16a34a">98/100</span>
+        <div class="overall-bar">
+          <div class="overall-fill" style="width:98%;background:#16a34a"></div>
+        </div>
+      </div>
+      <p class="overall-comment">The commentary package is exceptionally well-crafted, with all primary fields meeting their precise editorial specifications for length, voice, content, and structure. The Dalai Lama&#x27;s voice is authentically captured, and the dharma concepts are skillfully integrated with the news story. The dialogue is a particularly strong example of philosophical exchange, and the practice prescription is clear and relevant. The lens commentary also effectively conveys its perspective, though its concept field was not provided.</p>
+    </div>
+
+    <div class="section-label">Primary Commentary — dalai_lama</div>
+    
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Concept</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">100</span><span class="score-bar"><span class="score-fill" style="width:100%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The concept is concise and precisely names the dharma lens as required.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">Universal Responsibility and Ecological Restoration</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Commentary</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">95</span><span class="score-bar"><span class="score-fill" style="width:95%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The commentary effectively captures the Dalai Lama&#x27;s voice and integrates the story with dharma teachings, ending with an open gesture.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">This news of a retired cranberry bog becoming a thriving wetland is truly wonderful, isn&#x27;t it? It shows us the immense resilience of nature and what is possible when human beings apply their intelligence and compassion. Sometimes, we may feel overwhelmed by the problems in the world, both environmental and social. But this story offers profound hope. It demonstrates that even a place once degraded can be restored to its natural beauty and function, becoming a home for many different forms of life. This inspires us to reflect on our universal responsibility. Just as we can heal the outer environment, we also have the capacity to transform our inner landscapes—our minds—from states of klesha and confusion into flourishing ecosystems of peace, wisdom, and compassion. Each act of restoration, whether external or internal, contributes to the well-being of all.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Attribution</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">100</span><span class="score-bar"><span class="score-fill" style="width:100%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The attribution perfectly meets all length, format, and content specifications.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">— In the spirit of the Dalai Lama&#x27;s teaching on Universal Responsibility and Ecological Restoration</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Practice Prescription</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">98</span><span class="score-bar"><span class="score-fill" style="width:98%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The practice prescription is well-structured, within length, and effectively guides an embodied contemplative practice responsive to the klesha.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">For ten minutes, sit comfortably and bring to mind the image of this thriving wetland. Feel a sense of gratitude for the effort and wisdom that made this transformation possible. Then, extend this gratitude outwards, to all efforts that heal and restore our planet. As you breathe, consciously take in the suffering and degradation of places and beings, and on the exhale, send out wishes for healing, restoration, and flourishing for all. Conclude by placing your palms together at your heart, offering a silent prayer for the well-being of Earth and all its inhabitants.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Dialogue Text</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">100</span><span class="score-bar"><span class="score-fill" style="width:100%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The dialogue is an excellent philosophical exchange, adhering to all length and content requirements, showcasing genuine tension and deepening.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">SHANTIDEVA: Venerable one, this news of a restored wetland brings a particular joy, does it not? It is a testament to the potential for beings to heal and to repair the damage wrought by heedlessness. Yet, my mind immediately turns to the vastness of suffering that remains. How can one act for the benefit of all, when the suffering is so immense, so pervasive?
+
+DALAI LAMA: Indeed, Shantideva, it is a wonderful example of positive transformation. And your concern is precisely the heart of bodhichitta. We must not be discouraged by the immensity of suffering, but rather let it fuel our resolve. Even small actions, like restoring a bog, arise from a compassionate intention. When countless such intentions gather, they create powerful change. We begin with what is near, with what we can influence, and extend our aspiration to all beings. This is the essence of universal responsibility.
+
+SHANTIDEVA: It is true that even a single drop can contribute to filling a great ocean. My teachings emphasize the cultivation of the paramitas (perfections), particularly diligent effort and patience, in the service of others. This bog&#x27;s transformation reflects such diligence. But for the individual practitioner, how does one maintain this sustained effort without falling into despair or weariness, especially when the fruits of one&#x27;s labor are not immediately apparent?
+
+DALAI LAMA: That is a very important question. The key lies in developing a deep, stable compassion, rooted in wisdom. We cultivate the understanding that all beings desire happiness and freedom from suffering, just like ourselves. This creates a wellspring of inner strength. And when we encounter difficulties, we view them as opportunities to refine our practice, to strengthen our patience and perseverance. The transformation of the bog did not happen overnight; it required sustained effort over time. Similarly, our inner transformation, and our work for others, is a continuous process. We find joy in the process itself,</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Quote</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">100</span><span class="score-bar"><span class="score-fill" style="width:100%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The quote is a perfect paraphrase, accurately reflecting the Dalai Lama&#x27;s teachings without attributing specific words.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">Our ancestors have given us this planet, and if we are not taking care of it, we are destroying the future generations. This is a very serious problem. We have to take care of this planet. This is our only home. Our future depends on it.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-label">Lens Commentary — bodhichitta_view</div>
+    
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Commentary</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">95</span><span class="score-bar"><span class="score-fill" style="width:95%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The lens commentary effectively articulates the bodhichitta perspective in relation to the story, maintaining a clear and inspiring voice.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">This transformation is a powerful echo of bodhichitta in action. Seeing a degraded bog become a thriving wetland reminds us that healing is possible, not just for ecosystems, but for all sentient beings. It strengthens our resolve to alleviate suffering and cultivate conditions for flourishing, demonstrating that even long-neglected places can burst forth with life when supported by intention and effort. This inspires us to generate profound aspiration for all beings&#x27; well-being, to see every act of restoration as an opportunity to actualize the bodhisattva&#x27;s vow, bringing forth beauty and sustenance for all who depend on it.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Attribution</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">95</span><span class="score-bar"><span class="score-fill" style="width:95%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The attribution clearly and concisely captures the essence of the bodhichitta lens.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">Responding to suffering with active compassion and the bodhisattva vow</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <span class="tag-chip">science</span>
+        <span class="klesha-chip">wonder</span>
+        <span class="voice-chip">voice: mingyur_rinpoche</span>
+      </div>
+      <h2 class="story-headline">Black Hole Wakes After 100 Million Years and Erupts Like a Cosmic Volcano</h2>
+      <div class="overall-score-row">
+        <span class="overall-label">Overall</span>
+        <span class="overall-num" style="color:#d97706">68/100</span>
+        <div class="overall-bar">
+          <div class="overall-fill" style="width:68%;background:#d97706"></div>
+        </div>
+      </div>
+      <p class="overall-comment">The commentary effectively captures Mingyur Rinpoche&#x27;s voice and provides a strong dharma-informed perspective on the scientific story. The primary commentary, attribution, concept, and quote fields meet high editorial standards. However, the practice prescription is missing a dedication line, and the dialogue is significantly over word count and incomplete, requiring a substantial rewrite. The lens commentary&#x27;s attribution also has a minor formatting error, and its concept field is entirely absent.</p>
+    </div>
+
+    <div class="section-label">Primary Commentary — mingyur_rinpoche</div>
+    
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Concept</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">100</span><span class="score-bar"><span class="score-fill" style="width:100%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The concept is precise and within the specified word count.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">The Luminous Play of Emptiness and Form</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Commentary</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">95</span><span class="score-bar"><span class="score-fill" style="width:95%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The commentary perfectly captures Mingyur Rinpoche&#x27;s voice, grounds the dharma in the news, and ends with an open gesture.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">Wow! A black hole erupting after 100 million years. Isn&#x27;t that incredible? This news from deep space is a powerful reminder of the vastness and dynamic energy of the universe. For us practitioners, it&#x27;s not just a scientific event; it&#x27;s a profound display of tsal, the unceasing, luminous energy of awareness itself. We see these immense, unimaginable forces, dormant for eons, then bursting forth. It&#x27;s much like our own minds, isn&#x27;t it? Sometimes quiet and still, sometimes erupting with kleshas or brilliant insights. The wonder we feel looking at this cosmic volcano is not separate from the nature of our own mind. It’s a glimpse into the boundless, vibrant emptiness that is the ground of all phenomena. We can transcend the mere concept of &#x27;black hole&#x27; or &#x27;eruption&#x27; and rest in the open, clear awareness that witnesses it all.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Attribution</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">100</span><span class="score-bar"><span class="score-fill" style="width:100%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The attribution is concise, correctly formatted, and accurately reflects the spirit of the teaching.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">— In the spirit of Mingyur Rinpoche&#x27;s teaching on The Luminous Play of Emptiness and Form</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #d97706">
+      <div class="field-header">
+        <span class="field-name">Practice Prescription</span>
+        <span class="badge badge-amber">Optional</span>
+        <span class="score-num" style="color:#d97706">70</span><span class="score-bar"><span class="score-fill" style="width:70%;background:#d97706"></span></span>
+      </div>
+      <div class="field-comment">The practice is well-described and responsive to the klesha, but it is missing the required dedication line at the end.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">For five minutes, find a comfortable seat. Allow your eyes to remain gently open, gazing softly at whatever is in front of you without focusing too intently. Let your mind be as vast and open as the night sky. Observe any thoughts or sensations that arise as if they are distant cosmic events—like stars appearing and disappearing, or galaxies forming and dissolving. Do not cling to them, do not push them away. Simply let them be, resting in the spacious, luminous quality of awareness itself. When finished, take a deep breath and gently blink your eyes, returning your attention to the immediate environment.<span class="diff-ins"> May this practice awaken boundless awareness for the benefit of all beings.</span></div>
+        </div>
+        <div class="col-enhanced">
+          <div class="col-label">Suggested</div>
+          <div class="col-content">For five minutes, find a comfortable seat. Allow your eyes to remain gently open, gazing softly at whatever is in front of you without focusing too intently. Let your mind be as vast and open as the night sky. Observe any thoughts or sensations that arise as if they are distant cosmic events—like stars appearing and disappearing, or galaxies forming and dissolving. Do not cling to them, do not push them away. Simply let them be, resting in the spacious, luminous quality of awareness itself. When finished, take a deep breath and gently blink your eyes, returning your attention to the immediate environment. May this practice awaken boundless awareness for the benefit of all beings.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #dc2626">
+      <div class="field-header">
+        <span class="field-name">Dialogue Text</span>
+        <span class="badge badge-red">Recommended</span>
+        <span class="score-num" style="color:#dc2626">30</span><span class="score-bar"><span class="score-fill" style="width:30%;background:#dc2626"></span></span>
+      </div>
+      <div class="field-comment">The dialogue exceeds the word count significantly and abruptly cuts off mid-sentence, making it incomplete and unpublishable.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">SOCRATES: Mingyur, this &#x27;cosmic <span class="diff-del">volcano,&#x27;</span><span class="diff-ins">volcano&#x27; evokes profound awe. Is</span> this <span class="diff-del">black hole awakening after eons of slumber—it evokes a profound sense of awe. But what *is* this awe? Is it</span><span class="diff-ins">awe</span> merely a sensation,<span class="diff-del"> an emotional reaction to the vastness,</span> or does it point to something deeper about reality itself?<span class="diff-del">
+
+</span><span class="diff-ins"> </span>MINGYUR RINPOCHE: Ah, Socrates, <span class="diff-del">you hit the nail on the head! This wonder, </span>this <span class="diff-del">awe,</span><span class="diff-ins">wonder</span> is <span class="diff-del">not just </span>a <span class="diff-del">passing</span><span class="diff-ins">glimpse</span> <span class="diff-del">sensation. It&#x27;s a glimpse, a pointer to</span><span class="diff-ins">into</span> the very nature of reality and our <span class="diff-del">own </span>minds. When we witness such <span class="diff-del">a magnificent</span><span class="diff-ins">an</span> event, our ordinary conceptual mind often <span class="diff-del">pauses.</span><span class="diff-ins">pauses,</span> <span class="diff-del">For</span><span class="diff-ins">allowing</span> <span class="diff-del">a</span><span class="diff-ins">us</span> <span class="diff-del">moment, we</span><span class="diff-ins">to</span> transcend<span class="diff-del"> our</span> usual categories <span class="diff-del">of &#x27;this&#x27; </span>and<span class="diff-del"> &#x27;that,&#x27; &#x27;good&#x27; and &#x27;bad,&#x27; and simply</span> rest in the spaciousness of what is. This is <span class="diff-del">the luminous quality of mind itself, what we call </span>yeshe, primordial wisdom, shining through.<span class="diff-del">
+
+</span><span class="diff-ins"> </span>SOCRATES: So,<span class="diff-del"> the phenomenon itself,</span> the black hole&#x27;s <span class="diff-del">eruption,</span><span class="diff-ins">eruption</span> is<span class="diff-del"> not merely a physical event, but</span> a catalyst for this <span class="diff-del">insight?</span><span class="diff-ins">insight,</span> <span class="diff-del">It seems that in the face of such grandeur,</span><span class="diff-ins">dissolving</span> our usual <span class="diff-del">human concerns and distinctions momentarily dissolve.</span><span class="diff-ins">concerns?</span> But how can we sustain this <span class="diff-del">insight?</span><span class="diff-ins">insight</span> <span class="diff-del">Does</span><span class="diff-ins">when</span> the wonder <span class="diff-del">fade as we return to our everyday lives</span><span class="diff-ins">fades</span> and the mind&#x27;s <span class="diff-del">incessant</span><span class="diff-ins">chatter</span> <span class="diff-del">chatter?
+
+</span><span class="diff-ins">returns? </span>MINGYUR RINPOCHE: It is<span class="diff-del"> indeed</span> a catalyst! And yes, the wonder can fade as <span class="diff-del">our </span>shes pa (conceptual mind) takes <span class="diff-del">over, trying to label and categorize.</span><span class="diff-ins">over.</span> This is where practice comes in. We don&#x27;t <span class="diff-del">try</span><span class="diff-ins">cling</span> to<span class="diff-del"> hold onto</span> the &#x27;wonder&#x27; as an <span class="diff-del">object.</span><span class="diff-ins">object,</span> <span class="diff-del">Instead, we</span><span class="diff-ins">but</span> recognize the *space* in which <span class="diff-del">the wonder</span><span class="diff-ins">it</span> arises. That <span class="diff-del">space, that </span>open <span class="diff-del">awareness,</span><span class="diff-ins">awareness</span> is always present, whether <span class="diff-del">we&#x27;re looking at</span><span class="diff-ins">observing</span> a black hole or washing dishes. The <span class="diff-del">black</span><span class="diff-ins">cosmic</span> <span class="diff-del">hole</span><span class="diff-ins">event</span> simply makes it easier to notice that <span class="diff-del">open </span>space. <span class="diff-del">By</span><span class="diff-ins">Through</span> <span class="diff-del">training our minds,</span><span class="diff-ins">training,</span> we can bring <span class="diff-del">that</span><span class="diff-ins">this</span> spacious, non-conceptual awareness into every moment.<span class="diff-del">
+
+SOCRATES: You speak of this &#x27;space&#x27; as always present, yet it seems to manifest in such dramatic ways in the cosmos, while often remaining hidden in our daily experience. Is the eruption of a black hole, then, a more &#x27;real&#x27; or &#x27;powerful&#x27; manifestation of this awareness than, sa</span></div>
+        </div>
+        <div class="col-enhanced">
+          <div class="col-label">Suggested</div>
+          <div class="col-content">SOCRATES: Mingyur, this &#x27;cosmic volcano&#x27; evokes profound awe. Is this awe merely a sensation, or does it point to something deeper about reality itself? MINGYUR RINPOCHE: Ah, Socrates, this wonder is a glimpse into the very nature of reality and our minds. When we witness such an event, our ordinary conceptual mind often pauses, allowing us to transcend usual categories and rest in the spaciousness of what is. This is yeshe, primordial wisdom, shining through. SOCRATES: So, the black hole&#x27;s eruption is a catalyst for this insight, dissolving our usual concerns? But how can we sustain this insight when the wonder fades and the mind&#x27;s chatter returns? MINGYUR RINPOCHE: It is a catalyst! And yes, the wonder can fade as shes pa (conceptual mind) takes over. This is where practice comes in. We don&#x27;t cling to the &#x27;wonder&#x27; as an object, but recognize the *space* in which it arises. That open awareness is always present, whether observing a black hole or washing dishes. The cosmic event simply makes it easier to notice that space. Through training, we can bring this spacious, non-conceptual awareness into every moment.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Quote</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">100</span><span class="score-bar"><span class="score-fill" style="width:100%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The paraphrase accurately summarizes the teaching and is correctly attributed.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">All phenomena, whether the smallest particle or the vastest galaxy, are like clouds in the sky of our own mind. They arise, abide, and dissolve, yet the sky itself remains unstained and boundless.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-label">Lens Commentary — pure_perception_view</div>
+    
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Commentary</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">90</span><span class="score-bar"><span class="score-fill" style="width:90%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The commentary effectively conveys the &#x27;pure perception&#x27; view, highlighting the sacredness and luminous quality of phenomena.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">To perceive a black hole&#x27;s awakening as a &#x27;cosmic volcano&#x27; is to touch the sacred. It&#x27;s not just a scientific event, but a profound manifestation of the universe&#x27;s inherent aliveness and dynamic potential. The very act of observing this immense power, dormant for eons and now erupting, reveals the luminous quality of all phenomena. It invites us to experience the world, not merely as objects, but as expressions of a vast, unceasing energy, inherently sacred and awe-inspiring. This perspective allows us to transcend ordinary perception and glimpse the buddha-nature inherent in all things, even the most violent cosmic display.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #d97706">
+      <div class="field-header">
+        <span class="field-name">Attribution</span>
+        <span class="badge badge-amber">Optional</span>
+        <span class="score-num" style="color:#d97706">60</span><span class="score-bar"><span class="score-fill" style="width:60%;background:#d97706"></span></span>
+      </div>
+      <div class="field-comment">The attribution is missing the required em-dash at the beginning.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content"><span class="diff-ins">— </span>Perceiving the inherent sacredness and luminous quality in all phenomena</div>
+        </div>
+        <div class="col-enhanced">
+          <div class="col-label">Suggested</div>
+          <div class="col-content">— Perceiving the inherent sacredness and luminous quality in all phenomena</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <span class="tag-chip">renewal</span>
+        <span class="klesha-chip">hope</span>
+        <span class="voice-chip">voice: dalai_lama</span>
+      </div>
+      <h2 class="story-headline">Space Junk Cleanup Tech Gets US Patent for Shepherding Debris into Earth&#x27;s Atmosphere</h2>
+      <div class="overall-score-row">
+        <span class="overall-label">Overall</span>
+        <span class="overall-num" style="color:#d97706">70/100</span>
+        <div class="overall-bar">
+          <div class="overall-fill" style="width:70%;background:#d97706"></div>
+        </div>
+      </div>
+      <p class="overall-comment">The primary commentary demonstrates strong adherence to most specifications, particularly in its voice, concept, and practice, and includes a perfectly quoted text. However, the dialogue section is critically flawed by being incomplete, which significantly impacts the overall quality and readability. The lens commentary, while conceptually sound, is too brief and misses some stylistic nuances, and its attribution has a minor formatting error. The incomplete dialogue is the most pressing editorial concern.</p>
+    </div>
+
+    <div class="section-label">Primary Commentary — dalai_lama</div>
+    
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Concept</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">100</span><span class="score-bar"><span class="score-fill" style="width:100%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The concept precisely names the dharma lens in the specified word count.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">Collective Responsibility and Skillful Means</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Commentary</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">85</span><span class="score-bar"><span class="score-fill" style="width:85%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The commentary effectively captures the Dalai Lama&#x27;s voice and connects the news to dharma, though the ending feels slightly conclusive rather than an open gesture.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">This news about technology to clean up space junk is very encouraging, isn&#x27;t it? It demonstrates the profound potential of human ingenuity when applied to collective problems. For us, this isn&#x27;t just about satellites and debris; it offers a powerful metaphor. Just as we accumulate &#x27;space junk&#x27; in orbit, we also accumulate &#x27;mental junk&#x27;—our kleshas, our habitual patterns, our confusions—that can obstruct our inner clarity and peace. This technology inspires hope, showing that with clear intention, diligent effort, and skillful means, we can address complex challenges. It reminds us of our universal responsibility: to care for our shared environment, whether it is the Earth, space, or the inner world of our minds. When we work together with wisdom and compassion, great positive change is possible, for the benefit of all beings.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Attribution</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">90</span><span class="score-bar"><span class="score-fill" style="width:90%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The attribution is concise and accurately reflects the spirit of the Dalai Lama&#x27;s teachings.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">— In the spirit of the Dalai Lama&#x27;s teaching on Collective Responsibility and Skillful Means</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Practice Prescription</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">95</span><span class="score-bar"><span class="score-fill" style="width:95%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The practice is well-structured, within word count, and clearly outlines a transforming method with specific instructions and a dedication.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">For eight minutes, sit in a relaxed posture. Bring to mind the image of this space junk technology, appreciating the human capacity for problem-solving. Then, turn your attention inward. Identify one specific &#x27;mental junk&#x27;—a habitual thought pattern, a klesha, or a subtle confusion—that you wish to clear. Without judgment, simply observe it. Then, visualize yourself skillfully &#x27;shepherding&#x27; this mental debris, not with force, but with gentle, clear awareness, allowing it to dissolve into the vastness of your mind. Conclude by offering a wish that all beings may find the wisdom and skillful means to clear their own inner and outer obstacles.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #dc2626">
+      <div class="field-header">
+        <span class="field-name">Dialogue Text</span>
+        <span class="badge badge-red">Recommended</span>
+        <span class="score-num" style="color:#dc2626">50</span><span class="score-bar"><span class="score-fill" style="width:50%;background:#dc2626"></span></span>
+      </div>
+      <div class="field-comment">The dialogue effectively establishes a philosophical tension and deepens the understanding, but the text is incomplete, ending abruptly mid-sentence.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">SHANTIDEVA: Venerable one, this patent for cleaning space debris is a fine example of skillful means. It addresses a real and growing problem. Yet, I wonder, is there not a danger that such efforts, however well-intentioned, distract us from the deeper, internal work of cleansing the mind of kleshas? For what good is a clean outer space if our inner world remains polluted by ignorance and attachment?
+
+DALAI LAMA: Shantideva, your concern is profound and essential. Indeed, the inner work is paramount. However, these external efforts are not necessarily a distraction; they can be a reflection and an extension of our inner cultivation. When the mind is imbued with compassion and wisdom, our actions in the world naturally become beneficial. Removing space junk is an act of responsibility for a shared environment, preventing harm to others. This external act can strengthen our resolve to similarly &#x27;cleanse&#x27; our minds. The two are not separate; they inform each other. Inner transformation fuels outer beneficial action, and outer action reinforces inner aspiration.
+
+SHANTIDEVA: I see. So the application of wisdom and compassion, the paramita of skillful means (upaya), extends to all realms, from the most subtle mental defilement to the grossest physical pollution. The aspiration to prevent suffering, whether from orbiting debris or from kleshas, is the same. Yet, one might still question the ultimate efficacy of such temporal solutions in the face of samsara&#x27;s endless cycles of creation and destruction.
+
+DALAI LAMA: That is a wise observation. Ultimately, samsara is cyclical, and all phenomena are impermanent. But this does not negate the importance of skillful action. While we work towards ultimate liberation, we must also alleviate immediate suffering. Cleaning space junk, much like offering food to the hungry, is an act of compassion that reduces suffering in the present moment. It is like using a small broom to sweep a corner of a vast room; even if the room is never <span class="diff-del">p</span><span class="diff-ins">perfectly clean, each sweep reduces the immediate dust and makes it more habitable for those within.</span></div>
+        </div>
+        <div class="col-enhanced">
+          <div class="col-label">Suggested</div>
+          <div class="col-content">SHANTIDEVA: Venerable one, this patent for cleaning space debris is a fine example of skillful means. It addresses a real and growing problem. Yet, I wonder, is there not a danger that such efforts, however well-intentioned, distract us from the deeper, internal work of cleansing the mind of kleshas? For what good is a clean outer space if our inner world remains polluted by ignorance and attachment?
+
+DALAI LAMA: Shantideva, your concern is profound and essential. Indeed, the inner work is paramount. However, these external efforts are not necessarily a distraction; they can be a reflection and an extension of our inner cultivation. When the mind is imbued with compassion and wisdom, our actions in the world naturally become beneficial. Removing space junk is an act of responsibility for a shared environment, preventing harm to others. This external act can strengthen our resolve to similarly &#x27;cleanse&#x27; our minds. The two are not separate; they inform each other. Inner transformation fuels outer beneficial action, and outer action reinforces inner aspiration.
+
+SHANTIDEVA: I see. So the application of wisdom and compassion, the paramita of skillful means (upaya), extends to all realms, from the most subtle mental defilement to the grossest physical pollution. The aspiration to prevent suffering, whether from orbiting debris or from kleshas, is the same. Yet, one might still question the ultimate efficacy of such temporal solutions in the face of samsara&#x27;s endless cycles of creation and destruction.
+
+DALAI LAMA: That is a wise observation. Ultimately, samsara is cyclical, and all phenomena are impermanent. But this does not negate the importance of skillful action. While we work towards ultimate liberation, we must also alleviate immediate suffering. Cleaning space junk, much like offering food to the hungry, is an act of compassion that reduces suffering in the present moment. It is like using a small broom to sweep a corner of a vast room; even if the room is never perfectly clean, each sweep reduces the immediate dust and makes it more habitable for those within.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Quote</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">100</span><span class="score-bar"><span class="score-fill" style="width:100%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The quote is exact and correctly attributed to a canonical source.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">Our prime purpose in this life is to help others. And if you can&#x27;t help them, at least don&#x27;t hurt them.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-label">Lens Commentary — mahamudra_view</div>
+    
+    <div class="field-review" style="border-left:3px solid #d97706">
+      <div class="field-header">
+        <span class="field-name">Commentary</span>
+        <span class="badge badge-amber">Optional</span>
+        <span class="score-num" style="color:#d97706">60</span><span class="score-bar"><span class="score-fill" style="width:60%;background:#d97706"></span></span>
+      </div>
+      <div class="field-comment">The commentary effectively applies Mahamudra concepts to the story but is significantly under the word count and lacks the warm, playful tone of Mingyur Rinpoche.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">From the mahamudra perspective, &#x27;space junk&#x27; and the &#x27;cleanup tech&#x27; are both arising within the luminous expanse of rigpa. <span class="diff-ins">It&#x27;s like watching clouds form and dissipate in the sky of our awareness. </span>The <span class="diff-del">activity</span><span class="diff-ins">whole</span> <span class="diff-del">of</span><span class="diff-ins">dance—the</span> creation, accumulation, and then remediation of <span class="diff-del">debris</span><span class="diff-ins">this</span> <span class="diff-del">is</span><span class="diff-ins">debris—is</span> simply the tsal, the dynamic display of <span class="diff-del">mind.</span><span class="diff-ins">mind</span> <span class="diff-del">There</span><span class="diff-ins">itself.</span> <span class="diff-del">is</span><span class="diff-ins">There&#x27;s</span> no inherent &#x27;problem&#x27; or &#x27;solution&#x27; <span class="diff-del">outside</span><span class="diff-ins">out</span> <span class="diff-del">of</span><span class="diff-ins">there, separate from</span> the mind&#x27;s conceptual framework. When we recognize this, even the effort to clean space becomes a spontaneous, unimpeded expression of <span class="diff-del">awareness,</span><span class="diff-ins">awareness. It&#x27;s not about fixing something fundamentally broken, but rather the natural unfolding of compassion and wisdom,</span> free from grasping at a fixed reality of either &#x27;junk&#x27; or &#x27;cleanliness.&#x27; <span class="diff-del">It is</span><span class="diff-ins">It&#x27;s</span> all the unceasing, perfect play of <span class="diff-del">phenomena.</span><span class="diff-ins">phenomena, a beautiful, sometimes messy, but always vibrant expression of what is. How wonderful to see this play unfold, even in orbit!</span></div>
+        </div>
+        <div class="col-enhanced">
+          <div class="col-label">Suggested</div>
+          <div class="col-content">From the mahamudra perspective, &#x27;space junk&#x27; and the &#x27;cleanup tech&#x27; are both arising within the luminous expanse of rigpa. It&#x27;s like watching clouds form and dissipate in the sky of our awareness. The whole dance—the creation, accumulation, and then remediation of this debris—is simply the tsal, the dynamic display of mind itself. There&#x27;s no inherent &#x27;problem&#x27; or &#x27;solution&#x27; out there, separate from the mind&#x27;s conceptual framework. When we recognize this, even the effort to clean space becomes a spontaneous, unimpeded expression of awareness. It&#x27;s not about fixing something fundamentally broken, but rather the natural unfolding of compassion and wisdom, free from grasping at a fixed reality of either &#x27;junk&#x27; or &#x27;cleanliness.&#x27; It&#x27;s all the unceasing, perfect play of phenomena, a beautiful, sometimes messy, but always vibrant expression of what is. How wonderful to see this play unfold, even in orbit!</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #d97706">
+      <div class="field-header">
+        <span class="field-name">Attribution</span>
+        <span class="badge badge-amber">Optional</span>
+        <span class="score-num" style="color:#d97706">70</span><span class="score-bar"><span class="score-fill" style="width:70%;background:#d97706"></span></span>
+      </div>
+      <div class="field-comment">The attribution accurately captures the Mahamudra spirit but is missing the required em-dash at the beginning.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content"><span class="diff-ins">— </span>Recognizing all phenomena as the dynamic display of rigpa</div>
+        </div>
+        <div class="col-enhanced">
+          <div class="col-label">Suggested</div>
+          <div class="col-content">— Recognizing all phenomena as the dynamic display of rigpa</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <span class="tag-chip">culture</span>
+        <span class="klesha-chip">confusion</span>
+        <span class="voice-chip">voice: mingyur_rinpoche</span>
+      </div>
+      <h2 class="story-headline">Sacred Water Complex Unearthed in North Sinai, Revealing Ancient Practices</h2>
+      <div class="overall-score-row">
+        <span class="overall-label">Overall</span>
+        <span class="overall-num" style="color:#16a34a">87/100</span>
+        <div class="overall-bar">
+          <div class="overall-fill" style="width:87%;background:#16a34a"></div>
+        </div>
+      </div>
+      <p class="overall-comment">The commentary effectively captures Mingyur Rinpoche&#x27;s voice and dharma teachings, particularly in the core commentary, concept, and quote. The lens commentary also provides a strong bodhichitta perspective. The primary editorial concern lies with the dialogue, which significantly exceeded the word count and was cut off in the original submission, requiring substantial revision to meet specifications. Additionally, the practice prescription missed a dedication line and the lens attribution lacked the required em-dash.</p>
+    </div>
+
+    <div class="section-label">Primary Commentary — mingyur_rinpoche</div>
+    
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Concept</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">100</span><span class="score-bar"><span class="score-fill" style="width:100%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The concept is precise, concise, and perfectly aligns with the commentary&#x27;s theme.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">The Sacred Beyond Concepts and Projections</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Commentary</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">85</span><span class="score-bar"><span class="score-fill" style="width:85%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The commentary effectively captures the teacher&#x27;s voice and addresses the klesha, but its ending feels more conclusive than an open gesture.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">This discovery of an ancient sacred water complex is very interesting, isn&#x27;t it? For millennia, humans have imbued water with sacred qualities, constructing elaborate sites for ritual and devotion. It reflects a deep human need to connect with something vast, something meaningful. But sometimes, this leads to a subtle confusion: we project &#x27;sacredness&#x27; onto an object, thinking the sacred quality resides *in* the water itself, rather than recognizing that sacredness is a quality of our own mind, of pure perception. When we get caught in this projection, we miss the true source. We can investigate this confusion. Is the water inherently sacred, or is our perception, our mind, making it so? The water is simply water. The sacredness is in the spacious, open awareness that perceives it. When we understand this, we can abandon the confusion of seeking the sacred &#x27;out there&#x27; and recognize it as the luminous ground of our own experience.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Attribution</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">100</span><span class="score-bar"><span class="score-fill" style="width:100%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The attribution perfectly meets all specified requirements.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">— In the spirit of Mingyur Rinpoche&#x27;s teaching on The Sacred Beyond Concepts and Projections</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #d97706">
+      <div class="field-header">
+        <span class="field-name">Practice Prescription</span>
+        <span class="badge badge-amber">Optional</span>
+        <span class="score-num" style="color:#d97706">70</span><span class="score-bar"><span class="score-fill" style="width:70%;background:#d97706"></span></span>
+      </div>
+      <div class="field-comment">The practice is well-structured and aligns with the method, but it concludes with an acknowledgement rather than a traditional dedication line.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">For six minutes, sit comfortably with a glass of water in front of you. First, allow any thoughts or concepts about &#x27;sacred water,&#x27; &#x27;cleanliness,&#x27; &#x27;thirst,&#x27; or &#x27;ancient rituals&#x27; to arise and pass without judgment. Simply observe how your mind projects meanings onto the water. Then, gently abandon these conceptual overlays. Rest your attention on the raw sensory experience of the water itself: its color, its movement, its temperature (if you touch it). Allow the mind to simply perceive, without adding any story or label. Experience the water as it is, allowing sacredness to arise from open, non-conceptual awareness. <span class="diff-del">Conclude by acknowledging</span><span class="diff-ins">May</span> the clarity <span class="diff-del">that emerges</span><span class="diff-ins">emerging</span> from releasing conceptual <span class="diff-del">confusion.</span><span class="diff-ins">confusion benefit all beings.</span></div>
+        </div>
+        <div class="col-enhanced">
+          <div class="col-label">Suggested</div>
+          <div class="col-content">For six minutes, sit comfortably with a glass of water in front of you. First, allow any thoughts or concepts about &#x27;sacred water,&#x27; &#x27;cleanliness,&#x27; &#x27;thirst,&#x27; or &#x27;ancient rituals&#x27; to arise and pass without judgment. Simply observe how your mind projects meanings onto the water. Then, gently abandon these conceptual overlays. Rest your attention on the raw sensory experience of the water itself: its color, its movement, its temperature (if you touch it). Allow the mind to simply perceive, without adding any story or label. Experience the water as it is, allowing sacredness to arise from open, non-conceptual awareness. May the clarity emerging from releasing conceptual confusion benefit all beings.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #d97706">
+      <div class="field-header">
+        <span class="field-name">Dialogue Text</span>
+        <span class="badge badge-amber">Optional</span>
+        <span class="score-num" style="color:#d97706">70</span><span class="score-bar"><span class="score-fill" style="width:70%;background:#d97706"></span></span>
+      </div>
+      <div class="field-comment">The dialogue demonstrates a genuine philosophical exchange, but it slightly exceeds the word count and required significant editing to resolve the abrupt ending.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">SOCRATES: Mingyur, this discovery of ancient sacred water complexes raises a <span class="diff-del">question that has troubled philosophers for ages:</span><span class="diff-ins">question:</span> What makes something sacred? Is it the thing itself, the water, imbued with <span class="diff-del">some </span>intrinsic divine essence? Or is it something <span class="diff-del">we, as humans,</span><span class="diff-ins">we</span> project onto it, a meaning we ascribe from our own minds?
+
+MINGYUR RINPOCHE: Ah, Socrates, a <span class="diff-del">most </span>profound inquiry!<span class="diff-del"> You are touching upon the very nature of perception.</span> From the Buddhist view,<span class="diff-del"> particularly in the Mahayana and Vajrayana traditions,</span> sacredness is not an inherent quality of an external object. The water is simply water. <span class="diff-del">The mountain is simply a mountain. </span>Yet, through our <span class="diff-del">minds, through our projections, through our deep longing for meaning</span><span class="diff-ins">minds</span> and <span class="diff-del">connection,</span><span class="diff-ins">projections,</span> we imbue<span class="diff-del"> these</span> elements with sacredness. <span class="diff-del">It</span><span class="diff-ins">Like</span> <span class="diff-del">is</span><span class="diff-ins">beauty</span> <span class="diff-del">like seeing</span><span class="diff-ins">in</span> a <span class="diff-del">beautiful</span><span class="diff-ins">painting,</span> <span class="diff-del">painting;</span><span class="diff-ins">it</span> <span class="diff-del">the</span><span class="diff-ins">arises</span> <span class="diff-del">beauty is not in the paint or the canvas, but in</span><span class="diff-ins">from</span> the interaction between <span class="diff-del">the </span>art and<span class="diff-del"> the</span> viewer&#x27;s mind. <span class="diff-del">So, it is primarily</span><span class="diff-ins">It&#x27;s</span> a quality <span class="diff-del">that arises within</span><span class="diff-ins">of</span> our own awareness.
+
+SOCRATES: If sacredness arises from our minds, then is it not a mere illusion? If <span class="diff-del">it is </span>not truly &#x27;in&#x27; the water,<span class="diff-del"> then</span> is our reverence for these places and practices not ultimately groundless, a form of self-deception? Would it not be more truthful to acknowledge <span class="diff-del">the </span>water as merely<span class="diff-del"> a compound of</span> hydrogen and oxygen, nothing more?
+
+MINGYUR RINPOCHE: Not <span class="diff-del">at all </span>an illusion, Socrates! <span class="diff-del">And certainly not self-deception. This is where the understanding becomes very subtle. </span>While<span class="diff-del"> the</span> sacredness <span class="diff-del">is not</span><span class="diff-ins">isn&#x27;t</span> inherently *in* the water, it<span class="diff-del"> also</span> isn&#x27;t &#x27;nothing.&#x27; It&#x27;s a display of our mind&#x27;s <span class="diff-del">capacity, a reflection of its </span>luminous, boundless nature. <span class="diff-del">It</span><span class="diff-ins">This</span> shows<span class="diff-del"> us that</span> our minds are<span class="diff-del"> not just passive recipients of reality, but</span> active participants in creating <span class="diff-del">our experience of </span>reality. <span class="diff-del">When we acknowledge that</span><span class="diff-ins">Recognizing</span> sacredness arises from <span class="diff-del">mind,</span><span class="diff-ins">mind</span> <span class="diff-del">we are not diminishing the water; we are realizing</span><span class="diff-ins">reveals</span> the profound potential of our own <span class="diff-del">awareness. It&#x27;s</span><span class="diff-ins">awareness,</span> a key to understanding <span class="diff-del">kunzhi (the ground of all), the fundamental spac</span><span class="diff-ins">kunzhi.</span></div>
+        </div>
+        <div class="col-enhanced">
+          <div class="col-label">Suggested</div>
+          <div class="col-content">SOCRATES: Mingyur, this discovery of ancient sacred water complexes raises a question: What makes something sacred? Is it the thing itself, the water, imbued with intrinsic divine essence? Or is it something we project onto it, a meaning we ascribe from our own minds?
+
+MINGYUR RINPOCHE: Ah, Socrates, a profound inquiry! From the Buddhist view, sacredness is not an inherent quality of an external object. The water is simply water. Yet, through our minds and projections, we imbue elements with sacredness. Like beauty in a painting, it arises from the interaction between art and viewer&#x27;s mind. It&#x27;s a quality of our own awareness.
+
+SOCRATES: If sacredness arises from our minds, then is it not a mere illusion? If not truly &#x27;in&#x27; the water, is our reverence for these places and practices not ultimately groundless, a form of self-deception? Would it not be more truthful to acknowledge water as merely hydrogen and oxygen, nothing more?
+
+MINGYUR RINPOCHE: Not an illusion, Socrates! While sacredness isn&#x27;t inherently *in* the water, it isn&#x27;t &#x27;nothing.&#x27; It&#x27;s a display of our mind&#x27;s luminous, boundless nature. This shows our minds are active participants in creating reality. Recognizing sacredness arises from mind reveals the profound potential of our own awareness, a key to understanding kunzhi.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Quote</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">100</span><span class="score-bar"><span class="score-fill" style="width:100%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The paraphrase accurately summarizes the core teaching and is correctly attributed.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">The sacred is not found in objects or places, but in the luminous, open quality of mind itself. When we recognize this, everything becomes sacred.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-label">Lens Commentary — bodhichitta_view</div>
+    
+    <div class="field-review" style="border-left:3px solid #2563eb">
+      <div class="field-header">
+        <span class="field-name">Commentary</span>
+        <span class="badge badge-blue">Note</span>
+        <span class="score-num" style="color:#16a34a">95</span><span class="score-bar"><span class="score-fill" style="width:95%;background:#16a34a"></span></span>
+      </div>
+      <div class="field-comment">The lens commentary clearly articulates the bodhichitta perspective, connecting it effectively to the story and the klesha.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content">The discovery of ancient sacred water complexes highlights humanity&#x27;s enduring connection to the elemental forces of life and our aspiration for deeper meaning. From the bodhichitta perspective, this reminds us that water, like all resources, is precious and essential for the well-being of all beings. Our confusion about its &#x27;sacredness&#x27; can be abandoned when we simply recognize its vital role and cultivate the intention to protect and share it equitably, ensuring that all sentient beings have access to what sustains life. This moves us from conceptual attachment to active, compassionate engagement with the practical realities of existence.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field-review" style="border-left:3px solid #d97706">
+      <div class="field-header">
+        <span class="field-name">Attribution</span>
+        <span class="badge badge-amber">Optional</span>
+        <span class="score-num" style="color:#d97706">75</span><span class="score-bar"><span class="score-fill" style="width:75%;background:#d97706"></span></span>
+      </div>
+      <div class="field-comment">The attribution effectively captures the essence of the bodhichitta perspective but omits the required em-dash at the beginning.</div>
+      <div class="field-columns">
+        <div class="col-original">
+          <div class="col-label">Original</div>
+          <div class="col-content"><span class="diff-ins">— </span>Cultivating universal responsibility for life&#x27;s essentials and abandoning conceptual confusion</div>
+        </div>
+        <div class="col-enhanced">
+          <div class="col-label">Suggested</div>
+          <div class="col-content">— Cultivating universal responsibility for life&#x27;s essentials and abandoning conceptual confusion</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

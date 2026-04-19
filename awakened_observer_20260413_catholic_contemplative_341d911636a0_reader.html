@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Awakened Observer — Monday, April 13, 2026 (Reader)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold-pale:#FDF5DC; --gold-mid:#E8A020; --gold-dark:#6B3E08;
+    --teal-pale:#E1F5EE; --teal-strong:#5DCAA5; --teal-deep:#1D9E75; --teal-dark:#085041;
+    --blue-pale:#E6F1FB; --blue-mid:#378ADD; --blue-dark:#0C447C;
+    --coral-pale:#FAECE7; --coral-dark:#712B13;
+    --purple-pale:#EEEDFE; --purple-dark:#3C3489;
+    --amber-pale:#FAEEDA; --amber-dark:#633806;
+    --green-pale:#EAF3DE; --green-dark:#27500A;
+    --gray-bg:#F5F3EE; --gray-card:#FDFAF0; --gray-surface:#EDEADC;
+    --border:rgba(50,45,35,0.10);
+    --text-1:#1A1714; --text-2:#5A5030; --text-3:#9A9070;
+    --sidebar-w:260px;
+  }
+  @media(prefers-color-scheme:dark){
+    :root{
+      --gold-pale:#261A04; --gray-bg:#131109; --gray-card:#1A1608;
+      --gray-surface:#211C0A; --border:rgba(240,200,80,0.08);
+      --text-1:#F8F0D0; --text-2:#B0A870; --text-3:#706840;
+      --blue-pale:#0D1E30;
+    }
+  }
+  body { font-family:'DM Sans',sans-serif; background:var(--gray-bg);
+          color:var(--text-1); min-height:100vh; }
+
+  /* ── Top masthead bar ─────────────────────────────────────────── */
+  .reader-header {
+    background:var(--gray-card); border-bottom:0.5px solid var(--border);
+    padding:.9rem 1.5rem; display:flex; align-items:center; gap:1rem;
+    position:sticky; top:0; z-index:100;
+  }
+  .reader-header::before { content:''; position:absolute; top:0; left:0; right:0;
+    height:2px; background:linear-gradient(90deg, transparent, #D4537E, #E8A020, #5DCAA5, transparent); }
+  .reader-lotus { flex-shrink:0; }
+  .reader-title { font-family:'Cormorant Garamond',serif; font-size:22px;
+    font-weight:500; line-height:1.1; }
+  .reader-meta { font-size:11px; color:var(--text-3); letter-spacing:.05em; }
+  .reader-edition-badge { display:inline-block; background:var(--gold-pale);
+    color:var(--gold-dark); font-size:9px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; padding:3px 10px; border-radius:20px; margin-top:.3rem;
+    border:0.5px solid rgba(232,160,32,0.25); }
+
+  /* ── Two-panel layout ─────────────────────────────────────────── */
+  .reader-layout {
+    display:flex; min-height:calc(100vh - 58px);
+  }
+
+  /* ── Left sidebar ─────────────────────────────────────────────── */
+  .reader-sidebar {
+    width:var(--sidebar-w); flex-shrink:0;
+    background:var(--gray-surface); border-right:0.5px solid var(--border);
+    padding:1.25rem .75rem 3rem;
+    position:sticky; top:58px; height:calc(100vh - 58px);
+    overflow-y:auto;
+  }
+  .reader-sidebar-title { font-size:9px; font-weight:500; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--text-3); padding:0 .5rem .75rem;
+    border-bottom:0.5px solid var(--border); margin-bottom:.75rem; }
+  .reader-nav-item {
+    display:block; width:100%; text-align:left; background:none;
+    border:none; border-radius:10px; padding:.7rem .75rem;
+    cursor:pointer; transition:background .15s;
+    margin-bottom:.3rem;
+  }
+  .reader-nav-item:hover { background:rgba(50,45,35,0.06); }
+  .reader-nav-active { background:var(--gray-card) !important;
+    box-shadow:0 1px 4px rgba(0,0,0,0.08); }
+  .rn-tag { display:block; font-size:9px; font-weight:500; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--text-3); margin-bottom:.25rem; }
+  .rn-headline { display:block; font-family:'Cormorant Garamond',serif;
+    font-size:15px; font-weight:500; color:var(--text-1); line-height:1.3;
+    margin-bottom:.4rem; }
+  .rn-klesha { font-size:8px; }
+
+  /* ── Main content area ────────────────────────────────────────── */
+  .reader-main {
+    flex:1; min-width:0; padding:2rem 2.5rem 4rem;
+    overflow-y:auto; max-width:660px;
+  }
+
+  /* Story card within reader — strip card chrome, render flat */
+  .reader-story {
+    background:none; border:none; border-radius:0; padding:0; margin:0;
+    overflow:visible;
+  }
+  .reader-story .story-tag { margin-bottom:.75rem; }
+  .reader-story .story-headline { font-size:28px; line-height:1.2; margin-bottom:1rem; }
+  .reader-story .story-fact { font-size:15px; padding-bottom:1.25rem; }
+
+  /* Preserve block styling inside flat card */
+  .reader-story .dialogue-block,
+  .reader-story .practice-block,
+  .reader-story .lens-block {
+    margin:0 -2.5rem;
+    padding:1.1rem 2.5rem 1.35rem;
+  }
+
+  /* ── Opening and closing panels ──────────────────────────────── */
+  .reader-opening {
+    background:var(--gold-pale); border-left:2.5px solid var(--gold-mid);
+    border-radius:0 10px 10px 0; padding:1.25rem 1.6rem; margin-bottom:2rem;
+    font-family:'Cormorant Garamond',serif; font-size:18px; font-style:italic;
+    color:var(--text-2); line-height:1.8; display:none;
+  }
+  .reader-closing {
+    text-align:center; padding:2.5rem 1rem 1rem;
+    border-top:0.5px solid var(--border); margin-top:2rem; display:none;
+  }
+  .closing-text { font-family:'Cormorant Garamond',serif; font-size:19px;
+    font-style:italic; color:var(--text-2); line-height:2.1; margin-bottom:1.6rem; }
+  .mantra-tibetan { font-size:22px; color:var(--gold-mid); letter-spacing:.07em;
+    display:block; margin-bottom:.6rem; }
+  .mantra { font-size:11px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--teal-deep); display:block; margin-bottom:.5rem; }
+  .mantra-note { font-size:12px; color:var(--text-3); font-style:italic;
+    font-family:'Cormorant Garamond',serif; }
+
+  /* Shared card styling (copied from web view for blocks inside reader) */
+  .story-tag { display:inline-block; font-size:10px; font-weight:500;
+    letter-spacing:.08em; text-transform:uppercase; padding:3px 11px;
+    border-radius:20px; margin-bottom:.95rem; }
+  .tag-conflict {background:var(--coral-pale);color:var(--coral-dark);}
+  .tag-peace    {background:var(--teal-pale); color:var(--teal-dark);}
+  .tag-grief    {background:var(--amber-pale);color:var(--amber-dark);}
+  .tag-joy      {background:var(--blue-pale); color:var(--blue-dark);}
+  .tag-science  {background:var(--purple-pale);color:var(--purple-dark);}
+  .tag-nature   {background:var(--green-pale);color:var(--green-dark);}
+  .tag-politics {background:#FBEAF0;color:#72243E;}
+  .tag-economy  {background:var(--amber-pale);color:var(--amber-dark);}
+  .tag-culture  {background:var(--teal-pale); color:var(--teal-dark);}
+  .tag-human    {background:var(--gray-surface);color:#5F5E5A;}
+  .tag-death    {background:#FCEBEB;color:#791F1F;}
+  .tag-renewal  {background:var(--teal-pale); color:var(--teal-dark);}
+  .story-what { font-size:10px; font-weight:500; text-transform:uppercase;
+    letter-spacing:.10em; color:var(--text-3); margin-bottom:.35rem; }
+  .story-headline { font-family:'Cormorant Garamond',serif; font-size:23px;
+    font-weight:500; color:var(--text-1); line-height:1.32; margin-bottom:.9rem; }
+  .story-fact { font-size:14px; color:var(--text-2); line-height:1.8; padding-bottom:1.1rem; }
+  .story-source { font-size:11.5px; color:var(--text-3); padding:.4rem 0 .85rem;
+    border-top:0.5px dashed var(--border); margin-top:.2rem; }
+  .story-source a { color:var(--text-3); text-decoration:none;
+    border-bottom:0.5px solid var(--border); }
+  .story-source a:hover { color:var(--teal-deep); }
+  .teaching-divider { display:flex; align-items:center; gap:10px;
+    margin:0 0 1rem; padding-top:1.1rem; border-top:0.5px solid var(--border); }
+  .teaching-divider::after { content:''; flex:1; height:0.5px; background:var(--border); }
+  .teaching-divider span { font-size:13px; color:var(--teal-strong); flex-shrink:0; }
+  .story-teaching { font-family:'Cormorant Garamond',serif; font-size:17.5px;
+    font-style:italic; color:var(--text-1); line-height:1.85; padding-bottom:.6rem; }
+  .story-teaching p { margin-bottom:.7em; }
+  .story-teaching p:last-child { margin-bottom:0; }
+  .teaching-attr { font-size:11px; color:var(--text-3); padding-bottom:1.1rem; }
+  .dialogue-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.25rem; margin:0 -1.65rem; background:var(--blue-pale); }
+  .dialogue-header { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--blue-dark); margin-bottom:.75rem; }
+  .dialogue-tradition { font-weight:400; font-style:italic; letter-spacing:0;
+    text-transform:none; color:var(--text-3); }
+  .dialogue-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .dialogue-text p { margin-bottom:.7em; }
+  .dialogue-text p:last-child { margin-bottom:0; }
+  .dialogue-attr { font-size:11px; color:var(--text-3); padding-bottom:.2rem; }
+  .practice-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.4rem; margin:0 -1.65rem; background:var(--teal-pale); }
+  .practice-label { font-size:10px; font-weight:500; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--teal-dark); margin-bottom:.6rem;
+    display:flex; align-items:center; gap:8px; }
+  .klesha-tag { font-size:9px; font-weight:600; letter-spacing:.06em;
+    text-transform:uppercase; padding:2px 8px; border-radius:10px;
+    color:#fff; flex-shrink:0; }
+  .klesha-anger      {background:#C0392B;} .klesha-grief      {background:#7F8C8D;}
+  .klesha-anxiety    {background:#D4AC0D;} .klesha-helplessness{background:#8E44AD;}
+  .klesha-wonder     {background:#2E86C1;} .klesha-hope       {background:#1D8348;}
+  .klesha-confusion  {background:#D35400;} .klesha-compassion {background:#CB4335;}
+  .practice-text { font-size:13.5px; color:var(--teal-dark);
+    line-height:1.8; font-style:italic; }
+  .practice-text p { margin-bottom:.75em; }
+  .practice-text p:last-child { margin-bottom:0; }
+  .wisdom-line { font-size:10.5px; color:var(--teal-deep); font-style:italic;
+    margin-top:.55rem; padding-top:.45rem;
+    border-top:0.5px solid rgba(29,158,117,0.2); }
+  .wisdom-label { font-weight:600; font-style:normal; }
+  .method-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.07em; text-transform:uppercase; padding:2px 8px;
+    border-radius:10px; margin-left:auto; flex-shrink:0; }
+  .method-abandoning  { background:#E8E8E8; color:#4A4A4A; }
+  .method-transforming { background:#FEF3C7; color:#92400E; }
+  .method-transcending { background:var(--gold-pale); color:var(--gold-dark);
+    border:0.5px solid rgba(232,160,32,0.3); }
+  .lens-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.35rem; margin:0 -1.65rem; background:var(--amber-pale); }
+  .lens-header { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--amber-dark); margin-bottom:.75rem; }
+  .lens-tradition { font-weight:400; font-style:italic; letter-spacing:0;
+    text-transform:none; color:var(--text-3); }
+  .lens-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .lens-text p { margin-bottom:.75em; }
+  .lens-text p:last-child { margin-bottom:0; }
+  .lens-attr { font-size:11px; color:var(--text-3); padding-bottom:.2rem; }
+  .underreported-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.09em; text-transform:uppercase; padding:2px 9px; border-radius:20px;
+    background:var(--green-pale); color:var(--green-dark); margin-left:6px;
+    border:0.5px solid rgba(39,80,10,0.18); vertical-align:middle; }
+
+  /* Responsive: narrow screens */
+  @media(max-width:700px){
+    .reader-layout { flex-direction:column; }
+    .reader-sidebar { width:100%; height:auto; position:static;
+      border-right:none; border-bottom:0.5px solid var(--border);
+      padding:1rem .75rem; overflow-x:auto; white-space:nowrap;
+      display:flex; gap:.5rem; flex-wrap:nowrap; }
+    .reader-sidebar-title { display:none; }
+    .reader-nav-item { display:inline-flex; flex-direction:column;
+      width:160px; white-space:normal; flex-shrink:0; }
+    .reader-main { padding:1.5rem 1.25rem 3rem; }
+    .reader-story .dialogue-block,
+    .reader-story .practice-block,
+    .reader-story .lens-block { margin:0 -1.25rem; padding:1.1rem 1.25rem 1.35rem; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Sticky header bar -->
+  <header class="reader-header">
+    <svg class="reader-lotus" width="36" height="32" viewBox="0 0 60 52" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="30" cy="42" rx="10" ry="5" fill="#9FE1CB" opacity="0.38"/>
+      <path d="M30 38 Q21 24 16 9 Q24 22 30 26 Q36 22 44 9 Q39 24 30 38Z" fill="#5DCAA5" opacity="0.88"/>
+      <path d="M30 38 Q13 30 5 19 Q17 27 30 32Z" fill="#9FE1CB" opacity="0.9"/>
+      <path d="M30 38 Q47 30 55 19 Q43 27 30 32Z" fill="#9FE1CB" opacity="0.9"/>
+      <circle cx="30" cy="26" r="5" fill="#F7E28A" opacity="0.9"/>
+      <circle cx="30" cy="26" r="2.8" fill="#E8A020"/>
+    </svg>
+    <div>
+      <div class="reader-title">The Awakened Observer</div>
+      <div class="reader-meta">Issue No. 3  ·  Monday, April 13, 2026</div>
+    <div class="reader-edition-badge">Christian Contemplative Edition</div>
+    </div>
+  </header>
+
+  <div class="reader-layout">
+
+    <!-- Left sidebar -->
+    <nav class="reader-sidebar">
+      <div class="reader-sidebar-title">Stories</div>
+      <button class="reader-nav-item reader-nav-active" data-story="1" onclick="showStory(1)">
+        <span class="rn-tag">Grief &amp; Witnessing</span>
+        <span class="rn-headline">Nigerian Air Force Kills Over 100 Civilians at Weekly Market</span>
+        <span class="klesha-tag klesha-grief rn-klesha">Grief &amp; Loss</span>
+      </button>
+      <button class="reader-nav-item" data-story="2" onclick="showStory(2)">
+        <span class="rn-tag">Grief &amp; Witnessing</span>
+        <span class="rn-headline">Russia and Ukraine Accuse Each Other of 2,000+ Easter Ceasefire Violations</span>
+        <span class="klesha-tag klesha-helplessness rn-klesha">Helplessness &amp; Overwhelm</span>
+      </button>
+      <button class="reader-nav-item" data-story="3" onclick="showStory(3)">
+        <span class="rn-tag">Renewal &amp; Transformation</span>
+        <span class="rn-headline">Hungary's Péter Magyar Defeats Viktor Orbán, Ending 16 Years of Authoritarian Rule</span>
+        <span class="klesha-tag klesha-hope rn-klesha">Hope &amp; Renewal</span>
+      </button>
+      <button class="reader-nav-item" data-story="4" onclick="showStory(4)">
+        <span class="rn-tag">Power &amp; Collective Karma</span>
+        <span class="rn-headline">Trump Orders U.S. Naval Blockade of Strait of Hormuz After Iran Talks Collapse</span>
+        <span class="klesha-tag klesha-anxiety rn-klesha">Anxiety &amp; Uncertainty</span>
+      </button>
+      <button class="reader-nav-item" style="margin-top:.75rem;border-top:0.5px solid var(--border);padding-top:1rem" onclick="showOpening()">
+        <span class="rn-tag">Opening</span>
+        <span class="rn-headline" style="font-size:13px;font-family:'DM Sans',sans-serif">Opening &amp; Closing</span>
+      </button>
+    </nav>
+
+    <!-- Right content panel -->
+    <main class="reader-main" id="reader-main">
+
+      <!-- Opening (hidden until selected) -->
+      <div class="reader-opening" id="reader-opening">
+        Read these stories as one who has been sent. The world you are reading is the world you are called to love.
+
+      </div>
+
+
+  <!-- Story 1 -->
+  <div class="story reader-story" id="rs-1">
+    <span class="story-tag tag-grief">Grief & Witnessing</span>
+    <div class="story-headline">Nigerian Air Force Kills Over 100 Civilians at Weekly Market</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">A Nigerian Air Force jet strike aimed at Boko Haram militants hit the Jilli weekly market in Yobe State on Saturday, killing at least 100 civilians and injuring scores more, including children. The Yobe State Government confirmed the military was targeting a jihadist stronghold near the market when people who had come to trade were caught in the blast. Amnesty International, which verified the toll from survivors and medical sources, has called for an independent investigation. Some local accounts put the death toll as high as 200.</div>
+    <div class="story-source"><a href="https://abcnews.com/International/wireStory/100-dead-nigeria-after-air-force-misfire-market-131972032" target="_blank" rel="noopener">ABC News / Amnesty International ↗</a></div>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching"><p>They came to sell bread, not to wage war. They came carrying yams, bolts of cloth, the small transactions that hold a community together. One hundred of them are dead now — caught not in a battle but in a market. Jesus spent most of his ministry in places like this: busy with commerce, alive with the daily weight of earning and feeding and living.</p>
+      <p>There is a line in Matthew that returns here: 'Whatever you did for the least of these, you did for me.' Not symbolically — literally. The people of the Jilli market were the least of these. Their deaths are not distant news. They are a direct address to anyone who claims to follow the Gospel.</p>
+      <p>What do we do with this? Not guilt, which collapses into paralysis. But the metanoia the Gospel asks of us: a genuine turning. A decision to see these deaths, to name them, and to let them cost us something — even in small ways — as those who believe every human life is sacred beyond measure.</p></div>
+      <div class='teaching-attr'>— In the spirit of the Gospel of Matthew's teaching on the dignity of the least of these</div>
+      <div class="dialogue-block">
+        <div class="dialogue-header">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+        <div class="dialogue-text">SOCRATES: Teacher, you speak of the sacred dignity of these lives. But the commanders who ordered the strike also believe they are protecting sacred lives — their own people. How do we reason between these competing claims?<br>JESUS: In the kingdom I am describing, there is no 'our people' that excludes 'their people.' The mother who came to that market with a basket of tomatoes — she is my people. The soldier who released the weapon, believing he was keeping his own children safe — he too is my people. The question is not whose side God is on. The question is whether we are willing to build a world where no decision requires choosing who matters.<br>SOCRATES: Is that achievable?<br>JESUS: It is the only project worth attempting. Everything else is just politics with better weapons.</div>
+        <div class='dialogue-attr'>— In the spirit of the Gospel's teaching on universal agape, and Socrates' examination of justice and the examined life</div>
+      </div>
+      <div class="practice-block">
+        <div class="practice-label">
+          <span class="klesha-tag klesha-grief">Grief &amp; Loss</span>
+          Practice
+          
+        </div>
+        <div class="practice-text"><p>Find a quiet moment and open your hands in your lap — the gesture of receiving. Breathe slowly. Bring to mind the people of the Jilli market: the sellers, the buyers, the children at the edge of the stalls. Do not look away. Let their faces — imagined, unknown — be real to you.</p>
+      <p>Ask yourself one question, slowly: What would it mean to believe that each of these lives is as precious as my own? Sit with that for three minutes. Let it be a prayer that doesn't require a quick answer.</p></div>
+        <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Discriminating Wisdom</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">🌅 Kingdom of God View &nbsp;·&nbsp; <span class='lens-tradition'>Christian — Gospel</span></div>
+        <div class="lens-text"><p>The kingdom of God is not a future state. Jesus announced it as present, available, breaking in — 'the kingdom of God is at hand.' But at hand to whom, and where?</p>
+      <p>In Matthew 25, Jesus locates the kingdom precisely: among the hungry, the stranger, the prisoner, the sick. Not in palaces or parliaments. In the market at Jilli, Yobe State, where people came to buy and sell the small necessities of life, the kingdom was present — in the transactions of ordinary human dignity, in the choosing and counting of coins, in the companionship of the weekly gathering.</p>
+      <p>The bomb fell on the kingdom. Not on an abstraction. On the specific place where Jesus said he would be found.</p>
+      <p>This is not theodicy — an attempt to explain why God permits such things. It is a statement about where our attention must go. If the kingdom is among the poor and the vulnerable, then the church's vocation is not first to explain suffering but to be present to it, to name it, and to work — with whatever tools are available — toward a world that does not make such choices.</p></div>
+        <div class='lens-attr'>— Kingdom of God view: the kingdom present in the marketplace, among the ordinary and the poor</div>
+      </div>
+  </div>
+
+  <!-- Story 2 -->
+  <div class="story reader-story" id="rs-2" style="display:none">
+    <span class="story-tag tag-grief">Grief & Witnessing</span>
+    <div class="story-headline">Russia and Ukraine Accuse Each Other of 2,000+ Easter Ceasefire Violations</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">A 32-hour ceasefire declared by President Putin for Orthodox Easter broke down within hours, with Ukraine's military reporting 2,299 violations — including 747 attack drone strikes and 1,045 FPV drone strikes — by Sunday morning. Russia's Defense Ministry also claimed 1,971 violations by Ukrainian forces. Both countries continued shelling and drone campaigns throughout the Easter period, and civilians were reported killed on the Russian side of the border. A similar truce last Easter also collapsed into mutual accusations.</div>
+    <div class="story-source"><a href="https://www.aljazeera.com/news/2026/4/12/ukraine-and-russia-accuse-each-other-of-breaching-easter-ceasefire" target="_blank" rel="noopener">Al Jazeera / PBS NewsHour ↗</a></div>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching"><p>Easter is the feast of impossibility made real. And yet within the first hour of the truce, 747 drone strikes. Russia and Ukraine together logged nearly four thousand ceasefire violations before Sunday Mass had ended. What does the Resurrection mean in a world where even its feast cannot hold a ceasefire?</p>
+      <p>It means precisely what it always meant: not that suffering ends, but that it does not have the final word. The Church has no army, no drone fleet. But she has a voice, and that voice must say clearly: this is a desecration. The deliberate continuation of violence on the holiest day of the Christian year, whatever uniform one wears, is a sin against humanity and against hope itself.</p>
+      <p>And yet the deeper question remains for each of us: what ceasefire can I hold within my own life, my own heart? John XXIII wrote that peace is not merely the absence of war. It is an order built by love. That order must begin now — in us — in the only moment we have.</p></div>
+      <div class='teaching-attr'>— In the spirit of Catholic social teaching on peace, conscience, and the dignity of every human person</div>
+      <div class="dialogue-block">
+        <div class="dialogue-header">🌹 rumi &nbsp;·&nbsp; <span class='dialogue-tradition'>Sufi — 13th century Persia</span></div>
+        <div class="dialogue-text">RUMI: The lovers of God do not divide the world into holy days and ordinary days. Every breath is a feast. If the feast can be bombed, it was never held in the right place to begin with.<br>POPE LEO: You are saying the ceasefire must be interior before it can be diplomatic?<br>RUMI: I am saying that a peace treaty signed only on paper has no roots. The peace that holds in a bombardment is the peace that has been grown in the heart over thirty years of practice.<br>POPE LEO: And yet we must also sign the treaties. We must negotiate, build institutions, establish law. The interior life does not excuse us from the work of structures.<br>RUMI: No. But institutions that are not fed by the interior life become shells. Look at the Security Council. Shells.<br>POPE LEO: Then we need both — the mystic and the diplomat. Perhaps in the same person.<br>RUMI: Perhaps in this moment, in the person reading these words.</div>
+        <div class='dialogue-attr'>— In the spirit of Rumi's teaching on the peace that outlasts all treaties, and Catholic social teaching on the structures of a just peace</div>
+      </div>
+      <div class="practice-block">
+        <div class="practice-label">
+          <span class="klesha-tag klesha-helplessness">Helplessness &amp; Overwhelm</span>
+          Practice
+          
+        </div>
+        <div class="practice-text"><p>In the tradition of lectio divina, take this line from the Easter liturgy slowly: 'Do not be afraid. He is not here. He has risen.' Read it once. Then read it again and let it touch the specific fear or grief you are carrying today.</p>
+      <p>On a third reading, ask: What in me needs to rise? What am I ready to let die so that something truer can live? Sit in silence for five minutes. This is resurrection as practice, not merely as belief.</p></div>
+        <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Dharmadhātu Wisdom</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">🫙 Kenosis View &nbsp;·&nbsp; <span class='lens-tradition'>Christian mystical</span></div>
+        <div class="lens-text"><p>Kenosis is Paul's word in Philippians 2: Christ 'emptied himself, taking the form of a servant.' It is the theological name for the self-emptying that makes genuine encounter with the other possible.</p>
+      <p>Every failed ceasefire is a failure of kenosis. Each side clings to its grievances, its strategic advantage, its narrative of victimhood and justified response. The 2,299 violations are not crimes of aggression only — they are acts of self-preservation, of refusing to be the one who gives first.</p>
+      <p>Kenosis does not mean unilateral surrender. Thomas Merton was careful here: genuine self-emptying is not self-destruction. It is the release of the defended self, the one that cannot afford to be wrong, that cannot afford to give without a guarantee of reciprocation.</p>
+      <p>What would a kenotic foreign policy look like? We do not know — it has never been tried at scale. But every peace that has ever held has contained its element: the moment when one party chose, against strategic logic, to extend the hand without knowing if it would be taken. Easter is the feast of that gesture. And so the ceasefire was declared. And so it broke. And so Easter comes again next year.</p></div>
+        <div class='lens-attr'>— Kenosis view: self-emptying as the theological ground of peace — the gesture offered without guarantee of return</div>
+      </div>
+  </div>
+
+  <!-- Story 3 -->
+  <div class="story reader-story" id="rs-3" style="display:none">
+    <span class="story-tag tag-renewal">Renewal & Transformation</span>
+    <div class="story-headline">Hungary's Péter Magyar Defeats Viktor Orbán, Ending 16 Years of Authoritarian Rule</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">Hungary's parliamentary election on April 12 produced a historic result: opposition leader Péter Magyar's Tisza party won 53.6% of the vote, securing 138 of 199 parliamentary seats — enough for a supermajority — while Viktor Orbán's Fidesz took just 55 seats with 37.8%. Turnout reached 77%, the highest since Hungary's post-communist era. Orbán, in power for 16 consecutive years and long seen as a symbol of European democratic backsliding, conceded defeat on election night. Magyar is expected to reverse many of Orbán's constitutional changes and restore Hungary's ties to the European Union.</div>
+    <div class="story-source"><a href="https://www.aljazeera.com/news/2026/4/12/hungary-election-early-results-show-magyars-tisza-ahead-of-orbans-fidesz" target="_blank" rel="noopener">Al Jazeera / CNN ↗</a></div>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching"><p>Merton spent years in a monastery in Kentucky, watching the world from what he called 'the margin of history.' But he was never indifferent to it. When he heard about Budapest in 1956, he wept. He believed contemplative life was not a withdrawal from history but a different way of being fully inside it.</p>
+      <p>In Hungary, 77 percent of the people came out and chose differently. After sixteen years, something in the national body remembered its own dignity. Merton would recognize this. He called it the 'true self' — not the self constructed by power and fear and years of managed reality, but the self that knows it is free because it is held in something greater than any government.</p>
+      <p>Elections are not, in themselves, awakening. But something in this one moves in the direction of the true self: the refusal to keep pretending that what is happening is acceptable. That refusal — en masse, on a ballot — is not kenosis. But it rhymes with it. It is the beginning of an unlearning.</p></div>
+      <div class='teaching-attr'>— In the spirit of Thomas Merton's teaching on the true self and the contemplative engagement with history</div>
+      <div class="dialogue-block">
+        <div class="dialogue-header">🔔 mingyur_rinpoche &nbsp;·&nbsp; <span class='dialogue-tradition'>Tibetan Buddhist — Kagyu / Nyingma</span></div>
+        <div class="dialogue-text">MINGYUR RINPOCHE: Brother Thomas, in your writings I find you speak of the 'true self' as something to be discovered, while in our teaching we say there is no fixed self to find. How do you hold that?<br>THOMAS MERTON: I'm not sure I reconcile them — I suspect they are pointing at the same territory from different angles. What I call the 'true self' is not a solid thing. It is more like what remains when all the false constructions fall away.<br>MINGYUR RINPOCHE: Yes. The awareness that remains when everything added to it dissolves.<br>THOMAS MERTON: And what happened in Hungary is that sixteen years of constructed fear began to fall away, and people found they were still there beneath it. Still capable of choosing. Still free.<br>MINGYUR RINPOCHE: The awakening does not create freedom. It reveals the freedom that was always present.<br>THOMAS MERTON: That is a better way to say it than anything I have written.</div>
+        <div class='dialogue-attr'>— In the spirit of Thomas Merton's lifelong dialogue with Buddhism, and Mingyur Rinpoche's teachings on the nature of awareness</div>
+      </div>
+      <div class="practice-block">
+        <div class="practice-label">
+          <span class="klesha-tag klesha-hope">Hope &amp; Renewal</span>
+          Practice
+          
+        </div>
+        <div class="practice-text"><p>Merton wrote: 'The beginning of contemplation is the beginning of freedom.' Today, recall a moment in your own life when you chose differently — when you refused, quietly, to go along with what you knew to be false. Not a dramatic act. A small one.</p>
+      <p>Take two minutes and sit with that memory. Honor it. Let it remind you who you are beneath what you perform for the world. That person — the one who refused — is closer to your true self than anything else you have done today.</p></div>
+        <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> All-Accomplishing Wisdom</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">🌅 Kingdom of God View &nbsp;·&nbsp; <span class='lens-tradition'>Christian — Gospel</span></div>
+        <div class="lens-text"><p>The kingdom of God, in Jesus's teaching, is not imposed from above. It grows — like a mustard seed, like leaven in dough — from within the ordinary substance of human life. It is not a government program. But sometimes it moves through governments.</p>
+      <p>When 77 percent of a people, after sixteen years, choose differently — not out of optimism but out of a deep refusal to continue consenting to what they know is wrong — something in that refusal is consonant with the kingdom. Not identical to it. But consonant.</p>
+      <p>The language of the Gospel for this is metanoia: the turning of the whole person, the reversal of direction. In Hungary, something like collective metanoia took place. Not religious metanoia — political. But the structure is the same: the recognition that what has been accepted as inevitable is not, in fact, inevitable. That another way is possible. That the door that appeared to be sealed is, actually, open.</p>
+      <p>'Blessed are those who hunger and thirst for righteousness' — not for comfort, not for stability, but for what is right. In Hungary, a great many people were hungry and thirsty. They ate and drank on April 12th.</p></div>
+        <div class='lens-attr'>— Kingdom of God view: collective metanoia as a political form of the Gospel's deepest invitation</div>
+      </div>
+  </div>
+
+  <!-- Story 4 -->
+  <div class="story reader-story" id="rs-4" style="display:none">
+    <span class="story-tag tag-politics">Power & Collective Karma</span>
+    <div class="story-headline">Trump Orders U.S. Naval Blockade of Strait of Hormuz After Iran Talks Collapse</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">President Trump ordered the U.S. Navy to begin blockading the Strait of Hormuz effective Monday after U.S.-Iran peace talks in Islamabad collapsed on Sunday. Roughly 20% of the world's oil and natural gas transits the strait, and markets responded with Brent crude prices jumping 10–13% in early trading. U.S. Central Command clarified the blockade targets ships paying tolls to Iran, not all vessels using the waterway. The United Kingdom declined to participate, stating the strait is 'urgently needed to support the global economy,' while Russia and China vetoed a UN Security Council resolution on the crisis.</div>
+    <div class="story-source"><a href="https://www.cnbc.com/2026/04/12/trump-iran-war-strait-of-hormuz.html" target="_blank" rel="noopener">NPR / CNBC ↗</a></div>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching"><p>Francis once walked to Egypt in the middle of the Crusades to speak with Sultan Malik al-Kamil. He brought no weapons, only his willingness to be in the presence of the other. The Sultan received him with courtesy. They talked for days. Nothing was resolved politically, but something human happened between them that armies had not managed in years of fighting.</p>
+      <p>Now the Strait of Hormuz is closed, and a 10 percent jump in oil prices means that someone, somewhere, will go without — will heat their home less, cut the food budget, face a choice they shouldn't have to make. Creation is not abstract. The poor are not abstract. They feel the tremors of decisions made in rooms they will never enter.</p>
+      <p>Francis believed that voluntary simplicity — the love of poverty freely chosen — was not self-punishment but freedom. A freedom that makes the blockade of a strait matter less to you, because you have already loosened your grip on what you think you need. This is not a political strategy. But it is the contemplative ground from which better politics can grow.</p></div>
+      <div class='teaching-attr'>— In the spirit of Saint Francis of Assisi's teaching on holy poverty, Sister Creation, and peace as a personal vocation</div>
+      <div class="dialogue-block">
+        <div class="dialogue-header">🌏 dalai_lama &nbsp;·&nbsp; <span class='dialogue-tradition'>Tibetan Buddhist — Gelug</span></div>
+        <div class="dialogue-text">DALAI LAMA: Brother Francis, I have always admired that you went to the Sultan during the Crusades. Were you not afraid?<br>ST. FRANCIS: Terrified. And the terror was less important than the going. I believed — I still believe — that if you walk toward the other without weapons, something must happen that cannot happen any other way.<br>DALAI LAMA: The hand extended in openness cannot hold a sword. This is why, even with China, I have insisted on dialogue. Not because I believe it will immediately succeed. But refusing dialogue closes the only door.<br>ST. FRANCIS: And in the Strait of Hormuz today — what door remains open?<br>DALAI LAMA: The door that is always open: the willingness to accept a little suffering for the sake of the other's suffering. To say — I will give something up so that you might have something. In your tradition, this is agape. In mine, it is compassion. Different words for the same gesture.<br>ST. FRANCIS: Then perhaps what is needed is not a navy but a different kind of pilgrim.</div>
+        <div class='dialogue-attr'>— In the spirit of Saint Francis's teaching on peace as a personal vocation, and the Dalai Lama's teaching on compassion as political wisdom</div>
+      </div>
+      <div class="practice-block">
+        <div class="practice-label">
+          <span class="klesha-tag klesha-anxiety">Anxiety &amp; Uncertainty</span>
+          Practice
+          
+        </div>
+        <div class="practice-text"><p>Francis prayed: 'Lord, make me an instrument of your peace.' Not an observer of peace, or a mourner of its absence — an instrument.</p>
+      <p>Today, identify one specific thing you actually control — in your household, your spending, your consumption — that you could loosen your grip on. Not out of guilt. Out of freedom. Even a small act of voluntary simplicity, chosen consciously, is a form of prayer. It is also, quietly, a refusal of the logic that closed the strait.</p></div>
+        <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> All-Accomplishing Wisdom</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">🫙 Kenosis View &nbsp;·&nbsp; <span class='lens-tradition'>Christian mystical</span></div>
+        <div class="lens-text"><p>The blockade of the Strait of Hormuz is, at its root, an act of the defended self writ large: the self that cannot tolerate uncertainty, that responds to failed negotiation with the assertion of control, that mistakes power for security.</p>
+      <p>Kenosis moves in the opposite direction. It releases the claim to control what cannot ultimately be controlled. It discovers — not through naivety but through genuine inner transformation — that security is not a function of domination.</p>
+      <p>This sounds impractical in geopolitics. And yet: the most durable peace agreements in history have contained this element. Camp David. The Good Friday Agreement. Moments when leaders chose, against every strategic calculation, to let go of something they believed essential to their security — and discovered that the other side, also terrified, also defended, could respond in kind.</p>
+      <p>Anxiety is the klesha of the defended self. It arises from the belief that if we loosen our grip, we will lose everything. Kenosis says: loosen the grip. Not because the world is safe, but because the defended self never finds the security it seeks. The Strait will still be there. But what you are will have changed.</p></div>
+        <div class='lens-attr'>— Kenosis view: releasing the defended self as the ground of a security that domination can never provide</div>
+      </div>
+  </div>
+
+      <!-- Closing -->
+      <div class="reader-closing" id="reader-closing">
+        <div class="closing-text">The Light shines in the darkness,<br>
+        and the darkness has not overcome it.<br>
+        Go, and do likewise.<br>
+        </div>
+        <span class="mantra-tibetan">ཨོཾ་མ་ཎི་པདྨེ་ཧཱུྃ</span>
+        <span class="mantra">May all beings be happy · May all beings be safe · May all beings be free</span>
+        <div class="mantra-note">Om Mani Padme Hum — compassion and wisdom, inseparable</div>
+      </div>
+
+    </main>
+  </div>
+
+<script>
+(function() {
+  var totalStories = 4;
+  var activeStory = 1;
+
+  function showStory(n) {
+    // Hide opening / closing
+    document.getElementById('reader-opening').style.display = 'none';
+    document.getElementById('reader-closing').style.display = 'none';
+    // Hide all stories
+    for (var i = 1; i <= totalStories; i++) {
+      var el = document.getElementById('rs-' + i);
+      if (el) el.style.display = 'none';
+    }
+    // Show target
+    var target = document.getElementById('rs-' + n);
+    if (target) target.style.display = '';
+    // Update nav active state
+    document.querySelectorAll('.reader-nav-item').forEach(function(btn) {
+      btn.classList.remove('reader-nav-active');
+      if (btn.dataset.story == n) btn.classList.add('reader-nav-active');
+    });
+    // Scroll main panel to top
+    document.getElementById('reader-main').scrollTop = 0;
+    activeStory = n;
+  }
+
+  function showOpening() {
+    // Hide all stories
+    for (var i = 1; i <= totalStories; i++) {
+      var el = document.getElementById('rs-' + i);
+      if (el) el.style.display = 'none';
+    }
+    document.getElementById('reader-opening').style.display = '';
+    document.getElementById('reader-closing').style.display = '';
+    document.querySelectorAll('.reader-nav-item').forEach(function(btn) {
+      btn.classList.remove('reader-nav-active');
+    });
+    document.getElementById('reader-main').scrollTop = 0;
+  }
+
+  // Expose globally
+  window.showStory = showStory;
+  window.showOpening = showOpening;
+})();
+</script>
+</body>
+</html>

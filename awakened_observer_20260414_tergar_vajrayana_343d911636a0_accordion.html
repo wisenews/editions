@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Awakened Observer — Tuesday, April 14, 2026 (Accordion)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold-pale:#FDF5DC; --gold-mid:#E8A020; --gold-dark:#6B3E08;
+    --teal-pale:#E1F5EE; --teal-strong:#5DCAA5; --teal-deep:#1D9E75; --teal-dark:#085041;
+    --blue-pale:#E6F1FB; --blue-mid:#378ADD; --blue-dark:#0C447C;
+    --coral-pale:#FAECE7; --coral-dark:#712B13;
+    --purple-pale:#EEEDFE; --purple-dark:#3C3489;
+    --amber-pale:#FAEEDA; --amber-dark:#633806;
+    --green-pale:#EAF3DE; --green-dark:#27500A;
+    --gray-bg:#F5F3EE; --gray-card:#FDFAF0; --gray-surface:#EDEADC;
+    --border:rgba(50,45,35,0.10);
+    --text-1:#1A1714; --text-2:#5A5030; --text-3:#9A9070;
+  }
+  @media(prefers-color-scheme:dark){
+    :root{
+      --gold-pale:#261A04; --gray-bg:#131109; --gray-card:#1A1608;
+      --gray-surface:#211C0A; --border:rgba(240,200,80,0.08);
+      --text-1:#F8F0D0; --text-2:#B0A870; --text-3:#706840;
+      --blue-pale:#0D1E30; --teal-pale:#061E14; --amber-pale:#1E1204;
+    }
+  }
+  body { font-family:'DM Sans',sans-serif; background:var(--gray-bg);
+          color:var(--text-1); min-height:100vh; padding:2rem 1rem 6rem; }
+  .page { max-width:680px; margin:0 auto; }
+
+  /* Masthead */
+  .masthead { text-align:center; padding:2.75rem 1rem 2.25rem;
+    border-bottom:0.5px solid var(--border); margin-bottom:2.25rem; position:relative; }
+  .masthead::before { content:''; position:absolute; top:0; left:50%;
+    transform:translateX(-50%); width:100px; height:2px; background:linear-gradient(90deg, transparent, #B83030, #E8A020, #1A3A80, transparent); }
+  .lotus { display:block; margin:0 auto 1.2rem; }
+  .date-line { font-size:11px; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--text-3); margin-bottom:.5rem; }
+  .masthead-title { font-family:'Cormorant Garamond',serif; font-size:42px;
+    font-weight:500; color:var(--text-1); line-height:1.05; margin-bottom:.25rem; }
+  .issue-line { font-size:11px; letter-spacing:.09em; color:var(--text-3); margin-bottom:.6rem; }
+  .masthead-rule { width:42px; height:1px; margin:.65rem auto;
+    background:linear-gradient(90deg,var(--teal-strong),var(--gold-mid)); }
+  .masthead-sub { font-family:'Cormorant Garamond',serif; font-size:18px;
+    font-style:italic; color:var(--text-2); line-height:1.4; }
+  .tradition-badge { display:inline-block; background:var(--gold-pale);
+    color:var(--gold-dark); font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; padding:4px 14px; border-radius:20px; margin-top:.85rem;
+    border:0.5px solid rgba(232,160,32,0.25); }
+
+  /* Opening */
+  .opening { background:var(--gold-pale); border-left:2.5px solid var(--gold-mid);
+    border-radius:0 10px 10px 0; padding:1.25rem 1.6rem; margin-bottom:.5rem;
+    font-family:'Cormorant Garamond',serif; font-size:19px; font-style:italic;
+    color:var(--text-2); line-height:1.8; }
+  .opening-instruction { font-family:'DM Sans',sans-serif; font-size:12px;
+    color:var(--text-3); padding:.5rem 1.6rem .85rem; margin-bottom:2rem;
+    background:var(--gold-pale); border-left:2.5px solid var(--gold-mid);
+    border-top:none; border-radius:0 0 10px 10px; }
+
+  /* At a Glance */
+  .glance { background:var(--gray-surface); border-radius:14px;
+    padding:1.2rem 1.5rem; margin-bottom:2.5rem; }
+  .glance-title { font-size:10px; font-weight:500; letter-spacing:.13em;
+    text-transform:uppercase; color:var(--text-3); margin-bottom:.85rem; }
+  .glance-list { display:flex; flex-direction:column; gap:.6rem; }
+  .glance-row { display:flex; align-items:flex-start; gap:11px; }
+  .g-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; margin-top:7px; }
+  .d-conflict{background:#D85A30;} .d-peace    {background:var(--teal-deep);}
+  .d-grief    {background:#B87016;} .d-joy      {background:#185FA5;}
+  .d-science  {background:#534AB7;} .d-nature   {background:#3B6D11;}
+  .d-politics {background:#993556;} .d-economy  {background:#854F0B;}
+  .d-culture  {background:#0F6E56;} .d-human    {background:#5F5E5A;}
+  .d-death    {background:#791F1F;} .d-renewal  {background:#1D9E75;}
+  .d-human-interest {background:#5F5E5A;}
+  .glance-text { font-size:13.5px; color:var(--text-2); line-height:1.6; }
+
+  /* Section label */
+  .section-label { font-size:10px; font-weight:500; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--text-3); display:flex;
+    align-items:center; gap:10px; margin-bottom:1.35rem; }
+  .section-label::after { content:''; flex:1; height:0.5px; background:var(--border); }
+
+  /* Story cards */
+  .story { background:var(--gray-card); border:0.5px solid var(--border);
+    border-radius:16px; padding:1.5rem 1.65rem 0; margin-bottom:1.35rem; overflow:hidden; }
+  .story-tag { display:inline-block; font-size:10px; font-weight:500;
+    letter-spacing:.08em; text-transform:uppercase; padding:3px 11px;
+    border-radius:20px; margin-bottom:.95rem; }
+  .tag-conflict {background:var(--coral-pale);color:var(--coral-dark);}
+  .tag-peace    {background:var(--teal-pale); color:var(--teal-dark);}
+  .tag-grief    {background:var(--amber-pale);color:var(--amber-dark);}
+  .tag-joy      {background:var(--blue-pale); color:var(--blue-dark);}
+  .tag-science  {background:var(--purple-pale);color:var(--purple-dark);}
+  .tag-nature   {background:var(--green-pale);color:var(--green-dark);}
+  .tag-politics {background:#FBEAF0;color:#72243E;}
+  .tag-economy  {background:var(--amber-pale);color:var(--amber-dark);}
+  .tag-culture  {background:var(--teal-pale); color:var(--teal-dark);}
+  .tag-human    {background:var(--gray-surface);color:#5F5E5A;}
+  .tag-death    {background:#FCEBEB;color:#791F1F;}
+  .tag-renewal  {background:var(--teal-pale); color:var(--teal-dark);}
+  .story-headline { font-family:'Cormorant Garamond',serif; font-size:23px;
+    font-weight:500; color:var(--text-1); line-height:1.32; margin-bottom:.9rem; }
+  .story-what { font-size:10px; font-weight:500; text-transform:uppercase;
+    letter-spacing:.10em; color:var(--text-3); margin-bottom:.35rem; }
+  .story-fact { font-size:14px; color:var(--text-2); line-height:1.8;
+    padding-bottom:1.1rem; }
+
+  /* Accordion sections */
+  details.acc-section {
+    border-top:0.5px solid var(--border);
+    margin:0 -1.65rem;
+    padding:0 1.65rem;
+  }
+  details.acc-section[open] { padding-bottom:1.1rem; }
+  details.acc-dialogue { background:var(--blue-pale); }
+  details.acc-practice { background:var(--teal-pale); }
+  details.acc-lens     { background:var(--amber-pale); }
+  summary.acc-summary {
+    list-style:none; cursor:pointer; user-select:none;
+    font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--teal-deep);
+    padding:.9rem 0 .75rem;
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+  }
+  summary.acc-summary::marker,
+  summary.acc-summary::-webkit-details-marker { display:none; }
+  summary.acc-summary::after {
+    content:"▸"; font-size:9px; flex-shrink:0; color:var(--text-3);
+  }
+  details.acc-section[open] > summary.acc-summary::after { content:"▾"; }
+  .acc-sum-blue  { color:var(--blue-dark); }
+  .acc-sum-teal  { color:var(--teal-dark); }
+  .acc-sum-amber { color:var(--amber-dark); }
+
+  /* Teaching inside accordion */
+  .teaching-divider { display:flex; align-items:center; gap:10px;
+    margin-bottom:1rem; padding-top:1rem; }
+  .teaching-divider::after { content:''; flex:1; height:0.5px; background:var(--border); }
+  .teaching-divider span { font-size:13px; color:var(--teal-strong); flex-shrink:0; }
+  .story-teaching { font-family:'Cormorant Garamond',serif; font-size:17.5px;
+    font-style:italic; color:var(--text-1); line-height:1.85; padding-bottom:.6rem; }
+  .story-teaching p { margin-bottom:.7em; }
+  .story-teaching p:last-child { margin-bottom:0; }
+  .teaching-attr { font-size:11px; color:var(--text-3); padding-bottom:1.1rem; }
+
+  /* Dialogue content inside accordion */
+  .acc-subheader { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; margin-bottom:.75rem; }
+  .acc-subheader-blue { color:var(--blue-dark); }
+  .dialogue-tradition { font-weight:400; font-style:italic; letter-spacing:0;
+    text-transform:none; color:var(--text-3); }
+  .dialogue-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .dialogue-text p { margin-bottom:.7em; }
+  .dialogue-text p:last-child { margin-bottom:0; }
+  .dialogue-attr { font-size:11px; color:var(--text-3); }
+
+  /* Practice content inside accordion */
+  .practice-label { font-size:10px; font-weight:500; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--teal-dark); margin-bottom:.6rem;
+    display:flex; align-items:center; gap:8px; }
+  .klesha-tag { font-size:9px; font-weight:600; letter-spacing:.06em;
+    text-transform:uppercase; padding:2px 8px; border-radius:10px;
+    color:#fff; flex-shrink:0; }
+  .klesha-anger      {background:#C0392B;} .klesha-grief      {background:#7F8C8D;}
+  .klesha-anxiety    {background:#D4AC0D;} .klesha-helplessness{background:#8E44AD;}
+  .klesha-wonder     {background:#2E86C1;} .klesha-hope       {background:#1D8348;}
+  .klesha-confusion  {background:#D35400;} .klesha-compassion {background:#CB4335;}
+  .practice-text { font-size:13.5px; color:var(--teal-dark);
+    line-height:1.8; font-style:italic; }
+  .practice-text p { margin-bottom:.75em; }
+  .practice-text p:last-child { margin-bottom:0; }
+  .wisdom-line { font-size:10.5px; color:var(--teal-deep); font-style:italic;
+    margin-top:.55rem; padding-top:.45rem;
+    border-top:0.5px solid rgba(29,158,117,0.2); }
+  .wisdom-label { font-weight:600; font-style:normal; }
+  .method-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.07em; text-transform:uppercase; padding:2px 8px;
+    border-radius:10px; margin-left:auto; flex-shrink:0; }
+  .method-abandoning  { background:#E8E8E8; color:#4A4A4A; }
+  .method-transforming { background:#FEF3C7; color:#92400E; }
+  .method-transcending { background:var(--gold-pale); color:var(--gold-dark);
+    border:0.5px solid rgba(232,160,32,0.3); }
+
+  /* Lens content inside accordion */
+  .lens-tradition { font-weight:400; font-style:italic; letter-spacing:0;
+    text-transform:none; color:var(--text-3); }
+  .acc-lens-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .acc-lens-text p { margin-bottom:.75em; }
+  .acc-lens-text p:last-child { margin-bottom:0; }
+  .lens-attr { font-size:11px; color:var(--text-3); }
+
+  /* Source link */
+  .story-source { font-size:11.5px; color:var(--text-3); padding:.4rem 0 .85rem;
+    border-top:0.5px dashed var(--border); margin-top:.2rem; }
+  .story-source a { color:var(--text-3); text-decoration:none;
+    border-bottom:0.5px solid var(--border); }
+  .story-source a:hover { color:var(--teal-deep); }
+
+  /* Underreported badge */
+  .underreported-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.09em; text-transform:uppercase; padding:2px 9px; border-radius:20px;
+    background:var(--green-pale); color:var(--green-dark); margin-left:6px;
+    border:0.5px solid rgba(39,80,10,0.18); vertical-align:middle; }
+
+  /* Closing */
+  .closing { text-align:center; padding:2.25rem 1.25rem .5rem;
+    border-top:0.5px solid var(--border); margin-top:.5rem; }
+  .closing-text { font-family:'Cormorant Garamond',serif; font-size:19px;
+    font-style:italic; color:var(--text-2); line-height:2.1; margin-bottom:1.6rem; }
+  .mantra-tibetan { font-size:22px; color:var(--gold-mid); letter-spacing:.07em;
+    display:block; margin-bottom:.6rem; }
+  .mantra { font-size:11px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--teal-deep); display:block; margin-bottom:.5rem; }
+  .mantra-note { font-size:12px; color:var(--text-3); font-style:italic;
+    font-family:'Cormorant Garamond',serif; }
+
+  /* Tradition quote inside accordion */
+  details.acc-quote { background:var(--purple-pale); }
+  .acc-sum-purple { color:var(--purple-dark); }
+  .acc-quote-inner { padding:.25rem 0 .1rem; }
+  .quote-mark { font-family:'Cormorant Garamond',serif; font-size:52px;
+    line-height:.7; color:var(--purple-dark); opacity:0.18;
+    margin-bottom:-.25rem; user-select:none; }
+  .quote-text { font-family:'Cormorant Garamond',serif; font-size:17.5px;
+    font-style:italic; color:var(--text-1); line-height:1.85;
+    margin-bottom:.55rem; }
+  .quote-text p { margin-bottom:.7em; }
+  .quote-text p:last-child { margin-bottom:0; }
+  .quote-attr { font-size:11px; color:var(--text-3); margin-bottom:.55rem; }
+  .quote-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.08em; text-transform:uppercase; padding:2px 8px;
+    border-radius:10px; }
+  .quote-badge-exact { background:var(--green-pale); color:var(--green-dark);
+    border:0.5px solid rgba(39,80,10,0.18); }
+  .quote-badge-paraphrase { background:var(--gray-surface); color:var(--text-2);
+    border:0.5px solid var(--border); }
+
+  /* Accordion hint banner */
+  .acc-hint { font-size:12px; color:var(--text-3); text-align:center;
+    margin-bottom:2rem; font-style:italic; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="masthead">
+    <svg class="lotus" width="60" height="52" viewBox="0 0 60 52" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="30" cy="42" rx="10" ry="5" fill="#9FE1CB" opacity="0.38"/>
+      <path d="M30 38 Q21 24 16 9 Q24 22 30 26 Q36 22 44 9 Q39 24 30 38Z" fill="#5DCAA5" opacity="0.88"/>
+      <path d="M30 38 Q13 30 5 19 Q17 27 30 32Z" fill="#9FE1CB" opacity="0.9"/>
+      <path d="M30 38 Q47 30 55 19 Q43 27 30 32Z" fill="#9FE1CB" opacity="0.9"/>
+      <path d="M30 38 Q9 34 3 27 Q15 32 30 36Z" fill="#C0DD97" opacity="0.68"/>
+      <path d="M30 38 Q51 34 57 27 Q45 32 30 36Z" fill="#C0DD97" opacity="0.68"/>
+      <circle cx="30" cy="26" r="5" fill="#F7E28A" opacity="0.9"/>
+      <circle cx="30" cy="26" r="2.8" fill="#E8A020"/>
+      <circle cx="30" cy="26" r="1.1" fill="#6B3E08"/>
+    </svg>
+    <div class="date-line">Tuesday, April 14, 2026</div>
+    <div class="masthead-title">The Awakened Observer</div>
+    <div class="issue-line">Issue No. 7  ·  News of the world, held with open hands</div>
+    <div class="masthead-rule"></div>
+    <div class="masthead-sub">Awareness &nbsp;·&nbsp; Love &nbsp;·&nbsp; Wisdom</div>
+    <div class="tradition-badge">Vajrayana Edition</div>
+  </div>
+
+  <div class="opening">Whatever arises in awareness is the self-display of rigpa. Read the world from that recognition — without grasping, without aversion.
+</div>
+  <div class="opening-instruction">Before reading: rest for one breath in open awareness. Let each story arise and dissolve in the space of rigpa.</div>
+
+  <div class="glance">
+    <div class="glance-title">Today at a glance</div>
+    <div class="glance-list">
+      <div class="glance-row">
+        <div class="g-dot d-death"></div>
+        <div class="glance-text">Jim Whittaker, who made history on May 1, 1963, as the first American to summit Everest, died on April 7, 2026, at his home in Port Townsend, Washington.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-culture"></div>
+        <div class="glance-text">Speaking on April 11, 2026, at the Indian Ocean Conference in Port Louis, Mauritius, Nepal Foreign Minister Shisir Khanal invoked pratityasamutpada — the Buddhist principle of dependent origination — as a framework for international relations.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-conflict"></div>
+        <div class="glance-text">On April 10, 2026, a drone strike hit a wedding celebration in Kutum, North Darfur, Sudan, killing at least 30 civilians; some accounts place the toll as high as 56, including women and children.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-conflict"></div>
+        <div class="glance-text">High-level US-Iran talks in Islamabad on April 11-12, 2026, collapsed after more than 21 hours, with both sides reaching roughly 80% of a framework before breaking down over nuclear terms, Strait of Hormuz access, and frozen assets.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-economy"></div>
+        <div class="glance-text">US unemployment has risen to 4.4% as of April 2026, while job openings have fallen to 6.54 million — a post-pandemic low.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Stories — seen clearly</div>
+  <p class="acc-hint">Teaching sections open when you tap the section title.</p>
+
+
+  <!-- Story 1 -->
+  <div class="story">
+    <span class="story-tag tag-death">Impermanence & Passing</span>
+    <div class="story-headline">Legendary mountaineer Jim Whittaker, first American to summit Everest, dies at 97</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">Jim Whittaker, who made history on May 1, 1963, as the first American to summit Everest, died on April 7, 2026, at his home in Port Townsend, Washington. He was 97. Whittaker led REI for decades and remained an icon of American outdoor life. His success on Everest depended on Sherpa guide Nawang Gombu, who reached the summit alongside him. His death closes a chapter in mountaineering history and invites reflection on achievement, legacy, and impermanence.</div>
+    <div class="story-source"><a href="https://www.npr.org/2026/04/09/g-s1-116847/mountaineer-jim-whittaker-dies" target="_blank" rel="noopener">NPR / The Washington Post ↗</a></div>
+    <details class="acc-section acc-teaching" open>
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">Jim Whittaker stood on Everest on May 1, 1963. He did not stand alone. Nawang Gombu stood beside him, and beneath them both stood a mountain older than human memory, and beneath the mountain stood the slow arithmetic of plates grinding into sky. Now, at 97, Whittaker has dissolved into what was always holding him. This is the summit beyond the summit — the one no one plants a flag on, because there is no one left to plant it. When we grieve a life like this, something tender happens. We feel the loss, yes. But if we look gently, we also feel how much of him was never separate from Gombu, from the rope, from the wind, from us reading about him today. Grief, looked at with kindness, begins to show us the opposite of what we feared. The person is gone. The connections are not. That, too, is a kind of summit.</div>
+      <div class='teaching-attr'>— In the spirit of Mingyur Rinpoche's teaching on impermanence as intimacy</div>
+    </details>
+    <details class="acc-section acc-quote">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">Whatever arises, do not reject it. Whatever fades, do not chase it. Rest in the awareness that sees both coming and going, and you will find you have never moved.</div><div class="quote-attr">— Paraphrase in the spirit of Mingyur Rinpoche's teachings on awareness and impermanence</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+    </details>
+    <details class="acc-section acc-dialogue">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+      <div class="dialogue-text">SOCRATES: Tell me, Mingyur — when you say Whittaker has 'dissolved,' do you mean he has ceased, or that we were mistaken about what he was?<br>MINGYUR RINPOCHE: The second, mostly. A wave does not cease when it flattens into the sea. It only stops pretending to be separate from it. Whittaker was like that. So is Gombu. So are you and I, speaking now.<br>SOCRATES: Yet the newspapers report a death. A wife weeps. A grandson will never hear the old stories again in the old voice. Surely something has ended.<br>MINGYUR RINPOCHE: Yes. The particular configuration has ended. That is real, and grief is the honest response to it. I do not ask anyone to skip the tears. I only ask — when the tears come — to notice what the tears are made of.<br>SOCRATES: And what are they made of?<br>MINGYUR RINPOCHE: Love. And love requires two. If the grief is still moving in you, then something of him is still moving in you. The Greeks knew this — you had a word, did you not, for the dead who live on in us?<br>SOCRATES: We spoke of the soul, and of memory as its home. But I confess I never climbed a mountain. Does the summit teach what the agora cannot?<br>MINGYUR RINPOCHE: The summit teaches that the view is borrowed. You cannot take it down with you. You carry only what you were already carrying — the friend who climbed beside you, the breath that was never yours. Whittaker knew this. He always said Gombu got there first in every way that mattered.<br>SOCRATES: Then perhaps the examined life and the examined mountain end at the same place — in the recognition that we were never the one climbing.<br>MINGYUR RINPOCHE: Yes. And that recognition is where the grief becomes gratitude, without stopping being grief.</div>
+      <div class='dialogue-attr'>— In the spirit of the Tibetan Buddhist and Socratic traditions in dialogue</div>
+    </details>
+    <details class="acc-section acc-practice">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-grief">Grief &amp; Loss</span>
+        Practice <span class="method-badge method-transforming">Transforming</span>
+      </div>
+      <div class="practice-text">Sit upright, hands resting. Bring to mind someone you have lost — a person, a role, a version of yourself. Feel the ache in the chest. Do not push it away. On the in-breath, breathe that ache in as warm, dark smoke. On the out-breath, send out cool light to everyone who has ever lost what you have lost — which is everyone. Ten minutes. This is tonglen transforming grief into connection. Close by placing your hand over the heart and silently saying: 'What loved me has not left me. It has become the space I am sitting in.' This is the transforming method: grief as the doorway into the fabric we never stopped being part of.</div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Discriminating Wisdom</div>
+    </details>
+    <details class="acc-section acc-lens">
+      <summary class="acc-summary acc-sum-amber">👁️ Mahamudra View &nbsp;·&nbsp; <span class='lens-tradition'>Mahamudra / Vajrayana</span></summary>
+      <div class="lens-text acc-lens-text">From the ground of awareness, no one ever reached the summit, because there was never a separate climber and never a separate mountain. The one who stood on Everest in 1963 was already the space in which Everest appeared. The one who died on April 7 was already the space in which death appears. Grief arises in that same space, and has the same nature as the snow at 29,000 feet — vivid, cold, utterly empty of solidity. Do not console yourself. Do not reach for the next thought. Look directly at the grief and ask: where is it? The looking itself is rigpa. The grief, seen, is already rang grol, self-liberated. Whittaker has not gone anywhere. Neither have you.</div>
+      <div class='lens-attr'>— Mahamudra view: grief as the self-display of awareness</div>
+    </details>
+  </div>
+
+  <!-- Story 2 -->
+  <div class="story">
+    <span class="story-tag tag-culture">Culture & Meaning</span>
+    <div class="story-headline">Nepal's Foreign Minister invokes Buddhist dependent origination and compassion at global diplomacy forum</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">Speaking on April 11, 2026, at the Indian Ocean Conference in Port Louis, Mauritius, Nepal Foreign Minister Shisir Khanal invoked pratityasamutpada — the Buddhist principle of dependent origination — as a framework for international relations. He called for karuna (compassion) from those wielding power, extending ethical concern beyond human politics to marine and terrestrial ecosystems. Khanal connected this vision to Lumbini, the birthplace of the Buddha. The speech represents a rare instance of Buddhist philosophy articulated at the level of multilateral foreign policy.</div>
+    <div class="story-source"><a href="https://himalayantribune.com/2026/04/11/compassion-and-empathy-need-of-todays-world-says-fm-khanal/" target="_blank" rel="noopener">Himalayan Tribune ↗</a></div>
+    <details class="acc-section acc-teaching" open>
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">In Mauritius, at a conference of states and their anxieties, Nepal's Foreign Minister spoke pratityasamutpada (dependent origination) and karuna (compassion) into the microphone as though they were not exotic. They are not exotic. They are simply accurate. Many of us carry a quiet confusion — we think the dharma is for the cushion, and the world is for something else, something harder and more realistic. This is a mistake. The world is not harder than the dharma; the world is what the dharma is describing. When a statesman names the interdependence of oceans and nations and creatures in one breath, he is not being poetic. He is being exact. The confusion that separates practice from policy, retreat from responsibility, dissolves a little when we hear this. Lumbini is not only a pilgrimage site. It is a reminder that wisdom once entered the world through a woman leaning on a tree, and has been trying to get back out into the world ever since.</div>
+      <div class='teaching-attr'>— In the spirit of the Dalai Lama's teaching on secular ethics rooted in interdependence</div>
+    </details>
+    <details class="acc-section acc-quote">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">If you think you are too small to make a difference, try sleeping with a mosquito.</div><div class="quote-attr">— The Dalai Lama, widely attributed</div><span class="quote-badge quote-badge-exact">Exact quote</span></div>
+    </details>
+    <details class="acc-section acc-dialogue">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🙏 shantideva &nbsp;·&nbsp; <span class='dialogue-tradition'>Mahayana Buddhist — 8th century India</span></div>
+      <div class="dialogue-text">DALAI LAMA: My old friend, a foreign minister has said your words in a room full of ambassadors. Pratityasamutpada, karuna — at a podium, not on a cushion.<br>SHANTIDEVA: Then the Bodhicaryavatara has walked further than I dared hope. But tell me — did they understand him, or did they applaud politely and return to their portfolios?<br>DALAI LAMA: Both, I suspect. But that is how the dharma has always moved in the world — half-heard, half-lived, and still working. A seed does not need to be understood by the soil to grow.<br>SHANTIDEVA: True. Yet I confess a worry. The word karuna, spoken without practice, can become a cosmetic. It can decorate a policy that remains cruel.<br>DALAI LAMA: This is the real danger, yes. But consider — for a young diplomat in that room, for a junior minister from a small country, for a journalist listening, the seed has now been planted in language. Later, when the world breaks their heart, they may remember the word. And then they may look for the practice behind it.<br>SHANTIDEVA: That is the bodhisattva's patience. We plant without knowing which seeds will sprout.<br>DALAI LAMA: And we do not plant only for the sprouts. We plant because planting is what a bodhisattva does. The soil is not our concern.<br>SHANTIDEVA: You are gentler than I was, old friend. I was harder on hypocrisy.<br>DALAI LAMA: You were younger. And you had not yet been in exile for sixty-five years. Exile teaches you that every sincere word, anywhere, is a small homeland.<br>SHANTIDEVA: Then may every sincere word be the first step. And may the diplomats of the world mistake compassion for weakness long enough to try it — and discover, too late to turn back, that it was strength.<br>DALAI LAMA: Tashi delek, old friend. Keep writing.</div>
+      <div class='dialogue-attr'>— In the spirit of the Gelug and Madhyamaka traditions in dialogue</div>
+    </details>
+    <details class="acc-section acc-practice">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-confusion">Confusion &amp; Complexity</span>
+        Practice <span class="method-badge method-transforming">Transforming</span>
+      </div>
+      <div class="practice-text">Sit for ten minutes. Bring to mind one decision you face this week — small or large, personal or public. Instead of asking 'what do I want,' ask three times, slowly: 'Who is already affected by this? Who will be? Who am I not seeing?' Let the web of the question widen with each asking. Then place your right hand over your heart and whisper: 'May my choice be the choice of everything this choice touches.' This is transforming confusion: the energy of not-knowing is redirected into the wider seeing that bodhichitta already is. The confusion does not vanish. It becomes the felt edge of the larger intelligence.</div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Dharmadhātu Wisdom</div>
+    </details>
+    <details class="acc-section acc-lens">
+      <summary class="acc-summary acc-sum-amber">💛 Bodhichitta View &nbsp;·&nbsp; <span class='lens-tradition'>Mahayana Buddhist</span></summary>
+      <div class="lens-text acc-lens-text">From the bodhisattva's view, there is no such thing as 'foreign' policy. There is only the one policy — that no being be left outside the circle. When a minister names dependent origination at a multilateral forum, the vow has walked into a room it has been trying to enter for two and a half millennia. Do not be cynical about it. Cynicism is the confusion that has given up. Instead, widen. The fisheries of the Indian Ocean, the monsoon that waters Kerala, the child in Lumbini who will study this minister's speech in thirty years — all of them are already inside the vow. Your practice today includes them. It always did. You just had not yet been told out loud, in the language of states.</div>
+      <div class='lens-attr'>— Bodhichitta view: the widening circle of the vow</div>
+    </details>
+  </div>
+
+  <!-- Story 3 -->
+  <div class="story">
+    <span class="story-tag tag-conflict">Conflict & Impermanence</span><span class="underreported-badge">Less Reported</span>
+    <div class="story-headline">Drone strike kills at least 30 civilians at wedding celebration in North Darfur, Sudan</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">On April 10, 2026, a drone strike hit a wedding celebration in Kutum, North Darfur, Sudan, killing at least 30 civilians; some accounts place the toll as high as 56, including women and children. Local rights organisations attributed the attack to the Sudanese Armed Forces. The UN condemned the strike as unacceptable, noting civilians continue to pay the highest cost of a conflict entering its fourth year. The attack received minimal sustained Western media coverage, as Sudan's war remains largely invisible to international audiences.</div>
+    <div class="story-source"><a href="https://www.washingtonpost.com/world/2026/04/09/sudan-war-rapid-support-forces-army-fight-north-darfur/" target="_blank" rel="noopener">Washington Post / Radio Tamazuj ↗</a></div>
+    <details class="acc-section acc-teaching" open>
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">A wedding in Kutum. Music, probably. A bride. Relatives who had travelled far. Then a drone, and thirty people — maybe fifty-six — were suddenly nowhere. And most of us in the West will not hear this story named aloud tomorrow, or next week. I want to say that clearly, because the invisibility is part of the suffering. When I sit with a story like this, anger comes. Sharp, hot, righteous. This is shenpa — the hook. The mind grabs a side, a villain, a headline. If I stay there, the anger just burns me and does nothing for Kutum. But if I look directly at the anger, without pushing it away, I find something underneath it that is not anger. It is heartbreak. Anger is heartbreak in armour. Tonglen removes the armour slowly. It does not make the drone un-happen. It makes me someone who can stay in the room with what happened, instead of turning the channel.</div>
+      <div class='teaching-attr'>— In the spirit of Mingyur Rinpoche's teaching on tonglen and the armour of outrage</div>
+    </details>
+    <details class="acc-section acc-quote">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">When you recognize that the angry thought has no more substance than a cloud, you do not need to fight the cloud. You only need to stop mistaking it for the sky.</div><div class="quote-attr">— Paraphrase in the spirit of Mingyur Rinpoche's teachings on working with emotion</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+    </details>
+    <details class="acc-section acc-dialogue">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+      <div class="dialogue-text">SOCRATES: Mingyur, I have been sitting with this story from Kutum for an hour. I am angry. Is this a failure of practice?<br>MINGYUR RINPOCHE: No. It would be a failure not to feel it. Anger at this is the correct first response of a heart that is working. The practice begins with the second response — with what you do with the anger once it is here.<br>SOCRATES: Then let me practise by questioning. Who are we angry at? The pilot? The general? The government? The arms manufacturer? The algorithm that chose not to put Kutum in our feeds?<br>MINGYUR RINPOCHE: Notice — each time you name a target, the anger grows a little sharper and a little narrower. Shenpa. The hook. It feels like justice but it is actually contraction.<br>SOCRATES: So should we not seek accountability? Surely the Athenian in me cannot let that go.<br>MINGYUR RINPOCHE: Accountability, yes. Absolutely. But accountability is a long, patient work of institutions and courts and journalism. It is not what is happening in your chest right now. What is happening in your chest right now is shenpa, and if you do not work with it, it will exhaust you long before any court is convened.<br>SOCRATES: So the practice is — what? To be angry more gently?<br>MINGYUR RINPOCHE: To be angry more accurately. The anger, looked at directly, reveals itself to be grief. The grief, stayed with, reveals itself to be love — love for strangers whose names you will never know. That love is what will keep you reading the next story from Sudan, and the next, and the next, when the rest of the world has moved on.<br>SOCRATES: Then outrage, unexamined, is the enemy of sustained attention.<br>MINGYUR RINPOCHE: Yes. And tonglen is the examination.</div>
+      <div class='dialogue-attr'>— In the spirit of the Tibetan Buddhist and Socratic traditions in dialogue</div>
+    </details>
+    <details class="acc-section acc-practice">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-anger">Anger &amp; Aversion</span>
+        Practice <span class="method-badge method-transforming">Transforming</span>
+      </div>
+      <div class="practice-text">Sit. Steady the breath. Bring Kutum to mind — a wedding, music cut short, ordinary people. Feel the anger rise. Do not suppress it and do not feed it. On the in-breath, breathe in the heavy smoke of that wedding — the terror, the grief of families, the invisibility of their names in our news. On the out-breath, send cool light and steadiness to every person in Darfur tonight, and to everyone anywhere who is invisible to the world's attention. Fifteen minutes. Close by saying their names aloud if you know any. If you do not, say: 'I do not know your names. I do not look away.' This is transforming: anger becomes the fuel of staying present.</div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Mirror-like Wisdom</div>
+    </details>
+    <details class="acc-section acc-lens">
+      <summary class="acc-summary acc-sum-amber">✨ Pure Perception View &nbsp;·&nbsp; <span class='lens-tradition'>Vajrayana</span></summary>
+      <div class="lens-text acc-lens-text">Pure perception does not say the drone was sacred. It says the thirty people were. Are. Their wedding was a gathering of buddhas who did not know they were buddhas, which does not make them any less so. The bride putting on her veil that morning was a dakini (a feminine principle of awakened energy). The uncle laughing over tea was Manjushri (the bodhisattva of wisdom). The cousin filming on his phone was already, in that moment, transmitting the dharmakaya, though no one would call it that. Pure perception does not ask us to feel better about Kutum. It asks us to notice that every face our news ignores is a face the ground of reality does not ignore. Not one was invisible to awareness itself. That recognition, held steadily, is what makes us incapable of looking away.</div>
+      <div class='lens-attr'>— Pure perception view: the sacred in the unseen</div>
+    </details>
+  </div>
+
+  <!-- Story 4 -->
+  <div class="story">
+    <span class="story-tag tag-conflict">Conflict & Impermanence</span>
+    <div class="story-headline">US-Iran nuclear talks collapse; Trump orders naval blockade of Iranian ports</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">High-level US-Iran talks in Islamabad on April 11-12, 2026, collapsed after more than 21 hours, with both sides reaching roughly 80% of a framework before breaking down over nuclear terms, Strait of Hormuz access, and frozen assets. On April 13, President Trump ordered a naval blockade of Iranian ports, escalating military pressure. A ceasefire nominally holds but violations continue. The breakdown marks the failure of the most significant US-Iran diplomatic engagement in decades, leaving tens of millions in the region under threat of further escalation.</div>
+    <div class="story-source"><a href="https://www.cnn.com/2026/04/13/world/live-news/iran-us-war-trump-hormuz" target="_blank" rel="noopener">CNN / NPR ↗</a></div>
+    <details class="acc-section acc-teaching" open>
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">Twenty-one hours. Eighty percent agreement. And then the remaining twenty percent — the Strait, the assets, the word 'verification' — became too heavy to carry across the finish line, and the whole thing fell. Now ships are moving into position, and tens of millions of people who were not in that room in Islamabad will pay the price of what happened there. When I read a story like this, I do not feel anger at any single delegation. I feel sorrow. Both sides came to that table because they were afraid. Both sides left that table still afraid, and now more so. The negotiators are suffering beings. The citizens who will bear the blockade are suffering beings. Even the leaders who ordered it are suffering beings, though they hide it behind very hard faces. Eighty percent is not a failure — it is evidence. Evidence that the conditions for agreement exist. What collapsed was not the agreement. What collapsed was the willingness, for one afternoon, to hold position more lightly than life. That willingness can return. It has before.</div>
+      <div class='teaching-attr'>— In the spirit of the Dalai Lama's teaching on conflict as shared suffering</div>
+    </details>
+    <details class="acc-section acc-quote">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">My enemy is my greatest teacher, because only he can give me the practice of patience.</div><div class="quote-attr">— The Dalai Lama, widely taught in his public teachings on tolerance</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+    </details>
+    <details class="acc-section acc-dialogue">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🙏 shantideva &nbsp;·&nbsp; <span class='dialogue-tradition'>Mahayana Buddhist — 8th century India</span></div>
+      <div class="dialogue-text">DALAI LAMA: Shantideva, you wrote that anger destroys in one moment the merit of a thousand kalpas. I think of Islamabad. Twenty-one hours of work, then one hardening, and the thing was gone.<br>SHANTIDEVA: The teaching holds. But I wrote it for monks on cushions, not for ministers at tables. Does it apply?<br>DALAI LAMA: It applies more, not less. A monk's anger costs him his practice. A minister's anger costs hundreds of thousands their electricity, their medicine, their sons. The stakes scale.<br>SHANTIDEVA: Then why did your ninth chapter on wisdom not persuade them?<br>DALAI LAMA: Because the ninth chapter has not yet been put on the agenda of any foreign ministry. Perhaps it is my fault. I have been polite for too long.<br>SHANTIDEVA: I was not polite. I wrote that patience is the one armour that cannot be pierced, and I meant it as strategy, not only as ethics.<br>DALAI LAMA: Yes. Patience is not weakness. Patience is the refusal to let the other side's fear become your own fear by contagion. In Islamabad, the fear jumped across the table in the last hours. Both sides caught it. Both sides then reached for what they always reach for.<br>SHANTIDEVA: And the blockade?<br>DALAI LAMA: The blockade is fear wearing a uniform. It does not frighten me less because it is dressed formally. But I will not be infected by it. My job is to remain a place where the eighty percent can be remembered — until someone is ready to return to the table.<br>SHANTIDEVA: Then your practice and mine are the same, old friend. We are custodians of the unfinished agreement.<br>DALAI LAMA: Yes. Someone must hold the door open. Otherwise history forgets it was ever open at all.</div>
+      <div class='dialogue-attr'>— In the spirit of the Gelug and Madhyamaka traditions in dialogue</div>
+    </details>
+    <details class="acc-section acc-practice">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-anger">Anger &amp; Aversion</span>
+        Practice <span class="method-badge method-transforming">Transforming</span>
+      </div>
+      <div class="practice-text">Sit for twelve minutes. Bring to mind someone with whom you currently disagree — not an abstraction, a real person. Feel where in the body the disagreement lives. On the in-breath, breathe in the heat of your own position. On the out-breath, breathe out the recognition: 'They are afraid of what I am afraid of, approached from the other side.' Repeat until the heat softens even slightly. Close by bringing to mind the negotiators in Islamabad, the sailors now at sea, the families in Tehran and the families in American naval towns — all of them — and send one warm breath toward all of them equally. This is transforming anger: the energy of position becomes the fuel of empathy.</div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Mirror-like Wisdom</div>
+    </details>
+    <details class="acc-section acc-lens">
+      <summary class="acc-summary acc-sum-amber">👁️ Mahamudra View &nbsp;·&nbsp; <span class='lens-tradition'>Mahamudra / Vajrayana</span></summary>
+      <div class="lens-text acc-lens-text">From the ground of awareness, there are no ships at Hormuz. There is only the display — vivid, loud, consequential, and empty of any essence that could be found if you looked. This is not denial. People will suffer. The suffering, too, is display — sharp, real in its appearance, empty in its nature. The rage at the failed talks, the relief of the hawks, the grief of the mediators — each is a movement of mind, arising and dissolving in the same ground. Do not flatten the story by saying 'all is illusion.' That is a misunderstanding. Say instead: every hardened position in that room was tsal, the dynamic energy of awareness, mistaken for something solid. Recognition does not end the blockade. It ends our participation in the delusion that the blockade is separate from the mind that ordered it.</div>
+      <div class='lens-attr'>— Mahamudra view: hardened position as tsal mistaken for substance</div>
+    </details>
+  </div>
+
+  <!-- Story 5 -->
+  <div class="story">
+    <span class="story-tag tag-economy">Interdependence & Economy</span>
+    <div class="story-headline">US unemployment rises to 4.4% as job postings hit post-pandemic low and workers face deepening insecurity</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">US unemployment has risen to 4.4% as of April 2026, while job openings have fallen to 6.54 million — a post-pandemic low. March 2026 produced only 178,000 new jobs, and underemployment affects roughly 8% of the labour force. Youth unemployment (ages 16-24) exceeds 10%. The deterioration spans sectors, with workers describing the labour market as having shifted from opportunity to survival. The economic anxiety is widespread but its spiritual and existential dimensions receive little sustained attention.</div>
+    <div class="story-source"><a href="https://www.cnn.com/2026/04/economy/us-jobs-unemployment-april" target="_blank" rel="noopener">Bureau of Labor Statistics / CNN Business ↗</a></div>
+    <details class="acc-section acc-teaching" open>
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">4.4 percent. 6.54 million openings. 178,000 jobs. These are not just numbers. They are the shape of a specific feeling, carried in millions of bodies right now — the tightening in the chest when you open the laptop, the dry mouth before a performance review, the 3 a.m. arithmetic of the rent. I want to be careful here. The facts of insecurity are real. A person who cannot pay for groceries is not suffering from 'mind only.' But the anxiety-mind that spins around the fact is a second arrow, and often it is the one that does the deeper damage. Shenpa is the body grabbing hard around not-enough, and once it grabs, it cannot think clearly, cannot apply for the next job, cannot be a parent who is present at dinner. The facts need addressing through action. The anxiety needs addressing through awareness. These are two different jobs, and confusing them is part of why suffering multiplies.</div>
+      <div class='teaching-attr'>— In the spirit of Mingyur Rinpoche's teaching on the two arrows of anxiety</div>
+    </details>
+    <details class="acc-section acc-quote">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">Anxiety is not the problem. The problem is believing the story the anxiety is telling you about the future. The story is never as intelligent as the awareness watching it.</div><div class="quote-attr">— Paraphrase in the spirit of Mingyur Rinpoche's teachings on panic and awareness</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+    </details>
+    <details class="acc-section acc-dialogue">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+      <div class="dialogue-text">SOCRATES: Mingyur, my neighbour has been unemployed four months. He asks me what the examined life offers a man who cannot pay his rent. I did not know what to say.<br>MINGYUR RINPOCHE: The honest answer is: not rent. The examined life does not pay rent. Do not pretend otherwise. His landlord is not interested in his insight.<br>SOCRATES: Then is practice useless to him?<br>MINGYUR RINPOCHE: No — but it is useful for a different thing than he thinks. Practice will not produce a job. Practice will produce the steadier mind that is more likely to notice the job, to show up well at the interview, to endure the fourth 'no' without collapsing before the fifth, which may be 'yes.'<br>SOCRATES: So practice is instrumental?<br>MINGYUR RINPOCHE: No, that is still not right. Practice is not a tool for getting a job. It is a way of being that happens to be more survivable in a difficult labour market. The difference matters.<br>SOCRATES: Let me press you. You speak of security as a story the anxiety tells. But was security ever real, even when my neighbour was employed?<br>MINGYUR RINPOCHE: This is the sharp question. No. When he had the job, he also did not have security — he had the felt sense of security, because the paycheque was arriving. The paycheque was always one board meeting away from ending. He simply did not feel it, until he did.<br>SOCRATES: So the loss revealed something that was always true.<br>MINGYUR RINPOCHE: Yes. Which does not make it easier. But it does change the nature of the work. The work is not to restore an illusion. The work is to find a steadier ground than the illusion ever offered.<br>SOCRATES: And where is that ground?<br>MINGYUR RINPOCHE: In the awareness that is watching the anxiety right now. Not in the future. Never in the future.</div>
+      <div class='dialogue-attr'>— In the spirit of the Tibetan Buddhist and Socratic traditions in dialogue</div>
+    </details>
+    <details class="acc-section acc-practice">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-anxiety">Anxiety &amp; Uncertainty</span>
+        Practice <span class="method-badge method-transforming">Transforming</span>
+      </div>
+      <div class="practice-text">Sit or stand, feet firmly on the floor. Place one hand on the belly, one on the chest. Notice exactly where the financial anxiety lives — the chest, the throat, the stomach — and breathe into that place three times, slowly. Do not try to fix it. Then silently say: 'This is the body doing its job. It is afraid because it loves being alive.' Thank it. Now, with the body steadier, take one concrete, ten-minute action toward your livelihood — send one email, update one line of the resume, call one person. Action from steadiness, not from panic. This is transforming anxiety: the energy that was tightening becomes the energy that moves.</div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> All-Accomplishing Wisdom</div>
+    </details>
+    <details class="acc-section acc-lens">
+      <summary class="acc-summary acc-sum-amber">💛 Bodhichitta View &nbsp;·&nbsp; <span class='lens-tradition'>Mahayana Buddhist</span></summary>
+      <div class="lens-text acc-lens-text">The bodhisattva does not have the luxury of treating unemployment as someone else's problem. The ten percent of young people who cannot find work are inside the vow. The single mother updating her resume at midnight is inside the vow. The laid-off engineer ashamed to tell his parents is inside the vow. Your practice today, if you have a job, includes them. Your practice today, if you do not, includes every other person who does not. Bodhichitta does not require that you solve the labour market. It requires that you refuse to let the anxiety isolate you inside your own household. Widen. Someone you know is afraid about work right now and has not told you. Ask them. That small act is the vow walking into the economy.</div>
+      <div class='lens-attr'>— Bodhichitta view: the vow walks into the labour market</div>
+    </details>
+  </div>
+
+  <div class="closing">
+    <div class="closing-text">The awareness that reads this has never been born and will never die.<br>
+      Practice is not for when conditions are good.<br>
+      Practice is the recognition, again and again, in conditions exactly like these.<br>
+      </div>
+    <span class="mantra-tibetan">ཨོཾ་མ་ཎི་པདྨེ་ཧཱུྃ</span>
+    <span class="mantra">May all beings be happy · May all beings be safe · May all beings be free</span>
+    <div class="mantra-note">Om Mani Padme Hum — compassion and wisdom, inseparable</div>
+  </div>
+
+</div>
+</body>
+</html>

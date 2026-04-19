@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Awakened Observer — Friday, April 17, 2026 (Reader)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold-pale:#FDF5DC; --gold-mid:#E8A020; --gold-dark:#6B3E08;
+    --teal-pale:#E1F5EE; --teal-strong:#5DCAA5; --teal-deep:#1D9E75; --teal-dark:#085041;
+    --blue-pale:#E6F1FB; --blue-mid:#378ADD; --blue-dark:#0C447C;
+    --coral-pale:#FAECE7; --coral-dark:#712B13;
+    --purple-pale:#EEEDFE; --purple-dark:#3C3489;
+    --amber-pale:#FAEEDA; --amber-dark:#633806;
+    --rose-pale:#FEF0F4; --rose-mid:#E8688A; --rose-dark:#7A1A35;
+    --green-pale:#EAF3DE; --green-dark:#27500A;
+    --gray-bg:#F5F3EE; --gray-card:#FDFAF0; --gray-surface:#EDEADC;
+    --border:rgba(50,45,35,0.10);
+    --text-1:#1A1714; --text-2:#5A5030; --text-3:#9A9070;
+    --sidebar-w:260px;
+  }
+  @media(prefers-color-scheme:dark){
+    :root{
+      --gold-pale:#261A04; --gray-bg:#131109; --gray-card:#1A1608;
+      --gray-surface:#211C0A; --border:rgba(240,200,80,0.08);
+      --text-1:#F8F0D0; --text-2:#B0A870; --text-3:#706840;
+      --blue-pale:#0D1E30;
+    }
+  }
+  body { font-family:'DM Sans',sans-serif; background:var(--gray-bg);
+          color:var(--text-1); min-height:100vh; }
+
+  /* ── Top masthead bar ─────────────────────────────────────────── */
+  .reader-header {
+    background:var(--gray-card); border-bottom:0.5px solid var(--border);
+    padding:.9rem 1.5rem; display:flex; align-items:center; gap:1rem;
+    position:sticky; top:0; z-index:100;
+  }
+  .reader-header::before { content:''; position:absolute; top:0; left:0; right:0;
+    height:2px; background:linear-gradient(90deg, transparent, #B83030, #E8A020, #1A3A80, transparent); }
+  .reader-lotus { flex-shrink:0; }
+  .reader-title { font-family:'Cormorant Garamond',serif; font-size:22px;
+    font-weight:500; line-height:1.1; }
+  .reader-meta { font-size:11px; color:var(--text-3); letter-spacing:.05em; }
+  .reader-edition-badge { display:inline-block; background:var(--gold-pale);
+    color:var(--gold-dark); font-size:9px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; padding:3px 10px; border-radius:20px; margin-top:.3rem;
+    border:0.5px solid rgba(232,160,32,0.25); }
+
+  /* ── Two-panel layout ─────────────────────────────────────────── */
+  .reader-layout {
+    display:flex; min-height:calc(100vh - 58px);
+  }
+
+  /* ── Left sidebar ─────────────────────────────────────────────── */
+  .reader-sidebar {
+    width:var(--sidebar-w); flex-shrink:0;
+    background:var(--gray-surface); border-right:0.5px solid var(--border);
+    padding:1.25rem .75rem 3rem;
+    position:sticky; top:58px; height:calc(100vh - 58px);
+    overflow-y:auto;
+  }
+  .reader-sidebar-title { font-size:9px; font-weight:500; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--text-3); padding:0 .5rem .75rem;
+    border-bottom:0.5px solid var(--border); margin-bottom:.75rem; }
+  .reader-nav-item {
+    display:block; width:100%; text-align:left; background:none;
+    border:none; border-radius:10px; padding:.7rem .75rem;
+    cursor:pointer; transition:background .15s;
+    margin-bottom:.3rem;
+  }
+  .reader-nav-item:hover { background:rgba(50,45,35,0.06); }
+  .reader-nav-active { background:var(--gray-card) !important;
+    box-shadow:0 1px 4px rgba(0,0,0,0.08); }
+  .rn-tag { display:block; font-size:9px; font-weight:500; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--text-3); margin-bottom:.25rem; }
+  .rn-headline { display:block; font-family:'Cormorant Garamond',serif;
+    font-size:15px; font-weight:500; color:var(--text-1); line-height:1.3;
+    margin-bottom:.4rem; }
+  .rn-klesha { font-size:8px; }
+
+  /* ── Main content area ────────────────────────────────────────── */
+  .reader-main {
+    flex:1; min-width:0; padding:2rem 2.5rem 4rem;
+    overflow-y:auto; max-width:660px;
+  }
+
+  /* Story card within reader — strip card chrome, render flat */
+  .reader-story {
+    background:none; border:none; border-radius:0; padding:0; margin:0;
+    overflow:visible;
+  }
+  .reader-story .story-tag { margin-bottom:.75rem; }
+  .reader-story .story-headline { font-size:28px; line-height:1.2; margin-bottom:1rem; }
+  .reader-story .story-fact { font-size:15px; padding-bottom:1.25rem; }
+
+  /* Preserve block styling inside flat card */
+  .reader-story .dialogue-block,
+  .reader-story .practice-block,
+  .reader-story .lens-block {
+    margin:0 -2.5rem;
+    padding:1.1rem 2.5rem 1.35rem;
+  }
+
+  /* ── Opening and closing panels ──────────────────────────────── */
+  .reader-opening {
+    background:var(--gold-pale); border-left:2.5px solid var(--gold-mid);
+    border-radius:0 10px 10px 0; padding:1.25rem 1.6rem; margin-bottom:2rem;
+    font-family:'Cormorant Garamond',serif; font-size:18px; font-style:italic;
+    color:var(--text-2); line-height:1.8; display:none;
+  }
+  .reader-closing {
+    text-align:center; padding:2.5rem 1rem 1rem;
+    border-top:0.5px solid var(--border); margin-top:2rem; display:none;
+  }
+  .closing-text { font-family:'Cormorant Garamond',serif; font-size:19px;
+    font-style:italic; color:var(--text-2); line-height:2.1; margin-bottom:1.6rem; }
+  .mantra-tibetan { font-size:22px; color:var(--gold-mid); letter-spacing:.07em;
+    display:block; margin-bottom:.6rem; }
+  .mantra { font-size:11px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--teal-deep); display:block; margin-bottom:.5rem; }
+  .mantra-note { font-size:12px; color:var(--text-3); font-style:italic;
+    font-family:'Cormorant Garamond',serif; }
+
+  /* Shared card styling (copied from web view for blocks inside reader) */
+  .story-tag { display:inline-block; font-size:10px; font-weight:500;
+    letter-spacing:.08em; text-transform:uppercase; padding:3px 11px;
+    border-radius:20px; margin-bottom:.95rem; }
+  .tag-conflict {background:var(--coral-pale);color:var(--coral-dark);}
+  .tag-peace    {background:var(--teal-pale); color:var(--teal-dark);}
+  .tag-grief    {background:var(--amber-pale);color:var(--amber-dark);}
+  .tag-joy      {background:var(--blue-pale); color:var(--blue-dark);}
+  .tag-science  {background:var(--purple-pale);color:var(--purple-dark);}
+  .tag-nature   {background:var(--green-pale);color:var(--green-dark);}
+  .tag-politics {background:#FBEAF0;color:#72243E;}
+  .tag-economy  {background:var(--amber-pale);color:var(--amber-dark);}
+  .tag-culture  {background:var(--teal-pale); color:var(--teal-dark);}
+  .tag-human    {background:var(--gray-surface);color:#5F5E5A;}
+  .tag-death    {background:#FCEBEB;color:#791F1F;}
+  .tag-renewal  {background:var(--teal-pale); color:var(--teal-dark);}
+  .story-what { font-size:10px; font-weight:500; text-transform:uppercase;
+    letter-spacing:.10em; color:var(--text-3); margin-bottom:.35rem; }
+  .story-headline { font-family:'Cormorant Garamond',serif; font-size:23px;
+    font-weight:500; color:var(--text-1); line-height:1.32; margin-bottom:.9rem; }
+  .story-fact { font-size:14px; color:var(--text-2); line-height:1.8; padding-bottom:1.1rem; }
+  .story-source { font-size:11.5px; color:var(--text-3); padding:.4rem 0 .85rem;
+    border-top:0.5px dashed var(--border); margin-top:.2rem; }
+  .story-source a { color:var(--text-3); text-decoration:none;
+    border-bottom:0.5px solid var(--border); }
+  .story-source a:hover { color:var(--teal-deep); }
+  .teaching-divider { display:flex; align-items:center; gap:10px;
+    margin:0 0 1rem; padding-top:1.1rem; border-top:0.5px solid var(--border); }
+  .teaching-divider::after { content:''; flex:1; height:0.5px; background:var(--border); }
+  .teaching-divider span { font-size:13px; color:var(--teal-strong); flex-shrink:0; }
+  .story-teaching { font-family:'Cormorant Garamond',serif; font-size:17.5px;
+    font-style:italic; color:var(--text-1); line-height:1.85; padding-bottom:.6rem; }
+  .story-teaching p { margin-bottom:.7em; }
+  .story-teaching p:last-child { margin-bottom:0; }
+  .teaching-attr { font-size:11px; color:var(--text-3); padding-bottom:1.1rem; }
+  .dialogue-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.25rem; margin:0 -1.65rem; background:var(--blue-pale); }
+  .dialogue-header { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--blue-dark); margin-bottom:.75rem; }
+  .dialogue-tradition { font-weight:400; font-style:italic; letter-spacing:0;
+    text-transform:none; color:var(--text-3); }
+  .dialogue-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .dialogue-text p { margin-bottom:.7em; }
+  .dialogue-text p:last-child { margin-bottom:0; }
+  .dialogue-framing { font-size:11px; color:var(--blue-dark); opacity:.65;
+    font-style:italic; margin-bottom:.65rem; }
+  .dialogue-attr { font-size:11px; color:var(--text-3); padding-bottom:.2rem; }
+  .practice-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.4rem; margin:0 -1.65rem; background:var(--teal-pale); }
+  .practice-label { font-size:10px; font-weight:500; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--teal-dark); margin-bottom:.6rem;
+    display:flex; align-items:center; gap:8px; }
+  .klesha-tag { font-size:9px; font-weight:600; letter-spacing:.06em;
+    text-transform:uppercase; padding:2px 8px; border-radius:10px;
+    color:#fff; flex-shrink:0; }
+  .klesha-anger      {background:#C0392B;} .klesha-grief      {background:#7F8C8D;}
+  .klesha-anxiety    {background:#D4AC0D;} .klesha-helplessness{background:#8E44AD;}
+  .klesha-wonder     {background:#2E86C1;} .klesha-hope       {background:#1D8348;}
+  .klesha-confusion  {background:#D35400;} .klesha-compassion {background:#CB4335;}
+  .practice-text { font-size:13.5px; color:var(--teal-dark);
+    line-height:1.8; font-style:italic; }
+  .practice-text p { margin-bottom:.75em; }
+  .practice-text p:last-child { margin-bottom:0; }
+  .wisdom-line { font-size:10.5px; color:var(--teal-deep); font-style:italic;
+    margin-top:.55rem; padding-top:.45rem;
+    border-top:0.5px solid rgba(29,158,117,0.2); }
+  .wisdom-label { font-weight:600; font-style:normal; }
+  .method-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.07em; text-transform:uppercase; padding:2px 8px;
+    border-radius:10px; margin-left:auto; flex-shrink:0; }
+  .method-abandoning  { background:#E8E8E8; color:#4A4A4A; }
+  .method-transforming { background:#FEF3C7; color:#92400E; }
+  .method-transcending { background:var(--gold-pale); color:var(--gold-dark);
+    border:0.5px solid rgba(232,160,32,0.3); }
+  .lens-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.35rem; margin:0 -1.65rem; background:var(--amber-pale); }
+  .lens-header { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--amber-dark); margin-bottom:.75rem; }
+  .lens-tradition { font-weight:400; font-style:italic; letter-spacing:0;
+    text-transform:none; color:var(--text-3); }
+  .lens-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .lens-text p { margin-bottom:.75em; }
+  .lens-text p:last-child { margin-bottom:0; }
+  .lens-attr { font-size:11px; color:var(--text-3); padding-bottom:.2rem; }
+  .underreported-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.09em; text-transform:uppercase; padding:2px 9px; border-radius:20px;
+    background:var(--green-pale); color:var(--green-dark); margin-left:6px;
+    border:0.5px solid rgba(39,80,10,0.18); vertical-align:middle; }
+
+  /* Tradition quote block (reader inherits from web card styles) */
+  .quote-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.3rem; margin:0 -1.65rem;
+    background:var(--purple-pale); position:relative; }
+  .quote-mark { font-family:'Cormorant Garamond',serif; font-size:52px;
+    line-height:.7; color:var(--purple-dark); opacity:0.18;
+    margin-bottom:-.25rem; user-select:none; }
+  .quote-text { font-family:'Cormorant Garamond',serif; font-size:17.5px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.55rem; }
+  .quote-text p { margin-bottom:.7em; }
+  .quote-text p:last-child { margin-bottom:0; }
+  .quote-attr { font-size:11px; color:var(--text-3); margin-bottom:.55rem; }
+  .quote-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.08em; text-transform:uppercase; padding:2px 8px; border-radius:10px; }
+  .quote-badge-exact { background:var(--green-pale); color:var(--green-dark);
+    border:0.5px solid rgba(39,80,10,0.18); }
+  .quote-badge-paraphrase { background:var(--gray-surface); color:var(--text-2);
+    border:0.5px solid var(--border); }
+
+  /* Responsive: narrow screens */
+  @media(max-width:700px){
+    .reader-layout { flex-direction:column; }
+    .reader-sidebar { width:100%; height:auto; position:static;
+      border-right:none; border-bottom:0.5px solid var(--border);
+      padding:1rem .75rem; overflow-x:auto; white-space:nowrap;
+      display:flex; gap:.5rem; flex-wrap:nowrap; }
+    .reader-sidebar-title { display:none; }
+    .reader-nav-item { display:inline-flex; flex-direction:column;
+      width:160px; white-space:normal; flex-shrink:0; }
+    .reader-main { padding:1.5rem 1.25rem 3rem; }
+    .reader-story .dialogue-block,
+    .reader-story .practice-block,
+    .reader-story .lens-block { margin:0 -1.25rem; padding:1.1rem 1.25rem 1.35rem; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Sticky header bar -->
+  <header class="reader-header">
+    <svg class="reader-lotus" width="36" height="32" viewBox="0 0 60 52" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="30" cy="42" rx="10" ry="5" fill="#9FE1CB" opacity="0.38"/>
+      <path d="M30 38 Q21 24 16 9 Q24 22 30 26 Q36 22 44 9 Q39 24 30 38Z" fill="#5DCAA5" opacity="0.88"/>
+      <path d="M30 38 Q13 30 5 19 Q17 27 30 32Z" fill="#9FE1CB" opacity="0.9"/>
+      <path d="M30 38 Q47 30 55 19 Q43 27 30 32Z" fill="#9FE1CB" opacity="0.9"/>
+      <circle cx="30" cy="26" r="5" fill="#F7E28A" opacity="0.9"/>
+      <circle cx="30" cy="26" r="2.8" fill="#E8A020"/>
+    </svg>
+    <div>
+      <div class="reader-title">The Awakened Observer</div>
+      <div class="reader-meta">Issue No. 8  ·  Friday, April 17, 2026</div>
+    <div class="reader-edition-badge">Vajrayana Edition</div>
+    </div>
+  </header>
+
+  <div class="reader-layout">
+
+    <!-- Left sidebar -->
+    <nav class="reader-sidebar">
+      <div class="reader-sidebar-title">Stories</div>
+      <button class="reader-nav-item reader-nav-active" data-story="1" onclick="showStory(1)">
+        <span class="rn-tag">Conflict &amp; Impermanence</span>
+        <span class="rn-headline">House Rejects Resolution to Withdraw US Forces from Iran War</span>
+        <span class="klesha-tag klesha-anger rn-klesha">Anger &amp; Aversion</span>
+      </button>
+      <button class="reader-nav-item" data-story="2" onclick="showStory(2)">
+        <span class="rn-tag">The Human Inside the Headline</span>
+        <span class="rn-headline">DNA Study Reveals Relationships in South Korean Three Kingdoms–Era Graves</span>
+        <span class="klesha-tag klesha-compassion rn-klesha">Compassion &amp; Care</span>
+      </button>
+      <button class="reader-nav-item" data-story="3" onclick="showStory(3)">
+        <span class="rn-tag">Power &amp; Collective Karma</span>
+        <span class="rn-headline">Federal Judge Blocks White House Ballroom Construction After Trump Railed Against Decision</span>
+        <span class="klesha-tag klesha-helplessness rn-klesha">Helplessness &amp; Overwhelm</span>
+      </button>
+      <button class="reader-nav-item" data-story="4" onclick="showStory(4)">
+        <span class="rn-tag">Nature &amp; Renewal</span>
+        <span class="rn-headline">Retired Cranberry Bog Transformed into Thriving Wetland Ecosystem in Massachusetts</span>
+        <span class="klesha-tag klesha-wonder rn-klesha">Wonder &amp; Awe</span>
+      </button>
+      <button class="reader-nav-item" data-story="5" onclick="showStory(5)">
+        <span class="rn-tag">Wonder &amp; Discovery</span>
+        <span class="rn-headline">Black Hole Wakes After 100 Million Years and Erupts Like a Cosmic Volcano</span>
+        <span class="klesha-tag klesha-wonder rn-klesha">Wonder &amp; Awe</span>
+      </button>
+      <button class="reader-nav-item" data-story="6" onclick="showStory(6)">
+        <span class="rn-tag">Renewal &amp; Transformation</span>
+        <span class="rn-headline">Space Junk Cleanup Tech Gets US Patent for Shepherding Debris into Earth's Atmosphere</span>
+        <span class="klesha-tag klesha-hope rn-klesha">Hope &amp; Renewal</span>
+      </button>
+      <button class="reader-nav-item" data-story="7" onclick="showStory(7)">
+        <span class="rn-tag">Culture &amp; Meaning</span>
+        <span class="rn-headline">Sacred Water Complex Unearthed in North Sinai, Revealing Ancient Practices</span>
+        <span class="klesha-tag klesha-confusion rn-klesha">Confusion &amp; Complexity</span>
+      </button>
+      <button class="reader-nav-item" style="margin-top:.75rem;border-top:0.5px solid var(--border);padding-top:1rem" onclick="showOpening()">
+        <span class="rn-tag">Opening</span>
+        <span class="rn-headline" style="font-size:13px;font-family:'DM Sans',sans-serif">Opening &amp; Closing</span>
+      </button>
+    </nav>
+
+    <!-- Right content panel -->
+    <main class="reader-main" id="reader-main">
+
+      <!-- Opening (hidden until selected) -->
+      <div class="reader-opening" id="reader-opening">
+        Whatever appears in awareness is the natural radiance of mind. Engage with the world from that recognition — without holding on, without pushing away.
+
+      </div>
+
+
+  <details class="klesha-guide">
+    <summary class="guide-summary">
+      <span class="guide-eyebrow">Working with this edition</span>
+      <span class="guide-title-row">
+        <span class="guide-klesha-badge" style="background:#FEE2E2;color:#991B1B">Anger</span>
+        <span class="guide-arrow">→</span>
+        <span class="guide-wisdom">Mirror-like Wisdom</span>
+      </span>
+      <span class="guide-summary-hint">Tap to expand practice guidance</span>
+    </summary>
+
+    <div class="guide-intro">
+      <div class="guide-block">
+        <div class="guide-block-label">The klesha</div>
+        <div class="guide-block-text"><p>Anger manifests as a fiery surge of energy, often accompanied by a narrowing of mental focus and a strong impulse to push away or destroy. In the body, it can feel like heat, tension, and a constricting pressure in the chest or jaw, while the mind fixates intensely on a perceived threat or injustice.</p></div>
+      </div>
+      <div class="guide-block">
+        <div class="guide-block-label">The wisdom it reveals</div>
+        <div class="guide-block-text"><p>Mirror-like Wisdom is the pristine, unbiased clarity that reflects all phenomena exactly as they are, without distortion or judgment. It reveals the empty, luminous nature of what we perceive, allowing us to see the raw energy of anger without grasping its content or mistaking it for a solid 'self' or 'other.' This wisdom brings a spacious, open awareness that reflects everything, yet remains untouched.</p></div>
+      </div>
+    </div>
+
+    <div class="guide-methods-label">How to work with it</div>
+    
+    <div class="guide-method" style="background:#F8F8F8;border-left:3px solid #6B7280">
+      <div class="guide-method-header">
+        <span class="guide-method-label" style="color:#6B7280">Abandoning</span>
+        <span class="guide-method-sub">Apply the antidote — reduce and release</span>
+      </div>
+      <div class="guide-method-lead">To work with anger through abandoning: When anger stirs, perhaps after reading about the 'House Rejects Resolution to Withdraw US Forces from Iran War,' notice the very first flicker of shenpa—that tightening, that heat. Don't immediately engage with the story or the object of your anger. Instead, bring your attention gently to the most prominent physical sensation of anger in your body: perhaps a clenching in the jaw, a burning in the stomach, or tension in the shoulders. Breathe into that sensation. Imagine, with each out-breath, that you are softening around it, creating space. For a few minutes, simply allow the energy to be there, without judgment, while consciously releasing any associated tension. You can use a simple shamatha technique, returning your attention to the breath as an anchor whenever the mind gets caught in the narrative of anger. Conclude by dedicating any spaciousness or relief you’ve found to all beings caught in the grip of anger, wishing them ease.</div>
+      <div class="guide-method-text"></div>
+    </div>
+    
+    <div class="guide-method" style="background:#FAEEDA;border-left:3px solid #633806">
+      <div class="guide-method-header">
+        <span class="guide-method-label" style="color:#633806">Transforming</span>
+        <span class="guide-method-sub">Use the energy as fuel — redirect toward wisdom</span>
+      </div>
+      <div class="guide-method-lead">To work with anger through transformation: When anger arises, instead of pushing it away or getting lost in its story, try to feel its raw energy directly. Recognize that this intense, potent force—the tsal—is not inherently negative; it's simply dynamic energy. Like the fierce determination needed to create 'Space Junk Cleanup Tech' or to transform a 'Retired Cranberry Bog' into a thriving ecosystem, anger holds immense power. Without identifying with its narrative, lean into the sensation of that power. Feel the heat, the intensity, the drive. Now, consciously redirect this energy. Can you transform the heat of anger into the warmth of fierce compassion for those suffering injustice? Can the impulse to push away become a powerful resolve to protect the vulnerable or to work for peace, perhaps in the context of political conflict? Visualize this potent energy expanding from your heart, not as aggression, but as an unwavering, protective bodhichitta. Hold this intention for five minutes, allowing the energy to flow outward, for the benefit of all beings.</div>
+      <div class="guide-method-text"></div>
+    </div>
+    
+    <div class="guide-method" style="background:#FDF5DC;border-left:3px solid #6B3E08">
+      <div class="guide-method-header">
+        <span class="guide-method-label" style="color:#6B3E08">Transcending</span>
+        <span class="guide-method-sub">Look directly — allow self-liberation</span>
+      </div>
+      <div class="guide-method-lead">To work with anger through transcendence: When anger erupts, like a 'Cosmic Volcano' from a 'Black Hole Wakes After 100 Million Years,' pause your reaction. Instead of getting caught in the story or trying to change the feeling, turn the gaze of your awareness directly onto the anger itself. Ask, 'Where is this anger? What is its essence? Is it solid? Does it have a color, a shape, a location?' Look for a solid, independent entity called 'anger' within your mind or body. As you look, you'll find that anger, like all phenomena, is not a fixed, concrete thing. It arises from causes and conditions, manifests dynamically, and then dissolves back into the vastness of awareness. Recognize its insubstantiality, its empty nature (sunyata). Rest in the open, clear awareness—rigpa—that recognizes anger's arising and dissolving without effort. Allow the anger to self-liberate (rang grol), dissolving naturally back into the dharmakaya of your own mind, leaving no trace behind. Simply rest in that open, luminous space for a few moments.</div>
+      <div class="guide-method-text"></div>
+    </div>
+  </details>
+
+
+  <!-- Story 1 -->
+  <div class="story reader-story" id="rs-1">
+    <span class="story-tag tag-conflict">Conflict & Impermanence</span>
+    <div class="story-headline">House Rejects Resolution to Withdraw US Forces from Iran War</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">On April 16, 2026, the U.S. House of Representatives voted on a war powers resolution aimed at requiring President Trump to withdraw U.S. forces from hostilities against Iran unless Congress formally authorized military action. The resolution, introduced by Democratic Rep. Gregory Meeks, narrowly failed in a 213-214 vote. This outcome marks the latest instance where congressional efforts to limit the President's military authority in the ongoing Iran conflict have fallen short, largely due to Republican opposition.</div>
+    <div class="story-source"><a href="https://www.cbsnews.com/news/house-vote-trump-iran-war-resolution-fails-april-2026/" target="_blank" rel="noopener">CBS News ↗</a></div>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">The news of the House narrowly failing a resolution to withdraw from potential conflict with Iran can stir a potent klesha: anger. We feel it in our bodies, a tightening, a heat, a surge of &quot;this is wrong!&quot; or &quot;this is foolish!&quot; This isn't just an abstract political disappointment; it touches our deepest wish for peace, for sanity. But here’s the interesting part: this very energy of anger, this raw power, is not inherently negative. In the transforming method, we don't push it away or indulge it. Instead, we recognize its vibrant tsal (expressive energy) as an aspect of our own mind, a movement of consciousness. It arises, it stays, it dissolves. What if we could meet this anger, not with judgment, but with an open, curious awareness? It's like watching a storm from a safe place. The storm is powerful, but it doesn't define the sky. The sky remains vast, open, and clear. Can we see the anger, feel its intensity, and simultaneously rest in the spaciousness that holds it? This is the invitation.</div>
+      <div class='teaching-attr'>— In the spirit of Mingyur Rinpoche's teaching on Transforming Anger through Awareness</div>
+      <div class="quote-block"><div class="quote-mark">“</div><div class="quote-text">Recognizing the raw energy of kleshas as the very fabric of awakened mind is the path of liberation.</div><div class="quote-attr">Yongey Mingyur Rinpoche, Joyful Wisdom</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+      <div class="dialogue-block">
+        <div class="dialogue-header">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+        <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+        <div class="dialogue-text"><p>MINGYUR RINPOCHE: Ah, Socrates, this news of political discord and the lingering threat of conflict, it stirs quite a strong klesha, does it not? Many feel a surge of anger, a frustration with what seems like a repeating pattern of human folly.</p>
+      <p>SOCRATES: Indeed, Rinpoche. It seems humanity, despite its capacity for reason, often finds itself entangled in passions. But how does one contend with such a powerful emotion as anger, especially when it arises from what appears to be a clear injustice or a failure of wisdom in governance? Is it to be suppressed, or is there another way to confront this inner turmoil?</p>
+      <p>MINGYUR RINPOCHE: Suppression, dear Socrates, is like pushing a ball under water—it only resurfaces with greater force. And to indulge it is to become its slave. Our tradition speaks of *transforming* kleshas. Imagine anger not as an enemy, but as a wild horse. If you fight it, you'll be thrown. But if you learn to ride it, its power can become your own.</p>
+      <p>SOCRATES: A wild horse, you say? An intriguing metaphor. But how does one &quot;ride&quot; anger? It feels so potent, so overwhelming. My experience tells me that such emotions cloud judgment. Is there not a danger in engaging with such a forceful energy, lest it consume us?</p>
+      <p>MINGYUR RINPOCHE: The key is awareness, Socrates. When anger arises, instead of immediately reacting, pause. Feel its raw energy in your body – the heat, the tension. Don't label it &quot;good&quot; or &quot;bad.&quot; Simply be present with the sensation. This raw energy, this *tsal*, is not fundamentally separate from rigpa, from pure awareness. It's like a wave on the ocean. The wave is powerful, but it's still water, still ocean.</p>
+      <p>SOCRATES: So, the anger itself is not the problem, but rather our *identification* with it, our belief that we *are* the anger, rather than simply experiencing it as a phenomenon? This echoes my own inquiries into self-knowledge, that true understanding begins with observing the self without attachment.</p></div>
+        
+      </div>
+      <div class="practice-block">
+        <div class="practice-label">
+          <span class="klesha-tag klesha-anger">Anger &amp; Aversion</span>
+          Practice
+          <span class="method-badge method-transforming">Transforming</span>
+        </div>
+        <div class="practice-text">When you feel the heat of anger arise, pause. Sit upright, relax your shoulders, and bring your attention to your breath. Don't try to change the anger; simply feel its raw sensation in your body. Breathe into these sensations. As you breathe out, imagine releasing any story or judgment about the anger, allowing it to simply be a vivid energy. For a few minutes, just rest with the raw feeling, seeing it as a dynamic display of mind. Conclude by gently placing your hands over your heart and offering a silent wish for peace, for yourself and for all beings.</div>
+        <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Mirror-like Wisdom</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">👁️ Mahamudra View &nbsp;·&nbsp; <span class='lens-tradition'>Mahamudra / Vajrayana</span></div>
+        <div class="lens-text">From the mahamudra perspective, the political drama unfolding, the narrow vote, the surge of anger felt by many—all are simply vivid displays of mind, the unceasing dance of tsal. There is no external &quot;anger&quot; separate from the awareness that perceives it. This entire unfolding, with its tensions and aspirations, is not a deviation from rigpa, but its very expression. It is like the waves on the ocean: they arise, manifest with great force, and dissolve back into the water, never separate from the ocean itself. To cling to the idea of a solid &quot;problem&quot; or a solid &quot;anger&quot; is ma rigpa, a momentary obscuration. The ground of being remains untouched, open, and luminous, regardless of the forms that appear within it.</div>
+        <div class='lens-attr'>— Seeing the world as the radiant display of rigpa</div>
+      </div>
+  </div>
+
+  <!-- Story 2 -->
+  <div class="story reader-story" id="rs-2" style="display:none">
+    <span class="story-tag tag-human">The Human Inside the Headline</span>
+    <div class="story-headline">DNA Study Reveals Relationships in South Korean Three Kingdoms–Era Graves</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">An extensive DNA study conducted on burial sites from South Korea's Three Kingdoms era (c. 57 BCE – 668 CE) has shed light on the familial connections among the deceased. Published in Archaeology Magazine, the research utilizes genetic analysis to reconstruct kinship patterns, revealing aspects of ancient social organization and family structures. This scientific endeavor offers a deeper understanding of the relationships that existed within these historical communities. The findings contribute significantly to the anthropological and archaeological understanding of ancient Korean society.</div>
+    <div class="story-source"><a href="https://www.archaeology.org/news/4412-240410-korea-dna-graves" target="_blank" rel="noopener">Archaeology Magazine ↗</a></div>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">Isn't this fascinating? We look at these ancient graves, and suddenly, through science, we see family connections spanning centuries. It’s like a hidden thread woven through time, revealing how people were linked, even long, long ago. For us, this isn't just history; it's a profound teaching. It reminds us that no one exists in isolation. Every single being, from those in the Three Kingdoms era to ourselves right now, is part of an unimaginably vast web of relationships. Our lives are intertwined with countless others, not just physically or genetically, but through the continuous stream of mind and karma. When we truly grasp this interconnectedness, it naturally opens the heart. We see that the suffering of others is not separate from our own, and the joy of others is a reflection of our own potential for happiness. This understanding fosters genuine compassion, not as a duty, but as a recognition of our shared existence.</div>
+      <div class='teaching-attr'>— In the spirit of Mingyur Rinpoche's teaching on The Interconnectedness of All Beings</div>
+      <div class="quote-block"><div class="quote-mark">“</div><div class="quote-text">When we recognize the fundamental interconnectedness of all beings, compassion arises spontaneously, not as a choice, but as a natural expression of our shared existence.</div><div class="quote-attr">Mingyur Rinpoche, Joyful Wisdom</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+      <div class="dialogue-block">
+        <div class="dialogue-header">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+        <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+        <div class="dialogue-text">SOCRATES: This DNA study of ancient graves reveals connections, families, lineages. What does this tell us about the 'self'? Is the self, then, merely a collection of these inherited threads, these ancestral echoes?<br>MINGYUR RINPOCHE: The 'self' we cling to as solid is fluid, interconnected. These genetic links are like tiny streams feeding a vast river. The self is a continuity, a stream of consciousness, influenced by countless factors. But it is not *merely* that, nor does it possess an unchanging core. Like the river, it is constantly changing. What we find, instead, is open, clear awareness—rigpa—the ground from which all these connections and experiences, including the sense of 'self,' arise and play.<br>SOCRATES: If the self is a flowing stream, grounded in open awareness, how then should we live? Should we disregard these ancient threads, these familial connections, if they are but transient displays? Or do they still hold profound meaning for our conduct and understanding of our place in the world?<br>MINGYUR RINPOCHE: They hold immense meaning, Socrates. While ultimately transient, these connections are the very fabric of our relative existence. To disregard them ignores conditions shaping our present. Honoring their influence allows us to engage with compassion and wisdom, understanding our actions ripple through this vast, interconnected web. This deepens our appreciation for the display.</div>
+        
+      </div>
+      <div class="practice-block">
+        <div class="practice-label">
+          <span class="klesha-tag klesha-compassion">Compassion &amp; Care</span>
+          Practice
+          <span class="method-badge method-transforming">Transforming</span>
+        </div>
+        <div class="practice-text">For the next seven minutes, find a comfortable seated posture. Begin by gently resting your awareness on the sensation of your breath. As your mind settles, expand your awareness to include your immediate family, then your ancestors, visible or not. Feel the subtle threads connecting you. Then, extend this feeling of connection further, to all beings, past, present, and future, recognizing our shared human and sentient experience. As you finish, gently place your hands over your heart, acknowledging the compassion that naturally arises from this connection.</div>
+        <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> All-Accomplishing Wisdom</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">👁️ Mahamudra View &nbsp;·&nbsp; <span class='lens-tradition'>Mahamudra / Vajrayana</span></div>
+        <div class="lens-text">From the mahamudra perspective, this study of ancient familial connections reveals the unceasing tsal, the dynamic display of rigpa. What appears as 'relationships' and 'individuals' across millennia are simply luminous manifestations, arising and dissolving within the vast, non-dual expanse of mind itself. There is no inherent 'self' or 'other' in these genetic patterns; they are but the vibrant play of appearance, inseparable from the ground of being. This isn't to say these connections are meaningless, but rather that their ultimate nature is empty of inherent existence, yet radiantly clear in their manifestation. Recognizing this inherent emptiness and radiant clarity in all phenomena frees us from conceptual grasping and deepens our appreciation for the spontaneous perfection of everything that arises. It allows us to engage with the relative world—including our familial ties and social structures—without clinging, seeing them as the natural, unceasing dance of awareness itself, utterly perfect in their impermanence and interconnectedness.</div>
+        <div class='lens-attr'>— Viewing phenomena as the unceasing display of rigpa</div>
+      </div>
+  </div>
+
+  <!-- Story 3 -->
+  <div class="story reader-story" id="rs-3" style="display:none">
+    <span class="story-tag tag-politics">Power & Collective Karma</span>
+    <div class="story-headline">Federal Judge Blocks White House Ballroom Construction After Trump Railed Against Decision</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">On April 17, 2026, a federal judge issued a decision that continues to block the above-ground construction of a proposed $400 million White House ballroom. The ruling permits only below-ground work related to a bunker and other national security facilities at the site. This decision comes after a preservation group challenged the project, and President Trump publicly criticized the judicial intervention, which he argues stalls his plans.</div>
+    <div class="story-source"><a href="https://apnews.com/article/trump-white-house-ballroom-judge-blocks-construction-d44a1e9480a426177893798935c10657" target="_blank" rel="noopener">Associated Press ↗</a></div>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">The news of a federal judge blocking the White House ballroom construction, coming after presidential frustration, might evoke a feeling of helplessness in many. We see great power wielded, sometimes seemingly whimsically, and our own capacity to influence such events feels small, distant. This sense of powerlessness can be a heavy burden. However, from a compassionate perspective, this very feeling offers an opportunity. It reminds us of the vast web of pratityasamutpada (interdependent origination), where every action, every decision, every emotion, is linked. Even when we cannot directly alter large political outcomes, our inner state, our cultivation of peace and kindness, has an impact. We transcend helplessness not by denying the difficulty, but by recognizing our profound interconnectedness and our agency in cultivating a positive inner world, which inevitably radiates outward. Our true power lies in our intention, in our bodhichitta.</div>
+      <div class='teaching-attr'>— In the spirit of Dalai Lama's teaching on Cultivating Inner Agency Amidst Helplessness</div>
+      <div class="quote-block"><div class="quote-mark">“</div><div class="quote-text">My true religion is kindness.</div><div class="quote-attr">H.H. the 14th Dalai Lama, Public Teachings</div><span class="quote-badge quote-badge-exact">Exact quote</span></div>
+      <div class="dialogue-block">
+        <div class="dialogue-header">🙏 shantideva &nbsp;·&nbsp; <span class='dialogue-tradition'>Mahayana Buddhist — 8th century India</span></div>
+        <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+        <div class="dialogue-text"><p>DALAI LAMA: Ah, Shantideva, this news of a judge's decision regarding a grand construction project, and the strong reactions it elicits, reminds me of the many instances where individuals feel a profound sense of helplessness in the face of powerful forces. How often do people lament, &quot;What can *I* do?&quot;</p>
+      <p>SHANTIDEVA: Indeed, Your Holiness. The world often presents itself as a colossal stage where the actions of a few seem to dictate the fate of many, leaving the common person feeling like a mere spectator, buffeted by winds beyond their control. This feeling of helplessness can be a great obstacle to the arising of virtue and the cultivation of bodhichitta. Why exert oneself if one's efforts are but a drop in the ocean?</p>
+      <p>DALAI LAMA: A drop in the ocean, yes, but the ocean is made of drops! This feeling of helplessness, while natural, can be transcended. It is true we cannot always control external events, especially those on a grand political scale. But our deepest power lies not in controlling the external, but in transforming our internal landscape. Even in the face of perceived powerlessness, our mind remains our own, our capacity for compassion, unwavering.</p>
+      <p>SHANTIDEVA: This is the very essence of the Bodhisattva's path, is it not? To recognize that even if one cannot immediately alleviate all suffering, one can always cultivate the intention to do so. The *Bodhicharyavatara* speaks of transforming adverse circumstances into the path, turning even pain and frustration into fuel for compassion. But how does one convince a mind overwhelmed by such feelings to embrace this profound internal work?</p>
+      <p>DALAI LAMA: We remind ourselves of the vastness of pratityasamutpada, the interconnectedness of all phenomena. Every thought, word, and action, no matter how small, sends ripples through this interdependent web. If we cultivate peace, kindness, and bodhichitta within ourselves, that energy inevitably extends outward, in</p></div>
+        
+      </div>
+      <div class="practice-block">
+        <div class="practice-label">
+          <span class="klesha-tag klesha-helplessness">Helplessness &amp; Overwhelm</span>
+          Practice
+          <span class="method-badge method-transcending">Transcending</span>
+        </div>
+        <div class="practice-text">When feelings of helplessness arise, perhaps from this news or other global challenges, pause and gently bring your awareness to your heart. Close your eyes if comfortable. Visualize the situation that triggers your feeling of helplessness, perhaps the image of the White House or the broader political landscape. Now, breathe in all the heavy feelings of helplessness, frustration, and powerlessness from yourself and all others who feel them, allowing them to transform into clear, pure light in your heart. As you breathe out, send out feelings of calm, courage, and clear intention to yourself and to all beings, especially those in positions of power and those most affected by their decisions. Do this tonglen practice for five to seven minutes. End by resting in a sense of spacious compassion, knowing your intention contributes to the collective well-being.</div>
+        <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Dharmadhātu Wisdom</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">💛 Bodhichitta View &nbsp;·&nbsp; <span class='lens-tradition'>Mahayana Buddhist</span></div>
+        <div class="lens-text">From the bodhichitta view, the feeling of helplessness stirred by this news, or any other, is not a personal failing but a profound call to action. It is a moment to recognize the suffering of others—those who wield power, those affected by decisions, those who feel voiceless, and even those who feel frustrated by the perceived obstruction of their plans. This shared vulnerability becomes the very ground for compassion, a deep aspiration to alleviate suffering. We do not turn away from the disappointment or frustration; instead, we embrace it as fuel for our aspiration to liberate all beings from suffering. The judge's decision, the political leader's reaction—these are not merely external events but opportunities to extend our bodhichitta, to commit to generating peace, wisdom, and skillful means, even in the face of what seems insurmountable. Our work is to continually expand our heart's capacity, recognizing that true agency lies in our boundless intention for the benefit of all.</div>
+        <div class='lens-attr'>— Embracing the suffering of the world as the path of the bodhisattva</div>
+      </div>
+  </div>
+
+  <!-- Story 4 -->
+  <div class="story reader-story" id="rs-4" style="display:none">
+    <span class="story-tag tag-nature">Nature & Renewal</span>
+    <div class="story-headline">Retired Cranberry Bog Transformed into Thriving Wetland Ecosystem in Massachusetts</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">A retired cranberry bog in Massachusetts has undergone a significant ecological transformation, successfully converting into a flourishing wetland ecosystem. This restoration project, highlighted by the Daily Independent, demonstrates effective strategies for rehabilitating degraded natural habitats. The initiative is being lauded as a blueprint for future wetland restoration endeavors, proving that former agricultural lands can be returned to their natural state. The revitalized area now serves as a habitat for various species and contributes to the region's environmental health.</div>
+    <div class="story-source"><a href="https://www.yourvalley.net/daily-independent/stories/how-a-retired-cranberry-bog-helped-change-the-game-for-wetland-restoration,477109" target="_blank" rel="noopener">Daily Independent - YourValley.net ↗</a></div>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">This news of a retired cranberry bog becoming a thriving wetland is truly wonderful, isn't it? It shows us the immense resilience of nature and what is possible when human beings apply their intelligence and compassion. Sometimes, we may feel overwhelmed by the problems in the world, both environmental and social. But this story offers profound hope. It demonstrates that even a place once degraded can be restored to its natural beauty and function, becoming a home for many different forms of life. This inspires us to reflect on our universal responsibility. Just as we can heal the outer environment, we also have the capacity to transform our inner landscapes—our minds—from states of klesha and confusion into flourishing ecosystems of peace, wisdom, and compassion. Each act of restoration, whether external or internal, contributes to the well-being of all.</div>
+      <div class='teaching-attr'>— In the spirit of the Dalai Lama's teaching on Universal Responsibility and Ecological Restoration</div>
+      <div class="quote-block"><div class="quote-mark">“</div><div class="quote-text">Our ancestors have given us this planet, and if we are not taking care of it, we are destroying the future generations. This is a very serious problem. We have to take care of this planet. This is our only home. Our future depends on it.</div><div class="quote-attr">14th Dalai Lama, Public Address</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+      <div class="dialogue-block">
+        <div class="dialogue-header">🙏 shantideva &nbsp;·&nbsp; <span class='dialogue-tradition'>Mahayana Buddhist — 8th century India</span></div>
+        <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+        <div class="dialogue-text"><p>SHANTIDEVA: Venerable one, this news of a restored wetland brings a particular joy, does it not? It is a testament to the potential for beings to heal and to repair the damage wrought by heedlessness. Yet, my mind immediately turns to the vastness of suffering that remains. How can one act for the benefit of all, when the suffering is so immense, so pervasive?</p>
+      <p>DALAI LAMA: Indeed, Shantideva, it is a wonderful example of positive transformation. And your concern is precisely the heart of bodhichitta. We must not be discouraged by the immensity of suffering, but rather let it fuel our resolve. Even small actions, like restoring a bog, arise from a compassionate intention. When countless such intentions gather, they create powerful change. We begin with what is near, with what we can influence, and extend our aspiration to all beings. This is the essence of universal responsibility.</p>
+      <p>SHANTIDEVA: It is true that even a single drop can contribute to filling a great ocean. My teachings emphasize the cultivation of the paramitas (perfections), particularly diligent effort and patience, in the service of others. This bog's transformation reflects such diligence. But for the individual practitioner, how does one maintain this sustained effort without falling into despair or weariness, especially when the fruits of one's labor are not immediately apparent?</p>
+      <p>DALAI LAMA: That is a very important question. The key lies in developing a deep, stable compassion, rooted in wisdom. We cultivate the understanding that all beings desire happiness and freedom from suffering, just like ourselves. This creates a wellspring of inner strength. And when we encounter difficulties, we view them as opportunities to refine our practice, to strengthen our patience and perseverance. The transformation of the bog did not happen overnight; it required sustained effort over time. Similarly, our inner transformation, and our work for others, is a continuous process. We find joy in the process itself,</p></div>
+        
+      </div>
+      <div class="practice-block">
+        <div class="practice-label">
+          <span class="klesha-tag klesha-wonder">Wonder &amp; Awe</span>
+          Practice
+          <span class="method-badge method-transcending">Transcending</span>
+        </div>
+        <div class="practice-text">For ten minutes, sit comfortably and bring to mind the image of this thriving wetland. Feel a sense of gratitude for the effort and wisdom that made this transformation possible. Then, extend this gratitude outwards, to all efforts that heal and restore our planet. As you breathe, consciously take in the suffering and degradation of places and beings, and on the exhale, send out wishes for healing, restoration, and flourishing for all. Conclude by placing your palms together at your heart, offering a silent prayer for the well-being of Earth and all its inhabitants.</div>
+        <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Dharmadhātu Wisdom</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">💛 Bodhichitta View &nbsp;·&nbsp; <span class='lens-tradition'>Mahayana Buddhist</span></div>
+        <div class="lens-text">This transformation is a powerful echo of bodhichitta in action. Seeing a degraded bog become a thriving wetland reminds us that healing is possible, not just for ecosystems, but for all sentient beings. It strengthens our resolve to alleviate suffering and cultivate conditions for flourishing, demonstrating that even long-neglected places can burst forth with life when supported by intention and effort. This inspires us to generate profound aspiration for all beings' well-being, to see every act of restoration as an opportunity to actualize the bodhisattva's vow, bringing forth beauty and sustenance for all who depend on it.</div>
+        <div class='lens-attr'>Responding to suffering with active compassion and the bodhisattva vow</div>
+      </div>
+  </div>
+
+  <!-- Story 5 -->
+  <div class="story reader-story" id="rs-5" style="display:none">
+    <span class="story-tag tag-science">Wonder & Discovery</span>
+    <div class="story-headline">Black Hole Wakes After 100 Million Years and Erupts Like a Cosmic Volcano</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">Astronomers recently observed a supermassive black hole in galaxy J1007+3540 erupting after being dormant for around 100 million years. This event, described as a 'cosmic volcano,' was captured in deep space. The observation offers scientists new data on the behavior and dynamics of black holes within galaxies. This awakening provides valuable information for understanding galactic evolution and the life cycles of massive cosmic phenomena.</div>
+    <div class="story-source"><a href="https://www.sciencedaily.com/news/space_time/black_holes/" target="_blank" rel="noopener">ScienceDaily ↗</a></div>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">Wow! A black hole erupting after 100 million years. Isn't that incredible? This news from deep space is a powerful reminder of the vastness and dynamic energy of the universe. For us practitioners, it's not just a scientific event; it's a profound display of tsal, the unceasing, luminous energy of awareness itself. We see these immense, unimaginable forces, dormant for eons, then bursting forth. It's much like our own minds, isn't it? Sometimes quiet and still, sometimes erupting with kleshas or brilliant insights. The wonder we feel looking at this cosmic volcano is not separate from the nature of our own mind. It’s a glimpse into the boundless, vibrant emptiness that is the ground of all phenomena. We can transcend the mere concept of 'black hole' or 'eruption' and rest in the open, clear awareness that witnesses it all.</div>
+      <div class='teaching-attr'>— In the spirit of Mingyur Rinpoche's teaching on The Luminous Play of Emptiness and Form</div>
+      <div class="quote-block"><div class="quote-mark">“</div><div class="quote-text">All phenomena, whether the smallest particle or the vastest galaxy, are like clouds in the sky of our own mind. They arise, abide, and dissolve, yet the sky itself remains unstained and boundless.</div><div class="quote-attr">Mingyur Rinpoche, The Joy of Living</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+      <div class="dialogue-block">
+        <div class="dialogue-header">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+        <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+        <div class="dialogue-text">SOCRATES: Mingyur, this 'cosmic volcano' evokes profound awe. Is this awe merely a sensation, or does it point to something deeper about reality itself? MINGYUR RINPOCHE: Ah, Socrates, this wonder is a glimpse into the very nature of reality and our minds. When we witness such an event, our ordinary conceptual mind often pauses, allowing us to transcend usual categories and rest in the spaciousness of what is. This is yeshe, primordial wisdom, shining through. SOCRATES: So, the black hole's eruption is a catalyst for this insight, dissolving our usual concerns? But how can we sustain this insight when the wonder fades and the mind's chatter returns? MINGYUR RINPOCHE: It is a catalyst! And yes, the wonder can fade as shes pa (conceptual mind) takes over. This is where practice comes in. We don't cling to the 'wonder' as an object, but recognize the *space* in which it arises. That open awareness is always present, whether observing a black hole or washing dishes. The cosmic event simply makes it easier to notice that space. Through training, we can bring this spacious, non-conceptual awareness into every moment.</div>
+        
+      </div>
+      <div class="practice-block">
+        <div class="practice-label">
+          <span class="klesha-tag klesha-wonder">Wonder &amp; Awe</span>
+          Practice
+          <span class="method-badge method-transcending">Transcending</span>
+        </div>
+        <div class="practice-text">For five minutes, find a comfortable seat. Allow your eyes to remain gently open, gazing softly at whatever is in front of you without focusing too intently. Let your mind be as vast and open as the night sky. Observe any thoughts or sensations that arise as if they are distant cosmic events—like stars appearing and disappearing, or galaxies forming and dissolving. Do not cling to them, do not push them away. Simply let them be, resting in the spacious, luminous quality of awareness itself. When finished, take a deep breath and gently blink your eyes, returning your attention to the immediate environment. May this practice awaken boundless awareness for the benefit of all beings.</div>
+        <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Dharmadhātu Wisdom</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">✨ Pure Perception View &nbsp;·&nbsp; <span class='lens-tradition'>Vajrayana</span></div>
+        <div class="lens-text">To perceive a black hole's awakening as a 'cosmic volcano' is to touch the sacred. It's not just a scientific event, but a profound manifestation of the universe's inherent aliveness and dynamic potential. The very act of observing this immense power, dormant for eons and now erupting, reveals the luminous quality of all phenomena. It invites us to experience the world, not merely as objects, but as expressions of a vast, unceasing energy, inherently sacred and awe-inspiring. This perspective allows us to transcend ordinary perception and glimpse the buddha-nature inherent in all things, even the most violent cosmic display.</div>
+        <div class='lens-attr'>— Perceiving the inherent sacredness and luminous quality in all phenomena</div>
+      </div>
+  </div>
+
+  <!-- Story 6 -->
+  <div class="story reader-story" id="rs-6" style="display:none">
+    <span class="story-tag tag-renewal">Renewal & Transformation</span>
+    <div class="story-headline">Space Junk Cleanup Tech Gets US Patent for Shepherding Debris into Earth's Atmosphere</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">A technology intended to manage space debris has been granted a US patent. The system's purpose is to 'shepherd' space junk, guiding it into Earth's atmosphere for controlled disposal. This development is a response to the increasing accumulation of orbital debris, which poses a threat to operational satellites and space exploration endeavors. The patented solution seeks to reduce the hazards associated with space pollution.</div>
+    <div class="story-source"><a href="https://www.space.com/space-junk-cleanup-tech-us-patent" target="_blank" rel="noopener">Space.com ↗</a></div>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">This news about technology to clean up space junk is very encouraging, isn't it? It demonstrates the profound potential of human ingenuity when applied to collective problems. For us, this isn't just about satellites and debris; it offers a powerful metaphor. Just as we accumulate 'space junk' in orbit, we also accumulate 'mental junk'—our kleshas, our habitual patterns, our confusions—that can obstruct our inner clarity and peace. This technology inspires hope, showing that with clear intention, diligent effort, and skillful means, we can address complex challenges. It reminds us of our universal responsibility: to care for our shared environment, whether it is the Earth, space, or the inner world of our minds. When we work together with wisdom and compassion, great positive change is possible, for the benefit of all beings.</div>
+      <div class='teaching-attr'>— In the spirit of the Dalai Lama's teaching on Collective Responsibility and Skillful Means</div>
+      <div class="quote-block"><div class="quote-mark">“</div><div class="quote-text">Our prime purpose in this life is to help others. And if you can't help them, at least don't hurt them.</div><div class="quote-attr">14th Dalai Lama, The Art of Happiness</div><span class="quote-badge quote-badge-exact">Exact quote</span></div>
+      <div class="dialogue-block">
+        <div class="dialogue-header">🙏 shantideva &nbsp;·&nbsp; <span class='dialogue-tradition'>Mahayana Buddhist — 8th century India</span></div>
+        <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+        <div class="dialogue-text"><p>SHANTIDEVA: Venerable one, this patent for cleaning space debris is a fine example of skillful means. It addresses a real and growing problem. Yet, I wonder, is there not a danger that such efforts, however well-intentioned, distract us from the deeper, internal work of cleansing the mind of kleshas? For what good is a clean outer space if our inner world remains polluted by ignorance and attachment?</p>
+      <p>DALAI LAMA: Shantideva, your concern is profound and essential. Indeed, the inner work is paramount. However, these external efforts are not necessarily a distraction; they can be a reflection and an extension of our inner cultivation. When the mind is imbued with compassion and wisdom, our actions in the world naturally become beneficial. Removing space junk is an act of responsibility for a shared environment, preventing harm to others. This external act can strengthen our resolve to similarly 'cleanse' our minds. The two are not separate; they inform each other. Inner transformation fuels outer beneficial action, and outer action reinforces inner aspiration.</p>
+      <p>SHANTIDEVA: I see. So the application of wisdom and compassion, the paramita of skillful means (upaya), extends to all realms, from the most subtle mental defilement to the grossest physical pollution. The aspiration to prevent suffering, whether from orbiting debris or from kleshas, is the same. Yet, one might still question the ultimate efficacy of such temporal solutions in the face of samsara's endless cycles of creation and destruction.</p>
+      <p>DALAI LAMA: That is a wise observation. Ultimately, samsara is cyclical, and all phenomena are impermanent. But this does not negate the importance of skillful action. While we work towards ultimate liberation, we must also alleviate immediate suffering. Cleaning space junk, much like offering food to the hungry, is an act of compassion that reduces suffering in the present moment. It is like using a small broom to sweep a corner of a vast room; even if the room is never p</p></div>
+        
+      </div>
+      <div class="practice-block">
+        <div class="practice-label">
+          <span class="klesha-tag klesha-hope">Hope &amp; Renewal</span>
+          Practice
+          <span class="method-badge method-transforming">Transforming</span>
+        </div>
+        <div class="practice-text">For eight minutes, sit in a relaxed posture. Bring to mind the image of this space junk technology, appreciating the human capacity for problem-solving. Then, turn your attention inward. Identify one specific 'mental junk'—a habitual thought pattern, a klesha, or a subtle confusion—that you wish to clear. Without judgment, simply observe it. Then, visualize yourself skillfully 'shepherding' this mental debris, not with force, but with gentle, clear awareness, allowing it to dissolve into the vastness of your mind. Conclude by offering a wish that all beings may find the wisdom and skillful means to clear their own inner and outer obstacles.</div>
+        <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> All-Accomplishing Wisdom</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">👁️ Mahamudra View &nbsp;·&nbsp; <span class='lens-tradition'>Mahamudra / Vajrayana</span></div>
+        <div class="lens-text">From the mahamudra perspective, 'space junk' and the 'cleanup tech' are both arising within the luminous expanse of rigpa. It's like watching clouds form and dissipate in the sky of our awareness. The whole dance—the creation, accumulation, and then remediation of this debris—is simply the tsal, the dynamic display of mind itself. There's no inherent 'problem' or 'solution' out there, separate from the mind's conceptual framework. When we recognize this, even the effort to clean space becomes a spontaneous, unimpeded expression of awareness. It's not about fixing something fundamentally broken, but rather the natural unfolding of compassion and wisdom, free from grasping at a fixed reality of either 'junk' or 'cleanliness.' It's all the unceasing, perfect play of phenomena, a beautiful, sometimes messy, but always vibrant expression of what is. How wonderful to see this play unfold, even in orbit!</div>
+        <div class='lens-attr'>— Recognizing all phenomena as the dynamic display of rigpa</div>
+      </div>
+  </div>
+
+  <!-- Story 7 -->
+  <div class="story reader-story" id="rs-7" style="display:none">
+    <span class="story-tag tag-culture">Culture & Meaning</span>
+    <div class="story-headline">Sacred Water Complex Unearthed in North Sinai, Revealing Ancient Practices</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">A significant archaeological discovery in North Sinai, Egypt, has revealed an ancient sacred water complex. Reported by Archaeology Magazine, this site offers valuable insights into the spiritual and daily life of civilizations that inhabited the region millennia ago. The complex's design and artifacts suggest that water played a crucial role in their religious rituals and societal organization. This finding enriches our understanding of how ancient cultures perceived and interacted with natural elements, particularly water, in their sacred spaces.</div>
+    <div class="story-source"><a href="https://www.archaeology.org/news/4417-240413-egypt-sinai-water" target="_blank" rel="noopener">Archaeology Magazine ↗</a></div>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">This discovery of an ancient sacred water complex is very interesting, isn't it? For millennia, humans have imbued water with sacred qualities, constructing elaborate sites for ritual and devotion. It reflects a deep human need to connect with something vast, something meaningful. But sometimes, this leads to a subtle confusion: we project 'sacredness' onto an object, thinking the sacred quality resides *in* the water itself, rather than recognizing that sacredness is a quality of our own mind, of pure perception. When we get caught in this projection, we miss the true source. We can investigate this confusion. Is the water inherently sacred, or is our perception, our mind, making it so? The water is simply water. The sacredness is in the spacious, open awareness that perceives it. When we understand this, we can abandon the confusion of seeking the sacred 'out there' and recognize it as the luminous ground of our own experience.</div>
+      <div class='teaching-attr'>— In the spirit of Mingyur Rinpoche's teaching on The Sacred Beyond Concepts and Projections</div>
+      <div class="quote-block"><div class="quote-mark">“</div><div class="quote-text">The sacred is not found in objects or places, but in the luminous, open quality of mind itself. When we recognize this, everything becomes sacred.</div><div class="quote-attr">Mingyur Rinpoche, The Joy of Living</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+      <div class="dialogue-block">
+        <div class="dialogue-header">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+        <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+        <div class="dialogue-text"><p>SOCRATES: Mingyur, this discovery of ancient sacred water complexes raises a question: What makes something sacred? Is it the thing itself, the water, imbued with intrinsic divine essence? Or is it something we project onto it, a meaning we ascribe from our own minds?</p>
+      <p>MINGYUR RINPOCHE: Ah, Socrates, a profound inquiry! From the Buddhist view, sacredness is not an inherent quality of an external object. The water is simply water. Yet, through our minds and projections, we imbue elements with sacredness. Like beauty in a painting, it arises from the interaction between art and viewer's mind. It's a quality of our own awareness.</p>
+      <p>SOCRATES: If sacredness arises from our minds, then is it not a mere illusion? If not truly 'in' the water, is our reverence for these places and practices not ultimately groundless, a form of self-deception? Would it not be more truthful to acknowledge water as merely hydrogen and oxygen, nothing more?</p>
+      <p>MINGYUR RINPOCHE: Not an illusion, Socrates! While sacredness isn't inherently *in* the water, it isn't 'nothing.' It's a display of our mind's luminous, boundless nature. This shows our minds are active participants in creating reality. Recognizing sacredness arises from mind reveals the profound potential of our own awareness, a key to understanding kunzhi.</p></div>
+        
+      </div>
+      <div class="practice-block">
+        <div class="practice-label">
+          <span class="klesha-tag klesha-confusion">Confusion &amp; Complexity</span>
+          Practice
+          <span class="method-badge method-abandoning">Abandoning</span>
+        </div>
+        <div class="practice-text">For six minutes, sit comfortably with a glass of water in front of you. First, allow any thoughts or concepts about 'sacred water,' 'cleanliness,' 'thirst,' or 'ancient rituals' to arise and pass without judgment. Simply observe how your mind projects meanings onto the water. Then, gently abandon these conceptual overlays. Rest your attention on the raw sensory experience of the water itself: its color, its movement, its temperature (if you touch it). Allow the mind to simply perceive, without adding any story or label. Experience the water as it is, allowing sacredness to arise from open, non-conceptual awareness. May the clarity emerging from releasing conceptual confusion benefit all beings.</div>
+        <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Dharmadhātu Wisdom</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">💛 Bodhichitta View &nbsp;·&nbsp; <span class='lens-tradition'>Mahayana Buddhist</span></div>
+        <div class="lens-text">The discovery of ancient sacred water complexes highlights humanity's enduring connection to the elemental forces of life and our aspiration for deeper meaning. From the bodhichitta perspective, this reminds us that water, like all resources, is precious and essential for the well-being of all beings. Our confusion about its 'sacredness' can be abandoned when we simply recognize its vital role and cultivate the intention to protect and share it equitably, ensuring that all sentient beings have access to what sustains life. This moves us from conceptual attachment to active, compassionate engagement with the practical realities of existence.</div>
+        <div class='lens-attr'>— Cultivating universal responsibility for life's essentials and abandoning conceptual confusion</div>
+      </div>
+  </div>
+
+      <!-- Closing -->
+      <div class="reader-closing" id="reader-closing">
+        <div class="closing-text">The awareness that reads this has never been born and will never die.<br>
+        Practice is not for when conditions are good.<br>
+        Practice is the recognition, again and again, in conditions exactly like these.<br>
+        </div>
+        <span class="mantra-tibetan">ཨོཾ་མ་ཎི་པདྨེ་ཧཱུྃ</span>
+        <span class="mantra">May all beings be happy · May all beings be safe · May all beings be free</span>
+        <div class="mantra-note">Om Mani Padme Hum — compassion and wisdom, inseparable</div>
+      </div>
+
+    </main>
+  </div>
+
+<script>
+(function() {
+  var totalStories = 7;
+  var activeStory = 1;
+
+  function showStory(n) {
+    // Hide opening / closing
+    document.getElementById('reader-opening').style.display = 'none';
+    document.getElementById('reader-closing').style.display = 'none';
+    // Hide all stories
+    for (var i = 1; i <= totalStories; i++) {
+      var el = document.getElementById('rs-' + i);
+      if (el) el.style.display = 'none';
+    }
+    // Show target
+    var target = document.getElementById('rs-' + n);
+    if (target) target.style.display = '';
+    // Update nav active state
+    document.querySelectorAll('.reader-nav-item').forEach(function(btn) {
+      btn.classList.remove('reader-nav-active');
+      if (btn.dataset.story == n) btn.classList.add('reader-nav-active');
+    });
+    // Scroll main panel to top
+    document.getElementById('reader-main').scrollTop = 0;
+    activeStory = n;
+  }
+
+  function showOpening() {
+    // Hide all stories
+    for (var i = 1; i <= totalStories; i++) {
+      var el = document.getElementById('rs-' + i);
+      if (el) el.style.display = 'none';
+    }
+    document.getElementById('reader-opening').style.display = '';
+    document.getElementById('reader-closing').style.display = '';
+    document.querySelectorAll('.reader-nav-item').forEach(function(btn) {
+      btn.classList.remove('reader-nav-active');
+    });
+    document.getElementById('reader-main').scrollTop = 0;
+  }
+
+  // Expose globally
+  window.showStory = showStory;
+  window.showOpening = showOpening;
+})();
+</script>
+</body>
+</html>

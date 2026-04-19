@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Awakened Observer — Tuesday, April 14, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold-pale:#FDF5DC; --gold-mid:#E8A020; --gold-dark:#6B3E08;
+    --teal-pale:#E1F5EE; --teal-strong:#5DCAA5; --teal-deep:#1D9E75; --teal-dark:#085041;
+    --blue-pale:#E6F1FB; --blue-mid:#378ADD; --blue-dark:#0C447C;
+    --coral-pale:#FAECE7; --coral-dark:#712B13;
+    --purple-pale:#EEEDFE; --purple-dark:#3C3489;
+    --amber-pale:#FAEEDA; --amber-dark:#633806;
+    --green-pale:#EAF3DE; --green-dark:#27500A;
+    --gray-bg:#F5F3EE; --gray-card:#FDFAF0; --gray-surface:#EDEADC;
+    --border:rgba(50,45,35,0.10);
+    --text-1:#1A1714; --text-2:#5A5030; --text-3:#9A9070;
+  }
+  @media(prefers-color-scheme:dark){
+    :root{
+      --gold-pale:#261A04; --gray-bg:#131109; --gray-card:#1A1608;
+      --gray-surface:#211C0A; --border:rgba(240,200,80,0.08);
+      --text-1:#F8F0D0; --text-2:#B0A870; --text-3:#706840;
+      --blue-pale:#0D1E30;
+    }
+  }
+  body { font-family:'DM Sans',sans-serif; background:var(--gray-bg);
+          color:var(--text-1); min-height:100vh; padding:2rem 1rem 6rem; }
+  .page { max-width:680px; margin:0 auto; }
+
+  /* Masthead */
+  .masthead { text-align:center; padding:2.75rem 1rem 2.25rem;
+    border-bottom:0.5px solid var(--border); margin-bottom:2.25rem; position:relative; }
+  .masthead::before { content:''; position:absolute; top:0; left:50%;
+    transform:translateX(-50%); width:100px; height:2px; background:linear-gradient(90deg, transparent, #B83030, #E8A020, #1A3A80, transparent); }
+  .lotus { display:block; margin:0 auto 1.2rem; }
+  .date-line { font-size:11px; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--text-3); margin-bottom:.5rem; }
+  .masthead-title { font-family:'Cormorant Garamond',serif; font-size:42px;
+    font-weight:500; color:var(--text-1); line-height:1.05; margin-bottom:.25rem; }
+  .issue-line { font-size:11px; letter-spacing:.09em; color:var(--text-3); margin-bottom:.6rem; }
+  .masthead-rule { width:42px; height:1px; margin:.65rem auto;
+    background:linear-gradient(90deg,var(--teal-strong),var(--gold-mid)); }
+  .masthead-sub { font-family:'Cormorant Garamond',serif; font-size:18px;
+    font-style:italic; color:var(--text-2); line-height:1.4; }
+  .tradition-badge { display:inline-block; background:var(--gold-pale);
+    color:var(--gold-dark); font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; padding:4px 14px; border-radius:20px; margin-top:.85rem;
+    border:0.5px solid rgba(232,160,32,0.25); }
+
+  /* Opening */
+  .opening { background:var(--gold-pale); border-left:2.5px solid var(--gold-mid);
+    border-radius:0 10px 10px 0; padding:1.25rem 1.6rem; margin-bottom:.5rem;
+    font-family:'Cormorant Garamond',serif; font-size:19px; font-style:italic;
+    color:var(--text-2); line-height:1.8; }
+  .opening-instruction { font-family:'DM Sans',sans-serif; font-size:12px;
+    color:var(--text-3); padding:.5rem 1.6rem .85rem; margin-bottom:2rem;
+    background:var(--gold-pale); border-left:2.5px solid var(--gold-mid);
+    border-top:none; border-radius:0 0 10px 10px; }
+
+  /* At a Glance */
+  .glance { background:var(--gray-surface); border-radius:14px;
+    padding:1.2rem 1.5rem; margin-bottom:2.5rem; }
+  .glance-title { font-size:10px; font-weight:500; letter-spacing:.13em;
+    text-transform:uppercase; color:var(--text-3); margin-bottom:.85rem; }
+  .glance-list { display:flex; flex-direction:column; gap:.6rem; }
+  .glance-row { display:flex; align-items:flex-start; gap:11px; }
+  .g-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; margin-top:7px; }
+  .d-conflict {background:#D85A30;} .d-peace    {background:var(--teal-deep);}
+  .d-grief    {background:#B87016;} .d-joy      {background:#185FA5;}
+  .d-science  {background:#534AB7;} .d-nature   {background:#3B6D11;}
+  .d-politics {background:#993556;} .d-economy  {background:#854F0B;}
+  .d-culture  {background:#0F6E56;} .d-human    {background:#5F5E5A;}
+  .d-death    {background:#791F1F;} .d-renewal  {background:#1D9E75;}
+  .d-human-interest {background:#5F5E5A;}
+  .glance-text { font-size:13.5px; color:var(--text-2); line-height:1.6; }
+
+  /* Section label */
+  .section-label { font-size:10px; font-weight:500; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--text-3); display:flex;
+    align-items:center; gap:10px; margin-bottom:1.35rem; }
+  .section-label::after { content:''; flex:1; height:0.5px; background:var(--border); }
+
+  /* Story cards */
+  .story { background:var(--gray-card); border:0.5px solid var(--border);
+    border-radius:16px; padding:1.5rem 1.65rem 0; margin-bottom:1.35rem; overflow:hidden; }
+  .story-tag { display:inline-block; font-size:10px; font-weight:500;
+    letter-spacing:.08em; text-transform:uppercase; padding:3px 11px;
+    border-radius:20px; margin-bottom:.95rem; }
+  .tag-conflict {background:var(--coral-pale);color:var(--coral-dark);}
+  .tag-peace    {background:var(--teal-pale); color:var(--teal-dark);}
+  .tag-grief    {background:var(--amber-pale);color:var(--amber-dark);}
+  .tag-joy      {background:var(--blue-pale); color:var(--blue-dark);}
+  .tag-science  {background:var(--purple-pale);color:var(--purple-dark);}
+  .tag-nature   {background:var(--green-pale);color:var(--green-dark);}
+  .tag-politics {background:#FBEAF0;color:#72243E;}
+  .tag-economy  {background:var(--amber-pale);color:var(--amber-dark);}
+  .tag-culture  {background:var(--teal-pale); color:var(--teal-dark);}
+  .tag-human    {background:var(--gray-surface);color:#5F5E5A;}
+  .tag-death    {background:#FCEBEB;color:#791F1F;}
+  .tag-renewal  {background:var(--teal-pale); color:var(--teal-dark);}
+  .story-headline { font-family:'Cormorant Garamond',serif; font-size:23px;
+    font-weight:500; color:var(--text-1); line-height:1.32; margin-bottom:.9rem; }
+  .story-what { font-size:10px; font-weight:500; text-transform:uppercase;
+    letter-spacing:.10em; color:var(--text-3); margin-bottom:.35rem; }
+  .story-fact { font-size:14px; color:var(--text-2); line-height:1.8;
+    padding-bottom:1.1rem; }
+
+  /* Primary teaching */
+  .teaching-divider { display:flex; align-items:center; gap:10px;
+    margin:0 -1.65rem 1rem; padding:0 1.65rem;
+    border-top:0.5px solid var(--border); padding-top:1.1rem; }
+  .teaching-divider::after { content:''; flex:1; height:0.5px; background:var(--border); }
+  .teaching-divider span { font-size:13px; color:var(--teal-strong); flex-shrink:0; }
+  .story-teaching { font-family:'Cormorant Garamond',serif; font-size:17.5px;
+    font-style:italic; color:var(--text-1); line-height:1.85; padding-bottom:.6rem; }
+  .teaching-attr { font-size:11px; color:var(--text-3); padding-bottom:1.1rem; }
+
+  /* Dialogue block */
+  .dialogue-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.25rem; margin:0 -1.65rem;
+    background:var(--blue-pale); }
+  .dialogue-header { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--blue-dark); margin-bottom:.75rem; }
+  .dialogue-tradition { font-weight:400; font-style:italic; letter-spacing:0;
+    text-transform:none; color:var(--text-3); }
+  .dialogue-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .dialogue-attr { font-size:11px; color:var(--text-3); padding-bottom:.2rem; }
+
+  /* Practice block */
+  .practice-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.4rem; margin:0 -1.65rem;
+    background:var(--teal-pale); }
+  .practice-label { font-size:10px; font-weight:500; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--teal-dark); margin-bottom:.6rem;
+    display:flex; align-items:center; gap:8px; }
+  .klesha-tag { font-size:9px; font-weight:600; letter-spacing:.06em;
+    text-transform:uppercase; padding:2px 8px; border-radius:10px;
+    color:#fff; flex-shrink:0; }
+  .klesha-anger      {background:#C0392B;}
+  .klesha-grief      {background:#7F8C8D;}
+  .klesha-anxiety    {background:#D4AC0D;}
+  .klesha-helplessness{background:#8E44AD;}
+  .klesha-wonder     {background:#2E86C1;}
+  .klesha-hope       {background:#1D8348;}
+  .klesha-confusion  {background:#D35400;}
+  .klesha-compassion {background:#CB4335;}
+  .practice-text { font-size:13.5px; color:var(--teal-dark);
+    line-height:1.8; font-style:italic; }
+  .practice-text p { margin-bottom:.75em; }
+  .practice-text p:last-child { margin-bottom:0; }
+  .wisdom-line { font-size:10.5px; color:var(--teal-deep); font-style:italic;
+    margin-top:.55rem; padding-top:.45rem;
+    border-top:0.5px solid rgba(29,158,117,0.2); }
+  .wisdom-label { font-weight:600; font-style:normal; }
+  .method-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.07em; text-transform:uppercase; padding:2px 8px;
+    border-radius:10px; margin-left:auto; flex-shrink:0; }
+  .method-abandoning { background:#E8E8E8; color:#4A4A4A; }
+  .method-transforming { background:#FEF3C7; color:#92400E; }
+  .method-transcending { background:var(--gold-pale); color:var(--gold-dark);
+    border:0.5px solid rgba(232,160,32,0.3); }
+
+  /* Lens (perspective view) block */
+  .lens-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.35rem; margin:0 -1.65rem;
+    background:var(--amber-pale); }
+  .lens-header { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--amber-dark); margin-bottom:.75rem; }
+  .lens-tradition { font-weight:400; font-style:italic; letter-spacing:0;
+    text-transform:none; color:var(--text-3); }
+  .lens-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .lens-text p { margin-bottom:.75em; }
+  .lens-text p:last-child { margin-bottom:0; }
+  .lens-attr { font-size:11px; color:var(--text-3); padding-bottom:.2rem; }
+
+  /* Source link */
+  .story-source { font-size:11.5px; color:var(--text-3); padding:.4rem 0 .85rem;
+    border-top:0.5px dashed var(--border); margin-top:.2rem; }
+  .story-source a { color:var(--text-3); text-decoration:none;
+    border-bottom:0.5px solid var(--border); }
+  .story-source a:hover { color:var(--teal-deep); }
+
+  /* Underreported badge */
+  .underreported-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.09em; text-transform:uppercase; padding:2px 9px; border-radius:20px;
+    background:var(--green-pale); color:var(--green-dark); margin-left:6px;
+    border:0.5px solid rgba(39,80,10,0.18); vertical-align:middle; }
+
+  /* Multi-paragraph support in commentary and dialogue */
+  .story-teaching p { margin-bottom:.7em; }
+  .story-teaching p:last-child { margin-bottom:0; }
+  .dialogue-text p { margin-bottom:.7em; }
+  .dialogue-text p:last-child { margin-bottom:0; }
+
+  /* Tradition quote block */
+  .quote-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.3rem; margin:0 -1.65rem;
+    background:var(--purple-pale); position:relative; }
+  .quote-mark { font-family:'Cormorant Garamond',serif; font-size:52px;
+    line-height:.7; color:var(--purple-dark); opacity:0.18;
+    margin-bottom:-.25rem; user-select:none; }
+  .quote-text { font-family:'Cormorant Garamond',serif; font-size:17.5px;
+    font-style:italic; color:var(--text-1); line-height:1.85;
+    margin-bottom:.55rem; }
+  .quote-text p { margin-bottom:.7em; }
+  .quote-text p:last-child { margin-bottom:0; }
+  .quote-attr { font-size:11px; color:var(--text-3); margin-bottom:.55rem; }
+  .quote-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.08em; text-transform:uppercase; padding:2px 8px;
+    border-radius:10px; }
+  .quote-badge-exact { background:var(--green-pale); color:var(--green-dark);
+    border:0.5px solid rgba(39,80,10,0.18); }
+  .quote-badge-paraphrase { background:var(--gray-surface); color:var(--text-2);
+    border:0.5px solid var(--border); }
+
+  /* Closing */
+  .closing { text-align:center; padding:2.25rem 1.25rem .5rem;
+    border-top:0.5px solid var(--border); margin-top:.5rem; }
+  .closing-text { font-family:'Cormorant Garamond',serif; font-size:19px;
+    font-style:italic; color:var(--text-2); line-height:2.1; margin-bottom:1.6rem; }
+  .mantra-tibetan { font-size:22px; color:var(--gold-mid); letter-spacing:.07em;
+    display:block; margin-bottom:.6rem; }
+  .mantra { font-size:11px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--teal-deep); display:block; margin-bottom:.5rem; }
+  .mantra-note { font-size:12px; color:var(--text-3); font-style:italic;
+    font-family:'Cormorant Garamond',serif; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="masthead">
+    <svg class="lotus" width="60" height="52" viewBox="0 0 60 52" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="30" cy="42" rx="10" ry="5" fill="#9FE1CB" opacity="0.38"/>
+      <path d="M30 38 Q21 24 16 9 Q24 22 30 26 Q36 22 44 9 Q39 24 30 38Z" fill="#5DCAA5" opacity="0.88"/>
+      <path d="M30 38 Q13 30 5 19 Q17 27 30 32Z" fill="#9FE1CB" opacity="0.9"/>
+      <path d="M30 38 Q47 30 55 19 Q43 27 30 32Z" fill="#9FE1CB" opacity="0.9"/>
+      <path d="M30 38 Q9 34 3 27 Q15 32 30 36Z" fill="#C0DD97" opacity="0.68"/>
+      <path d="M30 38 Q51 34 57 27 Q45 32 30 36Z" fill="#C0DD97" opacity="0.68"/>
+      <circle cx="30" cy="26" r="5" fill="#F7E28A" opacity="0.9"/>
+      <circle cx="30" cy="26" r="2.8" fill="#E8A020"/>
+      <circle cx="30" cy="26" r="1.1" fill="#6B3E08"/>
+    </svg>
+    <div class="date-line">Tuesday, April 14, 2026</div>
+    <div class="masthead-title">The Awakened Observer</div>
+    <div class="issue-line">Issue No. 4  ·  News of the world, held with open hands</div>
+    <div class="masthead-rule"></div>
+    <div class="masthead-sub">Awareness &nbsp;·&nbsp; Love &nbsp;·&nbsp; Wisdom</div>
+    <div class="tradition-badge">Vajrayana Edition</div>
+  </div>
+
+  <div class="opening">Whatever arises in awareness is the self-display of rigpa. Read the world from that recognition — without grasping, without aversion.
+</div>
+  <div class="opening-instruction">Before reading: rest for one breath in open awareness. Let each story arise and dissolve in the space of rigpa.</div>
+
+  <div class="glance">
+    <div class="glance-title">Today at a glance</div>
+    <div class="glance-list">
+      <div class="glance-row">
+        <div class="g-dot d-science"></div>
+        <div class="glance-text">A study published in Astronomy &amp; Astrophysics has confirmed GJ 887 d, a super-Earth in the habitable zone of the nearby red dwarf Gliese 887, 10.7 light-years away — making it the second-closest potentially habitable exoplanet known to science.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-peace"></div>
+        <div class="glance-text">The High Seas Treaty (BBNJ Agreement) entered into force on January 17, 2026, after achieving 60 ratifications.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-conflict"></div>
+        <div class="glance-text">At least 990 migrants have died crossing the Mediterranean Sea in 2026, according to the IOM's Missing Migrants Project, with about 765 deaths in the Central Mediterranean alone — more than doubling last year's toll for the same period.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-nature"></div>
+        <div class="glance-text">Monarch butterflies occupied 2.93 hectares of overwintering forest in central Mexico — a 64% increase from 1.79 hectares the previous winter and the highest figure since 2018, according to WWF and Mexico's environmental authorities.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-human-interest"></div>
+        <div class="glance-text">The UK Ghoton Subcommittee organised a compassion-inspired clean-up at the Tibetan Peace Garden, Lambeth, London on April 11, 2026, as part of its 'Year of Compassion' initiative.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Stories — seen clearly</div>
+
+
+  <!-- Story 1 -->
+  <div class="story">
+    <span class="story-tag tag-science">Wonder & Discovery</span>
+    <div class="story-headline">Astronomers Confirm Second-Nearest Habitable Zone Planet at Just 10.7 Light-Years Away</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">A study published in Astronomy &amp; Astrophysics has confirmed GJ 887 d, a super-Earth in the habitable zone of the nearby red dwarf Gliese 887, 10.7 light-years away — making it the second-closest potentially habitable exoplanet known to science. The planet's mass is 6.1 times that of Earth; it orbits every 50.8 days at 0.212 AU from its star. GJ 887 itself is unusually quiet among red dwarfs, with minimal flare activity, raising the prospect that an atmosphere could survive at the planet's surface. No radius measurement or atmospheric data yet exists, so whether it is rocky or a mini-Neptune remains unknown.</div>
+    <div class="story-source"><a href="https://phys.org/news/2026-03-nearby-red-dwarf-star-hosts.html" target="_blank" rel="noopener">phys.org / Astronomy &amp; Astrophysics ↗</a></div>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching"><p>Astronomers point their instruments into the dark and find a second address in our cosmic neighborhood — a super-Earth orbiting a quiet star, just close enough to make us lean forward. What strikes me is not the planet itself but the quality of attention that found it. Wonder is like that: a gap in our ordinary busyness where rigpa shines through without effort.</p>
+      <p>We look for habitable worlds, which really means we look for conditions that can support awareness. But awareness is already here, looking. The search itself is the tsal of mind reaching outward, and what it finds is always a reflection of its own luminous nature.</p>
+      <p>GJ 887 d may hold an atmosphere. It may not. But the real question the universe keeps posing is not &quot;Is anyone out there?&quot; but &quot;What is this knowing that asks the question?&quot; Ten light-years is close in cosmic terms. Closer still is the distance between you and the awareness reading these words — which is no distance at all.</p></div>
+      <div class='teaching-attr'>— In the spirit of Mingyur Rinpoche's teaching on awareness as the ground of all worlds</div>
+      <div class="quote-block"><div class="quote-mark">“</div><div class="quote-text">Awareness is like space — it has no center, no boundary, no inside, no outside. Everything appears within it, and yet it is never altered by anything that appears.</div><div class="quote-attr">— Yongey Mingyur Rinpoche, paraphrased from Turning Confusion into Clarity</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+      <div class="dialogue-block">
+        <div class="dialogue-header">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+        <div class="dialogue-text"><p>SOCRATES: Rinpoche, these astronomers have confirmed a planet that might sustain life — a habitable zone, they call it. But I notice the term &quot;habitable&quot; assumes we already know what life requires. Do we?</p>
+      <p>MINGYUR RINPOCHE: That's a beautiful question, Socrates. Scientists look for water, atmosphere, the right temperature — the conditions for biological life. But from the perspective of mahamudra, the question of life is really the question of awareness. We say that rigpa — the knowing quality — is not produced by conditions. It is the ground from which conditions arise. So when we ask &quot;Is this planet habitable?&quot; we might also ask: &quot;What makes any experience possible at all?&quot;</p>
+      <p>SOCRATES: You remind me of something I've long suspected. We Athenians thought the unexamined life was not worth living. But perhaps even that formulation is too narrow. What if the real wonder is not that we examine life, but that there is this capacity for examination at all? I could never find where knowledge resides in a person — it seemed to come from somewhere deeper than the body or even the rational soul.</p>
+      <p>MINGYUR RINPOCHE: Exactly! And this is what we discover in meditation. You sit, you look for the mind, and you cannot find it — not in the brain, not in the heart, not anywhere. But the looking itself is luminous and knowing. This is what we call the tsal of rigpa, the radiance of awareness. It is not located in the body, and yet it illuminates everything the body experiences. So when astronomers search the sky, what is actually happening is that awareness is exploring its own display. The telescope, the data, the excitement of discovery — all of it arises within this unlocatable knowing.</p>
+      <p>SOCRATES: Then the habitable zone is not merely a region around a star. It is wherever this knowing presence abides — which, if I follow you, is everywhere and nowhere at once. I spent my life asking people to define what they thought they knew, and the honest ones always arrived at the same place:</p></div>
+        
+      </div>
+      <div class="practice-block">
+        <div class="practice-label">
+          <span class="klesha-tag klesha-wonder">Wonder &amp; Awe</span>
+          Practice
+          <span class="method-badge method-transcending">Transcending</span>
+        </div>
+        <div class="practice-text">Sit comfortably for five minutes. Close your eyes. Imagine the vast dark of interstellar space — not as emptiness but as the open field of kunzhi, the ground of being. Now notice: the awareness that imagines this space is itself without boundary, without edge, without location. Rest there. When a thought arises — curiosity, wonder, the image of a distant planet — don't follow it outward. Instead, look at the one who wonders. What do you find? Let the wonder dissolve into the looking, and rest in whatever remains. Close by dedicating the spaciousness of this moment to all beings who search for home.</div>
+        <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Dharmadhātu Wisdom</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">👁️ Mahamudra View &nbsp;·&nbsp; <span class='lens-tradition'>Mahamudra / Vajrayana</span></div>
+        <div class="lens-text"><p>From the ground of mahamudra, there is no distance between here and GJ 887 d. Ten light-years is a measurement within the display; the display itself arises in rigpa, which has never traveled anywhere to be anywhere. The astronomers' wonder is the tsal of awareness recognizing its own infinite reach — mind touching what appears to be &quot;out there&quot; and finding only its own luminosity reflected back.</p>
+      <p>The planet may hold an atmosphere. Awareness already holds every atmosphere, every world, every question about worlds. The habitable zone is not a region of space. It is the nature of mind itself: unobstructed, accommodating everything, refusing nothing. Rest here. The cosmos is not outside you. It is the ornament of your own kunzhi.</p></div>
+        <div class='lens-attr'>— From the Mahamudra view: the cosmos as the display of mind's nature</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">👁️ Mahamudra View &nbsp;·&nbsp; <span class='lens-tradition'>Mahamudra / Vajrayana</span></div>
+        <div class="lens-text"><p>From the ground of mahamudra, there is no distance between here and GJ 887 d. Ten light-years is a measurement within the display; the display itself arises in rigpa, which has never traveled anywhere to be anywhere. The astronomers' wonder is the tsal of awareness recognizing its own infinite reach — mind touching what appears to be &quot;out there&quot; and finding only its own luminosity reflected back.</p>
+      <p>The planet may hold an atmosphere. Awareness already holds every atmosphere, every world, every question about worlds. The habitable zone is not a region of space. It is the nature of mind itself: unobstructed, accommodating everything, refusing nothing. Rest here. The cosmos is not outside you. It is the ornament of your own kunzhi.</p></div>
+        <div class='lens-attr'>— From the Mahamudra view: the cosmos as the display of mind's nature</div>
+      </div>
+  </div>
+
+  <!-- Story 2 -->
+  <div class="story">
+    <span class="story-tag tag-peace">Peace & Possibility</span>
+    <div class="story-headline">High Seas Treaty Enters into Force, Placing Half the Planet's Ocean Under Legal Protection</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">The High Seas Treaty (BBNJ Agreement) entered into force on January 17, 2026, after achieving 60 ratifications. It is the first legally binding global framework for protecting biodiversity beyond national jurisdiction — covering approximately half the planet's surface and 95% of ocean volume. The treaty creates mechanisms for designating marine protected areas in international waters, environmental impact assessments, and equitable sharing of marine genetic resource benefits. The treaty opens a path to protecting 30% of the world's oceans by 2030, as part of the global '30 by 30' biodiversity target.</div>
+    <div class="story-source"><a href="https://news.un.org/en/story/2026/01/1166762" target="_blank" rel="noopener">UN News / High Seas Alliance ↗</a></div>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching"><p>Sixty nations signed a treaty to protect what belongs to no single nation — the open ocean, the deep water, the creatures that move through international darkness without passports. This is pratityasamutpada made into law. When we understand that my well-being depends on the well-being of the ocean, and the ocean's health depends on restraint I have never practiced before, then protection is not sacrifice. It is intelligence.</p>
+      <p>Hope is a tricky klesha. It can become passive — waiting for someone else to act. But here, hope has been transformed into structure: legal mechanisms, environmental assessments, shared responsibility. This is what I have always tried to say about compassion. It is not a feeling. It is a policy. It is a treaty. It is sixty governments saying: we will not take everything we can.</p>
+      <p>The ocean does not know it has been protected. But the beings within it — and we are among them, connected by every breath — may now have a wider margin for survival.</p></div>
+      <div class='teaching-attr'>— In the spirit of His Holiness the Dalai Lama's teaching on interdependence and the protection of the commons</div>
+      <div class="quote-block"><div class="quote-mark">“</div><div class="quote-text">If you think you are too small to make a difference, try sleeping with a mosquito.</div><div class="quote-attr">— Often attributed to His Holiness the Dalai Lama (uncertain provenance)</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+      <div class="dialogue-block">
+        <div class="dialogue-header">🙏 shantideva &nbsp;·&nbsp; <span class='dialogue-tradition'>Mahayana Buddhist — 8th century India</span></div>
+        <div class="dialogue-text"><p>DALAI LAMA: Shantideva-la, sixty nations have agreed to protect the high seas — the water that belongs to everyone and no one. I find this remarkable. It is very easy for humans to protect what is &quot;mine.&quot; It is much harder to protect the commons.</p>
+      <p>SHANTIDEVA: Your Holiness, this is precisely the shift I tried to describe in the Bodhicaryavatara — the moment when the boundary between self and other begins to dissolve. As long as the ocean is &quot;out there&quot; and &quot;not mine,&quot; there is no motivation to protect it. But the moment we see that our body is mostly water, that our breath depends on the plankton's photosynthesis, that the fish in the deep feed the birds on the shore who spread the seeds of the forest — then &quot;mine&quot; and &quot;theirs&quot; become meaningless. Protection arises naturally from seeing clearly.</p>
+      <p>DALAI LAMA: Yes, and I think the treaty itself is a form of practice. These diplomats may not use the word bodhichitta, but what they have done is bodhichitta in action — they have said, &quot;The suffering of the ocean is my concern, even though I live in a landlocked capital.&quot; This is the same logic as tonglen, is it not? You breathe in suffering that is not personally yours, and you respond with the wish to relieve it.</p>
+      <p>SHANTIDEVA: It is. And I would add: the treaty also embodies the practice of renunciation. Not the renunciation of a monk leaving home, but the renunciation of nations saying, &quot;We could exploit this, and we choose not to.&quot; In my time, I wrote that all the suffering in the world arises from seeking happiness for oneself, and all the happiness in the world arises from seeking happiness for others. This treaty is a collective choosing of the second path — imperfectly, with many compromises, but genuinely.</p>
+      <p>DALAI LAMA: Imperfectly! Yes, this is important. The treaty protects 30 percent of the ocean by 2030. Not 100 percent. A practitioner might say, &quot;This is not enough.&quot; But I always say: do not let the perfect become the enemy of the good. Bodhichitta is a direct</p></div>
+        
+      </div>
+      <div class="practice-block">
+        <div class="practice-label">
+          <span class="klesha-tag klesha-hope">Hope &amp; Renewal</span>
+          Practice
+          <span class="method-badge method-transforming">Transforming</span>
+        </div>
+        <div class="practice-text">For this practice, work with hope's energy by transforming it into active bodhichitta. Sit for seven minutes. Begin with three breaths of tonglen: breathe in the gray exhaustion of those who spent years negotiating this treaty, the frustration of compromise, the weight of bureaucracy. Breathe out clarity, patience, and the energy to continue. Then shift: breathe in the suffering of the ocean itself — the plastic, the acidification, the silence where whale songs used to be. Breathe out clean water, teeming life, the deep blue. With each out-breath, feel hope becoming commitment. Close with the aspiration: &quot;May my restraint today protect what I cannot see.&quot;</div>
+        <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> All-Accomplishing Wisdom</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">💛 Bodhichitta View &nbsp;·&nbsp; <span class='lens-tradition'>Mahayana Buddhist</span></div>
+        <div class="lens-text"><p>The bodhisattva vow does not only live in shrine rooms. When sixty nations agree to protect waters none of them own, for creatures none of their citizens will ever see, this is the vow wearing a suit and sitting in a conference room. The high seas treaty is aspirational bodhichitta crystallized into policy — the wish that all beings be free from suffering, translated into environmental impact assessments and marine protected areas.</p>
+      <p>The invitation for practitioners is clear: where in your own life is there a commons you could protect? A shared resource you have been quietly exploiting because no one was watching? Bodhichitta asks us to become the treaty ourselves — to ratify, in our own conduct, the principle that what belongs to everyone deserves more care, not less.</p></div>
+        <div class='lens-attr'>— From the Bodhichitta view: the bodhisattva vow expressed as collective restraint</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">💛 Bodhichitta View &nbsp;·&nbsp; <span class='lens-tradition'>Mahayana Buddhist</span></div>
+        <div class="lens-text"><p>The bodhisattva vow does not only live in shrine rooms. When sixty nations agree to protect waters none of them own, for creatures none of their citizens will ever see, this is the vow wearing a suit and sitting in a conference room. The high seas treaty is aspirational bodhichitta crystallized into policy — the wish that all beings be free from suffering, translated into environmental impact assessments and marine protected areas.</p>
+      <p>The invitation for practitioners is clear: where in your own life is there a commons you could protect? A shared resource you have been quietly exploiting because no one was watching? Bodhichitta asks us to become the treaty ourselves — to ratify, in our own conduct, the principle that what belongs to everyone deserves more care, not less.</p></div>
+        <div class='lens-attr'>— From the Bodhichitta view: the bodhisattva vow expressed as collective restraint</div>
+      </div>
+  </div>
+
+  <!-- Story 3 -->
+  <div class="story">
+    <span class="story-tag tag-conflict">Conflict & Impermanence</span>
+    <div class="story-headline">Mediterranean Migrant Deaths Near 1,000 in 2026 as Deadliest Crossing Season Begins</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">At least 990 migrants have died crossing the Mediterranean Sea in 2026, according to the IOM's Missing Migrants Project, with about 765 deaths in the Central Mediterranean alone — more than doubling last year's toll for the same period. In early April, over 180 people died or disappeared in just 10 days. On April 1, 19 migrants were found dead on a vessel off Lampedusa; on April 5, more than 80 went missing when a boat capsized after leaving Tajoura, Libya. Despite a drop in total arrivals, the death rate per crossing is rising sharply as people attempt longer and more dangerous routes.</div>
+    <div class="story-source"><a href="https://www.aljazeera.com/news/2026/4/7/mediterranean-migrant-deaths-mounting-towards-1000-in-2026-un" target="_blank" rel="noopener">Al Jazeera / IOM ↗</a></div>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching"><p>Nearly one thousand people have died in the Mediterranean this year. Each one stepped onto a boat because the life behind them had become unbearable and the sea, for all its danger, offered more hope than staying. When we read this number — 990 — the mind wants to move quickly past it. The number is too large to feel. This is ma rigpa operating as self-protection: awareness dimming itself because the light of what is real is too bright to bear.</p>
+      <p>But the practice is not to bear it. The practice is to let one life in. One person on that boat off Lampedusa. One parent holding a child against the waves. If we can stay present with that single image for even ten seconds without turning away, grief does its true work. It breaks the shell of the separate self. It becomes the raw material of bodhichitta.</p>
+      <p>We cannot save the drowned. But we can refuse the comfort of forgetting them.</p></div>
+      <div class='teaching-attr'>— In the spirit of Thich Nhat Hanh's teaching on tonglen and the courage to not look away</div>
+      <div class="quote-block"><div class="quote-mark">“</div><div class="quote-text">When you look deeply into your anger or despair, you will see that its roots are in misunderstanding and suffering. Understanding the suffering of others is the best gift you can offer them.</div><div class="quote-attr">— Thich Nhat Hanh, paraphrased from teachings on deep listening and compassion</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+      <div class="dialogue-block">
+        <div class="dialogue-header">🔔 mingyur_rinpoche &nbsp;·&nbsp; <span class='dialogue-tradition'>Tibetan Buddhist — Kagyu / Nyingma</span></div>
+        <div class="dialogue-text"><p>THICH NHAT HANH: Rinpoche, when I hear that nearly a thousand people have drowned crossing the Mediterranean, my first practice is to stop. To really stop. Not to react, not to form an opinion, not to sign a petition — but to stop and let the reality enter me. Do you find this also in your tradition?</p>
+      <p>MINGYUR RINPOCHE: Yes, Thay, very much so. In mahamudra practice, we say that the first moment of any strong emotion — before the storyline begins — is actually a flash of rigpa. Grief, when it first strikes, is not yet &quot;grief&quot; in the way we usually mean. It is a raw opening, a moment when our habitual defenses crack and awareness shines through naked and unprotected. The problem is that we immediately cover it over. We either numb ourselves or we spiral into despair. Both are forms of shenpa — habitual reactivity.</p>
+      <p>THICH NHAT HANH: Yes, and there is a third danger, which is turning grief into anger at those we blame. The politicians, the smugglers, the indifferent public. This anger feels righteous, but it is still a way of avoiding the direct experience of loss. In my tradition, we practice with a verse: &quot;Breathing in, I am aware of the suffering in the world. Breathing out, I hold that suffering with compassion.&quot; It is very close to your tonglen, I think.</p>
+      <p>MINGYUR RINPOCHE: Very close. And what I would add from the Vajrayana perspective is this: when we practice tonglen with this grief — breathing in the dark smoke of their suffering, breathing out light and relief — something remarkable happens. The grief transforms. Not into happiness, and not into indifference, but into a very specific quality that we call discriminating wisdom. This is the yeshe that corresponds to grief. It sees each person in their absolute uniqueness. It says: this life was irreplaceable. That recognition — held without collapsing — is actually the deepest form of respect we can offer the dead.</p>
+      <p>THICH NHAT HANH: This is beautiful, Rinpoche. In our tradition we say that the one who has died co</p></div>
+        
+      </div>
+      <div class="practice-block">
+        <div class="practice-label">
+          <span class="klesha-tag klesha-grief">Grief &amp; Loss</span>
+          Practice
+          <span class="method-badge method-transforming">Transforming</span>
+        </div>
+        <div class="practice-text">This is a transforming practice — using grief as the gateway to universal compassion. Sit quietly. Place one hand on your heart. Bring to mind a single person on one of those boats — not a statistic, but a human being with a name you do not know. Breathe in their fear as dark smoke entering your chest. Do not flinch. On the out-breath, send them warmth, safety, the feeling of solid ground beneath their feet. Do this for three minutes — one person, one breath at a time. Then expand: breathe in the grief of every family waiting for news that will not come. Breathe out the wish that all beings find safe passage. Close by touching your heart and saying silently: &quot;I have not looked away.&quot;</div>
+        <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Discriminating Wisdom</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">✨ Pure Perception View &nbsp;·&nbsp; <span class='lens-tradition'>Vajrayana</span></div>
+        <div class="lens-text"><p>Pure perception does not deny that people drowned. It refuses to reduce them to victims. Each person who stepped onto that boat carried buddha-nature as surely as they carried their few belongings. The courage to cross — to face death for the possibility of life — is itself the energy of awakening moving through a human body.</p>
+      <p>What is the dakini (the awakened feminine principle that disrupts complacency) teaching here? She is teaching through the sea itself: that the boundary between safety and danger is as thin as a boat's hull, and the boundary between &quot;us&quot; and &quot;them&quot; is thinner still. The sacred dimension of this tragedy is not hidden. It is the fierce, unbearable preciousness of each life — a preciousness that becomes visible only when life is at risk. Do not look away. What you see in those waves is the nirmanakaya, taking form in the most desperate of crossings.</p></div>
+        <div class='lens-attr'>— From the Pure Perception view: recognizing buddha-nature in the midst of catastrophe</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">✨ Pure Perception View &nbsp;·&nbsp; <span class='lens-tradition'>Vajrayana</span></div>
+        <div class="lens-text"><p>Pure perception does not deny that people drowned. It refuses to reduce them to victims. Each person who stepped onto that boat carried buddha-nature as surely as they carried their few belongings. The courage to cross — to face death for the possibility of life — is itself the energy of awakening moving through a human body.</p>
+      <p>What is the dakini (the awakened feminine principle that disrupts complacency) teaching here? She is teaching through the sea itself: that the boundary between safety and danger is as thin as a boat's hull, and the boundary between &quot;us&quot; and &quot;them&quot; is thinner still. The sacred dimension of this tragedy is not hidden. It is the fierce, unbearable preciousness of each life — a preciousness that becomes visible only when life is at risk. Do not look away. What you see in those waves is the nirmanakaya, taking form in the most desperate of crossings.</p></div>
+        <div class='lens-attr'>— From the Pure Perception view: recognizing buddha-nature in the midst of catastrophe</div>
+      </div>
+  </div>
+
+  <!-- Story 4 -->
+  <div class="story">
+    <span class="story-tag tag-nature">Nature & Renewal</span>
+    <div class="story-headline">Monarch Butterfly Population Surges 64 Percent in Mexico, Largest Recovery Since 2018</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">Monarch butterflies occupied 2.93 hectares of overwintering forest in central Mexico — a 64% increase from 1.79 hectares the previous winter and the highest figure since 2018, according to WWF and Mexico's environmental authorities. The recovery reflects coordinated citizen science monitoring, community-led habitat restoration, and enforcement of illegal logging protections in the Monarch Butterfly Biosphere Reserve. However, scientists note the monarch remains at risk: 7.24 acres of occupied habitat is less than half the 15-acre minimum for the population to be considered safe from migratory collapse.</div>
+    <div class="story-source"><a href="https://mexiconewsdaily.com/news/mexico-monarch-butterfly-populations-up-2026/" target="_blank" rel="noopener">WWF / Mexico News Daily ↗</a></div>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching"><p>Here is something that should stop you mid-sip: no single monarch butterfly has ever completed the full migration. The ones arriving in Mexico this winter are three or four generations removed from the ones that left. The route is not learned. It is not remembered. It moves through bodies that have never been there before, guided by something deeper than individual memory.</p>
+      <p>In mahamudra, we would say this is kunzhi expressing itself — the ground of being manifesting as a precise, embodied intelligence that does not require a &quot;self&quot; to operate. The butterflies do not know where they are going. And yet they arrive. Every year. Millions of wings enacting a pattern that no single wing has ever seen whole.</p>
+      <p>The 64 percent recovery is cause for celebration, yes. But the deeper teaching is in the fragility. Even at 2.93 hectares, the population is less than half what scientists consider safe. Wonder and vulnerability travel together. The most astonishing things in this world are also the most easily destroyed. Hold both.</p></div>
+      <div class='teaching-attr'>— In the spirit of Mingyur Rinpoche's teaching on the intelligence that moves without a knower</div>
+      <div class="quote-block"><div class="quote-mark">“</div><div class="quote-text">The nature of mind is like the sky. Clouds come and go, but the sky does not travel with the clouds. It does not need to go anywhere — everything already appears within it.</div><div class="quote-attr">— Yongey Mingyur Rinpoche, paraphrased from The Joy of Living</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+      <div class="dialogue-block">
+        <div class="dialogue-header">🌏 dalai_lama &nbsp;·&nbsp; <span class='dialogue-tradition'>Tibetan Buddhist — Gelug</span></div>
+        <div class="dialogue-text"><p>MINGYUR RINPOCHE: Your Holiness, when I read about the monarchs, I thought immediately of pratityasamutpada. No single butterfly makes the journey. No single cause produces the migration. It is a web of conditions — temperature, daylight, milkweed, the chemistry of wings — and yet the result is this beautiful, coherent pattern. It seems to me like a teaching on dependent origination that the butterflies are giving for free.</p>
+      <p>DALAI LAMA: Yes, Rinpoche, and what moves me most is that the recovery happened because humans participated in that web of conditions. Citizens planted milkweed. Communities stopped illegal logging. Scientists counted the butterflies each winter. No one person saved the monarchs. It was a collective act — many small efforts arising together. This is also pratityasamutpada. And it gives me great hope, because it means the destruction was not inevitable. When we change the conditions, even slightly, life responds.</p>
+      <p>MINGYUR RINPOCHE: And yet the scientists warn that 2.93 hectares is still less than half the minimum safe area. So hope and urgency must sit together. In meditation, I sometimes teach students about nyam — the experiences that arise in practice, which can be blissful, or terrifying, or very strange. The instruction is always the same: don't grasp at the good experiences and don't push away the bad ones. The monarchs' recovery is a beautiful nyam in our collective practice with the Earth. The danger is grasping — thinking &quot;the problem is solved&quot; — and relaxing our effort.</p>
+      <p>DALAI LAMA: This is very wise. I always say: hope is not optimism. Optimism says &quot;everything will be fine.&quot; Hope says &quot;I will act regardless of the outcome, because the action itself matters.&quot; The butterflies do not fly to Mexico because they are optimistic about arriving. They fly because flying is what they are. It is their nature. And perhaps compassion is like that for humans — not a choice we make but a nature we uncover.</p>
+      <p>MINGYUR RINPOCHE: Beautifully said. And t</p></div>
+        
+      </div>
+      <div class="practice-block">
+        <div class="practice-label">
+          <span class="klesha-tag klesha-wonder">Wonder &amp; Awe</span>
+          Practice
+          <span class="method-badge method-transcending">Transcending</span>
+        </div>
+        <div class="practice-text">This is a transcending practice — resting in the awareness that already knows without needing to &quot;know.&quot; Go outside if you can, or sit by a window. For five minutes, watch whatever moves — wind in leaves, a bird, traffic, clouds. Don't label it. Don't track it. Simply let movement appear in awareness without your mind trying to control or understand the pattern. Now notice: awareness itself is not moving. It is utterly still, and yet it accommodates all movement. This is the same stillness through which the monarchs navigate — the ground that does not need a map. Rest as that ground. When the five minutes end, close your eyes briefly and feel gratitude for whatever fragile, astonishing thing is migrating through your life right now.</div>
+        <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Dharmadhātu Wisdom</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">👁️ Mahamudra View &nbsp;·&nbsp; <span class='lens-tradition'>Mahamudra / Vajrayana</span></div>
+        <div class="lens-text"><p>From the mahamudra view, the monarch migration is mind recognizing its own nature through the form of wings. No single butterfly carries the map, because the map is not an object — it is the tsal of rigpa expressing itself as direction, as timing, as the precise unfolding of a pattern that no individual can hold.</p>
+      <p>The fragility is also the teaching. The display of awareness is spontaneous and unceasing, but it does not guarantee any particular form will persist. Forms arise, flourish, and dissolve. What remains is the awareness in which all migration occurs. The practice is not to save the butterflies — though we should — but to recognize in their flight the same groundless intelligence that moves through your own breath right now, carrying you somewhere you have never been.</p></div>
+        <div class='lens-attr'>— From the Mahamudra view: seeing groundless intelligence in the monarch's flight</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">👁️ Mahamudra View &nbsp;·&nbsp; <span class='lens-tradition'>Mahamudra / Vajrayana</span></div>
+        <div class="lens-text"><p>From the mahamudra view, the monarch migration is mind recognizing its own nature through the form of wings. No single butterfly carries the map, because the map is not an object — it is the tsal of rigpa expressing itself as direction, as timing, as the precise unfolding of a pattern that no individual can hold.</p>
+      <p>The fragility is also the teaching. The display of awareness is spontaneous and unceasing, but it does not guarantee any particular form will persist. Forms arise, flourish, and dissolve. What remains is the awareness in which all migration occurs. The practice is not to save the butterflies — though we should — but to recognize in their flight the same groundless intelligence that moves through your own breath right now, carrying you somewhere you have never been.</p></div>
+        <div class='lens-attr'>— From the Mahamudra view: seeing groundless intelligence in the monarch's flight</div>
+      </div>
+  </div>
+
+  <!-- Story 5 -->
+  <div class="story">
+    <span class="story-tag tag-human">The Human Inside the Headline</span><span class="underreported-badge">Less Reported</span>
+    <div class="story-headline">Tibetan Community in London Gathers for Compassion-Inspired Clean-Up at the Tibetan Peace Garden</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">The UK Ghoton Subcommittee organised a compassion-inspired clean-up at the Tibetan Peace Garden, Lambeth, London on April 11, 2026, as part of its 'Year of Compassion' initiative. Over 30 community members gathered to sweep pathways, wash the mandala structure, collect litter, and restore the garden's grounds. The Tibetan Peace Garden was inaugurated by the Dalai Lama in May 1999 and sits adjacent to the Imperial War Museum. The event concluded with a potluck of traditional Tibetan food and tea, and participants joined in a circle dance. The gathering was quiet, deliberate, and rooted in the Tibetan tradition of compassionate service.</div>
+    <div class="story-source"><a href="https://tibet.net/tibetan-community-in-britain-leads-compassion-inspired-clean-up-at-the-tibetan-peace-garden-in-london/" target="_blank" rel="noopener">Central Tibetan Administration ↗</a></div>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching"><p>I remember the day we opened the Tibetan Peace Garden in 1999. It sits beside the Imperial War Museum — this was intentional. Peace does not exist in isolation from the memory of violence. It exists precisely there, in the shadow of what humans have done to each other, as a quiet insistence that we are capable of something else.</p>
+      <p>Now, twenty-seven years later, thirty Tibetans gather with brooms and buckets. They sweep the paths. They wash the mandala. And then — this is my favorite part — they eat together and dance. This is bodhichitta in its most ordinary and most powerful form. Not a grand gesture. Not a political statement. Just: the garden exists, it needs tending, and we are here.</p>
+      <p>Compassion in the Year of Compassion looks like this. It looks like soap and water on stone. It looks like people who have lost a homeland caring for a small patch of ground in someone else's country. The mandala they washed is a symbol of the universe. But it is also, today, simply clean.</p></div>
+      <div class='teaching-attr'>— In the spirit of His Holiness the Dalai Lama's teaching on bodhichitta with a broom</div>
+      <div class="quote-block"><div class="quote-mark">“</div><div class="quote-text">If you want others to be happy, practice compassion. If you want to be happy, practice compassion.</div><div class="quote-attr">— His Holiness the 14th Dalai Lama, widely attributed from public teachings</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+      <div class="dialogue-block">
+        <div class="dialogue-header">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+        <div class="dialogue-text"><p>DALAI LAMA: Socrates, I want to tell you about something small that happened in London. A group of Tibetans cleaned a garden. That is all. And yet I find it deeply moving.</p>
+      <p>SOCRATES: Tell me why, Your Holiness. In Athens, we had citizens who maintained public spaces — but we rarely considered it philosophy. It was civic duty at best, menial labor at worst. What makes this different?</p>
+      <p>DALAI LAMA: Two things. First, the garden sits next to a war museum. These Tibetans know about war — not abstractly, but in their families' bones. They come from a country that was invaded, a culture that was nearly destroyed. And yet they choose to tend a garden of peace rather than a memorial of grievance. This is not ignorance of suffering. It is a deliberate choice about what to cultivate.</p>
+      <p>SOCRATES: Ah, I see. So the act of sweeping becomes a kind of argument — a demonstration that one's response to violence need not be violence, or even bitterness, but care. In my terms, they are living the examined life, because they have examined their suffering and chosen a response that is not determined by it.</p>
+      <p>DALAI LAMA: Exactly. And the second thing: they washed the mandala. In our tradition, a mandala represents the entire universe — all worlds, all beings, all possibilities. To wash it is a symbolic act of purifying one's perception of reality. But here, it is also just washing stone. The profound and the ordinary are the same gesture. I believe this is what real practice looks like. Not sitting in a cave in the Himalayas — though that has its place — but standing in London with a bucket, doing what needs to be done, with a clear motivation.</p>
+      <p>SOCRATES: You remind me of something I tried to show the Athenians but largely failed to convey. The good life — what I called eudaimonia — is not found in grand philosophical systems. It is found in how you treat the agora, how you speak to the person selling figs, how you care for shared spaces. Your Tibetans with their brooms may be better philos</p></div>
+        
+      </div>
+      <div class="practice-block">
+        <div class="practice-label">
+          <span class="klesha-tag klesha-compassion">Compassion &amp; Care</span>
+          Practice
+          <span class="method-badge method-transforming">Transforming</span>
+        </div>
+        <div class="practice-text">This is a transforming practice — turning the energy of compassion into embodied action. Choose one small, shared space in your life — a common area, a garden, a street corner, a kitchen that others use. Spend fifteen minutes cleaning it with full attention. As you work, practice tonglen with each gesture: as you pick up litter, breathe in the carelessness that left it there and breathe out the wish that all beings find environments of beauty and care. As you scrub, breathe in the grime of collective neglect and breathe out freshness. Let the physical work be the practice — not preparation for practice, not a break from practice. The broom is the practice. When you finish, stand still for one minute and dedicate the merit of this small, clean space to all beings.</div>
+        <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> All-Accomplishing Wisdom</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">💛 Bodhichitta View &nbsp;·&nbsp; <span class='lens-tradition'>Mahayana Buddhist</span></div>
+        <div class="lens-text"><p>The bodhisattva vow says: I will not rest until all beings are free. But it does not say how. Sometimes liberation looks like a great teacher turning the wheel of dharma. And sometimes it looks like thirty people with brooms in a London garden, washing a mandala beside a war museum, then sharing tea and dancing.</p>
+      <p>This is aspirational bodhichitta becoming active bodhichitta — the moment the wish crystallizes into a mop, a scrub brush, a bag of litter. The Tibetan Peace Garden is not in Tibet. The community that tends it may never return to the homeland that inspired it. And yet here, in exile, they enact the purest form of the vow: caring for what is present, as it is, where it is. The invitation is simple. What mandala in your life needs washing today?</p></div>
+        <div class='lens-attr'>— From the Bodhichitta view: the vow expressed as a broom, a bucket, and a circle dance</div>
+      </div>
+      <div class="lens-block">
+        <div class="lens-header">💛 Bodhichitta View &nbsp;·&nbsp; <span class='lens-tradition'>Mahayana Buddhist</span></div>
+        <div class="lens-text"><p>The bodhisattva vow says: I will not rest until all beings are free. But it does not say how. Sometimes liberation looks like a great teacher turning the wheel of dharma. And sometimes it looks like thirty people with brooms in a London garden, washing a mandala beside a war museum, then sharing tea and dancing.</p>
+      <p>This is aspirational bodhichitta becoming active bodhichitta — the moment the wish crystallizes into a mop, a scrub brush, a bag of litter. The Tibetan Peace Garden is not in Tibet. The community that tends it may never return to the homeland that inspired it. And yet here, in exile, they enact the purest form of the vow: caring for what is present, as it is, where it is. The invitation is simple. What mandala in your life needs washing today?</p></div>
+        <div class='lens-attr'>— From the Bodhichitta view: the vow expressed as a broom, a bucket, and a circle dance</div>
+      </div>
+  </div>
+
+  <div class="closing">
+    <div class="closing-text">The awareness that reads this has never been born and will never die.<br>
+      Practice is not for when conditions are good.<br>
+      Practice is the recognition, again and again, in conditions exactly like these.<br>
+      </div>
+    <span class="mantra-tibetan">ཨོཾ་མ་ཎི་པདྨེ་ཧཱུྃ</span>
+    <span class="mantra">May all beings be happy · May all beings be safe · May all beings be free</span>
+    <div class="mantra-note">Om Mani Padme Hum — compassion and wisdom, inseparable</div>
+  </div>
+
+</div>
+</body>
+</html>
