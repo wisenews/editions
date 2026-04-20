@@ -26,7 +26,14 @@
       --gold-pale:#261A04; --gray-bg:#131109; --gray-card:#1A1608;
       --gray-surface:#211C0A; --border:rgba(240,200,80,0.08);
       --text-1:#F8F0D0; --text-2:#B0A870; --text-3:#706840;
-      --blue-pale:#0D1E30; --teal-pale:#061E14; --amber-pale:#1E1204;
+      --blue-pale:#0D1E30;    --blue-dark:#6AAAE0;
+      --teal-pale:#061E14;    --teal-dark:#5DCAA5;
+      --purple-pale:#100E30;  --purple-dark:#9B97E0;
+      --amber-pale:#1E1204;   --amber-dark:#D4924A;
+      --rose-pale:#20060C;    --rose-dark:#D47090;
+      --indigo-pale:#0C0C22;  --indigo-dark:#9090D0; --indigo-mid:#9090C0;
+      --green-pale:#081A04;   --green-dark:#7DC44A;
+      --coral-pale:#1E0A06;   --coral-dark:#D07860;
     }
   }
   body { font-family:'DM Sans',sans-serif; background:var(--gray-bg);
@@ -234,14 +241,14 @@
     margin-bottom:.55rem; }
   .quote-text p { margin-bottom:.7em; }
   .quote-text p:last-child { margin-bottom:0; }
-  .quote-attr { font-size:11px; color:var(--text-2); margin-bottom:.55rem; }
+  .quote-attr { font-size:11px; color:var(--text-3); margin-bottom:.55rem; }
   .quote-badge { display:inline-block; font-size:9px; font-weight:600;
     letter-spacing:.08em; text-transform:uppercase; padding:2px 8px;
     border-radius:10px; }
   .quote-badge-exact { background:var(--green-pale); color:var(--green-dark);
     border:0.5px solid rgba(39,80,10,0.18); }
-  .quote-badge-paraphrase { background:#E8E8E8; color:#444444;
-    border:0.5px solid #C8C8C8; }
+  .quote-badge-paraphrase { background:var(--gray-surface); color:var(--text-2);
+    border:0.5px solid var(--border); }
 
   /* Accordion hint banner */
   .acc-hint { font-size:12px; color:var(--text-3); text-align:center;
