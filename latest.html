@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Awakened Observer — Monday, April 20, 2026 (Accordion)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {--gold-pale:#FDF5DC; --gold-mid:#E8A020; --gold-dark:#6B3E08; --teal-pale:#E1F5EE; --teal-strong:#5DCAA5; --teal-deep:#1D9E75; --teal-dark:#085041; --blue-pale:#E6F1FB; --blue-mid:#378ADD; --blue-dark:#0C447C; --coral-pale:#FAECE7; --coral-dark:#712B13; --purple-pale:#EEEDFE; --purple-dark:#3C3489; --amber-pale:#FAEEDA; --amber-dark:#633806; --rose-pale:#FEF0F4; --rose-mid:#E8688A; --rose-dark:#7A1A35; --indigo-pale:#EDEDFA; --indigo-mid:#7B7BB5; --indigo-dark:#2E2E72; --green-pale:#EAF3DE; --green-dark:#27500A; --gray-bg:#F5F3EE; --gray-card:#FDFAF0; --gray-surface:#EDEADC; --border:rgba(50,45,35,0.10); --text-1:#1A1714; --text-2:#5A5030; --text-3:#9A9070}
+  @media(prefers-color-scheme:dark){
+    :root{--gold-pale:#261A04; --gray-bg:#131109; --gray-card:#1A1608; --gray-surface:#211C0A; --border:rgba(240,200,80,0.08); --text-1:#F8F0D0; --text-2:#B0A870; --text-3:#706840; --blue-pale:#0D1E30; --blue-dark:#6AAAE0; --teal-pale:#061E14; --teal-dark:#5DCAA5; --purple-pale:#100E30; --purple-dark:#9B97E0; --amber-pale:#1E1204; --amber-dark:#D4924A; --rose-pale:#20060C; --rose-dark:#D47090; --indigo-pale:#0C0C22; --indigo-dark:#9090D0; --indigo-mid:#9090C0; --green-pale:#081A04; --green-dark:#7DC44A; --coral-pale:#1E0A06; --coral-dark:#D07860}
+  }
+  body { font-family:'DM Sans',sans-serif; background:var(--gray-bg);
+          color:var(--text-1); min-height:100vh; padding:2rem 1rem 6rem; }
+  .page { max-width:680px; margin:0 auto; }
+
+  /* Masthead */
+  .masthead { text-align:center; padding:2.75rem 1rem 2.25rem;
+    border-bottom:0.5px solid var(--border); margin-bottom:2.25rem; position:relative; }
+  .masthead::before { content:''; position:absolute; top:0; left:50%;
+    transform:translateX(-50%); width:100px; height:2px; background:linear-gradient(90deg, transparent, #B83030, #E8A020, #1A3A80, transparent); }
+  .lotus { display:block; margin:0 auto 1.2rem; }
+  .date-line { font-size:11px; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--text-3); margin-bottom:.5rem; }
+  .masthead-title { font-family:'Cormorant Garamond',serif; font-size:42px;
+    font-weight:500; color:var(--text-1); line-height:1.05; margin-bottom:.25rem; }
+  .issue-line { font-size:11px; letter-spacing:.09em; color:var(--text-3); margin-bottom:.6rem; }
+  .masthead-rule { width:42px; height:1px; margin:.65rem auto;
+    background:linear-gradient(90deg,var(--teal-strong),var(--gold-mid)); }
+  .masthead-sub { font-family:'Cormorant Garamond',serif; font-size:18px;
+    font-style:italic; color:var(--text-2); line-height:1.4; }
+  .tradition-badge { display:inline-block; background:var(--gold-pale);
+    color:var(--gold-dark); font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; padding:4px 14px; border-radius:20px; margin-top:.85rem;
+    border:0.5px solid rgba(232,160,32,0.25); }
+
+  /* Opening */
+  .opening { background:var(--gold-pale); border-left:2.5px solid var(--gold-mid);
+    border-radius:0 10px 10px 0; padding:1.25rem 1.6rem; margin-bottom:.5rem;
+    font-family:'Cormorant Garamond',serif; font-size:19px; font-style:italic;
+    color:var(--text-2); line-height:1.8; }
+  .opening-instruction { font-family:'DM Sans',sans-serif; font-size:12px;
+    color:var(--text-3); padding:.5rem 1.6rem .85rem; margin-bottom:2rem;
+    background:var(--gold-pale); border-left:2.5px solid var(--gold-mid);
+    border-top:none; border-radius:0 0 10px 10px; }
+
+  /* At a Glance */
+  .glance { background:var(--gray-surface); border-radius:14px;
+    padding:1.2rem 1.5rem; margin-bottom:2.5rem; }
+  .glance-title { font-size:10px; font-weight:500; letter-spacing:.13em;
+    text-transform:uppercase; color:var(--text-3); margin-bottom:.85rem; }
+  .glance-list { display:flex; flex-direction:column; gap:.6rem; }
+  .glance-row { display:flex; align-items:flex-start; gap:11px; }
+  .g-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; margin-top:7px; }
+  .d-conflict {background:#D85A30;} .d-peace    {background:var(--teal-deep);}
+  .d-grief    {background:#B87016;} .d-joy      {background:#185FA5;}
+  .d-science  {background:#534AB7;} .d-nature   {background:#3B6D11;}
+  .d-politics {background:#993556;} .d-economy  {background:#854F0B;}
+  .d-culture  {background:#0F6E56;} .d-human    {background:#5F5E5A;}
+  .d-death    {background:#791F1F;} .d-renewal  {background:#1D9E75;}
+  .d-human-interest {background:#5F5E5A;}
+  .glance-text { font-size:13.5px; color:var(--text-2); line-height:1.6; }
+
+  /* Section label */
+  .section-label { font-size:10px; font-weight:500; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--text-3); display:flex;
+    align-items:center; gap:10px; margin-bottom:1.35rem; }
+  .section-label::after { content:''; flex:1; height:0.5px; background:var(--border); }
+
+  /* Story cards */
+  .story { background:var(--gray-card); border:0.5px solid var(--border);
+    border-radius:16px; padding:1.5rem 1.65rem 0; margin-bottom:1.35rem; overflow:hidden; }
+  .story-tag { display:inline-block; font-size:10px; font-weight:500;
+    letter-spacing:.08em; text-transform:uppercase; padding:3px 11px;
+    border-radius:20px; margin-bottom:.95rem; }
+  .tag-conflict {background:var(--coral-pale);color:var(--coral-dark);}
+  .tag-peace    {background:var(--teal-pale); color:var(--teal-dark);}
+  .tag-grief    {background:var(--amber-pale);color:var(--amber-dark);}
+  .tag-joy      {background:var(--blue-pale); color:var(--blue-dark);}
+  .tag-science  {background:var(--purple-pale);color:var(--purple-dark);}
+  .tag-nature   {background:var(--green-pale);color:var(--green-dark);}
+  .tag-politics {background:#FBEAF0;color:#72243E;}
+  .tag-economy  {background:var(--amber-pale);color:var(--amber-dark);}
+  .tag-culture  {background:var(--teal-pale); color:var(--teal-dark);}
+  .tag-human    {background:var(--gray-surface);color:#5F5E5A;}
+  .tag-death    {background:#FCEBEB;color:#791F1F;}
+  .tag-renewal  {background:var(--teal-pale); color:var(--teal-dark);}
+  .story-headline { font-family:'Cormorant Garamond',serif; font-size:23px;
+    font-weight:500; color:var(--text-1); line-height:1.32; margin-bottom:.9rem; }
+  .story-what { font-size:10px; font-weight:500; text-transform:uppercase;
+    letter-spacing:.10em; color:var(--text-3); margin-bottom:.35rem; }
+  .story-fact { font-size:14px; color:var(--text-2); line-height:1.8;
+    padding-bottom:1.1rem; }
+
+  /* Primary teaching */
+  .teaching-divider { display:flex; align-items:center; gap:10px;
+    margin:0 -1.65rem 1rem; padding:0 1.65rem;
+    border-top:0.5px solid var(--border); padding-top:1.1rem; }
+  .teaching-divider::after { content:''; flex:1; height:0.5px; background:var(--border); }
+  .teaching-divider span { font-size:13px; color:var(--teal-strong); flex-shrink:0; }
+  .story-teaching { font-family:'Cormorant Garamond',serif; font-size:17.5px;
+    font-style:italic; color:var(--text-1); line-height:1.85; padding-bottom:.6rem; }
+  .teaching-attr { font-size:11px; color:var(--text-3); padding-bottom:1.1rem; }
+
+  /* Dialogue block */
+  .dialogue-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.25rem; margin:0 -1.65rem;
+    background:var(--blue-pale); }
+  .dialogue-header { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--blue-dark); margin-bottom:.75rem; }
+  .dialogue-tradition { font-weight:400; font-style:italic; letter-spacing:0;
+    text-transform:none; color:var(--text-3); }
+  .dialogue-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .dialogue-framing { font-size:11px; color:var(--blue-dark); opacity:.65;
+    font-style:italic; margin-bottom:.65rem; }
+  .dialogue-attr { font-size:11px; color:var(--text-3); padding-bottom:.2rem; }
+
+  /* Practice block */
+  .practice-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.4rem; margin:0 -1.65rem;
+    background:var(--teal-pale); }
+  .practice-label { font-size:10px; font-weight:500; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--teal-dark); margin-bottom:.6rem;
+    display:flex; align-items:center; gap:8px; }
+  .klesha-tag { font-size:9px; font-weight:600; letter-spacing:.06em;
+    text-transform:uppercase; padding:2px 8px; border-radius:10px;
+    color:#fff; flex-shrink:0; }
+  .klesha-anger      {background:#C0392B;}
+  .klesha-grief      {background:#7F8C8D;}
+  .klesha-anxiety    {background:#D4AC0D;}
+  .klesha-helplessness{background:#8E44AD;}
+  .klesha-wonder     {background:#2E86C1;}
+  .klesha-hope       {background:#1D8348;}
+  .klesha-confusion  {background:#D35400;}
+  .klesha-compassion {background:#CB4335;}
+  .practice-text { font-size:13.5px; color:var(--teal-dark);
+    line-height:1.8; font-style:italic; }
+  .practice-text p { margin-bottom:.75em; }
+  .practice-text p:last-child { margin-bottom:0; }
+  .wisdom-line { font-size:10.5px; color:var(--teal-deep); font-style:italic;
+    margin-top:.55rem; padding-top:.45rem;
+    border-top:0.5px solid rgba(29,158,117,0.2); }
+  .wisdom-label { font-weight:600; font-style:normal; }
+  .method-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.07em; text-transform:uppercase; padding:2px 8px;
+    border-radius:10px; margin-left:auto; flex-shrink:0; }
+  .method-abandoning { background:#E8E8E8; color:#4A4A4A; }
+  .method-transforming { background:#FEF3C7; color:#92400E; }
+  .method-transcending { background:var(--gold-pale); color:var(--gold-dark);
+    border:0.5px solid rgba(232,160,32,0.3); }
+
+  /* Per-story Lojong slogan (inside practice block) */
+  .slogan-anchor { border-bottom:0.5px solid rgba(46,46,114,0.12);
+    padding-bottom:.6rem; margin-bottom:.7rem; }
+  .slogan-label { font-size:9px; font-weight:600; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--indigo-dark); opacity:.6;
+    margin-bottom:.3rem; }
+  .slogan-text { font-family:'Cormorant Garamond',Georgia,serif; font-size:16px;
+    font-style:italic; color:var(--indigo-dark); line-height:1.5; }
+  .slogan-alt { font-size:11px; color:var(--indigo-mid); margin-top:.2rem;
+    font-style:italic; }
+
+  /* Klesha guide — expandable details section */
+  .klesha-guide { background:var(--amber-pale); border:0.5px solid rgba(99,56,6,0.18);
+    border-radius:16px; margin-bottom:1.35rem; overflow:hidden; }
+  .klesha-guide[open] .guide-summary-hint { display:none; }
+  .guide-summary { list-style:none; padding:1.1rem 1.65rem; cursor:pointer;
+    display:flex; flex-direction:column; gap:.25rem; position:relative; }
+  .guide-summary::-webkit-details-marker { display:none; }
+  .guide-summary::after { content:'▸'; position:absolute; right:1.5rem; top:1.2rem;
+    font-size:.8rem; color:var(--amber-dark); opacity:.6; }
+  .klesha-guide[open] > .guide-summary::after { content:'▾'; }
+  .guide-eyebrow { font-size:9px; font-weight:600; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--amber-dark); opacity:.7; }
+  .guide-title-row { display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; }
+  .guide-klesha-badge { font-size:11px; font-weight:600; letter-spacing:.06em;
+    text-transform:uppercase; padding:3px 11px; border-radius:20px; }
+  .guide-arrow { font-size:1rem; color:var(--amber-dark); opacity:.55; }
+  .guide-wisdom { font-family:'Cormorant Garamond',Georgia,serif; font-size:1.05rem;
+    font-style:italic; color:var(--amber-dark); }
+  .guide-summary-hint { font-size:11px; color:var(--text-3); font-style:italic; }
+  .guide-intro { display:grid; grid-template-columns:1fr 1fr; gap:1.1rem;
+    padding:.2rem 1.65rem 1.1rem; border-bottom:0.5px solid rgba(99,56,6,0.12); }
+  @media(max-width:650px){ .guide-intro { grid-template-columns:1fr; } }
+  .guide-block-label { font-size:9px; font-weight:600; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--amber-dark); opacity:.65; margin-bottom:.3rem; }
+  .guide-block-text { font-size:13px; color:var(--text-2); line-height:1.65; }
+  .guide-block-text p { margin-bottom:.5rem; }
+  .guide-block-text p:last-child { margin-bottom:0; }
+  .guide-methods-label { font-size:9px; font-weight:600; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--amber-dark); opacity:.65;
+    padding:.85rem 1.65rem .3rem; }
+  .guide-method { padding:.8rem 1.65rem;
+    border-top:0.5px solid rgba(99,56,6,0.08);
+    border-left:3px solid transparent; }
+  .guide-method-header { display:flex; align-items:baseline; gap:.55rem;
+    margin-bottom:.3rem; flex-wrap:wrap; }
+  .guide-method-label { font-size:11px; font-weight:700; letter-spacing:.05em;
+    text-transform:uppercase; }
+  .guide-method-sub { font-size:11px; color:var(--text-3); font-style:italic; }
+  .guide-method-lead { font-size:12.5px; font-weight:500; font-style:italic;
+    color:var(--text-2); margin-bottom:.4rem; }
+  .guide-method-text { font-size:13px; color:var(--text-2); line-height:1.65; }
+  .guide-method-text p { margin-bottom:.5rem; }
+  .guide-method-text p:last-child { margin-bottom:0; }
+
+  /* Edition Lojong section */
+  .lojong-guide { background:var(--indigo-pale); border:0.5px solid rgba(46,46,114,0.15);
+    border-radius:16px; margin-bottom:1.35rem; overflow:hidden; }
+  .lojong-guide[open] .lojong-hint { display:none; }
+  .lojong-summary { list-style:none; padding:1.1rem 1.65rem; cursor:pointer;
+    display:flex; flex-direction:column; gap:.25rem; position:relative; }
+  .lojong-summary::-webkit-details-marker { display:none; }
+  .lojong-summary::after { content:'▸'; position:absolute; right:1.5rem; top:1.2rem;
+    font-size:.8rem; color:var(--indigo-dark); opacity:.6; }
+  .lojong-guide[open] > .lojong-summary::after { content:'▾'; }
+  .lojong-eyebrow { font-size:9px; font-weight:600; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--indigo-dark); opacity:.55; }
+  .lojong-slogan-display { font-family:'Cormorant Garamond',Georgia,serif;
+    font-size:1.25rem; font-style:italic; color:var(--indigo-dark); line-height:1.4; }
+  .lojong-hint { font-size:11px; color:var(--indigo-mid); font-style:italic; }
+  .lojong-body { padding:.4rem 1.65rem 1.3rem; }
+  .lojong-alt { font-size:11.5px; color:var(--indigo-mid); font-style:italic;
+    margin-bottom:.9rem; }
+  .lojong-section-label { font-size:9px; font-weight:600; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--indigo-dark); opacity:.65; margin-bottom:.4rem; }
+  .lojong-para { font-size:13.5px; color:var(--indigo-dark); line-height:1.75;
+    margin-bottom:1rem; }
+  .lojong-para p { margin-bottom:.6rem; }
+  .lojong-para p:last-child { margin-bottom:0; }
+
+  /* Per-story rejoicing block */
+  .rejoicing-block { border-top:0.5px solid var(--border);
+    padding:1rem 1.65rem 1.2rem; margin:0 -1.65rem;
+    background:var(--rose-pale); }
+  .rejoicing-header { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--rose-dark); margin-bottom:.55rem;
+    display:flex; align-items:center; gap:.4rem; }
+  .rejoicing-text { font-size:13.5px; color:var(--rose-dark); line-height:1.75;
+    font-style:italic; }
+  .rejoicing-text p { margin-bottom:.5rem; }
+  .rejoicing-text p:last-child { margin-bottom:0; }
+
+  /* Edition rejoicing section */
+  .rejoicing-guide { background:var(--rose-pale); border:0.5px solid rgba(122,26,53,0.15);
+    border-radius:16px; margin-bottom:1.35rem; overflow:hidden; }
+  .rejoicing-guide[open] .guide-summary-hint { display:none; }
+  .rejoicing-summary { list-style:none; padding:1.1rem 1.65rem; cursor:pointer;
+    display:flex; flex-direction:column; gap:.25rem; position:relative; }
+  .rejoicing-summary::-webkit-details-marker { display:none; }
+  .rejoicing-summary::after { content:'▸'; position:absolute; right:1.5rem; top:1.2rem;
+    font-size:.8rem; color:var(--rose-dark); opacity:.6; }
+  .rejoicing-guide[open] > .rejoicing-summary::after { content:'▾'; }
+  .rejoicing-eyebrow { font-size:9px; font-weight:600; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--rose-dark); opacity:.55; }
+  .rejoicing-title { font-family:'Cormorant Garamond',Georgia,serif; font-size:1.15rem;
+    font-weight:500; color:var(--rose-dark); }
+  .rejoicing-hint { font-size:11px; color:var(--rose-dark); opacity:.6; font-style:italic; }
+  .rejoicing-body { padding:.2rem 1.65rem 1.3rem; }
+  .rejoicing-section-label { font-size:9px; font-weight:600; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--rose-dark); opacity:.65; margin-bottom:.4rem; }
+  .rejoicing-para { font-size:13.5px; color:var(--rose-dark); line-height:1.75;
+    font-style:italic; margin-bottom:1rem; }
+  .rejoicing-para p { margin-bottom:.6rem; }
+  .rejoicing-para p:last-child { margin-bottom:0; }
+  .rejoicing-aspiration { font-family:'Cormorant Garamond',Georgia,serif; font-size:16px;
+    font-style:italic; color:var(--rose-dark); line-height:1.9; padding:.75rem 1.1rem;
+    border-left:2px solid var(--rose-mid); margin-top:.5rem; }
+
+  /* Lens (perspective view) block */
+  .lens-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.35rem; margin:0 -1.65rem;
+    background:var(--amber-pale); }
+  .lens-header { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--amber-dark); margin-bottom:.75rem; }
+  .lens-tradition { font-weight:400; font-style:italic; letter-spacing:0;
+    text-transform:none; color:var(--text-3); }
+  .lens-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .lens-text p { margin-bottom:.75em; }
+  .lens-text p:last-child { margin-bottom:0; }
+  .lens-attr { font-size:11px; color:var(--text-3); padding-bottom:.2rem; }
+
+  /* Source link */
+  .story-source { font-size:11.5px; color:var(--text-3); padding:.4rem 0 .85rem;
+    border-top:0.5px dashed var(--border); margin-top:.2rem; }
+  .story-source a { color:var(--text-3); text-decoration:none;
+    border-bottom:0.5px solid var(--border); }
+  .story-source a:hover { color:var(--teal-deep); }
+
+  /* Underreported badge */
+  .underreported-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.09em; text-transform:uppercase; padding:2px 9px; border-radius:20px;
+    background:var(--green-pale); color:var(--green-dark); margin-left:6px;
+    border:0.5px solid rgba(39,80,10,0.18); vertical-align:middle; }
+
+  /* Multi-paragraph support in commentary and dialogue */
+  .story-teaching p { margin-bottom:.7em; }
+  .story-teaching p:last-child { margin-bottom:0; }
+  .dialogue-text p { margin-bottom:.7em; }
+  .dialogue-text p:last-child { margin-bottom:0; }
+
+  /* Tradition quote block */
+  .quote-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.3rem; margin:0 -1.65rem;
+    background:var(--purple-pale); position:relative; }
+  .quote-mark { font-family:'Cormorant Garamond',serif; font-size:52px;
+    line-height:.7; color:var(--purple-dark); opacity:0.18;
+    margin-bottom:-.25rem; user-select:none; }
+  .quote-text { font-family:'Cormorant Garamond',serif; font-size:17.5px;
+    font-style:italic; color:var(--text-1); line-height:1.85;
+    margin-bottom:.55rem; }
+  .quote-text p { margin-bottom:.7em; }
+  .quote-text p:last-child { margin-bottom:0; }
+  .quote-attr { font-size:11px; color:var(--text-3); margin-bottom:.55rem; }
+  .quote-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.08em; text-transform:uppercase; padding:2px 8px;
+    border-radius:10px; }
+  .quote-badge-exact { background:var(--green-pale); color:var(--green-dark);
+    border:0.5px solid rgba(39,80,10,0.18); }
+  .quote-badge-paraphrase { background:var(--gray-surface); color:var(--text-2);
+    border:0.5px solid var(--border); }
+
+  /* Closing */
+  .closing { text-align:center; padding:2.25rem 1.25rem .5rem;
+    border-top:0.5px solid var(--border); margin-top:.5rem; }
+  .closing-text { font-family:'Cormorant Garamond',serif; font-size:19px;
+    font-style:italic; color:var(--text-2); line-height:2.1; margin-bottom:1.6rem; }
+  .mantra-tibetan { font-size:22px; color:var(--gold-mid); letter-spacing:.07em;
+    display:block; margin-bottom:.6rem; }
+  .mantra { font-size:11px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--teal-deep); display:block; margin-bottom:.5rem; }
+  .mantra-note { font-size:12px; color:var(--text-3); font-style:italic;
+    font-family:'Cormorant Garamond',serif; }
+  /* ── Accordion-specific overrides and additions ─────────────────── */
+
+  /* Teaching divider inside accordion (no negative margins) */
+  .teaching-divider { display:flex; align-items:center; gap:10px;
+    margin-bottom:1rem; padding-top:1rem; }
+  .teaching-divider::after { content:''; flex:1; height:0.5px; background:var(--border); }
+  .teaching-divider span { font-size:13px; color:var(--teal-strong); flex-shrink:0; }
+
+  /* Klesha guide minor variants in accordion */
+  .guide-eyebrow { opacity:.55; }
+  .guide-klesha-badge { font-weight:700; letter-spacing:.05em; padding:3px 10px; }
+  .guide-arrow { font-size:14px; opacity:.5; }
+
+  /* Rejoicing guide open-state rule (accordion uses .rejoicing-hint) */
+  .rejoicing-guide[open] .rejoicing-hint { display:none; }
+
+  /* Accordion sections */
+  details.acc-section {
+    border-top:0.5px solid var(--border);
+    margin:0 -1.65rem;
+    padding:0 1.65rem;
+  }
+  details.acc-section[open] { padding-bottom:1.1rem; }
+  details.acc-dialogue { background:var(--blue-pale); }
+  details.acc-practice { background:var(--teal-pale); }
+  details.acc-lens     { background:var(--amber-pale); }
+  summary.acc-summary {
+    list-style:none; cursor:pointer; user-select:none;
+    font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--teal-deep);
+    padding:.9rem 0 .75rem;
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+  }
+  summary.acc-summary::marker,
+  summary.acc-summary::-webkit-details-marker { display:none; }
+  summary.acc-summary::after {
+    content:"▸"; font-size:9px; flex-shrink:0; color:var(--text-3);
+  }
+  details.acc-section[open] > summary.acc-summary::after { content:"▾"; }
+  .acc-sum-blue  { color:var(--blue-dark); }
+  .acc-sum-teal  { color:var(--teal-dark); }
+  .acc-sum-amber { color:var(--amber-dark); }
+
+  /* Dialogue content inside accordion */
+  .acc-subheader { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; margin-bottom:.75rem; }
+  .acc-subheader-blue { color:var(--blue-dark); }
+  .dialogue-attr { font-size:11px; color:var(--text-3); }
+
+  /* Lens content inside accordion */
+  .acc-lens-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .acc-lens-text p { margin-bottom:.75em; }
+  .acc-lens-text p:last-child { margin-bottom:0; }
+  .lens-attr { font-size:11px; color:var(--text-3); }
+
+  /* Tradition quote inside accordion */
+  details.acc-quote { background:var(--purple-pale); }
+  .acc-sum-purple { color:var(--purple-dark); }
+  .acc-quote-inner { padding:.25rem 0 .1rem; }
+
+  /* Per-story rejoicing in accordion */
+  details.acc-rejoicing { background:var(--rose-pale); }
+  .acc-sum-rose { color:var(--rose-dark); }
+
+  /* Accordion hint banner */
+  .acc-hint { font-size:12px; color:var(--text-3); text-align:center;
+    margin-bottom:2rem; font-style:italic; }
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="masthead">
+    <svg class="lotus" width="60" height="52" viewBox="0 0 60 52" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="30" cy="42" rx="10" ry="5" fill="#9FE1CB" opacity="0.38"/>
+      <path d="M30 38 Q21 24 16 9 Q24 22 30 26 Q36 22 44 9 Q39 24 30 38Z" fill="#5DCAA5" opacity="0.88"/>
+      <path d="M30 38 Q13 30 5 19 Q17 27 30 32Z" fill="#9FE1CB" opacity="0.9"/>
+      <path d="M30 38 Q47 30 55 19 Q43 27 30 32Z" fill="#9FE1CB" opacity="0.9"/>
+      <path d="M30 38 Q9 34 3 27 Q15 32 30 36Z" fill="#C0DD97" opacity="0.68"/>
+      <path d="M30 38 Q51 34 57 27 Q45 32 30 36Z" fill="#C0DD97" opacity="0.68"/>
+      <circle cx="30" cy="26" r="5" fill="#F7E28A" opacity="0.9"/>
+      <circle cx="30" cy="26" r="2.8" fill="#E8A020"/>
+      <circle cx="30" cy="26" r="1.1" fill="#6B3E08"/>
+    </svg>
+    <div class="date-line">Monday, April 20, 2026</div>
+    <div class="masthead-title">The Awakened Observer</div>
+    <div class="issue-line">Issue No. 10  ·  News of the world, held with open hands</div>
+    <div class="masthead-rule"></div>
+    <div class="masthead-sub">Awareness &nbsp;·&nbsp; Love &nbsp;·&nbsp; Wisdom</div>
+    <div class="tradition-badge">Vajrayana Edition</div>
+  </div>
+
+  <div class="opening">Whatever appears in awareness is the natural radiance of mind. Engage with the world from that recognition — without holding on, without pushing away.
+</div>
+  <div class="opening-instruction">Before reading: pause for a single breath, resting in spacious awareness. Let each news story arise and dissolve in that open, clear presence.</div>
+
+  <div class="glance">
+    <div class="glance-title">Today at a glance</div>
+    <div class="glance-list">
+      <div class="glance-row">
+        <div class="g-dot d-science"></div>
+        <div class="glance-text">A groundbreaking study published in *Communications Biology* in April 2026, led by the University of California San Diego, demonstrates that a mere seven days of intensive meditation and mind-body practices can induce rapid and measurable changes in both brain activity and blood biology.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-human-interest"></div>
+        <div class="glance-text">On April 15, 2026, Bright Side featured a collection of 12 stories illustrating moments of unexpected compassion experienced by individuals amidst loneliness.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-joy"></div>
+        <div class="glance-text">An article published on April 19, 2026, by Bright Side presents 12 true stories illustrating how acts of kindness, empathy, and unexpected happiness invariably return to those who offer them.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-nature"></div>
+        <div class="glance-text">A study published on April 19, 2026, posits that human societies have become a new, significant force of nature, actively reshaping the planet.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-peace"></div>
+        <div class="glance-text">Israel and Lebanon have agreed to implement a ten-day cessation of hostilities, commencing on April 16, 2026, at 17:00 EST. This initial pause is intended to enable good-faith direct negotiations, facilitated by the United States, with the objective of achieving a comprehensive agreement that ensures lasting security, stability, and peace between the two countries.</div>
+      </div>
+    </div>
+  </div>
+
+
+  <details class="klesha-guide">
+    <summary class="guide-summary">
+      <span class="guide-eyebrow">Working with this edition</span>
+      <span class="guide-title-row">
+        <span class="guide-klesha-badge" style="background:#DBEAFE;color:#1E3A8A">Wonder</span>
+        <span class="guide-arrow">→</span>
+        <span class="guide-wisdom">Dharmadhatu Wisdom</span>
+      </span>
+      <span class="guide-summary-hint">Tap to expand practice guidance</span>
+    </summary>
+
+    <div class="guide-intro">
+      <div class="guide-block">
+        <div class="guide-block-label">The klesha</div>
+        <div class="guide-block-text"><p>Wonder, as a klesha, manifests as a subtle mental grasping, a reaching outward for the object of awe, or an internal proliferation around a captivating experience. In the body, it might feel like a slight lift in the chest, a widening of the eyes, or a subtle tension in the forehead, while the mind becomes highly engaged, sometimes to the exclusion of peripheral awareness, subtly clinging to the vividness or novelty of the moment. This can lead to a kind of mental busyness, even in the midst of beauty, rather than simply resting in its open presence.</p></div>
+      </div>
+      <div class="guide-block">
+        <div class="guide-block-label">The wisdom it reveals</div>
+        <div class="guide-block-text"><p>Dharmadhatu Wisdom reveals the utterly pure and unconditioned nature of all phenomena, the fundamental ground from which everything arises and into which it dissolves. It's the wisdom that recognizes the vast, open space of awareness itself as the true source of all wonder, rather than getting captivated by external objects or experiences. When this wisdom shines, we experience a boundless sense of clarity and interconnectedness, realizing that the &quot;wondrous&quot; is simply the unconditioned nature of mind, always present.</p></div>
+      </div>
+    </div>
+
+    <div class="guide-methods-label">How to work with it</div>
+    
+    <div class="guide-method" style="background:#F8F8F8;border-left:3px solid #6B7280">
+      <div class="guide-method-header">
+        <span class="guide-method-label" style="color:#6B7280">Abandoning</span>
+        <span class="guide-method-sub">Apply the antidote — reduce and release</span>
+      </div>
+      <div class="guide-method-lead">To work with wonder through abandoning: When you notice the klesha of wonder arising—that subtle mental grasping, an excited proliferation around a captivating experience, perhaps a subtle tension in the eyes or a reaching in the mind—take a moment to pause. Gently bring your attention to your breath, feeling the rise and fall in your abdomen, a simple, steady anchor. As you breathe, consciously release any mental reaching, any subtle tension, or any internal commentary associated with the &quot;wonder.&quot; Instead of following the mind's pull towards the object of awe, direct your attention inward, resting in the open, unconditioned space of your own awareness. Allow your mind to become vast and still, like a clear, open sky, where even the most captivating phenomena can simply arise and pass without leaving a trace. For several minutes, simply rest in this quiet spaciousness, letting any mental excitement or subtle grasping dissolve naturally into the vastness. Conclude by offering this quietude and clarity for the benefit of all beings, wishing that they too may find freedom from attachment to even beautiful experiences, resting in the true nature of mind.</div>
+      <div class="guide-method-text"></div>
+    </div>
+    
+    <div class="guide-method" style="background:#FAEEDA;border-left:3px solid #633806">
+      <div class="guide-method-header">
+        <span class="guide-method-label" style="color:#633806">Transforming</span>
+        <span class="guide-method-sub">Use the energy as fuel — redirect toward wisdom</span>
+      </div>
+      <div class="guide-method-lead">To work with wonder through transformation: When the klesha of wonder arises, instead of pushing it away, lean into its energy. Feel the expansive, captivating quality of it in your body and mind—perhaps a lightness, an openness, a sense of connection. Notice how this energy draws you in. Now, consciously redirect this powerful, engaging energy. Instead of letting it cling to a specific object or experience, expand it outwards. Imagine this sense of awe and connection extending to all beings, especially those experiencing loneliness or hardship, as highlighted in &quot;Bright Side Shares 12 Stories of Unexpected Compassion.&quot; Let the vividness of wonder fuel your bodhichitta, transforming it into a deep aspiration for the well-being and liberation of everyone, everywhere. Use the very energy of being captivated to open your heart boundlessly, recognizing that the true source of wonder is the interconnectedness of all life. Allow this expansive feeling to become a potent fuel for compassion, wishing that all may recognize the inherent beauty and dignity within themselves and others.</div>
+      <div class="guide-method-text"></div>
+    </div>
+    
+    <div class="guide-method" style="background:#FDF5DC;border-left:3px solid #6B3E08">
+      <div class="guide-method-header">
+        <span class="guide-method-label" style="color:#6B3E08">Transcending</span>
+        <span class="guide-method-sub">Look directly — allow self-liberation</span>
+      </div>
+      <div class="guide-method-lead">To work with wonder through transcendence: When the klesha of wonder arises, instead of getting caught in its pull or trying to change it, simply turn your attention directly towards the experience of wonder itself. Inquire: &quot;What is this wonder? Where does it reside? Can I find its essence?&quot; Look directly at the sensation, the mental proliferation, the subtle grasping. Notice how it arises vividly, like a rainbow or a reflection, yet lacks any inherent, solid existence. As you look, without judgment or conceptualization, you may find that the &quot;wonder&quot; cannot be pinned down; it's a dynamic display, a tsal, of mind itself. Rest in this direct, naked recognition. Allow the klesha to self-liberate, rang grol, in its own space, like a cloud dissolving into the vast, clear sky of rigpa. There's no need to abandon or transform it; simply recognize its empty, luminous nature as an expression of the dharmakaya. This direct seeing allows the wisdom of the Dharmadhatu to spontaneously reveal itself, recognizing all phenomena, even wonder, as the unconditioned play of awareness.</div>
+      <div class="guide-method-text"></div>
+    </div>
+  </details>
+  <div class="section-label">Stories — seen clearly</div>
+  <p class="acc-hint">Teaching sections open when you tap the section title.</p>
+
+
+  <!-- Story 1 -->
+  <div class="story">
+    <span class="story-tag tag-science">Wonder & Discovery</span><span class="underreported-badge">Less Reported</span>
+    <div class="story-headline">A week of intensive meditation can rewire your brain and body, new study finds</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">A groundbreaking study published in *Communications Biology* in April 2026, led by the University of California San Diego, demonstrates that a mere seven days of intensive meditation and mind-body practices can induce rapid and measurable changes in both brain activity and blood biology. Researchers observed significant improvements in brain efficiency, enhanced immune signaling, and an increase in natural pain-relief chemicals within participants' blood. The findings also indicated promoted neuron growth and stronger brain connectivity, changes typically associated with months of training. This research offers compelling evidence that mental practices can profoundly influence physical health in tangible ways.</div>
+    <div class="story-source"><a href="https://www.sciencedaily.com/releases/2026/04/260407130000.htm" target="_blank" rel="noopener">ScienceDaily ↗</a></div>
+    <details class="acc-section acc-teaching" open>
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">Isn't this wonderful news? A new study shows that even a short period of intensive meditation can quickly change our brains and bodies. For centuries, wisdom traditions have pointed to the profound possibility of transformation, and now science is catching up, showing us the tangible shifts in neural pathways and biological markers. What this really tells us is that our experience is not fixed. The habitual patterns of ma rigpa, the confusion that binds us, are not concrete structures. They are dynamic, fluid, and wonderfully responsive to focused attention and genuine presence. This research simply confirms what practitioners have discovered on the cushion for millennia: that genuine happiness and clarity are within our reach, not as an external reward, but as the very nature of our being, waiting to be revealed through practice. It's like finding the clear sky after the clouds part. The sky was always there, just obscured.</div>
+      <div class='teaching-attr'>— In the spirit of Mingyur Rinpoche's teaching on the unfixed nature of mind</div>
+    </details>
+    <details class="acc-section acc-quote">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">Our minds are like a river. They are constantly flowing, constantly changing. We can choose to let the river flow wherever it wants, or we can choose to guide it, to direct its flow towards peace and clarity.</div><div class="quote-attr">Mingyur Rinpoche, *Joyful Wisdom*</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+    </details>
+    <details class="acc-section acc-dialogue">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+      <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+      <div class="dialogue-text">SOCRATES: Esteemed Rinpoche, this study suggests our very essence, the brain and body, can be rewired. But what does it mean to 'rewire' that which is already in motion? Is this not merely a change of a part, rather than a transformation of the whole? Where does the 'self' reside in this shifting landscape, if not in a fixed structure?<br>MINGYUR RINPOCHE: Ah, Socrates, your questions always go to the heart! To 'rewire' means to shift the patterns, yes, but not to change the fundamental ground. Imagine a river: the water is always flowing, always changing. The riverbed, the banks, they seem solid, but even they are shaped by the current. Meditation is not about creating a new river, but about recognizing the pure, flowing nature of the water itself, and allowing it to flow more freely, less obstructed by the rocks and dams of kleshas (afflictions) and fixed ideas. The 'self' you speak of, the 'I,' is not a fixed structure to be found in the brain or body. It's a process, a dynamic display of awareness. When we meditate, we're not trying to find a solid 'self' to rewire. We are simply recognizing the luminous, open quality of mind itself, which is never truly fixed, never truly broken, and always capable of profound clarity. The changes in the brain are the *effects* of this recognition, not the cause. It is the wisdom, the yeshe, that influences the shes pa (conceptual mind) and its physical correlates. Our true nature is already perfect; the rewiring is simply bringing our experience into alignment with that truth. It's like polishing a mirror; the mirror itself doesn't change, but its capacity to reflect clearly improves.<br>SOCRATES: So, the 'rewiring' is more akin to removing obstructions from the mirror, allowing its inherent reflective quality to shine forth, rather than altering the mirror itself? And this inherent quality, is it universally present, even in those who do not meditate?<br>MINGYUR RINPOCHE: Exactly! The inherent clarity, the basic goodness, the rigpa, is always present, for everyone, regardless of whether they meditate or not. The practice of meditation helps us to directly experience this, to polish away the dust of conceptual fabrications and habitual patterns. The brain changes are simply the physical manifestation of this deeper recognition and purification happening on the level of mind. It’s like when you stop struggling in water; you realize you can float. The capacity was always there. The study shows how quickly the 'struggle' can diminish and the natural buoyancy can be felt. It is truly a testament to the mind's profound, inherent wisdom. We are not adding anything; we are simply rediscovering what is already there.</div>
+      <div class='dialogue-attr'>— In the spirit of Ancient Greek philosophy and Vajrayana Buddhism</div>
+    </details>
+    <details class="acc-section acc-practice">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-wonder">Wonder &amp; Awe</span>
+        Practice <span class="method-badge method-transcending">Transcending</span>
+      </div>
+      
+      <div class="slogan-anchor">
+        <div class="slogan-label">Lojong</div>
+        <div class="slogan-text">"Don't expect applause."</div>
+        <div class="slogan-alt">Alt. translation: &ldquo;Don't expect gratitude.&rdquo;</div>
+      </div>
+      <div class="practice-text">Find a comfortable seated posture, spine erect but relaxed. Gently close your eyes or soften your gaze. For the next five minutes, simply rest your attention on the natural rhythm of your breath. Don't try to change it; just feel the sensation of the air entering and leaving your body. When your mind wanders, which it will, gently acknowledge the thought or feeling, and then kindly bring your attention back to the breath, without judgment. Finish by offering a quiet smile to yourself, acknowledging your effort.</div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Dharmadhātu Wisdom</div>
+    </details>
+    <details class="acc-section acc-rejoicing">
+      <summary class="acc-summary acc-sum-rose">❤ Rejoicing</summary>
+      <div class="rejoicing-text">We rejoice in the diligent scientific inquiry that illuminates the profound capacity of the human mind to transform through dedicated practice. We celebrate the growing understanding that inner work can indeed rewire our very being for greater well-being.</div>
+    </details>
+    <details class="acc-section acc-lens">
+      <summary class="acc-summary acc-sum-amber">👁️ Mahamudra View &nbsp;·&nbsp; <span class='lens-tradition'>Mahamudra / Vajrayana</span></summary>
+      <div class="lens-text acc-lens-text">From the mahamudra perspective, this study is a beautiful illustration of tsal, the dynamic, unceasing display of rigpa. The brain and body, rather than being solid, independent entities, are seen as luminous manifestations of awareness itself. The 'rewiring' is not a fundamental alteration of a fixed thing, but rather a shifting of patterns within the boundless expanse of dharmakaya. It shows how rapidly the mind's inherent clarity, when recognized and rested in, can naturally purify and rearrange its own energetic expressions. There is no separate 'brain' being changed; there is only the seamless, self-liberating play of awareness, rang grol, revealing its own luminous potential. This is the very essence of non-duality in action.</div>
+      <div class='lens-attr'>— Perceiving all phenomena as the self-liberating display of rigpa</div>
+    </details>
+  </div>
+
+  <!-- Story 2 -->
+  <div class="story">
+    <span class="story-tag tag-human">The Human Inside the Headline</span>
+    <div class="story-headline">Bright Side Shares 12 Stories of Unexpected Compassion in the Midst of Loneliness</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">On April 15, 2026, Bright Side featured a collection of 12 stories illustrating moments of unexpected compassion experienced by individuals amidst loneliness. These narratives underscore how seemingly small, quiet acts of kindness can instigate profound healing and reassure people that they are not as isolated as they may feel. The compilation highlights instances where empathy and human connection emerge in surprising circumstances, leaving a lasting positive impact on those involved. Such stories serve as a powerful reminder that genuine human goodness can break through feelings of solitude and division.</div>
+    <div class="story-source"><a href="https://brightside.me/inspiration-psychology/12-stories-of-people-who-found-unexpected-compassion-in-the-midst-of-loneliness-832101/" target="_blank" rel="noopener">Bright Side ↗</a></div>
+    <details class="acc-section acc-teaching" open>
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">These stories beautifully illustrate a profound truth: we are all interconnected. Loneliness is a deep suffering, a feeling of separation from others and from our own inner peace. But when a small act of kindness, a moment of genuine human connection, occurs, it can cut through that isolation like a ray of sunlight. It reminds us that our fundamental nature is not separate, but interdependent. Every being wishes for happiness and wishes to avoid suffering. When we extend compassion to another, even in a small way, we are not only helping them, but we are also nurturing our own bodhichitta (awakening mind), our innate capacity for love and kindness. These seemingly small acts have vast consequences, rippling outwards, transforming suffering into connection. They are a living demonstration of the power of altruism.</div>
+      <div class='teaching-attr'>— In the spirit of the Dalai Lama's teaching on universal responsibility</div>
+    </details>
+    <details class="acc-section acc-quote">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">Our prime purpose in this life is to help others. And if you can't help them, at least don't hurt them.</div><div class="quote-attr">Dalai Lama XIV</div><span class="quote-badge quote-badge-exact">Exact quote</span></div>
+    </details>
+    <details class="acc-section acc-dialogue">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🙏 shantideva &nbsp;·&nbsp; <span class='dialogue-tradition'>Mahayana Buddhist — 8th century India</span></div>
+      <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+      <div class="dialogue-text">SHANTIDEVA: Great Protector, these stories of compassion arising amidst loneliness bring to mind the profound suffering that permeates samsara (cyclic existence). How can such isolated acts, however pure, truly address the vast ocean of woe? The Bodhisattva's vow is to liberate all sentient beings; is this not a task requiring more than small, unexpected gestures?<br>DALAI LAMA: Revered Shantideva, your dedication to the liberation of all beings is truly inspiring. And it is precisely in these 'small, unexpected gestures' that the Bodhisattva's vow begins to manifest in the world. Consider the vastness of the ocean: it is made up of countless drops. Each act of compassion, each moment of connection, is a precious drop. Loneliness is a particular form of suffering rooted in a sense of separation, a deluded belief in an independent self. When one person extends kindness to another, it directly challenges that delusion of separation. It says, 'You are not alone; we are connected.' This is not merely a superficial comfort; it is a profound affirmation of interdependence, the very essence of reality. These acts, whether conscious or not, sow the seeds of bodhichitta, both in the giver and the receiver. They demonstrate that the path to liberation is not only grand proclamations but also the simple, courageous choice to open one's heart in the face of another's pain. They are the practical application of universal responsibility, illuminating the path for others to follow. Every genuine smile, every listening ear, every shared moment of warmth helps to weave the fabric of a more compassionate world, one thread at a time.<br>SHANTIDEVA: Indeed, the vastness of the vow need not negate the power of the individual deed. But what of the inner disposition of the one offering kindness? Is it enough that the act is compassionate, or must the motivation also be pure, untainted by expectation or attachment to results?<br>DALAI LAMA: Motivation is, of course, paramount. If the act springs from a genuine wish for the other's well-being, without expectation of return or recognition, its power is immense. However, even if the initial motivation is mixed, the *experience* of acting kindly can itself purify the mind, strengthening our compassionate instincts. It's a reciprocal process. The more we practice compassion, the more naturally it arises, and the purer our motivation becomes. These stories highlight how compassion can unexpectedly break through, even when we ourselves might be struggling. This shows the inherent goodness within all beings, waiting for the right conditions to emerge. So, yes, while pure motivation is the ideal, any genuine act of kindness is a step towards cultivating that very purity, slowly transforming the mind and bringing joy to all involved. It is the beginning of transforming suffering into enlightenment.</div>
+      <div class='dialogue-attr'>— In the spirit of the Bodhisattva ideal and Gelug wisdom</div>
+    </details>
+    <details class="acc-section acc-practice">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-compassion">Compassion &amp; Care</span>
+        Practice <span class="method-badge method-transforming">Transforming</span>
+      </div>
+      
+      <div class="slogan-anchor">
+        <div class="slogan-label">Lojong</div>
+        <div class="slogan-text">"Sending and taking should be practiced alternately. These two should ride the breath."</div>
+        <div class="slogan-alt">Alt. translation: &ldquo;Sending and taking should ride the breath.&rdquo;</div>
+      </div>
+      <div class="practice-text">For five minutes, find a quiet space. Bring to mind someone you know who might be experiencing loneliness or difficulty. As you breathe in, imagine taking in their suffering, their feelings of isolation, like a dark mist. Hold it with compassion in your heart. As you breathe out, imagine sending them warmth, connection, and comfort, like a radiant light. Continue this practice of tonglen (sending and taking), breathing in their pain and breathing out your kindness. Conclude by wishing all beings freedom from loneliness.</div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> All-Accomplishing Wisdom</div>
+    </details>
+    <details class="acc-section acc-rejoicing">
+      <summary class="acc-summary acc-sum-rose">❤ Rejoicing</summary>
+      <div class="rejoicing-text">We rejoice in the innate compassion that shines forth in these unexpected moments, reminding us of the deep human capacity for connection and care. It brings us great joy to witness these acts of kindness that alleviate the suffering of loneliness.</div>
+    </details>
+    <details class="acc-section acc-lens">
+      <summary class="acc-summary acc-sum-amber">💛 Bodhichitta View &nbsp;·&nbsp; <span class='lens-tradition'>Mahayana Buddhist</span></summary>
+      <div class="lens-text acc-lens-text">From the bodhichitta view, these stories are not just heartwarming anecdotes; they are glimpses of the Bodhisattva's activity in the world. The suffering of loneliness, deeply pervasive, calls forth a natural, albeit often unconscious, response of compassion. Each act of unexpected kindness is a manifestation of awakened heart, a small unfolding of the bodhichitta vow. Even if the individuals are unaware of the profound truth of interdependence, their actions demonstrate it. These moments are precious seeds of awakening, reminding us that the capacity for altruism and connection is inherent, capable of transforming isolation into profound connection and opening the path to liberation for all beings.</div>
+      <div class='lens-attr'>— Seeing the inherent compassionate action of bodhichitta</div>
+    </details>
+  </div>
+
+  <!-- Story 3 -->
+  <div class="story">
+    <span class="story-tag tag-joy">Joy & the Human Spirit</span>
+    <div class="story-headline">12 Moments That Prove Kindness and Compassion Always Come Full Circle</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">An article published on April 19, 2026, by Bright Side presents 12 true stories illustrating how acts of kindness, empathy, and unexpected happiness invariably return to those who offer them. These narratives suggest that the positive impact and love shared by individuals do not dissipate, even after their passing. The collection emphasizes that difficult endings can sometimes serve as catalysts for extraordinary new beginnings, highlighting the enduring nature of compassion and human connection. These stories serve as a testament to the idea that what is given out in kindness ultimately circles back, often when it's needed most.</div>
+    <div class="story-source"><a href="https://brightside.me/inspiration-psychology/12-moments-that-prove-kindness-and-compassion-always-come-full-circle-832101/" target="_blank" rel="noopener">Bright Side ↗</a></div>
+    <details class="acc-section acc-teaching" open>
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">The idea that kindness 'comes full circle' is a wonderful way to speak about the deep interconnectedness of all phenomena. It's not just about some cosmic ledger keeping track of good deeds, like a karmic bank account. No, it's much more immediate and profound than that. When we extend kindness, when we open our hearts with genuine compassion, we are actually touching the very basic goodness, the pure awareness, that is our own true nature and the true nature of everyone and everything. It's like seeing your own face reflected in a clear pool. The kindness we offer is a reflection of the kindness that is already within us, and when it returns, it's not a separate gift, but a deepening recognition of this intrinsic reality. This brings a tremendous sense of hope, not in some external reward, but in the inherent wisdom and compassion of existence itself. We are simply waking up to what is already perfectly present.</div>
+      <div class='teaching-attr'>— In the spirit of Mingyur Rinpoche's teaching on the non-duality of giving and receiving</div>
+    </details>
+    <details class="acc-section acc-quote">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">When you give, you are not really giving something away, but opening a channel for more to flow through you.</div><div class="quote-attr">Mingyur Rinpoche, *The Joy of Living*</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+    </details>
+    <details class="acc-section acc-dialogue">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+      <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+      <div class="dialogue-text">SOCRATES: Esteemed Rinpoche, the notion that kindness 'comes full circle' suggests a kind of cosmic justice or reciprocal exchange. Yet, in our world, we often witness acts of virtue unrewarded, and acts of malevolence seemingly prospering. How then can we speak of this 'full circle' with certainty? Is it a promise of external reward, or something more subtle?<br>MINGYUR RINPOCHE: Socrates, your keen observation points to the apparent contradictions of our worldly experience. When we speak of kindness 'coming full circle,' we are not speaking of a guarantee of external reward, like a payment for a good deed. That would be too simplistic. Instead, it speaks to a deeper truth about the nature of reality itself, a truth that is not always visible to our ordinary, conceptual minds. When we act with genuine kindness, we are momentarily stepping beyond the confines of our ego, our 'me and mine.' We are connecting with the basic goodness, the pure awareness, that is shared by all beings. This act itself is the 'return.' The 'circle' is completed not by an external reward, but by the intrinsic experience of interconnectedness, of being in harmony with the truth of pratityasamutpada (dependent origination). The joy, the warmth, the sense of openness that arises in that moment of giving is the immediate fruit. It's a shift in our perception, a momentary glimpse of rigpa, where the giver, the gift, and the receiver are not truly separate. The 'return' is the deepening of that recognition, the subtle rewiring of our habitual patterns towards greater clarity and compassion, regardless of what external circumstances may or may not appear.<br>SOCRATES: So, the 'full circle' is primarily an internal experience, a transformation of the one who acts kindly, rather than a material recompense? Does this internal shift then influence the external world, even if not in a directly attributable way?<br>MINGYUR RINPOCHE: Precisely, Socrates! It is fundamentally an internal unfolding, a purification of the mind. And yes, this internal shift absolutely influences the external world, though often in ways we cannot easily trace with our limited perception. When one mind opens with kindness, it changes the energetic landscape, however subtly. It creates a ripple, an energetic resonance that can inspire others, soften hearts, and create conditions for more positive interactions. Even if we never see the direct 'return' in terms of an identical act coming back to us, the act itself has already dissolved a tiny bit of separation, a tiny bit of ma rigpa, in the fabric of existence. It's like dropping a stone into a pond; the ripples extend far beyond where the stone landed. Our minds are not isolated islands; they are part of a vast, interconnected ocean. Every act of kindness, every moment of genuine compassion, contributes to the overall clarity and well-being of that ocean, making it a more hospitable place for all. So, the 'full circle' is not just personal, it's cosmic.</div>
+      <div class='dialogue-attr'>— In the spirit of Ancient Greek philosophy and Vajrayana Buddhism</div>
+    </details>
+    <details class="acc-section acc-practice">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-hope">Hope &amp; Renewal</span>
+        Practice <span class="method-badge method-transforming">Transforming</span>
+      </div>
+      
+      <div class="slogan-anchor">
+        <div class="slogan-label">Lojong</div>
+        <div class="slogan-text">"Abandon any hope of fruition."</div>
+        <div class="slogan-alt">Alt. translation: &ldquo;Abandon any hope of results.&rdquo;</div>
+      </div>
+      <div class="practice-text">Sit comfortably and bring to mind a time when you genuinely offered kindness to someone, perhaps a small, unnoticed act. Feel the warmth, the openness, that arose in your heart. Now, bring to mind a time when someone unexpectedly offered kindness to you. Feel the gratitude, the connection. For three minutes, simply alternate between these two feelings – the warmth of giving and the gratitude of receiving – allowing them to blend and dissolve any sense of separation between them. Conclude by resting in the open, kind awareness that is always present.</div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> All-Accomplishing Wisdom</div>
+    </details>
+    <details class="acc-section acc-rejoicing">
+      <summary class="acc-summary acc-sum-rose">❤ Rejoicing</summary>
+      <div class="rejoicing-text">We rejoice in the countless acts of kindness and compassion that demonstrate the beautiful interconnectedness of our world. It is truly wonderful to see how genuine care naturally flows back, enriching the lives of both givers and receivers.</div>
+    </details>
+    <details class="acc-section acc-lens">
+      <summary class="acc-summary acc-sum-amber">✨ Pure Perception View &nbsp;·&nbsp; <span class='lens-tradition'>Vajrayana</span></summary>
+      <div class="lens-text acc-lens-text">From the perspective of pure perception, these stories are luminous. They are not merely tales of cause and effect, but direct revelations of the sacred dimension inherent in all interactions. Each act of kindness, each moment of compassion, shines like a jewel, reflecting the boundless, inherent goodness of existence itself. It's a glimpse into a world where everything is already perfect, already interconnected, and where the appearance of separation is merely a veil. The 'return' of kindness is not a consequence, but the natural unfolding of the universe's own pure, unconditioned love, reflecting back its own radiant nature. These moments pierce through the ordinary to reveal the buddha-nature of all phenomena.</div>
+      <div class='lens-attr'>— Seeing the sacred, luminous dimension in all actions and interactions</div>
+    </details>
+  </div>
+
+  <!-- Story 4 -->
+  <div class="story">
+    <span class="story-tag tag-nature">Nature & Renewal</span>
+    <div class="story-headline">A New Force of Nature Is Reshaping the Planet, Study Finds</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">A study published on April 19, 2026, posits that human societies have become a new, significant force of nature, actively reshaping the planet. The research suggests that cultural and social innovations have granted humanity an extraordinary capacity to transform Earth and improve human life. This perspective moves beyond the traditional understanding of humans simply adapting to their environment, highlighting our profound and active role in planetary changes. The findings underscore the scale of human impact on global ecosystems and geological processes.</div>
+    <div class="story-source"><a href="https://www.sciencedaily.com/releases/2026/04/260419130000.htm" target="_blank" rel="noopener">ScienceDaily ↗</a></div>
+    <details class="acc-section acc-teaching" open>
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">This study offers a profound insight into our place in the world. To recognize human societies as a 'new force of nature' is to acknowledge the immense power we wield, a power that shapes not just our communities, but the very fabric of the Earth. With such power comes great responsibility. Our actions, both individual and collective, now resonate globally. This is a vivid demonstration of pratityasamutpada, the interdependent nature of all phenomena. We are not separate from nature; we are an integral, influential part of it. The wonder here lies not just in our capacity to transform, but in the potential for us to direct this force with wisdom and compassion, for the benefit of all sentient beings and the planet itself. We must cultivate a sense of universal responsibility, understanding that our own well-being is inextricably linked to the well-being of the entire Earth community.</div>
+      <div class='teaching-attr'>— In the spirit of the Dalai Lama's teaching on universal responsibility and interdependence</div>
+    </details>
+    <details class="acc-section acc-quote">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">The planet is our only home. If we don't take care of it, where will we go?</div><div class="quote-attr">Dalai Lama XIV</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+    </details>
+    <details class="acc-section acc-dialogue">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🙏 shantideva &nbsp;·&nbsp; <span class='dialogue-tradition'>Mahayana Buddhist — 8th century India</span></div>
+      <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+      <div class="dialogue-text">SHANTIDEVA: Illustrious One, this revelation of humanity as a 'new force of nature' presents a daunting prospect. Our capacity to reshape the planet for 'human life' often comes at the expense of other sentient beings and the delicate balance of the natural world. How can the Bodhisattva, committed to alleviating suffering, reconcile this immense, often destructive, power with the path of compassion?<br>DALAI LAMA: Revered Shantideva, your concern is deeply rooted in bodhichitta. Indeed, humanity's impact has often been driven by short-sighted desires and a mistaken sense of separation from nature. However, the study also highlights our 'extraordinary capacity to transform Earth and improve human life.' This capacity, when guided by wisdom and compassion, can be a force for immense good. The Bodhisattva's path is not to retreat from this power, but to skillfully engage with it. We must recognize that 'improving human life' cannot be truly achieved at the cost of the environment or other beings, for we are all inextricably linked through pratityasamutpada (dependent origination). The challenge, then, is to cultivate a universal responsibility where our innovations and societal changes are imbued with altruism. We must see the planet as our shared home, and all its inhabitants as part of our extended family. The suffering of the environment is our suffering; the well-being of other species contributes to our own. This understanding transforms our power from a potential for destruction into a profound opportunity for ethical stewardship and collective flourishing. It calls for a revolution not just in technology, but in consciousness, where our actions are guided by the deepest sense of interconnectedness.<br>SHANTIDEVA: So, the Bodhisattva's response is not to diminish human ingenuity, but to infuse it with the light of wisdom and compassion, transforming its direction. But how do we awaken this wisdom and compassion in a world so driven by self-interest and immediate gratification?<br>DALAI LAMA: It begins with education, with cultivating awareness of interdependence from a young age. It requires leaders and individuals to reflect deeply on the long-term consequences of their actions. It also means engaging in practices that cultivate compassion, such as meditation, and developing a genuine sense of empathy for all forms of life. When individuals recognize their own basic goodness and the shared desire for happiness in all beings, their actions naturally shift. It is a gradual process, but one that is essential for our survival and for the well-being of future generations. The fact that we can recognize ourselves as a force of nature means we also have the capacity to guide that force with intelligence and heart. This is the great hope, the great potential for humanity.</div>
+      <div class='dialogue-attr'>— In the spirit of the Bodhisattva ideal and Gelug wisdom</div>
+    </details>
+    <details class="acc-section acc-practice">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-wonder">Wonder &amp; Awe</span>
+        Practice <span class="method-badge method-transcending">Transcending</span>
+      </div>
+      
+      <div class="slogan-anchor">
+        <div class="slogan-label">Lojong</div>
+        <div class="slogan-text">"Regard all dharmas as dreams."</div>
+        
+      </div>
+      <div class="practice-text">Sit in a comfortable position and bring your attention to the vastness of the Earth. Imagine the intricate web of life, the interconnectedness of all beings and systems. Reflect on humanity's immense impact, both positive and negative. For three minutes, hold a clear intention to use your own life and actions to contribute positively to this interconnected web, aspiring to act with wisdom and compassion in all your choices. Conclude with a deep bow of respect to the Earth and all its inhabitants.</div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Dharmadhātu Wisdom</div>
+    </details>
+    <details class="acc-section acc-rejoicing">
+      <summary class="acc-summary acc-sum-rose">❤ Rejoicing</summary>
+      <div class="rejoicing-text">We rejoice in the profound clarity and scientific diligence that reveal our collective impact as human beings on this precious planet. This recognition of our immense power calls us to greater wisdom and responsibility in shaping the world around us.</div>
+    </details>
+    <details class="acc-section acc-lens">
+      <summary class="acc-summary acc-sum-amber">👁️ Mahamudra View &nbsp;·&nbsp; <span class='lens-tradition'>Mahamudra / Vajrayana</span></summary>
+      <div class="lens-text acc-lens-text">From the mahamudra view, human societies acting as a 'force of nature' is simply another manifestation within the boundless expanse of dharmakaya. There is no fundamental separation between 'human' and 'nature,' as both are pure expressions of the ground of being. This reshaping, however dramatic, is the dynamic tsal (radiant energy) of awareness, not an external force acting upon a separate world. It highlights the inherent creativity and power of mind, even when clouded by ma rigpa. The challenge, then, is not to control this force from a place of duality, but to recognize its nature as rigpa's own play, allowing it to self-liberate into wisdom and compassion. All phenomena are already perfect within the great sphere of sunyata (emptiness).</div>
+      <div class='lens-attr'>— Seeing all phenomena as the unceasing, non-dual display of rigpa</div>
+    </details>
+  </div>
+
+  <!-- Story 5 -->
+  <div class="story">
+    <span class="story-tag tag-peace">Peace & Possibility</span>
+    <div class="story-headline">Israel and Lebanon Agree to Ten-Day Cessation of Hostilities for Peace Negotiations</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">Israel and Lebanon have agreed to implement a ten-day cessation of hostilities, commencing on April 16, 2026, at 17:00 EST. This initial pause is intended to enable good-faith direct negotiations, facilitated by the United States, with the objective of achieving a comprehensive agreement that ensures lasting security, stability, and peace between the two countries. Both nations affirmed that they are not at war and committed to resolving all remaining issues, including the demarcation of the international land boundary. The United States will also lead international efforts to support Lebanon as part of broader regional stability initiatives.</div>
+    <div class="story-source"><a href="https://www.state.gov/ten-day-cessation-of-hostilities-to-enable-peace-negotiations-between-israel-and-lebanon-april-16-2026/" target="_blank" rel="noopener">U.S. Department of State ↗</a></div>
+    <details class="acc-section acc-teaching" open>
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">A ten-day cessation of hostilities is like a small, precious gap in the clouds. When kleshas like anger, fear, and hatred are so strong, they create a storm of conflict. But even in the midst of the most violent storms, there is always the potential for a break, a moment of stillness. This pause, however fragile, is a window of opportunity. It creates space – space for conversation, space for reflection, and most importantly, space for rigpa, our innate wisdom and clarity, to emerge even slightly. It allows minds caught in rigid patterns of 'us versus them' to perhaps, just for a moment, soften and perceive the shared human longing for peace and security. It's a chance to breathe, to remember our basic goodness, and to plant tiny seeds of mutual understanding. We must cherish these moments, for they hold the potential for profound transformation, even if they are just the beginning.</div>
+      <div class='teaching-attr'>— In the spirit of Mingyur Rinpoche's teaching on finding peace in the present moment</div>
+    </details>
+    <details class="acc-section acc-quote">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">In every moment, even amidst confusion, there is always the possibility to rest in the vast, open space of awareness.</div><div class="quote-attr">Mingyur Rinpoche, *Joyful Wisdom*</div><span class="quote-badge quote-badge-paraphrase">Paraphrase</span></div>
+    </details>
+    <details class="acc-section acc-dialogue">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+      <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+      <div class="dialogue-text">SOCRATES: Esteemed Rinpoche, this cessation of hostilities, however welcome, is but a temporary pause in a long-standing conflict. Is such a fragile peace, born of negotiation rather than true understanding, genuinely transformative? Or is it merely a postponement of inevitable suffering, leaving the root causes of division unaddressed?<br>MINGYUR RINPOCHE: Socrates, your question is wise, for it points to the profound difference between a temporary truce and lasting peace. Indeed, this cessation is not the final answer, but it is a crucial step. Imagine two people caught in a fierce argument. While they are shouting, no real understanding can occur. A pause, even a forced one, creates a space where the shouting stops. In that space, even if the anger and fear are still present, there is a chance for reflection, for listening, for perhaps seeing the other person not just as an enemy, but as a fellow human being who also desires happiness and fears suffering. This 'pause' allows the intense kleshas to settle, if only a little. It doesn't instantly remove the roots of conflict, but it creates the conditions necessary for those roots to *begin* to be examined, to *begin* to be understood. Without such a pause, the cycle of aggression simply continues, fueled by reactivity. It is a moment where the kunzhi (all-ground consciousness), which holds all karmic seeds, can be touched with a different quality of attention. It is a moment where rigpa can begin to shine through the clouds of confusion.<br>SOCRATES: So, this temporary peace is not the destination, but a vital opportunity, a clearing in the storm where deeper work can commence. What is the nature of this 'deeper work' that can truly transform the roots of division, beyond mere negotiation?<br>MINGYUR RINPOCHE: Precisely, Socrates! The deeper work involves recognizing the fundamental interdependence of all beings. It means understanding that true security for one side cannot come at the expense of the other. It means cultivating genuine bodhichitta, the aspiration for the well-being of all, even those we consider adversaries. This transformation is not just political; it is a spiritual journey of the heart and mind. During a pause in hostilities, individuals within those societies might have the chance to reflect, to step back from the collective shenpa (attachment or aversion) that fuels the conflict. They might connect with their own basic goodness and the basic goodness of others. This is why such moments of cessation, however short, are so precious. They provide the fertile ground for genuine dialogue, empathy, and the eventual understanding that our shared humanity is far more profound than any superficial differences. It is about transforming the very perception of reality from separation to interconnectedness. This is the true path to lasting peace.</div>
+      <div class='dialogue-attr'>— In the spirit of Ancient Greek philosophy and Vajrayana Buddhism</div>
+    </details>
+    <details class="acc-section acc-practice">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-hope">Hope &amp; Renewal</span>
+        Practice <span class="method-badge method-transforming">Transforming</span>
+      </div>
+      
+      <div class="slogan-anchor">
+        <div class="slogan-label">Lojong</div>
+        <div class="slogan-text">"Whichever of the two occurs, be patient."</div>
+        <div class="slogan-alt">Alt. translation: &ldquo;Be patient with whatever arises.&rdquo;</div>
+      </div>
+      <div class="practice-text">Sit quietly and imagine the region of conflict. Bring to mind the suffering of all involved – on all sides. Take three deep breaths, allowing your body to relax. Now, for three minutes, simply rest your attention on the feeling of spaciousness in your mind, the gap between thoughts, the openness of awareness. Don't try to force peace, just allow the natural presence of mind to be. As you exhale, imagine sending this spacious, peaceful awareness to the region, visualizing a gentle, calming light. Conclude with a wish for genuine peace and understanding for all.</div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> All-Accomplishing Wisdom</div>
+    </details>
+    <details class="acc-section acc-rejoicing">
+      <summary class="acc-summary acc-sum-rose">❤ Rejoicing</summary>
+      <div class="rejoicing-text">We rejoice wholeheartedly in the compassionate aspiration for peace and the courageous choice to pause hostilities. It takes immense wisdom and dedication from all parties to create space for negotiation and dialogue amidst deep-seated conflict.</div>
+    </details>
+    <details class="acc-section acc-lens">
+      <summary class="acc-summary acc-sum-amber">💛 Bodhichitta View &nbsp;·&nbsp; <span class='lens-tradition'>Mahayana Buddhist</span></summary>
+      <div class="lens-text acc-lens-text">From the bodhichitta view, this cessation of hostilities is a fragile but vital seed of hope. In the midst of immense suffering caused by conflict, any pause, however brief, reflects the inherent longing for peace within all sentient beings. It is the nascent stirrings of bodhichitta attempting to break through the deeply entrenched kleshas of hatred and aggression. The pain of conflict itself often forces a recognition of interdependence, however reluctantly. This moment is an opportunity to nourish that seed, to cultivate dialogue, and to remember the shared humanity that transcends political and historical divisions. It is a call to all Bodhisattvas to extend their prayers and practices of tonglen, to take in the suffering and send forth the aspiration for lasting peace, recognizing that the suffering of one is the suffering of all.</div>
+      <div class='lens-attr'>— Seeing the inherent longing for peace as a manifestation of bodhichitta</div>
+    </details>
+  </div>
+
+
+  <details class="rejoicing-guide">
+    <summary class="rejoicing-summary">
+      <span class="rejoicing-eyebrow">A culminating practice</span>
+      <span class="rejoicing-title">❤ Rejoicing — Jé Rang</span>
+      <span class="rejoicing-hint">Tap to open</span>
+    </summary>
+    <div class="rejoicing-body">
+      <div class="rejoicing-section-label">Virtues witnessed in this edition</div>
+      <div class="rejoicing-para"><p>In this edition we have witnessed truly inspiring qualities. We see the profound perseverance and dedicated curiosity of scientists exploring the mind and the natural world, revealing new layers of understanding. We rejoice in the boundless compassion, spontaneous kindness, and selfless care shown in moments of connection, even amidst loneliness. And our hearts swell with gratitude for the courageous wisdom and unwavering commitment to peace demonstrated by those working to cease hostilities and build bridges. These actions ripple out, benefiting countless beings.</p></div>
+
+    <div class="rejoicing-section-label">Rejoicing in our inherent nature</div>
+    <div class="rejoicing-para"><p>Beneath every act of kindness, every scientific breakthrough, every step toward peace, we recognize the luminous, unfabricated buddha nature. This inherent wisdom and goodness, the very ground of rigpa, is ever-present in each being whose story we've encountered, whether they are aware of it or not. And just so, it is the fundamental reality of our own being, shining clearly and completely.</p></div>
+
+    <div class="rejoicing-aspiration">May the merit generated through this joyful recognition of virtue and inherent goodness ripen for the benefit of all sentient beings. May it contribute to the swift realization of bodhichitta in every heart, leading all to complete and perfect awakening. May peace, wisdom, and compassion flourish everywhere, without end.</div>
+    </div>
+  </details>
+  <div class="closing">
+    <div class="closing-text">The awareness that reads this has never been born and will never die.<br>
+      Practice is not for when conditions are good.<br>
+      Practice is the recognition, again and again, in conditions exactly like these.<br>
+      </div>
+    <span class="mantra-tibetan">ཨོཾ་མ་ཎི་པདྨེ་ཧཱུྃ</span>
+    <span class="mantra">May all beings be happy · May all beings be safe · May all beings be free</span>
+    <div class="mantra-note">Om Mani Padme Hum — compassion and wisdom, inseparable</div>
+  </div>
+
+</div>
+</body>
+</html>
