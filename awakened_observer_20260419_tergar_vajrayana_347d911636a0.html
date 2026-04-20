@@ -7,34 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --gold-pale:#FDF5DC; --gold-mid:#E8A020; --gold-dark:#6B3E08;
-    --teal-pale:#E1F5EE; --teal-strong:#5DCAA5; --teal-deep:#1D9E75; --teal-dark:#085041;
-    --blue-pale:#E6F1FB; --blue-mid:#378ADD; --blue-dark:#0C447C;
-    --coral-pale:#FAECE7; --coral-dark:#712B13;
-    --purple-pale:#EEEDFE; --purple-dark:#3C3489;
-    --amber-pale:#FAEEDA; --amber-dark:#633806;
-    --rose-pale:#FEF0F4; --rose-mid:#E8688A; --rose-dark:#7A1A35;
-    --indigo-pale:#EDEDFA; --indigo-mid:#7B7BB5; --indigo-dark:#2E2E72;
-    --green-pale:#EAF3DE; --green-dark:#27500A;
-    --gray-bg:#F5F3EE; --gray-card:#FDFAF0; --gray-surface:#EDEADC;
-    --border:rgba(50,45,35,0.10);
-    --text-1:#1A1714; --text-2:#5A5030; --text-3:#9A9070;
-  }
+  :root {--gold-pale:#FDF5DC; --gold-mid:#E8A020; --gold-dark:#6B3E08; --teal-pale:#E1F5EE; --teal-strong:#5DCAA5; --teal-deep:#1D9E75; --teal-dark:#085041; --blue-pale:#E6F1FB; --blue-mid:#378ADD; --blue-dark:#0C447C; --coral-pale:#FAECE7; --coral-dark:#712B13; --purple-pale:#EEEDFE; --purple-dark:#3C3489; --amber-pale:#FAEEDA; --amber-dark:#633806; --rose-pale:#FEF0F4; --rose-mid:#E8688A; --rose-dark:#7A1A35; --indigo-pale:#EDEDFA; --indigo-mid:#7B7BB5; --indigo-dark:#2E2E72; --green-pale:#EAF3DE; --green-dark:#27500A; --gray-bg:#F5F3EE; --gray-card:#FDFAF0; --gray-surface:#EDEADC; --border:rgba(50,45,35,0.10); --text-1:#1A1714; --text-2:#5A5030; --text-3:#9A9070}
   @media(prefers-color-scheme:dark){
-    :root{
-      --gold-pale:#261A04; --gray-bg:#131109; --gray-card:#1A1608;
-      --gray-surface:#211C0A; --border:rgba(240,200,80,0.08);
-      --text-1:#F8F0D0; --text-2:#B0A870; --text-3:#706840;
-      --blue-pale:#0D1E30;    --blue-dark:#6AAAE0;
-      --teal-pale:#061E14;    --teal-dark:#5DCAA5;
-      --purple-pale:#100E30;  --purple-dark:#9B97E0;
-      --amber-pale:#1E1204;   --amber-dark:#D4924A;
-      --rose-pale:#20060C;    --rose-dark:#D47090;
-      --indigo-pale:#0C0C22;  --indigo-dark:#9090D0; --indigo-mid:#9090C0;
-      --green-pale:#081A04;   --green-dark:#7DC44A;
-      --coral-pale:#1E0A06;   --coral-dark:#D07860;
-    }
+    :root{--gold-pale:#261A04; --gray-bg:#131109; --gray-card:#1A1608; --gray-surface:#211C0A; --border:rgba(240,200,80,0.08); --text-1:#F8F0D0; --text-2:#B0A870; --text-3:#706840; --blue-pale:#0D1E30; --blue-dark:#6AAAE0; --teal-pale:#061E14; --teal-dark:#5DCAA5; --purple-pale:#100E30; --purple-dark:#9B97E0; --amber-pale:#1E1204; --amber-dark:#D4924A; --rose-pale:#20060C; --rose-dark:#D47090; --indigo-pale:#0C0C22; --indigo-dark:#9090D0; --indigo-mid:#9090C0; --green-pale:#081A04; --green-dark:#7DC44A; --coral-pale:#1E0A06; --coral-dark:#D07860}
   }
   body { font-family:'DM Sans',sans-serif; background:var(--gray-bg);
           color:var(--text-1); min-height:100vh; padding:2rem 1rem 6rem; }
@@ -176,6 +151,17 @@
   .method-transcending { background:var(--gold-pale); color:var(--gold-dark);
     border:0.5px solid rgba(232,160,32,0.3); }
 
+  /* Per-story Lojong slogan (inside practice block) */
+  .slogan-anchor { border-bottom:0.5px solid rgba(46,46,114,0.12);
+    padding-bottom:.6rem; margin-bottom:.7rem; }
+  .slogan-label { font-size:9px; font-weight:600; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--indigo-dark); opacity:.6;
+    margin-bottom:.3rem; }
+  .slogan-text { font-family:'Cormorant Garamond',Georgia,serif; font-size:16px;
+    font-style:italic; color:var(--indigo-dark); line-height:1.5; }
+  .slogan-alt { font-size:11px; color:var(--indigo-mid); margin-top:.2rem;
+    font-style:italic; }
+
   /* Klesha guide — expandable details section */
   .klesha-guide { background:var(--amber-pale); border:0.5px solid rgba(99,56,6,0.18);
     border-radius:16px; margin-bottom:1.35rem; overflow:hidden; }
@@ -219,17 +205,6 @@
   .guide-method-text { font-size:13px; color:var(--text-2); line-height:1.65; }
   .guide-method-text p { margin-bottom:.5rem; }
   .guide-method-text p:last-child { margin-bottom:0; }
-
-  /* Per-story Lojong slogan (inside practice block) */
-  .slogan-anchor { border-bottom:0.5px solid rgba(46,46,114,0.12);
-    padding-bottom:.6rem; margin-bottom:.7rem; }
-  .slogan-label { font-size:9px; font-weight:600; letter-spacing:.15em;
-    text-transform:uppercase; color:var(--indigo-dark); opacity:.6;
-    margin-bottom:.3rem; }
-  .slogan-text { font-family:'Cormorant Garamond',Georgia,serif; font-size:16px;
-    font-style:italic; color:var(--indigo-dark); line-height:1.5; }
-  .slogan-alt { font-size:11px; color:var(--indigo-mid); margin-top:.2rem;
-    font-style:italic; }
 
   /* Edition Lojong section */
   .lojong-guide { background:var(--indigo-pale); border:0.5px solid rgba(46,46,114,0.15);

@@ -7,34 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --gold-pale:#FDF5DC; --gold-mid:#E8A020; --gold-dark:#6B3E08;
-    --teal-pale:#E1F5EE; --teal-strong:#5DCAA5; --teal-deep:#1D9E75; --teal-dark:#085041;
-    --blue-pale:#E6F1FB; --blue-mid:#378ADD; --blue-dark:#0C447C;
-    --coral-pale:#FAECE7; --coral-dark:#712B13;
-    --purple-pale:#EEEDFE; --purple-dark:#3C3489;
-    --amber-pale:#FAEEDA; --amber-dark:#633806;
-    --rose-pale:#FEF0F4; --rose-mid:#E8688A; --rose-dark:#7A1A35;
-    --indigo-pale:#EDEDFA; --indigo-mid:#7B7BB5; --indigo-dark:#2E2E72;
-    --green-pale:#EAF3DE; --green-dark:#27500A;
-    --gray-bg:#F5F3EE; --gray-card:#FDFAF0; --gray-surface:#EDEADC;
-    --border:rgba(50,45,35,0.10);
-    --text-1:#1A1714; --text-2:#5A5030; --text-3:#9A9070;
-  }
+  :root {--gold-pale:#FDF5DC; --gold-mid:#E8A020; --gold-dark:#6B3E08; --teal-pale:#E1F5EE; --teal-strong:#5DCAA5; --teal-deep:#1D9E75; --teal-dark:#085041; --blue-pale:#E6F1FB; --blue-mid:#378ADD; --blue-dark:#0C447C; --coral-pale:#FAECE7; --coral-dark:#712B13; --purple-pale:#EEEDFE; --purple-dark:#3C3489; --amber-pale:#FAEEDA; --amber-dark:#633806; --rose-pale:#FEF0F4; --rose-mid:#E8688A; --rose-dark:#7A1A35; --indigo-pale:#EDEDFA; --indigo-mid:#7B7BB5; --indigo-dark:#2E2E72; --green-pale:#EAF3DE; --green-dark:#27500A; --gray-bg:#F5F3EE; --gray-card:#FDFAF0; --gray-surface:#EDEADC; --border:rgba(50,45,35,0.10); --text-1:#1A1714; --text-2:#5A5030; --text-3:#9A9070}
   @media(prefers-color-scheme:dark){
-    :root{
-      --gold-pale:#261A04; --gray-bg:#131109; --gray-card:#1A1608;
-      --gray-surface:#211C0A; --border:rgba(240,200,80,0.08);
-      --text-1:#F8F0D0; --text-2:#B0A870; --text-3:#706840;
-      --blue-pale:#0D1E30;    --blue-dark:#6AAAE0;
-      --teal-pale:#061E14;    --teal-dark:#5DCAA5;
-      --purple-pale:#100E30;  --purple-dark:#9B97E0;
-      --amber-pale:#1E1204;   --amber-dark:#D4924A;
-      --rose-pale:#20060C;    --rose-dark:#D47090;
-      --indigo-pale:#0C0C22;  --indigo-dark:#9090D0; --indigo-mid:#9090C0;
-      --green-pale:#081A04;   --green-dark:#7DC44A;
-      --coral-pale:#1E0A06;   --coral-dark:#D07860;
-    }
+    :root{--gold-pale:#261A04; --gray-bg:#131109; --gray-card:#1A1608; --gray-surface:#211C0A; --border:rgba(240,200,80,0.08); --text-1:#F8F0D0; --text-2:#B0A870; --text-3:#706840; --blue-pale:#0D1E30; --blue-dark:#6AAAE0; --teal-pale:#061E14; --teal-dark:#5DCAA5; --purple-pale:#100E30; --purple-dark:#9B97E0; --amber-pale:#1E1204; --amber-dark:#D4924A; --rose-pale:#20060C; --rose-dark:#D47090; --indigo-pale:#0C0C22; --indigo-dark:#9090D0; --indigo-mid:#9090C0; --green-pale:#081A04; --green-dark:#7DC44A; --coral-pale:#1E0A06; --coral-dark:#D07860}
   }
   body { font-family:'DM Sans',sans-serif; background:var(--gray-bg);
           color:var(--text-1); min-height:100vh; padding:2rem 1rem 6rem; }
@@ -78,7 +53,7 @@
   .glance-list { display:flex; flex-direction:column; gap:.6rem; }
   .glance-row { display:flex; align-items:flex-start; gap:11px; }
   .g-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; margin-top:7px; }
-  .d-conflict{background:#D85A30;} .d-peace    {background:var(--teal-deep);}
+  .d-conflict {background:#D85A30;} .d-peace    {background:var(--teal-deep);}
   .d-grief    {background:#B87016;} .d-joy      {background:#185FA5;}
   .d-science  {background:#534AB7;} .d-nature   {background:#3B6D11;}
   .d-politics {background:#993556;} .d-economy  {background:#854F0B;}
@@ -118,67 +93,48 @@
   .story-fact { font-size:14px; color:var(--text-2); line-height:1.8;
     padding-bottom:1.1rem; }
 
-  /* Accordion sections */
-  details.acc-section {
-    border-top:0.5px solid var(--border);
-    margin:0 -1.65rem;
-    padding:0 1.65rem;
-  }
-  details.acc-section[open] { padding-bottom:1.1rem; }
-  details.acc-dialogue { background:var(--blue-pale); }
-  details.acc-practice { background:var(--teal-pale); }
-  details.acc-lens     { background:var(--amber-pale); }
-  summary.acc-summary {
-    list-style:none; cursor:pointer; user-select:none;
-    font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
-    color:var(--teal-deep);
-    padding:.9rem 0 .75rem;
-    display:flex; align-items:center; justify-content:space-between; gap:8px;
-  }
-  summary.acc-summary::marker,
-  summary.acc-summary::-webkit-details-marker { display:none; }
-  summary.acc-summary::after {
-    content:"▸"; font-size:9px; flex-shrink:0; color:var(--text-3);
-  }
-  details.acc-section[open] > summary.acc-summary::after { content:"▾"; }
-  .acc-sum-blue  { color:var(--blue-dark); }
-  .acc-sum-teal  { color:var(--teal-dark); }
-  .acc-sum-amber { color:var(--amber-dark); }
-
-  /* Teaching inside accordion */
+  /* Primary teaching */
   .teaching-divider { display:flex; align-items:center; gap:10px;
-    margin-bottom:1rem; padding-top:1rem; }
+    margin:0 -1.65rem 1rem; padding:0 1.65rem;
+    border-top:0.5px solid var(--border); padding-top:1.1rem; }
   .teaching-divider::after { content:''; flex:1; height:0.5px; background:var(--border); }
   .teaching-divider span { font-size:13px; color:var(--teal-strong); flex-shrink:0; }
   .story-teaching { font-family:'Cormorant Garamond',serif; font-size:17.5px;
     font-style:italic; color:var(--text-1); line-height:1.85; padding-bottom:.6rem; }
-  .story-teaching p { margin-bottom:.7em; }
-  .story-teaching p:last-child { margin-bottom:0; }
   .teaching-attr { font-size:11px; color:var(--text-3); padding-bottom:1.1rem; }
 
-  /* Dialogue content inside accordion */
-  .acc-subheader { font-size:10px; font-weight:500; letter-spacing:.09em;
-    text-transform:uppercase; margin-bottom:.75rem; }
-  .acc-subheader-blue { color:var(--blue-dark); }
+  /* Dialogue block */
+  .dialogue-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.25rem; margin:0 -1.65rem;
+    background:var(--blue-pale); }
+  .dialogue-header { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--blue-dark); margin-bottom:.75rem; }
   .dialogue-tradition { font-weight:400; font-style:italic; letter-spacing:0;
     text-transform:none; color:var(--text-3); }
   .dialogue-text { font-family:'Cormorant Garamond',serif; font-size:17px;
     font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
-  .dialogue-text p { margin-bottom:.7em; }
-  .dialogue-text p:last-child { margin-bottom:0; }
-  .dialogue-attr { font-size:11px; color:var(--text-3); }
+  .dialogue-framing { font-size:11px; color:var(--blue-dark); opacity:.65;
+    font-style:italic; margin-bottom:.65rem; }
+  .dialogue-attr { font-size:11px; color:var(--text-3); padding-bottom:.2rem; }
 
-  /* Practice content inside accordion */
+  /* Practice block */
+  .practice-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.4rem; margin:0 -1.65rem;
+    background:var(--teal-pale); }
   .practice-label { font-size:10px; font-weight:500; letter-spacing:.12em;
     text-transform:uppercase; color:var(--teal-dark); margin-bottom:.6rem;
     display:flex; align-items:center; gap:8px; }
   .klesha-tag { font-size:9px; font-weight:600; letter-spacing:.06em;
     text-transform:uppercase; padding:2px 8px; border-radius:10px;
     color:#fff; flex-shrink:0; }
-  .klesha-anger      {background:#C0392B;} .klesha-grief      {background:#7F8C8D;}
-  .klesha-anxiety    {background:#D4AC0D;} .klesha-helplessness{background:#8E44AD;}
-  .klesha-wonder     {background:#2E86C1;} .klesha-hope       {background:#1D8348;}
-  .klesha-confusion  {background:#D35400;} .klesha-compassion {background:#CB4335;}
+  .klesha-anger      {background:#C0392B;}
+  .klesha-grief      {background:#7F8C8D;}
+  .klesha-anxiety    {background:#D4AC0D;}
+  .klesha-helplessness{background:#8E44AD;}
+  .klesha-wonder     {background:#2E86C1;}
+  .klesha-hope       {background:#1D8348;}
+  .klesha-confusion  {background:#D35400;}
+  .klesha-compassion {background:#CB4335;}
   .practice-text { font-size:13.5px; color:var(--teal-dark);
     line-height:1.8; font-style:italic; }
   .practice-text p { margin-bottom:.75em; }
@@ -190,69 +146,21 @@
   .method-badge { display:inline-block; font-size:9px; font-weight:600;
     letter-spacing:.07em; text-transform:uppercase; padding:2px 8px;
     border-radius:10px; margin-left:auto; flex-shrink:0; }
-  .method-abandoning  { background:#E8E8E8; color:#4A4A4A; }
+  .method-abandoning { background:#E8E8E8; color:#4A4A4A; }
   .method-transforming { background:#FEF3C7; color:#92400E; }
   .method-transcending { background:var(--gold-pale); color:var(--gold-dark);
     border:0.5px solid rgba(232,160,32,0.3); }
 
-  /* Lens content inside accordion */
-  .lens-tradition { font-weight:400; font-style:italic; letter-spacing:0;
-    text-transform:none; color:var(--text-3); }
-  .acc-lens-text { font-family:'Cormorant Garamond',serif; font-size:17px;
-    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
-  .acc-lens-text p { margin-bottom:.75em; }
-  .acc-lens-text p:last-child { margin-bottom:0; }
-  .lens-attr { font-size:11px; color:var(--text-3); }
-
-  /* Source link */
-  .story-source { font-size:11.5px; color:var(--text-3); padding:.4rem 0 .85rem;
-    border-top:0.5px dashed var(--border); margin-top:.2rem; }
-  .story-source a { color:var(--text-3); text-decoration:none;
-    border-bottom:0.5px solid var(--border); }
-  .story-source a:hover { color:var(--teal-deep); }
-
-  /* Underreported badge */
-  .underreported-badge { display:inline-block; font-size:9px; font-weight:600;
-    letter-spacing:.09em; text-transform:uppercase; padding:2px 9px; border-radius:20px;
-    background:var(--green-pale); color:var(--green-dark); margin-left:6px;
-    border:0.5px solid rgba(39,80,10,0.18); vertical-align:middle; }
-
-  /* Closing */
-  .closing { text-align:center; padding:2.25rem 1.25rem .5rem;
-    border-top:0.5px solid var(--border); margin-top:.5rem; }
-  .closing-text { font-family:'Cormorant Garamond',serif; font-size:19px;
-    font-style:italic; color:var(--text-2); line-height:2.1; margin-bottom:1.6rem; }
-  .mantra-tibetan { font-size:22px; color:var(--gold-mid); letter-spacing:.07em;
-    display:block; margin-bottom:.6rem; }
-  .mantra { font-size:11px; letter-spacing:.11em; text-transform:uppercase;
-    color:var(--teal-deep); display:block; margin-bottom:.5rem; }
-  .mantra-note { font-size:12px; color:var(--text-3); font-style:italic;
-    font-family:'Cormorant Garamond',serif; }
-
-  /* Tradition quote inside accordion */
-  details.acc-quote { background:var(--purple-pale); }
-  .acc-sum-purple { color:var(--purple-dark); }
-  .acc-quote-inner { padding:.25rem 0 .1rem; }
-  .quote-mark { font-family:'Cormorant Garamond',serif; font-size:52px;
-    line-height:.7; color:var(--purple-dark); opacity:0.18;
-    margin-bottom:-.25rem; user-select:none; }
-  .quote-text { font-family:'Cormorant Garamond',serif; font-size:17.5px;
-    font-style:italic; color:var(--text-1); line-height:1.85;
-    margin-bottom:.55rem; }
-  .quote-text p { margin-bottom:.7em; }
-  .quote-text p:last-child { margin-bottom:0; }
-  .quote-attr { font-size:11px; color:var(--text-3); margin-bottom:.55rem; }
-  .quote-badge { display:inline-block; font-size:9px; font-weight:600;
-    letter-spacing:.08em; text-transform:uppercase; padding:2px 8px;
-    border-radius:10px; }
-  .quote-badge-exact { background:var(--green-pale); color:var(--green-dark);
-    border:0.5px solid rgba(39,80,10,0.18); }
-  .quote-badge-paraphrase { background:var(--gray-surface); color:var(--text-2);
-    border:0.5px solid var(--border); }
-
-  /* Accordion hint banner */
-  .acc-hint { font-size:12px; color:var(--text-3); text-align:center;
-    margin-bottom:2rem; font-style:italic; }
+  /* Per-story Lojong slogan (inside practice block) */
+  .slogan-anchor { border-bottom:0.5px solid rgba(46,46,114,0.12);
+    padding-bottom:.6rem; margin-bottom:.7rem; }
+  .slogan-label { font-size:9px; font-weight:600; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--indigo-dark); opacity:.6;
+    margin-bottom:.3rem; }
+  .slogan-text { font-family:'Cormorant Garamond',Georgia,serif; font-size:16px;
+    font-style:italic; color:var(--indigo-dark); line-height:1.5; }
+  .slogan-alt { font-size:11px; color:var(--indigo-mid); margin-top:.2rem;
+    font-style:italic; }
 
   /* Klesha guide — expandable details section */
   .klesha-guide { background:var(--amber-pale); border:0.5px solid rgba(99,56,6,0.18);
@@ -265,11 +173,11 @@
     font-size:.8rem; color:var(--amber-dark); opacity:.6; }
   .klesha-guide[open] > .guide-summary::after { content:'▾'; }
   .guide-eyebrow { font-size:9px; font-weight:600; letter-spacing:.16em;
-    text-transform:uppercase; color:var(--amber-dark); opacity:.55; }
+    text-transform:uppercase; color:var(--amber-dark); opacity:.7; }
   .guide-title-row { display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; }
-  .guide-klesha-badge { font-size:11px; font-weight:700; letter-spacing:.05em;
-    text-transform:uppercase; padding:3px 10px; border-radius:20px; }
-  .guide-arrow { font-size:14px; color:var(--amber-dark); opacity:.5; }
+  .guide-klesha-badge { font-size:11px; font-weight:600; letter-spacing:.06em;
+    text-transform:uppercase; padding:3px 11px; border-radius:20px; }
+  .guide-arrow { font-size:1rem; color:var(--amber-dark); opacity:.55; }
   .guide-wisdom { font-family:'Cormorant Garamond',Georgia,serif; font-size:1.05rem;
     font-style:italic; color:var(--amber-dark); }
   .guide-summary-hint { font-size:11px; color:var(--text-3); font-style:italic; }
@@ -298,17 +206,6 @@
   .guide-method-text p { margin-bottom:.5rem; }
   .guide-method-text p:last-child { margin-bottom:0; }
 
-  /* Per-story Lojong slogan (inside practice block) */
-  .slogan-anchor { border-bottom:0.5px solid rgba(46,46,114,0.12);
-    padding-bottom:.6rem; margin-bottom:.7rem; }
-  .slogan-label { font-size:9px; font-weight:600; letter-spacing:.15em;
-    text-transform:uppercase; color:var(--indigo-dark); opacity:.6;
-    margin-bottom:.3rem; }
-  .slogan-text { font-family:'Cormorant Garamond',Georgia,serif; font-size:16px;
-    font-style:italic; color:var(--indigo-dark); line-height:1.5; }
-  .slogan-alt { font-size:11px; color:var(--indigo-mid); margin-top:.2rem;
-    font-style:italic; }
-
   /* Edition Lojong section */
   .lojong-guide { background:var(--indigo-pale); border:0.5px solid rgba(46,46,114,0.15);
     border-radius:16px; margin-bottom:1.35rem; overflow:hidden; }
@@ -334,9 +231,13 @@
   .lojong-para p { margin-bottom:.6rem; }
   .lojong-para p:last-child { margin-bottom:0; }
 
-  /* Per-story rejoicing */
-  details.acc-rejoicing { background:var(--rose-pale); }
-  .acc-sum-rose { color:var(--rose-dark); }
+  /* Per-story rejoicing block */
+  .rejoicing-block { border-top:0.5px solid var(--border);
+    padding:1rem 1.65rem 1.2rem; margin:0 -1.65rem;
+    background:var(--rose-pale); }
+  .rejoicing-header { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--rose-dark); margin-bottom:.55rem;
+    display:flex; align-items:center; gap:.4rem; }
   .rejoicing-text { font-size:13.5px; color:var(--rose-dark); line-height:1.75;
     font-style:italic; }
   .rejoicing-text p { margin-bottom:.5rem; }
@@ -345,7 +246,7 @@
   /* Edition rejoicing section */
   .rejoicing-guide { background:var(--rose-pale); border:0.5px solid rgba(122,26,53,0.15);
     border-radius:16px; margin-bottom:1.35rem; overflow:hidden; }
-  .rejoicing-guide[open] .rejoicing-hint { display:none; }
+  .rejoicing-guide[open] .guide-summary-hint { display:none; }
   .rejoicing-summary { list-style:none; padding:1.1rem 1.65rem; cursor:pointer;
     display:flex; flex-direction:column; gap:.25rem; position:relative; }
   .rejoicing-summary::-webkit-details-marker { display:none; }
@@ -367,6 +268,141 @@
   .rejoicing-aspiration { font-family:'Cormorant Garamond',Georgia,serif; font-size:16px;
     font-style:italic; color:var(--rose-dark); line-height:1.9; padding:.75rem 1.1rem;
     border-left:2px solid var(--rose-mid); margin-top:.5rem; }
+
+  /* Lens (perspective view) block */
+  .lens-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.35rem; margin:0 -1.65rem;
+    background:var(--amber-pale); }
+  .lens-header { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--amber-dark); margin-bottom:.75rem; }
+  .lens-tradition { font-weight:400; font-style:italic; letter-spacing:0;
+    text-transform:none; color:var(--text-3); }
+  .lens-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .lens-text p { margin-bottom:.75em; }
+  .lens-text p:last-child { margin-bottom:0; }
+  .lens-attr { font-size:11px; color:var(--text-3); padding-bottom:.2rem; }
+
+  /* Source link */
+  .story-source { font-size:11.5px; color:var(--text-3); padding:.4rem 0 .85rem;
+    border-top:0.5px dashed var(--border); margin-top:.2rem; }
+  .story-source a { color:var(--text-3); text-decoration:none;
+    border-bottom:0.5px solid var(--border); }
+  .story-source a:hover { color:var(--teal-deep); }
+
+  /* Underreported badge */
+  .underreported-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.09em; text-transform:uppercase; padding:2px 9px; border-radius:20px;
+    background:var(--green-pale); color:var(--green-dark); margin-left:6px;
+    border:0.5px solid rgba(39,80,10,0.18); vertical-align:middle; }
+
+  /* Multi-paragraph support in commentary and dialogue */
+  .story-teaching p { margin-bottom:.7em; }
+  .story-teaching p:last-child { margin-bottom:0; }
+  .dialogue-text p { margin-bottom:.7em; }
+  .dialogue-text p:last-child { margin-bottom:0; }
+
+  /* Tradition quote block */
+  .quote-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.3rem; margin:0 -1.65rem;
+    background:var(--purple-pale); position:relative; }
+  .quote-mark { font-family:'Cormorant Garamond',serif; font-size:52px;
+    line-height:.7; color:var(--purple-dark); opacity:0.18;
+    margin-bottom:-.25rem; user-select:none; }
+  .quote-text { font-family:'Cormorant Garamond',serif; font-size:17.5px;
+    font-style:italic; color:var(--text-1); line-height:1.85;
+    margin-bottom:.55rem; }
+  .quote-text p { margin-bottom:.7em; }
+  .quote-text p:last-child { margin-bottom:0; }
+  .quote-attr { font-size:11px; color:var(--text-3); margin-bottom:.55rem; }
+  .quote-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.08em; text-transform:uppercase; padding:2px 8px;
+    border-radius:10px; }
+  .quote-badge-exact { background:var(--green-pale); color:var(--green-dark);
+    border:0.5px solid rgba(39,80,10,0.18); }
+  .quote-badge-paraphrase { background:var(--gray-surface); color:var(--text-2);
+    border:0.5px solid var(--border); }
+
+  /* Closing */
+  .closing { text-align:center; padding:2.25rem 1.25rem .5rem;
+    border-top:0.5px solid var(--border); margin-top:.5rem; }
+  .closing-text { font-family:'Cormorant Garamond',serif; font-size:19px;
+    font-style:italic; color:var(--text-2); line-height:2.1; margin-bottom:1.6rem; }
+  .mantra-tibetan { font-size:22px; color:var(--gold-mid); letter-spacing:.07em;
+    display:block; margin-bottom:.6rem; }
+  .mantra { font-size:11px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--teal-deep); display:block; margin-bottom:.5rem; }
+  .mantra-note { font-size:12px; color:var(--text-3); font-style:italic;
+    font-family:'Cormorant Garamond',serif; }
+  /* ── Accordion-specific overrides and additions ─────────────────── */
+
+  /* Teaching divider inside accordion (no negative margins) */
+  .teaching-divider { display:flex; align-items:center; gap:10px;
+    margin-bottom:1rem; padding-top:1rem; }
+  .teaching-divider::after { content:''; flex:1; height:0.5px; background:var(--border); }
+  .teaching-divider span { font-size:13px; color:var(--teal-strong); flex-shrink:0; }
+
+  /* Klesha guide minor variants in accordion */
+  .guide-eyebrow { opacity:.55; }
+  .guide-klesha-badge { font-weight:700; letter-spacing:.05em; padding:3px 10px; }
+  .guide-arrow { font-size:14px; opacity:.5; }
+
+  /* Rejoicing guide open-state rule (accordion uses .rejoicing-hint) */
+  .rejoicing-guide[open] .rejoicing-hint { display:none; }
+
+  /* Accordion sections */
+  details.acc-section {
+    border-top:0.5px solid var(--border);
+    margin:0 -1.65rem;
+    padding:0 1.65rem;
+  }
+  details.acc-section[open] { padding-bottom:1.1rem; }
+  details.acc-dialogue { background:var(--blue-pale); }
+  details.acc-practice { background:var(--teal-pale); }
+  details.acc-lens     { background:var(--amber-pale); }
+  summary.acc-summary {
+    list-style:none; cursor:pointer; user-select:none;
+    font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--teal-deep);
+    padding:.9rem 0 .75rem;
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+  }
+  summary.acc-summary::marker,
+  summary.acc-summary::-webkit-details-marker { display:none; }
+  summary.acc-summary::after {
+    content:"▸"; font-size:9px; flex-shrink:0; color:var(--text-3);
+  }
+  details.acc-section[open] > summary.acc-summary::after { content:"▾"; }
+  .acc-sum-blue  { color:var(--blue-dark); }
+  .acc-sum-teal  { color:var(--teal-dark); }
+  .acc-sum-amber { color:var(--amber-dark); }
+
+  /* Dialogue content inside accordion */
+  .acc-subheader { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; margin-bottom:.75rem; }
+  .acc-subheader-blue { color:var(--blue-dark); }
+  .dialogue-attr { font-size:11px; color:var(--text-3); }
+
+  /* Lens content inside accordion */
+  .acc-lens-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .acc-lens-text p { margin-bottom:.75em; }
+  .acc-lens-text p:last-child { margin-bottom:0; }
+  .lens-attr { font-size:11px; color:var(--text-3); }
+
+  /* Tradition quote inside accordion */
+  details.acc-quote { background:var(--purple-pale); }
+  .acc-sum-purple { color:var(--purple-dark); }
+  .acc-quote-inner { padding:.25rem 0 .1rem; }
+
+  /* Per-story rejoicing in accordion */
+  details.acc-rejoicing { background:var(--rose-pale); }
+  .acc-sum-rose { color:var(--rose-dark); }
+
+  /* Accordion hint banner */
+  .acc-hint { font-size:12px; color:var(--text-3); text-align:center;
+    margin-bottom:2rem; font-style:italic; }
+
 </style>
 </head>
 <body>
