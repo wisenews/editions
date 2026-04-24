@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Awakened Observer — Thursday, April 23, 2026 (Accordion)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {--gold-pale:#FDF5DC; --gold-mid:#E8A020; --gold-dark:#6B3E08; --teal-pale:#E1F5EE; --teal-strong:#5DCAA5; --teal-deep:#1D9E75; --teal-dark:#085041; --blue-pale:#E6F1FB; --blue-mid:#378ADD; --blue-dark:#0C447C; --coral-pale:#FAECE7; --coral-dark:#712B13; --purple-pale:#EEEDFE; --purple-dark:#3C3489; --amber-pale:#FAEEDA; --amber-dark:#633806; --rose-pale:#FEF0F4; --rose-mid:#E8688A; --rose-dark:#7A1A35; --indigo-pale:#EDEDFA; --indigo-mid:#7B7BB5; --indigo-dark:#2E2E72; --green-pale:#EAF3DE; --green-dark:#27500A; --gray-bg:#F5F3EE; --gray-card:#FDFAF0; --gray-surface:#EDEADC; --border:rgba(50,45,35,0.10); --text-1:#1A1714; --text-2:#5A5030; --text-3:#9A9070}
+  @media(prefers-color-scheme:dark){
+    :root{--gold-pale:#261A04; --gray-bg:#131109; --gray-card:#1A1608; --gray-surface:#211C0A; --border:rgba(240,200,80,0.08); --text-1:#F8F0D0; --text-2:#B0A870; --text-3:#706840; --blue-pale:#0D1E30; --blue-dark:#6AAAE0; --teal-pale:#061E14; --teal-dark:#5DCAA5; --purple-pale:#100E30; --purple-dark:#9B97E0; --amber-pale:#1E1204; --amber-dark:#D4924A; --rose-pale:#20060C; --rose-dark:#D47090; --indigo-pale:#0C0C22; --indigo-dark:#9090D0; --indigo-mid:#9090C0; --green-pale:#081A04; --green-dark:#7DC44A; --coral-pale:#1E0A06; --coral-dark:#D07860}
+  }
+  body { font-family:'DM Sans',sans-serif; background:var(--gray-bg);
+          color:var(--text-1); min-height:100vh; padding:2rem 1rem 6rem; }
+  .page { max-width:680px; margin:0 auto; }
+
+  /* Masthead */
+  .masthead { text-align:center; padding:2.75rem 1rem 2.25rem;
+    border-bottom:0.5px solid var(--border); margin-bottom:2.25rem; position:relative; }
+  .masthead::before { content:''; position:absolute; top:0; left:50%;
+    transform:translateX(-50%); width:100px; height:2px; background:linear-gradient(90deg, transparent, #D4537E, #E8A020, #5DCAA5, transparent); }
+  .lotus { display:block; margin:0 auto 1.2rem; }
+  .date-line { font-size:11px; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--text-3); margin-bottom:.5rem; }
+  .masthead-title { font-family:'Cormorant Garamond',serif; font-size:42px;
+    font-weight:500; color:var(--text-1); line-height:1.05; margin-bottom:.25rem; }
+  .issue-line { font-size:11px; letter-spacing:.09em; color:var(--text-3); margin-bottom:.6rem; }
+  .masthead-rule { width:42px; height:1px; margin:.65rem auto;
+    background:linear-gradient(90deg,var(--teal-strong),var(--gold-mid)); }
+  .masthead-sub { font-family:'Cormorant Garamond',serif; font-size:18px;
+    font-style:italic; color:var(--text-2); line-height:1.4; }
+  .tradition-badge { display:inline-block; background:var(--gold-pale);
+    color:var(--gold-dark); font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; padding:4px 14px; border-radius:20px; margin-top:.85rem;
+    border:0.5px solid rgba(232,160,32,0.25); }
+
+  /* Opening */
+  .opening { background:var(--gold-pale); border-left:2.5px solid var(--gold-mid);
+    border-radius:0 10px 10px 0; padding:1.25rem 1.6rem; margin-bottom:.5rem;
+    font-family:'Cormorant Garamond',serif; font-size:19px; font-style:italic;
+    color:var(--text-2); line-height:1.8; }
+  .opening-instruction { font-family:'DM Sans',sans-serif; font-size:12px;
+    color:var(--text-3); padding:.5rem 1.6rem .85rem; margin-bottom:2rem;
+    background:var(--gold-pale); border-left:2.5px solid var(--gold-mid);
+    border-top:none; border-radius:0 0 10px 10px; }
+
+  /* At a Glance */
+  .glance { background:var(--gray-surface); border-radius:14px;
+    padding:1.2rem 1.5rem; margin-bottom:2.5rem; }
+  .glance-title { font-size:10px; font-weight:500; letter-spacing:.13em;
+    text-transform:uppercase; color:var(--text-3); margin-bottom:.85rem; }
+  .glance-list { display:flex; flex-direction:column; gap:.6rem; }
+  .glance-row { display:flex; align-items:flex-start; gap:11px; }
+  .g-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; margin-top:7px; }
+  .d-conflict {background:#D85A30;} .d-peace    {background:var(--teal-deep);}
+  .d-grief    {background:#B87016;} .d-joy      {background:#185FA5;}
+  .d-science  {background:#534AB7;} .d-nature   {background:#3B6D11;}
+  .d-politics {background:#993556;} .d-economy  {background:#854F0B;}
+  .d-culture  {background:#0F6E56;} .d-human    {background:#5F5E5A;}
+  .d-death    {background:#791F1F;} .d-renewal  {background:#1D9E75;}
+  .d-human-interest {background:#5F5E5A;}
+  .glance-text { font-size:13.5px; color:var(--text-2); line-height:1.6; }
+
+  /* Section label */
+  .section-label { font-size:10px; font-weight:500; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--text-3); display:flex;
+    align-items:center; gap:10px; margin-bottom:1.35rem; }
+  .section-label::after { content:''; flex:1; height:0.5px; background:var(--border); }
+
+  /* Story cards */
+  .story { background:var(--gray-card); border:0.5px solid var(--border);
+    border-radius:16px; padding:1.5rem 1.65rem 0; margin-bottom:1.35rem; overflow:hidden; }
+  .story-tag { display:inline-block; font-size:10px; font-weight:500;
+    letter-spacing:.08em; text-transform:uppercase; padding:3px 11px;
+    border-radius:20px; margin-bottom:.95rem; }
+  .tag-conflict {background:var(--coral-pale);color:var(--coral-dark);}
+  .tag-peace    {background:var(--teal-pale); color:var(--teal-dark);}
+  .tag-grief    {background:var(--amber-pale);color:var(--amber-dark);}
+  .tag-joy      {background:var(--blue-pale); color:var(--blue-dark);}
+  .tag-science  {background:var(--purple-pale);color:var(--purple-dark);}
+  .tag-nature   {background:var(--green-pale);color:var(--green-dark);}
+  .tag-politics {background:#FBEAF0;color:#72243E;}
+  .tag-economy  {background:var(--amber-pale);color:var(--amber-dark);}
+  .tag-culture  {background:var(--teal-pale); color:var(--teal-dark);}
+  .tag-human    {background:var(--gray-surface);color:#5F5E5A;}
+  .tag-death    {background:#FCEBEB;color:#791F1F;}
+  .tag-renewal  {background:var(--teal-pale); color:var(--teal-dark);}
+  .story-headline { font-family:'Cormorant Garamond',serif; font-size:23px;
+    font-weight:500; color:var(--text-1); line-height:1.32; margin-bottom:.9rem; }
+  .story-what { font-size:10px; font-weight:500; text-transform:uppercase;
+    letter-spacing:.10em; color:var(--text-3); margin-bottom:.35rem; }
+  .story-fact { font-size:14px; color:var(--text-2); line-height:1.8;
+    padding-bottom:1.1rem; }
+
+  /* Primary teaching */
+  .teaching-divider { display:flex; align-items:center; gap:10px;
+    margin:0 -1.65rem 1rem; padding:0 1.65rem;
+    border-top:0.5px solid var(--border); padding-top:1.1rem; }
+  .teaching-divider::after { content:''; flex:1; height:0.5px; background:var(--border); }
+  .teaching-divider span { font-size:13px; color:var(--teal-strong); flex-shrink:0; }
+  .story-teaching { font-family:'Cormorant Garamond',serif; font-size:17.5px;
+    font-style:italic; color:var(--text-1); line-height:1.85; padding-bottom:.6rem; }
+  .teaching-attr { font-size:11px; color:var(--text-3); padding-bottom:1.1rem; }
+
+  /* Dialogue block */
+  .dialogue-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.25rem; margin:0 -1.65rem;
+    background:var(--blue-pale); }
+  .dialogue-header { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--blue-dark); margin-bottom:.75rem; }
+  .dialogue-tradition { font-weight:400; font-style:italic; letter-spacing:0;
+    text-transform:none; color:var(--text-3); }
+  .dialogue-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .dialogue-framing { font-size:11px; color:var(--blue-dark); opacity:.65;
+    font-style:italic; margin-bottom:.65rem; }
+  .dialogue-attr { font-size:11px; color:var(--text-3); padding-bottom:.2rem; }
+
+  /* Practice block */
+  .practice-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.4rem; margin:0 -1.65rem;
+    background:var(--teal-pale); }
+  .practice-label { font-size:10px; font-weight:500; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--teal-dark); margin-bottom:.6rem;
+    display:flex; align-items:center; gap:8px; }
+  .klesha-tag { font-size:9px; font-weight:600; letter-spacing:.06em;
+    text-transform:uppercase; padding:2px 8px; border-radius:10px;
+    color:#fff; flex-shrink:0; }
+  .klesha-anger      {background:#C0392B;}
+  .klesha-grief      {background:#7F8C8D;}
+  .klesha-anxiety    {background:#D4AC0D;}
+  .klesha-helplessness{background:#8E44AD;}
+  .klesha-wonder     {background:#2E86C1;}
+  .klesha-hope       {background:#1D8348;}
+  .klesha-confusion  {background:#D35400;}
+  .klesha-compassion {background:#CB4335;}
+  .practice-text { font-size:13.5px; color:var(--teal-dark);
+    line-height:1.8; font-style:italic; }
+  .practice-text p { margin-bottom:.75em; }
+  .practice-text p:last-child { margin-bottom:0; }
+  .wisdom-line { font-size:10.5px; color:var(--teal-deep); font-style:italic;
+    margin-top:.55rem; padding-top:.45rem;
+    border-top:0.5px solid rgba(29,158,117,0.2); }
+  .wisdom-label { font-weight:600; font-style:normal; }
+  .method-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.07em; text-transform:uppercase; padding:2px 8px;
+    border-radius:10px; margin-left:auto; flex-shrink:0; }
+  .method-abandoning { background:#E8E8E8; color:#4A4A4A; }
+  .method-transforming { background:#FEF3C7; color:#92400E; }
+  .method-transcending { background:var(--gold-pale); color:var(--gold-dark);
+    border:0.5px solid rgba(232,160,32,0.3); }
+
+  /* Per-story Lojong slogan (inside practice block) */
+  .slogan-anchor { border-bottom:0.5px solid rgba(46,46,114,0.12);
+    padding-bottom:.6rem; margin-bottom:.7rem; }
+  .slogan-label { font-size:9px; font-weight:600; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--indigo-dark); opacity:.6;
+    margin-bottom:.3rem; }
+  .slogan-text { font-family:'Cormorant Garamond',Georgia,serif; font-size:16px;
+    font-style:italic; color:var(--indigo-dark); line-height:1.5; }
+  .slogan-alt { font-size:11px; color:var(--indigo-mid); margin-top:.2rem;
+    font-style:italic; }
+
+  /* Klesha guide — expandable details section */
+  .klesha-guide { background:var(--amber-pale); border:0.5px solid rgba(99,56,6,0.18);
+    border-radius:16px; margin-bottom:1.35rem; overflow:hidden; }
+  .klesha-guide[open] .guide-summary-hint { display:none; }
+  .guide-summary { list-style:none; padding:1.1rem 1.65rem; cursor:pointer;
+    display:flex; flex-direction:column; gap:.25rem; position:relative; }
+  .guide-summary::-webkit-details-marker { display:none; }
+  .guide-summary::after { content:'▸'; position:absolute; right:1.5rem; top:1.2rem;
+    font-size:.8rem; color:var(--amber-dark); opacity:.6; }
+  .klesha-guide[open] > .guide-summary::after { content:'▾'; }
+  .guide-eyebrow { font-size:9px; font-weight:600; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--amber-dark); opacity:.7; }
+  .guide-title-row { display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; }
+  .guide-klesha-badge { font-size:11px; font-weight:600; letter-spacing:.06em;
+    text-transform:uppercase; padding:3px 11px; border-radius:20px; }
+  .guide-arrow { font-size:1rem; color:var(--amber-dark); opacity:.55; }
+  .guide-wisdom { font-family:'Cormorant Garamond',Georgia,serif; font-size:1.05rem;
+    font-style:italic; color:var(--amber-dark); }
+  .guide-summary-hint { font-size:11px; color:var(--text-3); font-style:italic; }
+  .guide-intro { display:grid; grid-template-columns:1fr 1fr; gap:1.1rem;
+    padding:.2rem 1.65rem 1.1rem; border-bottom:0.5px solid rgba(99,56,6,0.12); }
+  @media(max-width:650px){ .guide-intro { grid-template-columns:1fr; } }
+  .guide-block-label { font-size:9px; font-weight:600; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--amber-dark); opacity:.65; margin-bottom:.3rem; }
+  .guide-block-text { font-size:13px; color:var(--text-2); line-height:1.65; }
+  .guide-block-text p { margin-bottom:.5rem; }
+  .guide-block-text p:last-child { margin-bottom:0; }
+  .guide-methods-label { font-size:9px; font-weight:600; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--amber-dark); opacity:.65;
+    padding:.85rem 1.65rem .3rem; }
+  .guide-method { padding:.8rem 1.65rem;
+    border-top:0.5px solid rgba(99,56,6,0.08);
+    border-left:3px solid transparent; }
+  .guide-method-header { display:flex; align-items:baseline; gap:.55rem;
+    margin-bottom:.3rem; flex-wrap:wrap; }
+  .guide-method-label { font-size:11px; font-weight:700; letter-spacing:.05em;
+    text-transform:uppercase; }
+  .guide-method-sub { font-size:11px; color:var(--text-3); font-style:italic; }
+  .guide-method-lead { font-size:12.5px; font-weight:500; font-style:italic;
+    color:var(--text-2); margin-bottom:.4rem; }
+  .guide-method-text { font-size:13px; color:var(--text-2); line-height:1.65; }
+  .guide-method-text p { margin-bottom:.5rem; }
+  .guide-method-text p:last-child { margin-bottom:0; }
+
+  /* Edition Lojong section */
+  .lojong-guide { background:var(--indigo-pale); border:0.5px solid rgba(46,46,114,0.15);
+    border-radius:16px; margin-bottom:1.35rem; overflow:hidden; }
+  .lojong-guide[open] .lojong-hint { display:none; }
+  .lojong-summary { list-style:none; padding:1.1rem 1.65rem; cursor:pointer;
+    display:flex; flex-direction:column; gap:.25rem; position:relative; }
+  .lojong-summary::-webkit-details-marker { display:none; }
+  .lojong-summary::after { content:'▸'; position:absolute; right:1.5rem; top:1.2rem;
+    font-size:.8rem; color:var(--indigo-dark); opacity:.6; }
+  .lojong-guide[open] > .lojong-summary::after { content:'▾'; }
+  .lojong-eyebrow { font-size:9px; font-weight:600; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--indigo-dark); opacity:.55; }
+  .lojong-slogan-display { font-family:'Cormorant Garamond',Georgia,serif;
+    font-size:1.25rem; font-style:italic; color:var(--indigo-dark); line-height:1.4; }
+  .lojong-hint { font-size:11px; color:var(--indigo-mid); font-style:italic; }
+  .lojong-body { padding:.4rem 1.65rem 1.3rem; }
+  .lojong-alt { font-size:11.5px; color:var(--indigo-mid); font-style:italic;
+    margin-bottom:.9rem; }
+  .lojong-section-label { font-size:9px; font-weight:600; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--indigo-dark); opacity:.65; margin-bottom:.4rem; }
+  .lojong-para { font-size:13.5px; color:var(--indigo-dark); line-height:1.75;
+    margin-bottom:1rem; }
+  .lojong-para p { margin-bottom:.6rem; }
+  .lojong-para p:last-child { margin-bottom:0; }
+
+  /* Per-story rejoicing block */
+  .rejoicing-block { border-top:0.5px solid var(--border);
+    padding:1rem 1.65rem 1.2rem; margin:0 -1.65rem;
+    background:var(--rose-pale); }
+  .rejoicing-header { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--rose-dark); margin-bottom:.55rem;
+    display:flex; align-items:center; gap:.4rem; }
+  .rejoicing-text { font-size:13.5px; color:var(--rose-dark); line-height:1.75;
+    font-style:italic; }
+  .rejoicing-text p { margin-bottom:.5rem; }
+  .rejoicing-text p:last-child { margin-bottom:0; }
+
+  /* Edition rejoicing section */
+  .rejoicing-guide { background:var(--rose-pale); border:0.5px solid rgba(122,26,53,0.15);
+    border-radius:16px; margin-bottom:1.35rem; overflow:hidden; }
+  .rejoicing-guide[open] .guide-summary-hint { display:none; }
+  .rejoicing-summary { list-style:none; padding:1.1rem 1.65rem; cursor:pointer;
+    display:flex; flex-direction:column; gap:.25rem; position:relative; }
+  .rejoicing-summary::-webkit-details-marker { display:none; }
+  .rejoicing-summary::after { content:'▸'; position:absolute; right:1.5rem; top:1.2rem;
+    font-size:.8rem; color:var(--rose-dark); opacity:.6; }
+  .rejoicing-guide[open] > .rejoicing-summary::after { content:'▾'; }
+  .rejoicing-eyebrow { font-size:9px; font-weight:600; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--rose-dark); opacity:.55; }
+  .rejoicing-title { font-family:'Cormorant Garamond',Georgia,serif; font-size:1.15rem;
+    font-weight:500; color:var(--rose-dark); }
+  .rejoicing-hint { font-size:11px; color:var(--rose-dark); opacity:.6; font-style:italic; }
+  .rejoicing-body { padding:.2rem 1.65rem 1.3rem; }
+  .rejoicing-section-label { font-size:9px; font-weight:600; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--rose-dark); opacity:.65; margin-bottom:.4rem; }
+  .rejoicing-para { font-size:13.5px; color:var(--rose-dark); line-height:1.75;
+    font-style:italic; margin-bottom:1rem; }
+  .rejoicing-para p { margin-bottom:.6rem; }
+  .rejoicing-para p:last-child { margin-bottom:0; }
+  .rejoicing-aspiration { font-family:'Cormorant Garamond',Georgia,serif; font-size:16px;
+    font-style:italic; color:var(--rose-dark); line-height:1.9; padding:.75rem 1.1rem;
+    border-left:2px solid var(--rose-mid); margin-top:.5rem; }
+
+  /* Lens (perspective view) block */
+  .lens-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.35rem; margin:0 -1.65rem;
+    background:var(--amber-pale); }
+  .lens-header { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--amber-dark); margin-bottom:.75rem; }
+  .lens-tradition { font-weight:400; font-style:italic; letter-spacing:0;
+    text-transform:none; color:var(--text-3); }
+  .lens-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .lens-text p { margin-bottom:.75em; }
+  .lens-text p:last-child { margin-bottom:0; }
+  .lens-attr { font-size:11px; color:var(--text-3); padding-bottom:.2rem; }
+
+  /* Source link */
+  .story-source { font-size:11.5px; color:var(--text-3); padding:.4rem 0 .85rem;
+    border-top:0.5px dashed var(--border); margin-top:.2rem; }
+  .story-source a { color:var(--text-3); text-decoration:none;
+    border-bottom:0.5px solid var(--border); }
+  .story-source a:hover { color:var(--teal-deep); }
+
+  /* Underreported badge */
+  .underreported-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.09em; text-transform:uppercase; padding:2px 9px; border-radius:20px;
+    background:var(--green-pale); color:var(--green-dark); margin-left:6px;
+    border:0.5px solid rgba(39,80,10,0.18); vertical-align:middle; }
+
+  /* Multi-paragraph support in commentary and dialogue */
+  .story-teaching p { margin-bottom:.7em; }
+  .story-teaching p:last-child { margin-bottom:0; }
+  .dialogue-text p { margin-bottom:.7em; }
+  .dialogue-text p:last-child { margin-bottom:0; }
+
+  /* Tradition quote block */
+  .quote-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.3rem; margin:0 -1.65rem;
+    background:var(--purple-pale); position:relative; }
+  .quote-mark { font-family:'Cormorant Garamond',serif; font-size:52px;
+    line-height:.7; color:var(--purple-dark); opacity:0.18;
+    margin-bottom:-.25rem; user-select:none; }
+  .quote-text { font-family:'Cormorant Garamond',serif; font-size:17.5px;
+    font-style:italic; color:var(--text-1); line-height:1.85;
+    margin-bottom:.55rem; }
+  .quote-text p { margin-bottom:.7em; }
+  .quote-text p:last-child { margin-bottom:0; }
+  .quote-attr { font-size:11px; color:var(--text-3); margin-bottom:.55rem; }
+  .quote-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.08em; text-transform:uppercase; padding:2px 8px;
+    border-radius:10px; }
+  .quote-badge-tradition { background:var(--amber-pale); color:var(--amber-dark);
+    border:0.5px solid rgba(100,60,10,0.18); }
+
+  /* Closing */
+  .closing { text-align:center; padding:2.25rem 1.25rem .5rem;
+    border-top:0.5px solid var(--border); margin-top:.5rem; }
+  .closing-text { font-family:'Cormorant Garamond',serif; font-size:19px;
+    font-style:italic; color:var(--text-2); line-height:2.1; margin-bottom:1.6rem; }
+  .mantra-tibetan { font-size:22px; color:var(--gold-mid); letter-spacing:.07em;
+    display:block; margin-bottom:.6rem; }
+  .mantra { font-size:11px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--teal-deep); display:block; margin-bottom:.5rem; }
+  .mantra-note { font-size:12px; color:var(--text-3); font-style:italic;
+    font-family:'Cormorant Garamond',serif; }
+  /* ── Accordion-specific overrides and additions ─────────────────── */
+
+  /* Teaching divider inside accordion (no negative margins) */
+  .teaching-divider { display:flex; align-items:center; gap:10px;
+    margin-bottom:1rem; padding-top:1rem; }
+  .teaching-divider::after { content:''; flex:1; height:0.5px; background:var(--border); }
+  .teaching-divider span { font-size:13px; color:var(--teal-strong); flex-shrink:0; }
+
+  /* Klesha guide minor variants in accordion */
+  .guide-eyebrow { opacity:.55; }
+  .guide-klesha-badge { font-weight:700; letter-spacing:.05em; padding:3px 10px; }
+  .guide-arrow { font-size:14px; opacity:.5; }
+
+  /* Rejoicing guide open-state rule (accordion uses .rejoicing-hint) */
+  .rejoicing-guide[open] .rejoicing-hint { display:none; }
+
+  /* Accordion sections */
+  details.acc-section {
+    border-top:0.5px solid var(--border);
+    margin:0 -1.65rem;
+    padding:0 1.65rem;
+  }
+  details.acc-section[open] { padding-bottom:1.1rem; }
+  details.acc-dialogue { background:var(--blue-pale); }
+  details.acc-practice { background:var(--teal-pale); }
+  details.acc-lens     { background:var(--amber-pale); }
+  summary.acc-summary {
+    list-style:none; cursor:pointer; user-select:none;
+    font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--teal-deep);
+    padding:.9rem 0 .75rem;
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+  }
+  summary.acc-summary::marker,
+  summary.acc-summary::-webkit-details-marker { display:none; }
+  summary.acc-summary::after {
+    content:"▸"; font-size:9px; flex-shrink:0; color:var(--text-3);
+  }
+  details.acc-section[open] > summary.acc-summary::after { content:"▾"; }
+  .acc-sum-blue  { color:var(--blue-dark); }
+  .acc-sum-teal  { color:var(--teal-dark); }
+  .acc-sum-amber { color:var(--amber-dark); }
+
+  /* Dialogue content inside accordion */
+  .acc-subheader { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; margin-bottom:.75rem; }
+  .acc-subheader-blue { color:var(--blue-dark); }
+  .dialogue-attr { font-size:11px; color:var(--text-3); }
+
+  /* Lens content inside accordion */
+  .acc-lens-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .acc-lens-text p { margin-bottom:.75em; }
+  .acc-lens-text p:last-child { margin-bottom:0; }
+  .lens-attr { font-size:11px; color:var(--text-3); }
+
+  /* Tradition quote inside accordion */
+  details.acc-quote { background:var(--purple-pale); }
+  .acc-sum-purple { color:var(--purple-dark); }
+  .acc-quote-inner { padding:.25rem 0 .1rem; }
+
+  /* Per-story rejoicing in accordion */
+  details.acc-rejoicing { background:var(--rose-pale); }
+  .acc-sum-rose { color:var(--rose-dark); }
+
+  /* Accordion hint banner */
+  .acc-hint { font-size:12px; color:var(--text-3); text-align:center;
+    margin-bottom:2rem; font-style:italic; }
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="masthead">
+    <svg class="lotus" width="60" height="52" viewBox="0 0 60 52" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="30" cy="42" rx="10" ry="5" fill="#9FE1CB" opacity="0.38"/>
+      <path d="M30 38 Q21 24 16 9 Q24 22 30 26 Q36 22 44 9 Q39 24 30 38Z" fill="#5DCAA5" opacity="0.88"/>
+      <path d="M30 38 Q13 30 5 19 Q17 27 30 32Z" fill="#9FE1CB" opacity="0.9"/>
+      <path d="M30 38 Q47 30 55 19 Q43 27 30 32Z" fill="#9FE1CB" opacity="0.9"/>
+      <path d="M30 38 Q9 34 3 27 Q15 32 30 36Z" fill="#C0DD97" opacity="0.68"/>
+      <path d="M30 38 Q51 34 57 27 Q45 32 30 36Z" fill="#C0DD97" opacity="0.68"/>
+      <circle cx="30" cy="26" r="5" fill="#F7E28A" opacity="0.9"/>
+      <circle cx="30" cy="26" r="2.8" fill="#E8A020"/>
+      <circle cx="30" cy="26" r="1.1" fill="#6B3E08"/>
+    </svg>
+    <div class="date-line">Thursday, April 23, 2026</div>
+    <div class="masthead-title">The Awakened Observer</div>
+    <div class="issue-line">Issue No. 12  ·  News of the world, held with open hands</div>
+    <div class="masthead-rule"></div>
+    <div class="masthead-sub">Awareness &nbsp;·&nbsp; Love &nbsp;·&nbsp; Wisdom</div>
+    <div class="tradition-badge">Christian Contemplative Edition</div>
+  </div>
+
+  <div class="opening">Read these stories as one who has been sent. The world you are reading is the world you are called to love.
+</div>
+  <div class="opening-instruction">Whatever name you give to the sacred, bring it with you into these pages.</div>
+
+  <div class="glance">
+    <div class="glance-title">Today at a glance</div>
+    <div class="glance-list">
+      <div class="glance-row">
+        <div class="g-dot d-politics"></div>
+        <div class="glance-text">The Trump Justice Department indicted the Southern Poverty Law Center on 11 federal counts including wire fraud, false statements to banks, and conspiracy to commit money laundering.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-conflict"></div>
+        <div class="glance-text">On the 55th day since the Iran war began, the conflict is escalating on multiple fronts.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-human-interest"></div>
+        <div class="glance-text">In Bolivia's Amazon biodiverse heartland, communities of cacao farmers successfully organized against the gold-mining industry threatening their forests and way of life.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-science"></div>
+        <div class="glance-text">SuperAgers — people over 80 whose memory performance matches adults at least 30 years younger — challenge the assumption that cognitive decline is inevitable.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-human-interest"></div>
+        <div class="glance-text">A journalist and group of participants spent a month deliberately stepping back from smartphone use, documenting what the experience reveals about habitual device dependency.</div>
+      </div>
+    </div>
+  </div>
+
+
+  <details class="klesha-guide">
+    <summary class="guide-summary">
+      <span class="guide-eyebrow">Working with this edition</span>
+      <span class="guide-title-row">
+        <span class="guide-klesha-badge" style="background:#F1F5F9;color:#475569">Grief</span>
+        <span class="guide-arrow">→</span>
+        <span class="guide-wisdom">Discriminating Wisdom</span>
+      </span>
+      <span class="guide-summary-hint">Tap to expand practice guidance</span>
+    </summary>
+
+    <div class="guide-intro">
+      <div class="guide-block">
+        <div class="guide-block-label">The klesha</div>
+        <div class="guide-block-text"><p>Grief manifests as a profound sense of loss, often experienced as a heavy ache or hollow space in the chest, a pervasive sadness that colors perception, and a deep longing for what was. It’s the raw, stripped-bare feeling when a significant connection—be it a loved one, a way of life, or even a perceived future—is severed, leaving an emotional landscape altered and often desolate. This can be seen in the struggle of Bolivia's cacao farmers or the quiet revelations of a month offline.</p></div>
+      </div>
+      <div class="guide-block">
+        <div class="guide-block-label">The wisdom it reveals</div>
+        <div class="guide-block-text"><p>Discriminating Wisdom, in the face of grief, offers a clear-eyed understanding of what is distinct and unique in our experience, revealing the precise nature of our sorrow without collapsing into a generalized despondency. It helps us discern the specific qualities of what was cherished and what remains, allowing for a nuanced appreciation of impermanence rather than a sweeping rejection. This wisdom clarifies the boundaries of our sadness, preventing it from overwhelming the whole of our being.</p></div>
+      </div>
+    </div>
+
+    <div class="guide-methods-label">How to work with it</div>
+    
+    <div class="guide-method" style="background:#F8F8F8;border-left:3px solid #6B7280">
+      <div class="guide-method-header">
+        <span class="guide-method-label" style="color:#6B7280">Abandoning</span>
+        <span class="guide-method-sub">Apply the antidote — reduce and release</span>
+      </div>
+      <div class="guide-method-lead">To work with grief through abandoning: Find a comfortable posture and bring your attention to the gentle rise and fall of your breath in your belly. Acknowledge the presence of grief without judgment, perhaps sensing it as a pressure or emptiness in your chest, a quiet ache. Now, gently shift your focus to the quiet strength of your own heart, cultivating a soft, warm kindness – agape – not just for yourself, but for all who experience the profound ache of loss. Imagine this kindness as a gentle, radiant light emanating from your chest, soothing and comforting. For the next five to ten minutes, breathe in any tension or sorrow you feel, and as you exhale, radiate this tender kindness outwards, allowing it to soften the edges of your own grief and extend to others who are hurting. Conclude by dedicating this moment of open-hearted presence and connection to the well-being of all beings, knowing that even in sorrow, a deep and abiding connection remains.</div>
+      <div class="guide-method-text"></div>
+    </div>
+    
+    <div class="guide-method" style="background:#FAEEDA;border-left:3px solid #633806">
+      <div class="guide-method-header">
+        <span class="guide-method-label" style="color:#633806">Transforming</span>
+        <span class="guide-method-sub">Use the energy as fuel — redirect toward wisdom</span>
+      </div>
+      <div class="guide-method-lead">To work with grief through transformation: Sit with the raw, potent energy of your grief, perhaps feeling its intensity as a constriction in your throat or a pressure behind your eyes. Instead of recoiling, lean into this sensation, recognizing its depth as a testament to profound connection and love – the very wellspring from which it arises. Consider the journey of the Bolivian cacao farmers, who channeled their grief over environmental degradation into a powerful, unified stand for their land. Allow the keen edge of your personal sorrow to sharpen your awareness of suffering in the world, particularly those who grieve similar losses. Breathe into the heart of your grief, and as you do, let its energy expand into a powerful aspiration for the relief of all beings. This isn't about denying your pain, but about recognizing its universal resonance and using its transformative heat to fuel a boundless metanoia, a turning of the heart towards universal compassion and active care.</div>
+      <div class="guide-method-text"></div>
+    </div>
+    
+    <div class="guide-method" style="background:#FDF5DC;border-left:3px solid #6B3E08">
+      <div class="guide-method-header">
+        <span class="guide-method-label" style="color:#6B3E08">Transcending</span>
+        <span class="guide-method-sub">Look directly — allow self-liberation</span>
+      </div>
+      <div class="guide-method-lead">To work with grief through transcendence: Settle into a natural, open awareness, allowing your mind to rest without effort. When grief arises, do not push it away or cling to its narrative. Instead, turn your gaze directly towards the very sensation of grief itself, wherever it manifests in your body or mind—perhaps as a dull ache, a sharp pang, or a pervasive emptiness. Ask yourself: What is its true nature? Does it have a solid core, a fixed location, a color, a shape, a size that can be pinpointed? Can you grasp it as a separate, enduring thing? As you investigate with this gentle, unwavering attention, observe how the perceived solidity of grief begins to dissolve under the direct light of awareness, revealing its inherent insubstantiality, its empty yet luminous quality. Like a wave in the ocean, it arises, endures, and passes, without a separate, enduring self. Rest in this recognition of its boundless, unfabricated nature, allowing the raw energy of grief to self-liberate into the vast, open expanse of your natural mind, leaving no trace behind, only open space.</div>
+      <div class="guide-method-text"></div>
+    </div>
+  </details>
+  <div class="section-label">Stories — seen clearly</div>
+  <p class="acc-hint">Teaching sections open when you tap the section title.</p>
+
+
+  <!-- Story 1 -->
+  <div class="story">
+    <span class="story-tag tag-politics">Power & Collective Karma</span>
+    <div class="story-headline">Trump DOJ Indicts Southern Poverty Law Center on 11-Count Federal Fraud Case</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">The Trump Justice Department indicted the Southern Poverty Law Center on 11 federal counts including wire fraud, false statements to banks, and conspiracy to commit money laundering. Acting Attorney General Todd Blanche and FBI Director Kash Patel announced the charges on April 21, alleging the SPLC defrauded donors by secretly paying approximately $3 million to informants embedded inside extremist groups between 2014 and 2023, using fictitious corporate bank accounts. The SPLC called the charges political targeting. Legal experts noted that paying confidential informants inside violent groups is standard law enforcement practice, and the case was previously closed under the Biden administration before being revived under Trump. The indictment is widely seen as part of a pattern of the administration using the DOJ against civil society organizations.</div>
+    <details class="acc-section acc-teaching" open data-section="teaching" data-story="trump-doj-indicts-southern-poverty-law-c">
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">The news of indictments and accusations can stir a deep anxiety within us, a fear for truth and justice in the world. It’s easy to become swept away by the currents of accusation and defense, allowing our peace to be dictated by the shifting sands of human judgment. Yet, remember the teaching: 'Do not worry about tomorrow, for tomorrow will worry about itself.' Our true refuge is not in the outcome of earthly courts, nor in the validation or condemnation of any institution, but in the steadfastness of the heart turned towards the divine. This moment calls us not to external battle, but to an inner discernment, to hold space for all involved with compassion, and to seek the kingdom within, where true justice and peace eternally reside, undisturbed by the clamor of the world.</div>
+      <div class='teaching-attr'>— In the spirit of Jesus's teaching on inner peace amidst external turmoil</div>
+    </details>
+    <details class="acc-section acc-quote" data-section="quote" data-story="trump-doj-indicts-southern-poverty-law-c">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">Do not worry about tomorrow, for tomorrow will worry about itself. Each day has enough trouble of its own.</div><div class="quote-attr">Matthew 6:34</div><span class="quote-badge quote-badge-tradition">Traditional teaching</span></div>
+    </details>
+    <details class="acc-section acc-dialogue" data-section="dialogue" data-story="trump-doj-indicts-southern-poverty-law-c">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🌏 tibetan_master &nbsp;·&nbsp; <span class='dialogue-tradition'>Tibetan Buddhist — Gelug / Universal Ethics</span></div>
+      <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+      <div class="dialogue-text">JESUS: My friend, do you not find that when such news arises, the hearts of many become agitated? They cling to a particular outcome, believing that if their chosen side prevails, then peace will follow. But true peace, I have taught, is not found in the victory of one over another, but in the transformation of the inner landscape.<br>TIBETAN_MASTER: Indeed, Noble One. The arising of such events is like a strong wind blowing across the mind's surface, stirring up dust and confusion. If we mistake the dust for the ground itself, we will surely stumble. From our perspective, such external conflicts, while causing distress, are profound opportunities to observe the mind's habit of grasping and aversion. When the mind fixates on who is right or wrong, or which outcome will 'save' us, it strengthens the very patterns that perpetuate suffering.<br>JESUS: It seems we both speak of a kingdom not of this world, yet deeply present within it. To be present with the distress, to not turn away from the suffering caused by such events, yet simultaneously to release the attachment to their resolution in a worldly sense, this is the path. To discern with wisdom, without succumbing to the fever of judgment or fear, is the teaching.<br>TIBETAN_MASTER: Precisely. The challenge is to remain open to the pain, to feel the anxiety or anger that arises, but without identifying with it or allowing it to dictate our actions. Instead, we can use these moments to cultivate compassion for all caught in the web of accusation and counter-accusation, recognizing the fundamental ignorance that drives much of human conflict. The true work is always within, calming the mind's storm so that the clear sky of innate wisdom may appear.</div>
+      <div class='dialogue-attr'>— In the spirit of the Gospels and the Tibetan Buddhist tradition</div>
+    </details>
+    <details class="acc-section acc-practice" data-section="practice" data-story="trump-doj-indicts-southern-poverty-law-c">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-anxiety">Anxiety &amp; Worry</span>
+        Practice <span class="method-badge method-transforming">Transforming</span>
+      </div>
+      
+      <div class="practice-text">Find a quiet space and sit comfortably, allowing your breath to settle naturally. Place a hand gently over your heart. As you breathe, acknowledge any anxiety or unrest stirred by this news, without judgment. Then, gently release the need to understand or control the external narrative. Instead, bring your awareness to the quiet strength within, the unshakeable ground of your being. Rest in this inner stillness for five minutes, concluding with a silent prayer for clarity and compassion for all beings.</div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Mirror-like Wisdom</div>
+    </details>
+    <details class="acc-section acc-rejoicing" data-section="rejoicing" data-story="trump-doj-indicts-southern-poverty-law-c">
+      <summary class="acc-summary acc-sum-rose">❤ Appreciative Joy</summary>
+      <div class="rejoicing-text">We rejoice in the unwavering commitment to justice and the rigorous pursuit of truth, which, even amidst contention, holds the potential for greater clarity and accountability.</div>
+    </details>
+    <details class="acc-section acc-lens" data-section="lens" data-story="trump-doj-indicts-southern-poverty-law-c">
+      <summary class="acc-summary acc-sum-amber">🌅 Kingdom of God View &nbsp;·&nbsp; <span class='lens-tradition'>Christian — Gospel</span></summary>
+      <div class="lens-text acc-lens-text">In the unfolding drama of earthly accusations and legal battles, the Kingdom of God calls us to look beyond the headlines to the deeper currents of justice and mercy. When institutions dedicated to protecting the vulnerable face such challenges, it serves as a profound reminder of the prophetic call to stand with the marginalized. The Kingdom is always breaking in, challenging the powers that seek to dominate or deceive, and demanding an accounting not just from legal codes, but from the heart's commitment to the 'least of these.' This situation invites us to pray for clarity and integrity, and to discern where true compassion is needed.</div>
+      <div class='lens-attr'>— The prophetic call for justice and mercy</div>
+    </details>
+  </div>
+
+  <!-- Story 2 -->
+  <div class="story">
+    <span class="story-tag tag-conflict">Conflict & Impermanence</span>
+    <div class="story-headline">Iran War Day 55: Both Sides Seize Ships as Hormuz Standoff Deepens and Peace Talks Stall</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">On the 55th day since the Iran war began, the conflict is escalating on multiple fronts. Iran seized two foreign commercial vessels and fired on a third in the Strait of Hormuz, while the US Central Command has turned back 31 ships as part of a naval blockade involving approximately 10,000 troops, 17 warships, and over 100 aircraft. Iran parliament refused to reopen the waterway while the US blockade remains, calling it a ceasefire violation. Brent crude oil surpassed $100 per barrel. Peace talks remain stalled: Iran cites the blockade as a breach of commitments; the White House says Trump has set no deadline for a peace proposal. In Lebanon, Israeli airstrikes killed five people including journalist Amal Khalil, and a Red Cross ambulance came under fire.</div>
+    <details class="acc-section acc-teaching" open data-section="teaching" data-story="iran-war-day-55-both-sides-seize-ships-a">
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">Brother, sister, my heart aches to hear of this escalation, this seizing of vessels and hardening of stances. It is a time when aversion can easily take root, when we might find ourselves hardening our own hearts against those we perceive as 'other.' But in our spirit, there is no 'other,' only fellow creatures sharing this fragile earth. How can we truly love God if we cannot extend that love, that sense of brotherhood, even to those caught in the storm of conflict? Let us not allow the world's discord to sow discord in our own souls. Instead, let us respond with prayer, with humility, and with a radical commitment to peace, finding the divine presence even amid the clamor of war.</div>
+      <div class='teaching-attr'>— In the spirit of St. Francis's teaching on embracing peace amidst conflict</div>
+    </details>
+    <details class="acc-section acc-quote" data-section="quote" data-story="iran-war-day-55-both-sides-seize-ships-a">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">Where there is hatred, let me sow love; where there is injury, pardon; where there is doubt, faith; where there is despair, hope; where there is darkness, light; where there is sadness, joy.</div><div class="quote-attr">Prayer of Saint Francis</div><span class="quote-badge quote-badge-tradition">Traditional teaching</span></div>
+    </details>
+    <details class="acc-section acc-dialogue" data-section="dialogue" data-story="iran-war-day-55-both-sides-seize-ships-a">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🌙 sufi_poet &nbsp;·&nbsp; <span class='dialogue-tradition'>Sufi mysticism — Hafiz / Ibn Arabi tradition</span></div>
+      <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+      <div class="dialogue-text">ST_FRANCIS: My dear friend, the news from the Strait of Hormuz weighs heavily on the soul. The human heart, so capable of agape (selfless love), of divine love, is so often consumed by fear and anger, leading to such strife. How can we speak of peace when the world around us echoes with the clamor of war and the seizing of what belongs to all?<br>SUFI_POET: Ah, Brother Francis, the outer world is a reflection, is it not, of the inner struggle? The ships seized, the waters troubled — these are but mirrors of the hearts seized by illusion, the souls troubled by separation. The lover of God knows that true peace, the peace of 'salaam', blossoms not from the absence of conflict, but from the surrender to the One who is Peace itself. Even in the roar of the storm, the nightingale sings of love.<br>ST_FRANCIS: And how do we teach this song to those whose hands are on the levers of war? How do we show them the brotherhood that unites us all, the sacredness of every life, every creature, every drop of water? It seems a daunting task, to transform such aversion into universal love.<br>SUFI_POET: We sing it first within ourselves, Francis. We empty ourselves, self-emptying (kenosis), of the desire to dominate, to possess, to be right. We become the flute through which the Breath of God can play. For when one heart truly opens to agape, its fragrance cannot be contained; it wafts across the battlefields, a subtle, irresistible invitation to remember our shared source, our shared longing for union. It is in the vulnerability of love that true strength is found, the strength to lay down arms, both physical and spiritual.</div>
+      <div class='dialogue-attr'>— In the spirit of St. Francis of Assisi and the Sufi tradition</div>
+    </details>
+    <details class="acc-section acc-practice" data-section="practice" data-story="iran-war-day-55-both-sides-seize-ships-a">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-aversion">Anger &amp; Aversion</span>
+        Practice <span class="method-badge method-transforming">Transforming</span>
+      </div>
+      
+      <div class="practice-text">Sit quietly, perhaps with hands open in your lap. Bring to mind the images of conflict and tension. As aversion or fear arises, gently acknowledge it without judgment. Then, with each breath, silently offer a prayer for peace, not just for one side, but for all beings entangled in this suffering. Imagine the possibility of compassion softening hardened hearts, including your own. Hold this intention for five to ten minutes, concluding by offering a gesture of peace with your hands, perhaps pressing palms together at your heart.</div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Mirror-like Wisdom</div>
+    </details>
+    <details class="acc-section acc-rejoicing" data-section="rejoicing" data-story="iran-war-day-55-both-sides-seize-ships-a">
+      <summary class="acc-summary acc-sum-rose">❤ Appreciative Joy</summary>
+      <div class="rejoicing-text">We rejoice in the enduring human spirit that, even amidst escalating tensions and stalled negotiations, persistently seeks pathways for dialogue and peaceful resolution. We offer our mudita to all who continue to strive for understanding and an end to suffering.</div>
+    </details>
+    <details class="acc-section acc-lens" data-section="lens" data-story="iran-war-day-55-both-sides-seize-ships-a">
+      <summary class="acc-summary acc-sum-amber">🫙 Kenosis View &nbsp;·&nbsp; <span class='lens-tradition'>Christian mystical</span></summary>
+      <div class="lens-text acc-lens-text">When nations clash and conflict escalates, the path of kenosis calls us to a radical reorientation. It is a profound invitation to self-emptying, to shed the ego's need for dominance, for 'winning,' or for rigid identification with one side. In the face of such overwhelming aversion, kenosis asks us to empty ourselves of retaliatory impulses, of the desire to impose our will, and instead become permeable to the pain of all involved. It is in this vulnerability, in the willingness to lay down our own defenses and desires for power, that the divine possibility of true peace, born of humility and shared humanity, can emerge.</div>
+      <div class='lens-attr'>— Seeing the divine path in self-emptying and vulnerability</div>
+    </details>
+  </div>
+
+  <!-- Story 3 -->
+  <div class="story">
+    <span class="story-tag tag-human">The Human Inside the Headline</span><span class="underreported-badge">Less Reported</span>
+    <div class="story-headline">How Bolivia's Cacao Farmers Took On the Gold-Mining Industry — and Won</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">In Bolivia's Amazon biodiverse heartland, communities of cacao farmers successfully organized against the gold-mining industry threatening their forests and way of life. With gold prices rising globally and fueling environmental destruction across the region, these farming communities — including cacao cultivator Herminio Mamani — organized to pass local laws prohibiting mining in their territory. The victory represents a grassroots achievement: small-scale agricultural communities choosing ecological integrity and long-term land stewardship over the short-term economic pressure of a global commodity boom. The area is home to mahogany forests and rich biodiversity that would have been destroyed by mining operations.</div>
+    <details class="acc-section acc-teaching" open data-section="teaching" data-story="how-bolivia-s-cacao-farmers-took-on-the">
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">In a world often consumed by the relentless pursuit of acquisition, the story from Bolivia offers a profound balm to the grief we feel for our wounded earth. These cacao farmers, rooted in the sacred rhythms of their land, did not simply lament the threat but rose with a quiet, persistent strength. Their victory is not merely a legal one, but a spiritual triumph—a testament to the power of community, deep reverence for creation, and embodied resistance. It reminds us that true riches are not found in the fleeting gleam of gold, but in the enduring vitality of the earth and the integrity of a people who cherish it. This is contemplative action, listening to the very groans of creation and responding with steadfast love.</div>
+      <div class='teaching-attr'>— In the spirit of the Trappist mystic's teaching on contemplative action for creation</div>
+    </details>
+    <details class="acc-section acc-quote" data-section="quote" data-story="how-bolivia-s-cacao-farmers-took-on-the">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">We are not to simply bandage the wounds of victims beneath the wheels of injustice, we are to drive a spoke into the wheel itself.</div><div class="quote-attr">Dietrich Bonhoeffer, Letters and Papers from Prison (paraphrase)</div><span class="quote-badge quote-badge-tradition">Traditional teaching</span></div>
+    </details>
+    <details class="acc-section acc-dialogue" data-section="dialogue" data-story="how-bolivia-s-cacao-farmers-took-on-the">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+      <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+      <div class="dialogue-text">TRAPPIST_MYSTIC: Socrates, my friend, how rarely do we hear of such a victory, where the quiet wisdom of the earth-keepers prevails over the clamor of profit and destruction. There is a deep grief that arises when we witness the devastation of creation, yet this news stirs a profound hope. What does it say of true wealth, when the gold of the earth is valued above its living breath?<br>SOCRATES: Indeed, good mystic. It seems these farmers have answered my enduring question: What is the good life? For they have chosen the enduring good of their community and their environment over the fleeting glitter of gold, which, like all material things, offers only temporary satisfaction. Is not true victory found in the cultivation of virtue, and in the harmony between humanity and nature, rather than in the accumulation of mere possessions?<br>TRAPPIST_MYSTIC: It is precisely that harmony, that integrity, which resonates deeply within the contemplative heart. Their action was not born of violent protest, but of a deep, abiding connection to their way of life, to the very ground that sustains them. It is a wisdom that flows from stillness, from listening to the ancient rhythms of creation, rather than the loud pronouncements of industry. Their victory suggests that true power lies not in domination, but in interconnectedness and humble stewardship.<br>SOCRATES: And so, the wisdom of the farmers, seemingly simple, reveals a truth more profound than the sophistry of those who would strip the earth for gain. They understood that to harm the source of their sustenance is to harm themselves, and that collective action for the common good is a higher form of justice than individual acquisition. Perhaps, then, the greatest wealth is to know what is truly valuable, and to live in accordance with that knowledge, even against powerful adversaries.</div>
+      <div class='dialogue-attr'>— In the spirit of the Trappist tradition and Socratic philosophy</div>
+    </details>
+    <details class="acc-section acc-practice" data-section="practice" data-story="how-bolivia-s-cacao-farmers-took-on-the">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-grief">Grief &amp; Loss</span>
+        Practice <span class="method-badge method-transforming">Transforming</span>
+      </div>
+      
+      <div class="practice-text">Find a quiet place, perhaps near a window or a plant, and sit with awareness of the earth beneath you. Close your eyes and breathe deeply, imagining your roots extending into the ground, connecting with the life force of the planet. Bring to mind an area of nature you love, or a specific tree or river, and offer it your silent gratitude and protection. Hold this intention for seven minutes, concluding with a gentle bow of your head, acknowledging our shared connection to creation.</div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Discriminating Wisdom</div>
+    </details>
+    <details class="acc-section acc-rejoicing" data-section="rejoicing" data-story="how-bolivia-s-cacao-farmers-took-on-the">
+      <summary class="acc-summary acc-sum-rose">❤ Appreciative Joy</summary>
+      <div class="rejoicing-text">We rejoice with deep gratitude in the courageous dedication and unwavering perseverance of Bolivia's cacao farmers, who, through their collective action, exemplify profound stewardship of the earth and triumph in safeguarding its sacred bounty.</div>
+    </details>
+    <details class="acc-section acc-lens" data-section="lens" data-story="how-bolivia-s-cacao-farmers-took-on-the">
+      <summary class="acc-summary acc-sum-amber">🌅 Kingdom of God View &nbsp;·&nbsp; <span class='lens-tradition'>Christian — Gospel</span></summary>
+      <div class="lens-text acc-lens-text">This story from Bolivia is a vibrant echo of the Kingdom of God breaking into our world. It speaks to the prophetic call for justice, not just for people, but for all of creation. When communities rise to protect the earth and their way of life from destructive forces, they embody the sacred mandate of stewardship. This is the Kingdom manifesting as communal solidarity, as a refusal to let greed desecrate the divine gift of the natural world. It reminds us that the 'least of these' includes the very land and its creatures, and that our collective action for their well-being is a direct affirmation of God's reign on earth.</div>
+      <div class='lens-attr'>— The manifestation of divine justice and stewardship on earth</div>
+    </details>
+  </div>
+
+  <!-- Story 4 -->
+  <div class="story">
+    <span class="story-tag tag-science">Wonder & Discovery</span><span class="underreported-badge">Less Reported</span>
+    <div class="story-headline">These 80-Year-Olds Have the Memory of 50-Year-Olds. Scientists Now Know Why.</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">SuperAgers — people over 80 whose memory performance matches adults at least 30 years younger — challenge the assumption that cognitive decline is inevitable. A 25-year study at Northwestern Medicine, examining 77 donated SuperAger brains and tracking 290 participants, identified two distinct protective mechanisms: resistance (brains do not develop harmful plaques and tangles associated with Alzheimer's) and resilience (some develop these proteins but their brains remain functionally unaffected). Structurally, SuperAger cortexes show little to no thinning with age, and their anterior cingulate cortexes — supporting decision-making and emotional regulation — are sometimes thicker than those of younger adults. They also possess higher numbers of von Economo neurons and larger entorhinal neurons critical for memory. Most SuperAgers share strong social connections and sustained mental engagement.</div>
+    <details class="acc-section acc-teaching" open data-section="teaching" data-story="these-80-year-olds-have-the-memory-of-50">
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">We hear of these 'SuperAgers,' and our minds are drawn to the marvel of sustained mental acuity. Yet, what is the true ground of knowing? It is not in the facility of memory, nor in the swiftness of thought, but in the uncreated ground of the soul itself, that which is prior to all thought and memory. Ignorance is to mistake the vessel for the water, the mind's operations for the pure awareness from which they arise. Whether memory is sharp or fading, the divine spark, the 'isness' of being, remains untouched. To transcend ignorance is to realize this, to rest in the eternal 'now' that needs no recollection, for it is always present, always whole.</div>
+      <div class='teaching-attr'>— In the spirit of Meister Eckhart's teaching on the uncreated ground of being</div>
+    </details>
+    <details class="acc-section acc-quote" data-section="quote" data-story="these-80-year-olds-have-the-memory-of-50">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">The eye with which I see God is the same eye with which God sees me. My eye and God's eye are one and the same.</div><div class="quote-attr">Meister Eckhart (paraphrase)</div><span class="quote-badge quote-badge-tradition">Traditional teaching</span></div>
+    </details>
+    <details class="acc-section acc-dialogue" data-section="dialogue" data-story="these-80-year-olds-have-the-memory-of-50">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🌅 advaita_teacher &nbsp;·&nbsp; <span class='dialogue-tradition'>Advaita Vedanta — Non-dual Hindu wisdom</span></div>
+      <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+      <div class="dialogue-text">MEISTER_ECKHART: My friend, these 'SuperAgers' reveal a fascinating aspect of the mind's capacity, yet I am drawn to ask: What is the true nature of this 'mind' itself? Is its sharpness or dullness the ultimate measure of our being? I speak of a ground beyond all created things, an uncreated 'isness' that is the source of all knowing, yet is not itself a knowing of particulars. Does this not transcend the very concept of memory?<br>ADVAITA_TEACHER: Indeed, Eckhart. For us, the 'mind' (manas) and intellect (buddhi) are but instruments, manifestations within consciousness, not consciousness itself. Whether the instrument is finely tuned or showing signs of wear, the pure, unchanging Awareness — Brahman, our true Self — remains untouched. The ignorance we seek to transcend is the mistaken identification with the body-mind complex. The SuperAgers offer a glimpse of remarkable physical resilience, but true freedom, 'moksha,' lies in realizing the deathless Self that needs no memory, for it encompasses all time and all knowledge.<br>MEISTER_ECKHART: So, the memory, however extraordinary, is still a function of the created, of the temporal. My teaching points to that which is utterly beyond distinction, beyond even the distinction of knowing and not-knowing. In that pure ground, there is no past to remember, no future to anticipate, only the eternal now. To rest in this is to transcend the sorrow of forgetting and the pride of remembering.<br>ADVAITA_TEACHER: Precisely. The SuperAgers, by retaining their cognitive faculties, might find it easier to engage in worldly activities, but the ultimate liberation is not dependent on such retention. It is the realization that 'I Am' is prior to all attributes, including memory. When the 'I-thought' dissolves into its source, then all concepts of age, decline, or even exceptional ability fall away, revealing the boundless, ever-present Awareness. This is the true 'super-aging' – becoming timeless, here and now.</div>
+      <div class='dialogue-attr'>— In the spirit of Meister Eckhart and the Advaita Vedanta tradition</div>
+    </details>
+    <details class="acc-section acc-practice" data-section="practice" data-story="these-80-year-olds-have-the-memory-of-50">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-ignorance">Ignorance &amp; Delusion</span>
+        Practice <span class="method-badge method-transcending">Transcending</span>
+      </div>
+      
+      <div class="practice-text">Sit upright, allowing your body to be still. Close your eyes and draw your attention inward, beyond the stream of thoughts and sensations. Do not try to remember or forget, but simply rest in the space of pure awareness that underlies all mental activity. Allow your sense of 'I' to expand beyond the limits of your personal history or cognitive function, dissolving into the vast, unconditioned presence. Remain in this spacious awareness for ten minutes, concluding with a deep, cleansing breath.</div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Dharmadhātu Wisdom</div>
+    </details>
+    <details class="acc-section acc-rejoicing" data-section="rejoicing" data-story="these-80-year-olds-have-the-memory-of-50">
+      <summary class="acc-summary acc-sum-rose">❤ Appreciative Joy</summary>
+      <div class="rejoicing-text">We rejoice in the dedicated curiosity of scientists who tirelessly explore the depths of human potential, offering us fresh understanding and illuminating the remarkable capacities of the mind and body as we age.</div>
+    </details>
+    <details class="acc-section acc-lens" data-section="lens" data-story="these-80-year-olds-have-the-memory-of-50">
+      <summary class="acc-summary acc-sum-amber">🫙 Kenosis View &nbsp;·&nbsp; <span class='lens-tradition'>Christian mystical</span></summary>
+      <div class="lens-text acc-lens-text">The phenomenon of 'SuperAgers' can captivate us with the promise of enduring mental acuity, yet self-emptying (kenosis) invites us to a deeper contemplation. True knowing is not merely the retention of facts or memories, but an emptying of the mind's incessant need to grasp and define. To embrace kenosis in this context is to release our attachment to intellectual prowess, to transcend the fear of cognitive decline, and to find the divine wisdom that lies beyond the ebb and flow of mental capacity. It is in this radical self-emptying of conceptual frameworks that we touch the unconditioned, ever-present knowing that needs no brain to function, for it is the ground of all being.</div>
+      <div class='lens-attr'>— The self-emptying of concepts to reveal true knowing</div>
+    </details>
+  </div>
+
+  <!-- Story 5 -->
+  <div class="story">
+    <span class="story-tag tag-human">The Human Inside the Headline</span>
+    <div class="story-headline">Dry January, but for Your Smartphone: What a Month Offline Reveals</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">A journalist and group of participants spent a month deliberately stepping back from smartphone use, documenting what the experience reveals about habitual device dependency. The experiment surfaces the texture of the craving — what it feels like when the automatic reach for the phone is interrupted — and what participants noticed about attention, boredom, presence, and social connection in the absence of the device. The piece frames digital detox not as an ascetic rejection of technology but as a temporary removal that illuminates the ordinarily invisible pull of habitual screen use and the quality of mind available beneath it.</div>
+    <details class="acc-section acc-teaching" open data-section="teaching" data-story="dry-january-but-for-your-smartphone-what">
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">Oh, my dears, how easily our attention is scattered by the world's many beckonings, especially these little devices that promise connection but often deliver only distraction. This 'smartphone fast' reveals a subtle grief, does it not? A sorrow for the attention we give away, the moments of true presence we miss. But fear not, for even in this modern tangle, God's loving presence is ever near. When we step back from the incessant noise, we create a holy space, a quiet chamber within, where we can truly hear the divine whisper. It is a turning inward, a remembering that 'all shall be well, and all shall be well, and all manner of thing shall be well,' when our gaze is fixed on the everlasting love that holds us.</div>
+      <div class='teaching-attr'>— In the spirit of Julian of Norwich's teaching on finding God in digital silence</div>
+    </details>
+    <details class="acc-section acc-quote" data-section="quote" data-story="dry-january-but-for-your-smartphone-what">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">All shall be well, and all shall be well, and all manner of thing shall be well.</div><div class="quote-attr">Julian of Norwich, Revelations of Divine Love</div><span class="quote-badge quote-badge-tradition">Traditional teaching</span></div>
+    </details>
+    <details class="acc-section acc-dialogue" data-section="dialogue" data-story="dry-january-but-for-your-smartphone-what">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">✨ baal_shem_tov &nbsp;·&nbsp; <span class='dialogue-tradition'>Hasidic Judaism — 18th century Poland</span></div>
+      <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+      <div class="dialogue-text">JULIAN_OF_NORWICH: My dear friend, this experiment of stepping away from the 'smartphone' — it speaks to a deep human longing, does it not? A longing for presence, for true connection, which these devices often promise but rarely deliver in their fullness. I imagine the subtle grief, the feeling of something missing, when the habitual reach is interrupted. But is it not in that very emptiness that the Holy One can draw nearer?<br>BAAL_SHEM_TOV: Ah, Rebbetzin Julian, you touch upon a profound truth. For us, every moment is an opportunity for 'devekut,' for clinging to the Divine. But how can one cling when the attention is scattered, pulled hither and thither by the endless chatter of the world's small boxes? The 'grief' you speak of is the soul's lament for lost moments of pure presence, for the light of the 'Shechinah,' the Divine Presence, obscured by the veils of distraction. To step away is to make a space for the Holy, to elevate the mundane to the sacred.<br>JULIAN_OF_NORWICH: Indeed, to turn away from the external clamor is to turn towards the inner sanctuary, where Christ's love resides, holding us tenderly. It is in this stillness that we remember that 'all shall be well,' for God is in all things, sustaining all things. The craving for the device, then, becomes a signpost, a reminder to seek the true comfort and joy that only Divine Presence can offer.<br>BAAL_SHEM_TOV: Just so. When the hand reaches for the phone, let it instead reach for a prayer, a blessing, a moment of 'hitbodedut,' of solitary communion. The world's inventions may offer a kind of fleeting connection, but the true connection, the bond with the Creator and with the pure essence of our fellows, is found in the heart that is fully present, fully open. This is the transformation of grief into joy, of craving into contentment, for the Divine Light is always shining, if only we would turn to see it.</div>
+      <div class='dialogue-attr'>— In the spirit of Julian of Norwich and the Baal Shem Tov</div>
+    </details>
+    <details class="acc-section acc-practice" data-section="practice" data-story="dry-january-but-for-your-smartphone-what">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-grief">Grief &amp; Loss</span>
+        Practice <span class="method-badge method-transforming">Transforming</span>
+      </div>
+      
+      <div class="practice-text">Before reaching for your smartphone, pause. Take three conscious breaths, feeling the air enter and leave your body. Ask yourself: 'What is my true need in this moment?' If it is for connection, consider a face-to-face interaction or a deeper form of communication. If it is for distraction, gently acknowledge this urge, and then choose a moment of silent prayer or simply gaze out a window for two minutes. Conclude by offering a simple, heartfelt 'Thank you' for the gift of presence.</div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Discriminating Wisdom</div>
+    </details>
+    <details class="acc-section acc-rejoicing" data-section="rejoicing" data-story="dry-january-but-for-your-smartphone-what">
+      <summary class="acc-summary acc-sum-rose">❤ Appreciative Joy</summary>
+      <div class="rejoicing-text">We rejoice in the courageous self-discipline and profound self-awareness demonstrated by those who choose to intentionally step away from pervasive digital distractions, thereby cultivating deeper presence and rediscovering the rich tapestry of life beyond the screen.</div>
+    </details>
+    <details class="acc-section acc-lens" data-section="lens" data-story="dry-january-but-for-your-smartphone-what">
+      <summary class="acc-summary acc-sum-amber">🌅 Kingdom of God View &nbsp;·&nbsp; <span class='lens-tradition'>Christian — Gospel</span></summary>
+      <div class="lens-text acc-lens-text">The experiment of a smartphone detox speaks directly to the heart of the Kingdom of God. In a world saturated with digital noise, reclaiming our attention becomes an act of profound spiritual significance. The Kingdom calls us to presence — to be fully present with God, with our neighbors, and with the sacredness of the moment. When we consciously step back from constant digital engagement, we create space for deeper connection, for discerning the subtle stirrings of the Spirit, and for living more fully in alignment with God's will. This is a practical way of 'seeking first the Kingdom,' by redirecting our focus from endless scrolling to intentional, loving presence.</div>
+      <div class='lens-attr'>— Reclaiming presence for the divine in every moment</div>
+    </details>
+  </div>
+
+
+  <details class="rejoicing-guide">
+    <summary class="rejoicing-summary">
+      <span class="rejoicing-eyebrow">A culminating practice</span>
+      <span class="rejoicing-title">❤ Appreciative Joy</span>
+      <span class="rejoicing-hint">Tap to open</span>
+    </summary>
+    <div class="rejoicing-body">
+      <div class="rejoicing-section-label">Virtues witnessed in this edition</div>
+      <div class="rejoicing-para"><p>In this edition, we have witnessed profound courage and unwavering perseverance in Bolivia's cacao farmers, who stood united to protect their precious land and heritage. We celebrate the diligent dedication of scientists unraveling the mysteries of aging, driven by a compassionate desire to enhance human well-being. And we recognize the quiet strength of those who choose intentional disconnection, cultivating mindfulness and inner peace amidst modern distractions.</p></div>
+
+    <div class="rejoicing-section-label">Appreciating our inherent nature</div>
+    <div class="rejoicing-para"><p>Beneath every headline, every struggle, and every triumph, we recognize the luminous, inherent goodness that is the very ground of being. This same boundless wisdom and capacity for love shines in the farmers, the scientists, and those seeking quiet reflection. It dwells just as brightly within each of us, a clear wellspring of potential waiting not to be created, but simply acknowledged and lived from.</p></div>
+
+    <div class="rejoicing-aspiration">May the genuine joy we cultivate in recognizing these virtues and this shared inherent nature become a wellspring of agape, flowing outward to all beings. May it nourish our resolve to act with compassion, wisdom, and courage, transforming suffering into liberation for ourselves and for the world.</div>
+    </div>
+  </details>
+  <div class="closing">
+    <div class="closing-text">The Light shines in the darkness,<br>
+      and the darkness has not overcome it.<br>
+      Go, and do likewise.<br>
+      </div>
+    <span class="mantra-tibetan">ཨོཾ་མ་ཎི་པདྨེ་ཧཱུྃ</span>
+    <span class="mantra">May all beings be happy · May all beings be safe · May all beings be free</span>
+    <div class="mantra-note">Om Mani Padme Hum — compassion and wisdom, inseparable</div>
+  </div>
+
+</div>
+  <div style="margin:48px auto 0;max-width:680px;padding:16px 24px;
+    border-top:1px solid var(--border);font-size:11px;color:var(--text-3);
+    text-align:center;line-height:1.6;">
+    <strong>AI-generated content.</strong> Commentaries in this edition are
+    produced by Claude and Gemini, drawing on contemplative traditions.
+    They are editorial reflections in the spirit of those traditions, not
+    statements by any named teacher or institution. Lojong slogans are
+    traditional teachings of the Seven Points of Mind Training; translations
+    are editorial composites.
+  </div>
+<script>
+(function(){
+  var SB_URL='https://mdlovfthxfaaupmitvlf.supabase.co',SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1kbG92ZnRoeGZhYXVwbWl0dmxmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NzAwODQsImV4cCI6MjA5MjU0NjA4NH0.Yc5O677dyaYv0WEcA8bVSeXknb5D1nLmjYsZfnwG-Po',EDITION='2026-04-23_34cd9116';
+  var uuid=(function(){try{return crypto.randomUUID();}catch(e){return Math.random().toString(36).slice(2)+Date.now().toString(36);}}());
+  var sid=uuid;
+  var uid=(function(){try{var k='ao_uid',v=localStorage.getItem(k);if(!v){v=uuid;localStorage.setItem(k,v);}return v;}catch(e){return null;}}());
+  var openAt={};
+  function post(data){
+    data.session_id=sid; data.user_id=uid; data.edition_slug=EDITION;
+    fetch(SB_URL+'/rest/v1/events',{method:'POST',
+      headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},
+      body:JSON.stringify(data)}).catch(function(){});
+  }
+  post({event:'view',section:'page',story_slug:null,dwell_ms:null});
+  document.querySelectorAll('details[data-section]').forEach(function(el){
+    el.addEventListener('toggle',function(){
+      var k=el.dataset.story+'/'+el.dataset.section;
+      if(el.open){openAt[k]=Date.now();post({event:'open',section:el.dataset.section,story_slug:el.dataset.story||null,dwell_ms:null});}
+      else{var d=openAt[k]?Date.now()-openAt[k]:null;delete openAt[k];post({event:'close',section:el.dataset.section,story_slug:el.dataset.story||null,dwell_ms:d});}
+    });
+  });
+})();
+</script>
+</body>
+</html>
