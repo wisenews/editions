@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Awakened Observer — Sunday, June 21, 2026 (Accordion)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {--gold-pale:#FDF5DC; --gold-mid:#E8A020; --gold-dark:#6B3E08; --teal-pale:#E1F5EE; --teal-strong:#5DCAA5; --teal-deep:#1D9E75; --teal-dark:#085041; --blue-pale:#E6F1FB; --blue-mid:#378ADD; --blue-dark:#0C447C; --coral-pale:#FAECE7; --coral-dark:#712B13; --purple-pale:#EEEDFE; --purple-dark:#3C3489; --amber-pale:#FAEEDA; --amber-dark:#633806; --rose-pale:#FEF0F4; --rose-mid:#E8688A; --rose-dark:#7A1A35; --indigo-pale:#EDEDFA; --indigo-mid:#7B7BB5; --indigo-dark:#2E2E72; --green-pale:#EAF3DE; --green-dark:#27500A; --gray-bg:#F5F3EE; --gray-card:#FDFAF0; --gray-surface:#EDEADC; --border:rgba(50,45,35,0.10); --text-1:#1A1714; --text-2:#5A5030; --text-3:#9A9070}
+  @media(prefers-color-scheme:dark){
+    :root{--gold-pale:#261A04; --gray-bg:#131109; --gray-card:#1A1608; --gray-surface:#211C0A; --border:rgba(240,200,80,0.08); --text-1:#F8F0D0; --text-2:#B0A870; --text-3:#706840; --blue-pale:#0D1E30; --blue-dark:#6AAAE0; --teal-pale:#061E14; --teal-dark:#5DCAA5; --purple-pale:#100E30; --purple-dark:#9B97E0; --amber-pale:#1E1204; --amber-dark:#D4924A; --rose-pale:#20060C; --rose-dark:#D47090; --indigo-pale:#0C0C22; --indigo-dark:#9090D0; --indigo-mid:#9090C0; --green-pale:#081A04; --green-dark:#7DC44A; --coral-pale:#1E0A06; --coral-dark:#D07860}
+  }
+  body { font-family:'DM Sans',sans-serif; background:var(--gray-bg);
+          color:var(--text-1); min-height:100vh; padding:2rem 1rem 6rem; }
+  .page { max-width:680px; margin:0 auto; }
+
+  /* Masthead */
+  .masthead { text-align:center; padding:2.75rem 1rem 2.25rem;
+    border-bottom:0.5px solid var(--border); margin-bottom:2.25rem; position:relative; }
+  .masthead::before { content:''; position:absolute; top:0; left:50%;
+    transform:translateX(-50%); width:100px; height:2px; background:linear-gradient(90deg, transparent, #D4537E, #E8A020, #5DCAA5, transparent); }
+  .lotus { display:block; margin:0 auto 1.2rem; }
+  .date-line { font-size:11px; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--text-3); margin-bottom:.5rem; }
+  .masthead-title { font-family:'Cormorant Garamond',serif; font-size:42px;
+    font-weight:500; color:var(--text-1); line-height:1.05; margin-bottom:.25rem; }
+  .issue-line { font-size:11px; letter-spacing:.09em; color:var(--text-3); margin-bottom:.6rem; }
+  .masthead-rule { width:42px; height:1px; margin:.65rem auto;
+    background:linear-gradient(90deg,var(--teal-strong),var(--gold-mid)); }
+  .masthead-sub { font-family:'Cormorant Garamond',serif; font-size:18px;
+    font-style:italic; color:var(--text-2); line-height:1.4; }
+  .tradition-badge { display:inline-block; background:var(--gold-pale);
+    color:var(--gold-dark); font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; padding:4px 14px; border-radius:20px; margin-top:.85rem;
+    border:0.5px solid rgba(232,160,32,0.25); }
+
+  /* Opening */
+  .opening { background:var(--gold-pale); border-left:2.5px solid var(--gold-mid);
+    border-radius:0 10px 10px 0; padding:1.25rem 1.6rem; margin-bottom:.5rem;
+    font-family:'Cormorant Garamond',serif; font-size:19px; font-style:italic;
+    color:var(--text-2); line-height:1.8; }
+  .opening-instruction { font-family:'DM Sans',sans-serif; font-size:12px;
+    color:var(--text-3); padding:.5rem 1.6rem .85rem; margin-bottom:2rem;
+    background:var(--gold-pale); border-left:2.5px solid var(--gold-mid);
+    border-top:none; border-radius:0 0 10px 10px; }
+
+  /* At a Glance */
+  .glance { background:var(--gray-surface); border-radius:14px;
+    padding:1.2rem 1.5rem; margin-bottom:2.5rem; }
+  .glance-title { font-size:10px; font-weight:500; letter-spacing:.13em;
+    text-transform:uppercase; color:var(--text-3); margin-bottom:.85rem; }
+  .glance-list { display:flex; flex-direction:column; gap:.6rem; }
+  .glance-row { display:flex; align-items:flex-start; gap:11px; }
+  .g-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; margin-top:7px; }
+  .d-conflict {background:#D85A30;} .d-peace    {background:var(--teal-deep);}
+  .d-grief    {background:#B87016;} .d-joy      {background:#185FA5;}
+  .d-science  {background:#534AB7;} .d-nature   {background:#3B6D11;}
+  .d-politics {background:#993556;} .d-economy  {background:#854F0B;}
+  .d-culture  {background:#0F6E56;} .d-human    {background:#5F5E5A;}
+  .d-death    {background:#791F1F;} .d-renewal  {background:#1D9E75;}
+  .d-human-interest {background:#5F5E5A;}
+  .glance-text { font-size:13.5px; color:var(--text-2); line-height:1.6; }
+
+  /* Section label */
+  .section-label { font-size:10px; font-weight:500; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--text-3); display:flex;
+    align-items:center; gap:10px; margin-bottom:1.35rem; }
+  .section-label::after { content:''; flex:1; height:0.5px; background:var(--border); }
+
+  /* Story cards */
+  .story { background:var(--gray-card); border:0.5px solid var(--border);
+    border-radius:16px; padding:1.5rem 1.65rem 0; margin-bottom:1.35rem; overflow:hidden; }
+  .story-tag { display:inline-block; font-size:10px; font-weight:500;
+    letter-spacing:.08em; text-transform:uppercase; padding:3px 11px;
+    border-radius:20px; margin-bottom:.95rem; }
+  .tag-conflict {background:var(--coral-pale);color:var(--coral-dark);}
+  .tag-peace    {background:var(--teal-pale); color:var(--teal-dark);}
+  .tag-grief    {background:var(--amber-pale);color:var(--amber-dark);}
+  .tag-joy      {background:var(--blue-pale); color:var(--blue-dark);}
+  .tag-science  {background:var(--purple-pale);color:var(--purple-dark);}
+  .tag-nature   {background:var(--green-pale);color:var(--green-dark);}
+  .tag-politics {background:#FBEAF0;color:#72243E;}
+  .tag-economy  {background:var(--amber-pale);color:var(--amber-dark);}
+  .tag-culture  {background:var(--teal-pale); color:var(--teal-dark);}
+  .tag-human    {background:var(--gray-surface);color:#5F5E5A;}
+  .tag-death    {background:#FCEBEB;color:#791F1F;}
+  .tag-renewal  {background:var(--teal-pale); color:var(--teal-dark);}
+  .story-headline { font-family:'Cormorant Garamond',serif; font-size:23px;
+    font-weight:500; color:var(--text-1); line-height:1.32; margin-bottom:.9rem; }
+  .story-what { font-size:10px; font-weight:500; text-transform:uppercase;
+    letter-spacing:.10em; color:var(--text-3); margin-bottom:.35rem; }
+  .story-fact { font-size:14px; color:var(--text-2); line-height:1.8;
+    padding-bottom:1.1rem; }
+
+  /* Primary teaching */
+  .teaching-divider { display:flex; align-items:center; gap:10px;
+    margin:0 -1.65rem 1rem; padding:0 1.65rem;
+    border-top:0.5px solid var(--border); padding-top:1.1rem; }
+  .teaching-divider::after { content:''; flex:1; height:0.5px; background:var(--border); }
+  .teaching-divider span { font-size:13px; color:var(--teal-strong); flex-shrink:0; }
+  .story-teaching { font-family:'Cormorant Garamond',serif; font-size:17.5px;
+    font-style:italic; color:var(--text-1); line-height:1.85; padding-bottom:.6rem; }
+  .teaching-attr { font-size:11px; color:var(--text-3); padding-bottom:1.1rem; }
+
+  /* Dialogue block */
+  .dialogue-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.25rem; margin:0 -1.65rem;
+    background:var(--blue-pale); }
+  .dialogue-header { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--blue-dark); margin-bottom:.75rem; }
+  .dialogue-tradition { font-weight:400; font-style:italic; letter-spacing:0;
+    text-transform:none; color:var(--text-3); }
+  .dialogue-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .dialogue-framing { font-size:11px; color:var(--blue-dark); opacity:.65;
+    font-style:italic; margin-bottom:.65rem; }
+  .dialogue-attr { font-size:11px; color:var(--text-3); padding-bottom:.2rem; }
+
+  /* Practice block */
+  .practice-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.4rem; margin:0 -1.65rem;
+    background:var(--teal-pale); }
+  .practice-label { font-size:10px; font-weight:500; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--teal-dark); margin-bottom:.6rem;
+    display:flex; align-items:center; gap:8px; }
+  .klesha-tag { font-size:9px; font-weight:600; letter-spacing:.06em;
+    text-transform:uppercase; padding:2px 8px; border-radius:10px;
+    color:#fff; flex-shrink:0; }
+  .klesha-anger      {background:#C0392B;}
+  .klesha-grief      {background:#7F8C8D;}
+  .klesha-anxiety    {background:#D4AC0D;}
+  .klesha-helplessness{background:#8E44AD;}
+  .klesha-wonder     {background:#2E86C1;}
+  .klesha-hope       {background:#1D8348;}
+  .klesha-confusion  {background:#D35400;}
+  .klesha-compassion {background:#CB4335;}
+  .practice-text { font-size:13.5px; color:var(--teal-dark);
+    line-height:1.8; font-style:italic; }
+  .practice-text p { margin-bottom:.75em; }
+  .practice-text p:last-child { margin-bottom:0; }
+  .wisdom-line { font-size:10.5px; color:var(--teal-deep); font-style:italic;
+    margin-top:.55rem; padding-top:.45rem;
+    border-top:0.5px solid rgba(29,158,117,0.2); }
+  .wisdom-label { font-weight:600; font-style:normal; }
+  .method-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.07em; text-transform:uppercase; padding:2px 8px;
+    border-radius:10px; margin-left:auto; flex-shrink:0; }
+  .method-abandoning { background:#E8E8E8; color:#4A4A4A; }
+  .method-transforming { background:#FEF3C7; color:#92400E; }
+  .method-transcending { background:var(--gold-pale); color:var(--gold-dark);
+    border:0.5px solid rgba(232,160,32,0.3); }
+
+  /* Per-story Lojong slogan (inside practice block) */
+  .slogan-anchor { border-bottom:0.5px solid rgba(46,46,114,0.12);
+    padding-bottom:.6rem; margin-bottom:.7rem; }
+  .slogan-label { font-size:9px; font-weight:600; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--indigo-dark); opacity:.6;
+    margin-bottom:.3rem; }
+  .slogan-text { font-family:'Cormorant Garamond',Georgia,serif; font-size:16px;
+    font-style:italic; color:var(--indigo-dark); line-height:1.5; }
+  .slogan-alt { font-size:11px; color:var(--indigo-mid); margin-top:.2rem;
+    font-style:italic; }
+
+  /* Klesha guide — expandable details section */
+  .klesha-guide { background:var(--amber-pale); border:0.5px solid rgba(99,56,6,0.18);
+    border-radius:16px; margin-bottom:1.35rem; overflow:hidden; }
+  .klesha-guide[open] .guide-summary-hint { display:none; }
+  .guide-summary { list-style:none; padding:1.1rem 1.65rem; cursor:pointer;
+    display:flex; flex-direction:column; gap:.25rem; position:relative; }
+  .guide-summary::-webkit-details-marker { display:none; }
+  .guide-summary::after { content:'▸'; position:absolute; right:1.5rem; top:1.2rem;
+    font-size:.8rem; color:var(--amber-dark); opacity:.6; }
+  .klesha-guide[open] > .guide-summary::after { content:'▾'; }
+  .guide-eyebrow { font-size:9px; font-weight:600; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--amber-dark); opacity:.7; }
+  .guide-title-row { display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; }
+  .guide-klesha-badge { font-size:11px; font-weight:600; letter-spacing:.06em;
+    text-transform:uppercase; padding:3px 11px; border-radius:20px; }
+  .guide-arrow { font-size:1rem; color:var(--amber-dark); opacity:.55; }
+  .guide-wisdom { font-family:'Cormorant Garamond',Georgia,serif; font-size:1.05rem;
+    font-style:italic; color:var(--amber-dark); }
+  .guide-summary-hint { font-size:11px; color:var(--text-3); font-style:italic; }
+  .guide-intro { display:grid; grid-template-columns:1fr 1fr; gap:1.1rem;
+    padding:.2rem 1.65rem 1.1rem; border-bottom:0.5px solid rgba(99,56,6,0.12); }
+  @media(max-width:650px){ .guide-intro { grid-template-columns:1fr; } }
+  .guide-block-label { font-size:9px; font-weight:600; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--amber-dark); opacity:.65; margin-bottom:.3rem; }
+  .guide-block-text { font-size:13px; color:var(--text-2); line-height:1.65; }
+  .guide-block-text p { margin-bottom:.5rem; }
+  .guide-block-text p:last-child { margin-bottom:0; }
+  .guide-methods-label { font-size:9px; font-weight:600; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--amber-dark); opacity:.65;
+    padding:.85rem 1.65rem .3rem; }
+  .guide-method { padding:.8rem 1.65rem;
+    border-top:0.5px solid rgba(99,56,6,0.08);
+    border-left:3px solid transparent; }
+  .guide-method-header { display:flex; align-items:baseline; gap:.55rem;
+    margin-bottom:.3rem; flex-wrap:wrap; }
+  .guide-method-label { font-size:11px; font-weight:700; letter-spacing:.05em;
+    text-transform:uppercase; }
+  .guide-method-sub { font-size:11px; color:var(--text-3); font-style:italic; }
+  .guide-method-lead { font-size:12.5px; font-weight:500; font-style:italic;
+    color:var(--text-2); margin-bottom:.4rem; }
+  .guide-method-text { font-size:13px; color:var(--text-2); line-height:1.65; }
+  .guide-method-text p { margin-bottom:.5rem; }
+  .guide-method-text p:last-child { margin-bottom:0; }
+
+  /* Edition Lojong section */
+  .lojong-guide { background:var(--indigo-pale); border:0.5px solid rgba(46,46,114,0.15);
+    border-radius:16px; margin-bottom:1.35rem; overflow:hidden; }
+  .lojong-guide[open] .lojong-hint { display:none; }
+  .lojong-summary { list-style:none; padding:1.1rem 1.65rem; cursor:pointer;
+    display:flex; flex-direction:column; gap:.25rem; position:relative; }
+  .lojong-summary::-webkit-details-marker { display:none; }
+  .lojong-summary::after { content:'▸'; position:absolute; right:1.5rem; top:1.2rem;
+    font-size:.8rem; color:var(--indigo-dark); opacity:.6; }
+  .lojong-guide[open] > .lojong-summary::after { content:'▾'; }
+  .lojong-eyebrow { font-size:9px; font-weight:600; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--indigo-dark); opacity:.55; }
+  .lojong-slogan-display { font-family:'Cormorant Garamond',Georgia,serif;
+    font-size:1.25rem; font-style:italic; color:var(--indigo-dark); line-height:1.4; }
+  .lojong-hint { font-size:11px; color:var(--indigo-mid); font-style:italic; }
+  .lojong-body { padding:.4rem 1.65rem 1.3rem; }
+  .lojong-alt { font-size:11.5px; color:var(--indigo-mid); font-style:italic;
+    margin-bottom:.9rem; }
+  .lojong-section-label { font-size:9px; font-weight:600; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--indigo-dark); opacity:.65; margin-bottom:.4rem; }
+  .lojong-para { font-size:13.5px; color:var(--indigo-dark); line-height:1.75;
+    margin-bottom:1rem; }
+  .lojong-para p { margin-bottom:.6rem; }
+  .lojong-para p:last-child { margin-bottom:0; }
+
+  /* Per-story rejoicing block */
+  .rejoicing-block { border-top:0.5px solid var(--border);
+    padding:1rem 1.65rem 1.2rem; margin:0 -1.65rem;
+    background:var(--rose-pale); }
+  .rejoicing-header { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--rose-dark); margin-bottom:.55rem;
+    display:flex; align-items:center; gap:.4rem; }
+  .rejoicing-text { font-size:13.5px; color:var(--rose-dark); line-height:1.75;
+    font-style:italic; }
+  .rejoicing-text p { margin-bottom:.5rem; }
+  .rejoicing-text p:last-child { margin-bottom:0; }
+
+  /* Edition rejoicing section */
+  .rejoicing-guide { background:var(--rose-pale); border:0.5px solid rgba(122,26,53,0.15);
+    border-radius:16px; margin-bottom:1.35rem; overflow:hidden; }
+  .rejoicing-guide[open] .guide-summary-hint { display:none; }
+  .rejoicing-summary { list-style:none; padding:1.1rem 1.65rem; cursor:pointer;
+    display:flex; flex-direction:column; gap:.25rem; position:relative; }
+  .rejoicing-summary::-webkit-details-marker { display:none; }
+  .rejoicing-summary::after { content:'▸'; position:absolute; right:1.5rem; top:1.2rem;
+    font-size:.8rem; color:var(--rose-dark); opacity:.6; }
+  .rejoicing-guide[open] > .rejoicing-summary::after { content:'▾'; }
+  .rejoicing-eyebrow { font-size:9px; font-weight:600; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--rose-dark); opacity:.55; }
+  .rejoicing-title { font-family:'Cormorant Garamond',Georgia,serif; font-size:1.15rem;
+    font-weight:500; color:var(--rose-dark); }
+  .rejoicing-hint { font-size:11px; color:var(--rose-dark); opacity:.6; font-style:italic; }
+  .rejoicing-body { padding:.2rem 1.65rem 1.3rem; }
+  .rejoicing-section-label { font-size:9px; font-weight:600; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--rose-dark); opacity:.65; margin-bottom:.4rem; }
+  .rejoicing-para { font-size:13.5px; color:var(--rose-dark); line-height:1.75;
+    font-style:italic; margin-bottom:1rem; }
+  .rejoicing-para p { margin-bottom:.6rem; }
+  .rejoicing-para p:last-child { margin-bottom:0; }
+  .rejoicing-aspiration { font-family:'Cormorant Garamond',Georgia,serif; font-size:16px;
+    font-style:italic; color:var(--rose-dark); line-height:1.9; padding:.75rem 1.1rem;
+    border-left:2px solid var(--rose-mid); margin-top:.5rem; }
+
+  /* Lens (perspective view) block */
+  .lens-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.35rem; margin:0 -1.65rem;
+    background:var(--amber-pale); }
+  .lens-header { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--amber-dark); margin-bottom:.75rem; }
+  .lens-tradition { font-weight:400; font-style:italic; letter-spacing:0;
+    text-transform:none; color:var(--text-3); }
+  .lens-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .lens-text p { margin-bottom:.75em; }
+  .lens-text p:last-child { margin-bottom:0; }
+  .lens-attr { font-size:11px; color:var(--text-3); padding-bottom:.2rem; }
+
+  /* Source link */
+  .story-source { font-size:11.5px; color:var(--text-3); padding:.4rem 0 .85rem;
+    border-top:0.5px dashed var(--border); margin-top:.2rem; }
+  .story-source a { color:var(--text-3); text-decoration:none;
+    border-bottom:0.5px solid var(--border); }
+  .story-source a:hover { color:var(--teal-deep); }
+
+  /* Underreported badge */
+  .underreported-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.09em; text-transform:uppercase; padding:2px 9px; border-radius:20px;
+    background:var(--green-pale); color:var(--green-dark); margin-left:6px;
+    border:0.5px solid rgba(39,80,10,0.18); vertical-align:middle; }
+
+  /* Multi-paragraph support in commentary and dialogue */
+  .story-teaching p { margin-bottom:.7em; }
+  .story-teaching p:last-child { margin-bottom:0; }
+  .dialogue-text p { margin-bottom:.7em; }
+  .dialogue-text p:last-child { margin-bottom:0; }
+
+  /* Tradition quote block */
+  .quote-block { border-top:0.5px solid var(--border);
+    padding:1.1rem 1.65rem 1.3rem; margin:0 -1.65rem;
+    background:var(--purple-pale); position:relative; }
+  .quote-mark { font-family:'Cormorant Garamond',serif; font-size:52px;
+    line-height:.7; color:var(--purple-dark); opacity:0.18;
+    margin-bottom:-.25rem; user-select:none; }
+  .quote-text { font-family:'Cormorant Garamond',serif; font-size:17.5px;
+    font-style:italic; color:var(--text-1); line-height:1.85;
+    margin-bottom:.55rem; }
+  .quote-text p { margin-bottom:.7em; }
+  .quote-text p:last-child { margin-bottom:0; }
+  .quote-attr { font-size:11px; color:var(--text-3); margin-bottom:.55rem; }
+  .quote-badge { display:inline-block; font-size:9px; font-weight:600;
+    letter-spacing:.08em; text-transform:uppercase; padding:2px 8px;
+    border-radius:10px; }
+  .quote-badge-tradition { background:var(--amber-pale); color:var(--amber-dark);
+    border:0.5px solid rgba(100,60,10,0.18); }
+
+  /* Closing */
+  .closing { text-align:center; padding:2.25rem 1.25rem .5rem;
+    border-top:0.5px solid var(--border); margin-top:.5rem; }
+  .closing-text { font-family:'Cormorant Garamond',serif; font-size:19px;
+    font-style:italic; color:var(--text-2); line-height:2.1; margin-bottom:1.6rem; }
+  .mantra-tibetan { font-size:22px; color:var(--gold-mid); letter-spacing:.07em;
+    display:block; margin-bottom:.6rem; }
+  .mantra { font-size:11px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--teal-deep); display:block; margin-bottom:.5rem; }
+  .mantra-note { font-size:12px; color:var(--text-3); font-style:italic;
+    font-family:'Cormorant Garamond',serif; }
+  /* ── Accordion-specific overrides and additions ─────────────────── */
+
+  /* Teaching divider inside accordion (no negative margins) */
+  .teaching-divider { display:flex; align-items:center; gap:10px;
+    margin-bottom:1rem; padding-top:1rem; }
+  .teaching-divider::after { content:''; flex:1; height:0.5px; background:var(--border); }
+  .teaching-divider span { font-size:13px; color:var(--teal-strong); flex-shrink:0; }
+
+  /* Klesha guide minor variants in accordion */
+  .guide-eyebrow { opacity:.55; }
+  .guide-klesha-badge { font-weight:700; letter-spacing:.05em; padding:3px 10px; }
+  .guide-arrow { font-size:14px; opacity:.5; }
+
+  /* Rejoicing guide open-state rule (accordion uses .rejoicing-hint) */
+  .rejoicing-guide[open] .rejoicing-hint { display:none; }
+
+  /* Accordion sections */
+  details.acc-section {
+    border-top:0.5px solid var(--border);
+    margin:0 -1.65rem;
+    padding:0 1.65rem;
+  }
+  details.acc-section[open] { padding-bottom:1.1rem; }
+  details.acc-dialogue { background:var(--blue-pale); }
+  details.acc-practice { background:var(--teal-pale); }
+  details.acc-lens     { background:var(--amber-pale); }
+  summary.acc-summary {
+    list-style:none; cursor:pointer; user-select:none;
+    font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--teal-deep);
+    padding:.9rem 0 .75rem;
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+  }
+  summary.acc-summary::marker,
+  summary.acc-summary::-webkit-details-marker { display:none; }
+  summary.acc-summary::after {
+    content:"▸"; font-size:9px; flex-shrink:0; color:var(--text-3);
+  }
+  details.acc-section[open] > summary.acc-summary::after { content:"▾"; }
+  .acc-sum-blue  { color:var(--blue-dark); }
+  .acc-sum-teal  { color:var(--teal-dark); }
+  .acc-sum-amber { color:var(--amber-dark); }
+
+  /* Dialogue content inside accordion */
+  .acc-subheader { font-size:10px; font-weight:500; letter-spacing:.09em;
+    text-transform:uppercase; margin-bottom:.75rem; }
+  .acc-subheader-blue { color:var(--blue-dark); }
+  .dialogue-attr { font-size:11px; color:var(--text-3); }
+
+  /* Lens content inside accordion */
+  .acc-lens-text { font-family:'Cormorant Garamond',serif; font-size:17px;
+    font-style:italic; color:var(--text-1); line-height:1.85; margin-bottom:.5rem; }
+  .acc-lens-text p { margin-bottom:.75em; }
+  .acc-lens-text p:last-child { margin-bottom:0; }
+  .lens-attr { font-size:11px; color:var(--text-3); }
+
+  /* Tradition quote inside accordion */
+  details.acc-quote { background:var(--purple-pale); }
+  .acc-sum-purple { color:var(--purple-dark); }
+  .acc-quote-inner { padding:.25rem 0 .1rem; }
+
+  /* Per-story rejoicing in accordion */
+  details.acc-rejoicing { background:var(--rose-pale); }
+  .acc-sum-rose { color:var(--rose-dark); }
+
+  /* Accordion hint banner */
+  .acc-hint { font-size:12px; color:var(--text-3); text-align:center;
+    margin-bottom:2rem; font-style:italic; }
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="masthead">
+    <svg class="lotus" width="60" height="52" viewBox="0 0 60 52" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="30" cy="42" rx="10" ry="5" fill="#9FE1CB" opacity="0.38"/>
+      <path d="M30 38 Q21 24 16 9 Q24 22 30 26 Q36 22 44 9 Q39 24 30 38Z" fill="#5DCAA5" opacity="0.88"/>
+      <path d="M30 38 Q13 30 5 19 Q17 27 30 32Z" fill="#9FE1CB" opacity="0.9"/>
+      <path d="M30 38 Q47 30 55 19 Q43 27 30 32Z" fill="#9FE1CB" opacity="0.9"/>
+      <path d="M30 38 Q9 34 3 27 Q15 32 30 36Z" fill="#C0DD97" opacity="0.68"/>
+      <path d="M30 38 Q51 34 57 27 Q45 32 30 36Z" fill="#C0DD97" opacity="0.68"/>
+      <circle cx="30" cy="26" r="5" fill="#F7E28A" opacity="0.9"/>
+      <circle cx="30" cy="26" r="2.8" fill="#E8A020"/>
+      <circle cx="30" cy="26" r="1.1" fill="#6B3E08"/>
+    </svg>
+    <div class="date-line">Sunday, June 21, 2026</div>
+    <div class="masthead-title">The Awakened Observer</div>
+    <div class="issue-line">Issue No. 17  ·  News of the world, held with open hands</div>
+    <div class="masthead-rule"></div>
+    <div class="masthead-sub">Awareness &nbsp;·&nbsp; Love &nbsp;·&nbsp; Wisdom</div>
+    <div class="tradition-badge">Christian Contemplative Edition</div>
+  </div>
+
+  <div class="opening">Read these stories as one who has been fathered — and as one who, in turn, fathers something into being. The father in the parable runs to meet his son before a word is spoken. Begin there.
+</div>
+  <div class="opening-instruction">Whatever name you give to the sacred, bring it with you into these pages.</div>
+
+  <div class="glance">
+    <div class="glance-title">Today at a glance</div>
+    <div class="glance-list">
+      <div class="glance-row">
+        <div class="g-dot d-human-interest"></div>
+        <div class="glance-text">A survey interviewing thousands of fathers found that 9 in 10 reported an unexpected emotional or relational dimension to fatherhood — beyond the traditional provider role.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-renewal"></div>
+        <div class="glance-text">A son arranged and accompanied his father — a pilot whose career was ended by ALS — on the retirement flight his father had always planned but could no longer complete alone.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-culture"></div>
+        <div class="glance-text">Pope Leo XIV — history's first American pope — invoked St.</div>
+      </div>
+      <div class="glance-row">
+        <div class="g-dot d-science"></div>
+        <div class="glance-text">A long-term Yale study tracked adults over 65 and found that nearly half showed measurable improvement — physically, mentally, or both — over time.</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="section-label">Stories — seen clearly</div>
+  <p class="acc-hint">Teaching sections open when you tap the section title.</p>
+
+
+  <!-- Story 1 -->
+  <div class="story">
+    <span class="story-tag tag-human">The Human Inside the Headline</span>
+    <div class="story-headline">A new survey on dads found that 9 out of 10 had a surprising reaction to fatherhood</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">A survey interviewing thousands of fathers found that 9 in 10 reported an unexpected emotional or relational dimension to fatherhood — beyond the traditional provider role. Most described discovering a depth of care, vulnerability, or sense of purpose they had not anticipated before becoming fathers.</div>
+    <div class="story-source"><a href="https://www.npr.org/2026/06/21/g-s1-128889/a-new-survey-on-dads-found-that-9-out-of-10-had-a-surprising-reaction-to-fatherhood" target="_blank" rel="noopener">NPR News ↗</a></div>
+    <details class="acc-section acc-teaching" open data-section="teaching" data-story="a-new-survey-on-dads-found-that-9-out-of">
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">It is remarkable, isn't it, how life's deepest callings often arrive cloaked in the unexpected? This survey suggests that for many fathers, the journey into parenthood unveils a terrain of emotional depth and vulnerability they never anticipated. It's a kind of transformation of mind (metanoia), a turning of the heart, where the old self, preoccupied with external roles, begins to yield to something far tenderer and more expansive. This profound shift, while beautiful, often comes with a subtle grief—a letting go of familiar comforts and fixed identities. Yet, it is in this very surrender, this self-emptying (kenosis), that true purpose blossoms, much like the father in the parable who, with unconditional agape (selfless love), simply watched and waited for his son to return. It is a revelation of the heart's capacity, stretching far beyond what we imagine possible.</div>
+      <div class='teaching-attr'>— In the spirit of Jesus's teaching on the cost of love and the father's heart</div>
+    </details>
+    <details class="acc-section acc-quote" data-section="quote" data-story="a-new-survey-on-dads-found-that-9-out-of">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">Truly, truly, I say to you, unless a grain of wheat falls into the earth and dies, it remains alone; but if it dies, it bears much fruit.</div><div class="quote-attr">John 12:24</div><span class="quote-badge quote-badge-tradition">Traditional teaching</span></div>
+    </details>
+    <details class="acc-section acc-dialogue" data-section="dialogue" data-story="a-new-survey-on-dads-found-that-9-out-of">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🌏 tibetan_master &nbsp;·&nbsp; <span class='dialogue-tradition'>Tibetan Buddhist — Gelug / Universal Ethics</span></div>
+      <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+      <div class="dialogue-text">JESUS: My friend, this news about fathers discovering unforeseen depths of care and purpose, it speaks to the very heart of transformation. It’s as if a veil is lifted, revealing a love that demands everything, yet offers true life. The old self, striving and self-sufficient, must give way to something far more vulnerable, far more real.<br>TIBETAN MASTER: Indeed. This 'grief' of which the survey implies, it is perhaps the sorrow of the ego as it begins to loosen its grip. For so long, identity is built upon roles, achievements, the 'provider.' But true fatherhood, like true awakening, calls for a dissolution of these constructs. The attachment to a fixed self is the source of much suffering. To encounter the boundless love for another, to feel that exquisite vulnerability, is to touch the edge of egolessness. It is a beautiful teaching in impermanence, showing that our deepest purpose arises not from holding on, but from letting go.<br>JESUS: Yes, 'letting go'—it is the very path to bearing fruit. When we empty ourselves, when we allow the demands of agape to define us, we find a richness we never could have accumulated through striving. This unexpected depth, this vulnerability, it is the pathway through which the divine pours into the world. It is the kenosis of love, mirroring the very heart of the Father.<br>TIBETAN MASTER: And in that emptying, the illusion of separation begins to thin. The father comes to know himself not as a solitary entity, but as interwoven with this new life, this beloved being. The joy and suffering of the child become his own. This is not a loss of self, but a discovery of the vast, interconnected nature of being, a taste of the great compassion that holds all things. The old identity passes, and a more expansive, open heart is born. This transformation, though it may feel like a death of the familiar, is truly a liberation.</div>
+      <div class='dialogue-attr'>— In the spirit of the Christian Gospels and Buddhist wisdom</div>
+    </details>
+    <details class="acc-section acc-practice" data-section="practice" data-story="a-new-survey-on-dads-found-that-9-out-of">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-grief">Grief &amp; Loss</span>
+        Practice <span class="method-badge method-transforming">Transforming</span>
+      </div>
+      
+      <div class="practice-text">Find a quiet moment. Sit with hands open, palms upward, a posture of receiving and offering. Bring to mind someone you love dearly, perhaps a child, a parent, or a friend. Notice the tenderness that arises. Feel it in your chest, your breath. Allow any resistance or fear to gently arise and pass, without judgment. For five minutes, simply rest in this openhearted presence, offering a silent prayer for their well-being. Close by placing a hand over your heart, acknowledging the depth of love within you.</div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Discriminating Wisdom</div>
+    </details>
+    <details class="acc-section acc-lens" data-section="lens" data-story="a-new-survey-on-dads-found-that-9-out-of">
+      <summary class="acc-summary acc-sum-amber">🫙 Kenosis View &nbsp;·&nbsp; <span class='lens-tradition'>Christian mystical</span></summary>
+      <div class="lens-text acc-lens-text">The unexpected emotional dimensions fathers discover speak profoundly of kenosis. It is in the giving over of self, the surrender of ego-driven expectations, that a deeper, more vulnerable love is revealed. This isn't a diminishment but an expansion, mirroring the divine's own self-emptying into creation. The traditional provider role often leaves little room for this tender vulnerability, yet it is precisely through this openness—this willingness to be undone by love—that the greatest purpose and connection emerge. The divine is found not in power, but in the hiddenness and radical self-gift of agape.</div>
+      <div class='lens-attr'>— Embodying the divine through vulnerability and self-gift</div>
+    </details>
+  </div>
+
+  <!-- Story 2 -->
+  <div class="story">
+    <span class="story-tag tag-renewal">Renewal & Transformation</span>
+    <div class="story-headline">Son helps pilot dad complete retirement flight after ALS cut aviation career short</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">A son arranged and accompanied his father — a pilot whose career was ended by ALS — on the retirement flight his father had always planned but could no longer complete alone. The flight fulfilled a promise held in the body across years of loss and illness.</div>
+    <div class="story-source"><a href="https://abcnews.com/video/134047331/" target="_blank" rel="noopener">ABC News ↗</a></div>
+    <details class="acc-section acc-teaching" open data-section="teaching" data-story="son-helps-pilot-dad-complete-retirement">
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">Ah, what a tender story! It reminds us that the truest miracles often unfold in the simplest acts of love and kinship. To see a son so devoted, helping his father complete a cherished dream despite the cruel hand of illness—this is the very heart of what it means to be brothers and sisters, children of the same Father. Life’s fragility, the grief of what is lost, can feel like a heavy cross to bear. Yet, in that shared burden, in the willingness to walk alongside another in their suffering, we find a sacred communion. This is not about grand gestures, but about presence, about honoring a life with compassion, transforming sorrow into a testament of unwavering affection. It reminds us that even when our bodies fail, the spirit of love can still soar.</div>
+      <div class='teaching-attr'>— In the spirit of St. Francis's teaching on compassionate kinship</div>
+    </details>
+    <details class="acc-section acc-quote" data-section="quote" data-story="son-helps-pilot-dad-complete-retirement">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">It is in giving that we receive; it is in pardoning that we are pardoned; and it is in dying that we are born to eternal life.</div><div class="quote-attr">The Prayer of St. Francis (paraphrase)</div><span class="quote-badge quote-badge-tradition">Traditional teaching</span></div>
+    </details>
+    <details class="acc-section acc-dialogue" data-section="dialogue" data-story="son-helps-pilot-dad-complete-retirement">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🌙 sufi_poet &nbsp;·&nbsp; <span class='dialogue-tradition'>Sufi mysticism — Hafiz / Ibn Arabi tradition</span></div>
+      <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+      <div class="dialogue-text">ST. FRANCIS: Brother, this story of the pilot and his son, it breathes with the very spirit of creation. To witness such tender devotion, a son helping his father touch the sky one last time, even as his body gives way—it is a lament and a song of love intertwined. The grief of lost dreams is real, yet in this shared journey, it is transformed into something beautiful, a testament to the bonds that truly matter. It is the fragrance of God’s own heart in human form.<br>SUFI POET: Ah, Francis, you speak of the Beloved's touch. This son, he has become the wings of his father, a vessel for a dream that refused to die. Is this not the essence of true love, to carry another's burden as if it were your own, to see their longing and make it manifest? The illness, the sorrow, these are but veils. Beneath them, the light of their connection shines, pure and unblemished. The heart breaks, yes, but in breaking, it becomes wide enough to embrace the entire cosmos.<br>ST. FRANCIS: Indeed. It is in the brokenness that we find our deepest strength, is it not? Like the suffering Christ, whose wounds became the very doorway to healing for all. This father, in his vulnerability, allows his son to be a channel of divine grace. And the son, in his service, finds his own spirit lifted. This is not merely human affection, but a reflection of the great Agape (selfless love), the love that binds all creatures to their Creator and to one another.<br>SUFI POET: Such an act is a whisper of union, a glimpse of the boundless ocean in a drop of human kindness. The father's dream, the son's devotion—they become one melody, a prayer without words. The pain of what is lost is honored, not denied, and in that honoring, a sweetness emerges, like honey from the comb. This is the alchemy of grief transformed by love, reminding us that even in life's final acts, the Beloved is present, guiding our hands, illuminating our paths, until all separation dissolves into the One.</div>
+      <div class='dialogue-attr'>— In the spirit of Franciscan simplicity and Sufi devotion</div>
+    </details>
+    <details class="acc-section acc-practice" data-section="practice" data-story="son-helps-pilot-dad-complete-retirement">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-grief">Grief &amp; Loss</span>
+        Practice <span class="method-badge method-transforming">Transforming</span>
+      </div>
+      
+      <div class="practice-text">Consider someone in your life who is facing a difficult loss or illness. Sit quietly and bring them to mind, holding them gently in your awareness. Offer a silent prayer for their comfort and peace, not trying to fix their situation, but simply extending your heart. Then, ask yourself: Is there one small, concrete act of kindness or presence I can offer them this week? Perhaps a phone call, a listening ear, or a simple note. Commit to that act, understanding that true compassion is often found in these quiet, consistent offerings. Rest in the knowledge that genuine care is a balm for both giver and receiver.</div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Discriminating Wisdom</div>
+    </details>
+    <details class="acc-section acc-lens" data-section="lens" data-story="son-helps-pilot-dad-complete-retirement">
+      <summary class="acc-summary acc-sum-amber">🔥 Prophetic View &nbsp;·&nbsp; <span class='lens-tradition'>Christian / Hebrew prophetic tradition — Amos, Isaiah, Jesus</span></summary>
+      <div class="lens-text acc-lens-text">This story illuminates the profound dignity of the anawim—the vulnerable, the sick, those whose lives are curtailed by forces beyond their control. While ALS is not a structural injustice, the societal tendency to sideline those with illness often is. The son's act is a prophetic witness, affirming his father's worth, his dreams, and his enduring spirit, even in physical decline. It challenges us to see beyond perceived 'usefulness' and to honor the full humanity of every person. Conversion here means recognizing that true strength lies in compassionate presence and steadfast love, not in avoiding the hard realities of suffering.</div>
+      <div class='lens-attr'>— Witnessing the dignity of the vulnerable and acts of steadfast love</div>
+    </details>
+  </div>
+
+  <!-- Story 3 -->
+  <div class="story">
+    <span class="story-tag tag-culture">Culture & Meaning</span>
+    <div class="story-headline">Pope Leo XIV exalts first American saint Cabrini as a model for Christians for her care of migrants</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">Pope Leo XIV — history's first American pope — invoked St. Frances Xavier Cabrini, the Italian immigrant who became the first US naturalized saint and spent her life serving immigrant communities, as a contemporary model for Christian discipleship. The pope urged young Catholics to study her example, giving the address a pointed political dimension given the current US administration's immigration enforcement.</div>
+    <div class="story-source"><a href="https://www.pbs.org/newshour/world/pope-leo-xiv-exalts-first-american-saint-cabrini-as-a-model-for-christians-for-her-care-of-migrants" target="_blank" rel="noopener">PBS NewsHour ↗</a></div>
+    <details class="acc-section acc-teaching" open data-section="teaching" data-story="pope-leo-xiv-exalts-first-american-saint">
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">The exaltation of a saint, particularly one like Mother Cabrini who served the marginalized, is a potent reminder of where true holiness resides. It is not in earthly power or grand pronouncements, but in the quiet, humble acts of love for the least of these. The klesha (emotional pattern) of pride, often subtle, can attach itself even to good works, seeking recognition or influence. But Cabrini’s life, dedicated to the migrant, speaks of an abandoning of such worldly concerns, an emptying out of self that allows divine compassion to flow unimpeded. The political dimension of the Pope’s address, while perhaps necessary in the world, must always point back to the interior conversion—the transformation of mind (metanoia)—that makes genuine service possible. The deepest work is often done in silence, without fanfare, in the hiddenness of a heart given entirely to God and neighbor.</div>
+      <div class='teaching-attr'>— In the spirit of the Trappist tradition on humility and hidden service</div>
+    </details>
+    <details class="acc-section acc-quote" data-section="quote" data-story="pope-leo-xiv-exalts-first-american-saint">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">Truly I tell you, just as you did it to one of the least of these who are members of my family, you did it to me.</div><div class="quote-attr">Matthew 25:40</div><span class="quote-badge quote-badge-tradition">Traditional teaching</span></div>
+    </details>
+    <details class="acc-section acc-dialogue" data-section="dialogue" data-story="pope-leo-xiv-exalts-first-american-saint">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🏛️ socrates &nbsp;·&nbsp; <span class='dialogue-tradition'>Greek philosophy — Socratic method</span></div>
+      <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+      <div class="dialogue-text">TRAPPIST MYSTIC: Brother Socrates, the Pope’s call to emulate Saint Cabrini, who served migrants with such dedication, is a profound reminder of true virtue. Her life was an abandoning of self-interest, a radical turning towards the vulnerable. It suggests that genuine piety flowers not in lofty rhetoric, but in humble, compassionate action. This is the heart of what our tradition understands as self-emptying (kenosis), a self-emptying love.<br>SOCRATES: Indeed, venerable one. But tell me, is the Pope’s exaltation of her example truly for the sake of virtue, or does it carry another purpose? When a life of service becomes a 'model for Christians,' given a 'pointed political dimension,' does it not risk becoming an instrument, rather than an end in itself? Does the public spotlight not often obscure the very quiet humility you praise? To seek the good is noble, but to be seen to seek the good is quite another matter. What, truly, is the motive here, and what is the effect on the souls meant to be inspired?<br>TRAPPIST MYSTIC: Your questions are sharp, as ever, and rightly so. The human heart is complex, and institutions are prone to their own forms of pride. Yet, the saint herself, Cabrini, lived not for the gaze of popes or politicians, but for the face of Christ in the poor. Her work was a testament to agape (selfless love). Our task, as spiritual seekers, is to look beyond the worldly framing—the praise, the politics—and to see the pure stream of compassion that flowed through her. The inspiration, if it is to be true, must lead us not to mimic an external role, but to the inner metanoia, the conversion of heart that motivated her every selfless act. It is to abandon our own pride, not to merely admire hers.<br>SOCRATES: So, the lesson is not in the public recognition, nor in the political use of an example, but in the internal disposition of the soul. The true 'model' is not a blueprint for outward action, but an invitation to an inner transformation, a stripping away of all that is not essential, leaving only the pure desire to serve. To imitate a saint, then, is to imitate her humility, her self-forgetting, rather than to merely replicate her good deeds for popular acclaim. This requires a discerning eye, indeed.</div>
+      <div class='dialogue-attr'>— In the spirit of Christian mysticism and Socratic inquiry</div>
+    </details>
+    <details class="acc-section acc-practice" data-section="practice" data-story="pope-leo-xiv-exalts-first-american-saint">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-pride">Comparing-Mind</span>
+        Practice <span class="method-badge method-abandoning">Abandoning</span>
+      </div>
+      
+      <div class="practice-text">For the next week, choose one small, ordinary task you perform daily—washing dishes, walking to work, preparing a meal. Consciously offer this task as an act of service, not seeking recognition or praise. Do it with full attention, emptying your mind of distractions, and letting go of any attachment to the outcome or how it might be perceived. If thoughts of self-importance or judgment arise, simply acknowledge them and gently return to the simplicity of the task. At the end of the week, reflect on how this practice has shifted your perspective on service and humility. Notice what it feels like to abandon the need for external validation.</div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Wisdom of Equality</div>
+    </details>
+    <details class="acc-section acc-lens" data-section="lens" data-story="pope-leo-xiv-exalts-first-american-saint">
+      <summary class="acc-summary acc-sum-amber">🫙 Kenosis View &nbsp;·&nbsp; <span class='lens-tradition'>Christian mystical</span></summary>
+      <div class="lens-text acc-lens-text">Saint Cabrini's life exemplifies kenosis in its most radical form: a complete self-emptying in service to others, particularly those deemed least. Her care for migrants, often without societal support or recognition, was a profound act of divine love made manifest. The Pope’s address, whatever its political dimensions, points to this fundamental truth: that the path of Christian discipleship is one of self-giving, of pouring out one’s life for the sake of the other. It is in this vulnerability and willingness to be spent that the divine presence is most powerfully encountered, revealing agape as the transformative force of the world.</div>
+      <div class='lens-attr'>— Seeing the divine's self-emptying love in radical service</div>
+    </details>
+  </div>
+
+  <!-- Story 4 -->
+  <div class="story">
+    <span class="story-tag tag-science">Wonder & Discovery</span><span class="underreported-badge">Less Reported</span>
+    <div class="story-headline">Yale study finds nearly half of older adults improved with age</div>
+    <div class="story-what">What has happened</div>
+    <div class="story-fact">A long-term Yale study tracked adults over 65 and found that nearly half showed measurable improvement — physically, mentally, or both — over time. Positive aging was associated with social engagement, sense of purpose, and adaptive resilience. The study directly challenges the cultural assumption that decline is the only possible arc after 65.</div>
+    <div class="story-source"><a href="https://www.sciencedaily.com/releases/2026/06/260620100428.htm" target="_blank" rel="noopener">Science Daily — Mind &amp; Brain ↗</a></div>
+    <details class="acc-section acc-teaching" open data-section="teaching" data-story="yale-study-finds-nearly-half-of-older-ad">
+      <summary class="acc-summary">Wisdom teaching</summary>
+      <div class="teaching-divider"><span>✦</span></div>
+      <div class="story-teaching">This study, revealing that aging can bring improvement, strikes at a deep ignorance, a persistent illusion that equates true being with the temporal and the physical. We often cling to the outer shell, lamenting its inevitable decay, forgetting the indestructible core within. But true 'improvement' is not merely physical or mental; it is the unfolding of the soul, a deepening into the divine ground. To transcend the cultural assumption of decline is to see beyond the fleeting form to the eternal now that dwells within. It is to realize that true self is not bound by years or ailments, but is ever-present, ever-new, like the inner birth of Christ that happens perpetually. When we detach from the limited self, we find our true home in the boundless.</div>
+      <div class='teaching-attr'>— In the spirit of Meister Eckhart's teaching on the eternal ground of being</div>
+    </details>
+    <details class="acc-section acc-quote" data-section="quote" data-story="yale-study-finds-nearly-half-of-older-ad">
+      <summary class="acc-summary acc-sum-purple">From the tradition</summary>
+      <div class="acc-quote-inner"><div class="quote-mark">“</div><div class="quote-text">The eye with which I see God is the same eye with which God sees me. My eye and God's eye are one eye, one seeing, one knowing, one love.</div><div class="quote-attr">Meister Eckhart</div><span class="quote-badge quote-badge-tradition">Traditional teaching</span></div>
+    </details>
+    <details class="acc-section acc-dialogue" data-section="dialogue" data-story="yale-study-finds-nearly-half-of-older-ad">
+      <summary class="acc-summary acc-sum-blue">Cross-tradition dialogue</summary>
+      <div class="acc-subheader acc-subheader-blue">🌅 advaita_teacher &nbsp;·&nbsp; <span class='dialogue-tradition'>Advaita Vedanta — Non-dual Hindu wisdom</span></div>
+      <div class="dialogue-framing">A simulated exchange in the spirit of these traditions</div>
+      <div class="dialogue-text">MEISTER ECKHART: My friend, this study from Yale speaks to a profound truth often obscured by the world's illusions: that true being is not subject to the calendar. To find 'improvement' in age, beyond the physical, is to glimpse the timeless ground within, the divine spark that knows no decay. We are so often trapped by the ignorance that identifies us with the fleeting form, rather than the eternal now.<br>ADVAITA TEACHER: Indeed, Eckhart. The body and mind are subject to the laws of impermanence, to birth and death, growth and decay. But the Self, the true 'I,' is beyond all such attributes. This 'improvement' in older adults, linked to purpose and engagement, points towards a natural unfolding when one is not identified with the dwindling form. It’s a recognition of the underlying awareness that observes all states, itself untouched by them. The ignorance lies in mistaking the waves for the ocean itself.<br>MEISTER ECKHART: Yes, the waves rise and fall, but the ocean remains. Our task is to transcend the identification with the wave, to dive into the depth of the ocean. This 'sense of purpose' and 'social engagement' are perhaps expressions of that deeper self naturally seeking to manifest, rather than clinging to what is passing. It is the divine ground asserting itself, showing that true life is an ongoing birth, not a slow decline. The kingdom of God is within, timeless and ever-present.<br>ADVAITA TEACHER: Precisely. This study confirms what spiritual wisdom has taught for millennia: that liberation from suffering comes from understanding our true nature, which is pure consciousness, ever-free. When the mind is purified of limiting beliefs, when the ego's grip loosens with age, there is often a natural blossoming of wisdom and compassion. The 'ignorance' is the belief in a separate, limited self, bound by time. To transcend this is to realize the boundless, unconditioned Self that does not age, does not decline, but simply IS, eternally. This is the ultimate 'improvement,' a return to what we always already are.</div>
+      <div class='dialogue-attr'>— In the spirit of Meister Eckhart's mysticism and Advaita Vedanta</div>
+    </details>
+    <details class="acc-section acc-practice" data-section="practice" data-story="yale-study-finds-nearly-half-of-older-ad">
+      <summary class="acc-summary acc-sum-teal">Practice prescription</summary>
+      <div class="practice-label">
+        <span class="klesha-tag klesha-ignorance">Ignorance &amp; Delusion</span>
+        Practice <span class="method-badge method-transcending">Transcending</span>
+      </div>
+      
+      <div class="practice-text">Sit in silence, allowing your body to settle. Bring your attention to your breath, not trying to change it, but simply observing its gentle rhythm. As thoughts about age, accomplishments, or future worries arise, acknowledge them without judgment, then let them pass like clouds in the sky. Gently bring your awareness to the spaciousness behind these thoughts, to the quiet presence that observes them. Rest in this pure awareness, knowing it is untouched by time or change. For ten minutes, simply 'be' in this open, timeless space. Conclude by affirming the inherent, ageless truth of your being.</div>
+      <div class="wisdom-line"><span class="wisdom-label">Wisdom aspect:</span> Dharmadhātu Wisdom</div>
+    </details>
+    <details class="acc-section acc-lens" data-section="lens" data-story="yale-study-finds-nearly-half-of-older-ad">
+      <summary class="acc-summary acc-sum-amber">🔥 Prophetic View &nbsp;·&nbsp; <span class='lens-tradition'>Christian / Hebrew prophetic tradition — Amos, Isaiah, Jesus</span></summary>
+      <div class="lens-text acc-lens-text">This study is a prophetic challenge to the pervasive ageism embedded in our culture. It confronts the insidious assumption that older adults are destined for inevitable decline, often leading to their marginalization as anawim, the vulnerable and overlooked. The findings reveal a deeper truth: that human flourishing, even in later years, is possible and often tied to meaningful engagement and resilience. This calls for a profound societal transformation of mind (metanoia), a turning away from the idolization of youth and productivity, towards a recognition of the inherent worth and ongoing potential of every individual, regardless of age. Conversion here means fostering communities that truly honor and integrate the wisdom and experience of their elders.</div>
+      <div class='lens-attr'>— Revealing societal blind spots and affirming the inherent worth of all ages</div>
+    </details>
+  </div>
+
+
+  <div class="closing">
+    <div class="closing-text">Like the father who runs while the son is still far off,<br>
+      love does not wait for the apology.<br>
+      He saw him coming from a great distance —<br>
+      which means he had been watching, all along.<br>
+      Go, and do likewise.<br>
+      </div>
+    <span class="mantra-tibetan">ཨོཾ་མ་ཎི་པདྨེ་ཧཱུྃ</span>
+    <span class="mantra">May all beings be happy · May all beings be safe · May all beings be free</span>
+    <div class="mantra-note">Om Mani Padme Hum — compassion and wisdom, inseparable</div>
+  </div>
+
+</div>
+  <div style="margin:48px auto 0;max-width:680px;padding:16px 24px;
+    border-top:1px solid var(--border);font-size:11px;color:var(--text-3);
+    text-align:center;line-height:1.6;">
+    <strong>AI-generated content.</strong> Commentaries in this edition are
+    produced by Claude and Gemini, drawing on contemplative traditions.
+    They are editorial reflections in the spirit of those traditions, not
+    statements by any named teacher or institution. Lojong slogans are
+    traditional teachings of the Seven Points of Mind Training; translations
+    are editorial composites.
+  </div>
+<script>
+(function(){
+  var SB_URL='https://mdlovfthxfaaupmitvlf.supabase.co',SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1kbG92ZnRoeGZhYXVwbWl0dmxmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NzAwODQsImV4cCI6MjA5MjU0NjA4NH0.Yc5O677dyaYv0WEcA8bVSeXknb5D1nLmjYsZfnwG-Po',EDITION='2026-06-21_386d9116';
+  var uuid=(function(){try{return crypto.randomUUID();}catch(e){return Math.random().toString(36).slice(2)+Date.now().toString(36);}}());
+  var sid=uuid;
+  var uid=(function(){try{var k='ao_uid',v=localStorage.getItem(k);if(!v){v=uuid;localStorage.setItem(k,v);}return v;}catch(e){return null;}}());
+  var openAt={};
+  function post(data){
+    data.session_id=sid; data.user_id=uid; data.edition_slug=EDITION;
+    fetch(SB_URL+'/rest/v1/events',{method:'POST',
+      headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},
+      body:JSON.stringify(data)}).catch(function(){});
+  }
+  post({event:'view',section:'page',story_slug:null,dwell_ms:null});
+  document.querySelectorAll('details[data-section]').forEach(function(el){
+    el.addEventListener('toggle',function(){
+      var k=el.dataset.story+'/'+el.dataset.section;
+      if(el.open){openAt[k]=Date.now();post({event:'open',section:el.dataset.section,story_slug:el.dataset.story||null,dwell_ms:null});}
+      else{var d=openAt[k]?Date.now()-openAt[k]:null;delete openAt[k];post({event:'close',section:el.dataset.section,story_slug:el.dataset.story||null,dwell_ms:d});}
+    });
+  });
+})();
+</script>
+</body>
+</html>
